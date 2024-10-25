@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  /* Prevents font boosting on Android Chrome */
+  @apply flex;
+}
