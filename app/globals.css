@@ -13,7 +13,7 @@ h5,
 h6,
 p {
   /* Prevents font boosting on Android Chrome */
-  @apply flex;
+  @apply max-h-full;
 }
 
 h1 {
