@@ -6,9 +6,7 @@ export default function Home() {
   return (
     <main className="min-h-dvh bg-stone-300 text-slate-800">
       <section className="flex flex-col gap-10 p-10">
-        <h1 className="sm:text-6xl_ mx-auto text-center text-4xl font-semibold">
-          Unleash your app&apos;s true potential
-        </h1>
+        <h1>Unleash your app&apos;s true potential</h1>
         <Image
           className="mx-auto size-64 rounded-full object-cover"
           src={mikaelImage}
@@ -16,9 +14,9 @@ export default function Home() {
         />
         <div className="flex flex-col gap-2">
           <div>
-            <h3 className="text-lg font-semibold">Mikael Lirbank</h3>
+            <h3>Mikael Lirbank</h3>
             {/* <p>Tech lead, product manager, code quality expert</p> */}
-            <p>I help companies build better software</p>
+            <p className="text-lg">I help companies build better software</p>
           </div>
           <div className="flex gap-2">
             <LinkedInIcon className="size-8" />
@@ -34,15 +32,13 @@ export default function Home() {
         </div>
       </section> */}
       <section className="flex flex-col gap-10 rounded bg-stone-200 p-10">
-        <h2 className="text-2xl font-semibold">
-          Things I&apos;d love to build for you
-        </h2>
+        <h2>Things I&apos;d love to build for you</h2>
         <div className="flex flex-col gap-2">
-          <h3 className="text-lg font-semibold">Build from scratch</h3>
+          <h3>Build from scratch</h3>
           <p>Ipsums dolor sit amet.</p>
         </div>
         <div className="flex flex-col gap-2">
-          <h3 className="text-lg font-semibold">JavaScript to TypeScript</h3>
+          <h3>JavaScript to TypeScript</h3>
           <p>
             TypeScript will boost productivity and reduce bugs. If your app is
             not written in TypeScript, I can convert it for you.
@@ -51,8 +47,4 @@ export default function Home() {
       </section>
     </main>
   );
-}
-
-{
-  /* <div className="text-base">Some stuff</div> */
 }
