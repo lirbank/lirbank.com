@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --font-family-sans: var(--font-geist-sans);
+  --font-family-mono: var(--font-geist-mono);
+}
+
 h1,
 h2,
 h3,
