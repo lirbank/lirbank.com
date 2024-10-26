@@ -1,13 +1,12 @@
 declare namespace JSX {
   interface IntrinsicElements {
-    inner: React.DetailedHTMLProps<
+    page: React.DetailedHTMLProps<
       React.HTMLAttributes<HTMLElement>,
       HTMLElement
     >;
   }
-
   interface IntrinsicElements {
-    page: React.DetailedHTMLProps<
+    container: React.DetailedHTMLProps<
       React.HTMLAttributes<HTMLElement>,
       HTMLElement
     >;

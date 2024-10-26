@@ -32,6 +32,8 @@ p {
   @apply text-lg;
 }
 
-inner {
-  @apply mx-auto flex max-w-3xl flex-col px-8 py-10;
+/* Custom elements */
+page,
+container {
+  @apply block;
 }

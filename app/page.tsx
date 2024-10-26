@@ -37,50 +37,56 @@ const technologies = [
 
 export default function Home() {
   return (
-    <page>
-      <header>
-        <inner className="gap-10 sm:grid sm:grid-cols-2">
-          <h1 className="text-center sm:text-left">
-            Unleash your{" "}
-            <span className="font-semibold text-cyan-600">web app</span>
-            &apos;s true potential
-          </h1>
-          <Image
-            className="mx-auto size-64 rounded-full object-cover sm:row-span-2 sm:rounded sm:shadow"
-            src={mikaelImage}
-            alt="Mikael Lirbank, a web development expert smiling at the camera"
-          />
-          <div className="flex flex-col gap-2">
-            <div>
-              <h3>Mikael Lirbank</h3>
-              <p>
-                I help companies build better software, focusing on web
-                technologies.
-              </p>
+    <>
+      <main>
+        <container className="bg-stone-200">
+          <section className="mx-auto flex max-w-3xl flex-col gap-10 px-8 py-10 sm:grid sm:grid-cols-2">
+            <h1 className="text-center sm:text-left">
+              Unleash your{" "}
+              <span className="font-semibold text-cyan-600">web app</span>
+              &apos;s true potential
+            </h1>
+            <Image
+              className="mx-auto size-64 rounded-full object-cover sm:row-span-2 sm:rounded sm:shadow"
+              src={mikaelImage}
+              alt="Mikael Lirbank, a web development expert smiling at the camera"
+            />
+            <div className="flex flex-col gap-2">
+              <div>
+                <h3>Mikael Lirbank</h3>
+                <p>
+                  I help companies build better software, focusing on web
+                  technologies.
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <a
+                  href="https://www.linkedin.com/in/mikaellirbank"
+                  aria-label="LinkedIn profile"
+                >
+                  <LinkedInIcon className="size-8" />
+                </a>
+                <a
+                  href="https://x.com/mikaellirbank"
+                  aria-label="Twitter profile"
+                >
+                  <SquareXTwitterIcon className="size-8" />
+                </a>
+                <a
+                  href="https://github.com/lirbank"
+                  aria-label="GitHub profile"
+                >
+                  <SquareGitHubIcon className="size-8" />
+                </a>
+              </div>
             </div>
-            <div className="flex gap-2">
-              <a
-                href="https://www.linkedin.com/in/mikaellirbank"
-                aria-label="LinkedIn profile"
-              >
-                <LinkedInIcon className="size-8" />
-              </a>
-              <a
-                href="https://x.com/mikaellirbank"
-                aria-label="Twitter profile"
-              >
-                <SquareXTwitterIcon className="size-8" />
-              </a>
-              <a href="https://github.com/lirbank" aria-label="GitHub profile">
-                <SquareGitHubIcon className="size-8" />
-              </a>
-            </div>
-          </div>
-        </inner>
-      </header>
-      <main className="min-h-dvh bg-stone-200 text-slate-800">
-        <section className="bg-stone-100" aria-labelledby="services-heading">
-          <inner className="gap-10">
+          </section>
+        </container>
+        <container>
+          <section
+            aria-labelledby="services-heading"
+            className="mx-auto flex max-w-3xl flex-col gap-10 px-8 py-10"
+          >
             <h2 id="services-heading">
               Things I&apos;d love to take off your plate
             </h2>
@@ -98,10 +104,13 @@ export default function Home() {
                 written in JavaScript, I can convert it to TypeScript for you.
               </p>
             </div>
-          </inner>
-        </section>
-        <section aria-labelledby="about-heading">
-          <inner className="gap-6">
+          </section>
+        </container>
+        <container className="bg-stone-200">
+          <section
+            aria-labelledby="about-heading"
+            className="mx-auto flex max-w-3xl flex-col gap-6 px-8 py-10"
+          >
             <h2 id="about-heading">About me</h2>
             <p>
               I have a strong track record of building apps from scratch,
@@ -136,14 +145,12 @@ export default function Home() {
               I take ownership of every project, delivering predictability and
               peace of mind to you.
             </p>
-          </inner>
-        </section>
+          </section>
+        </container>
       </main>
-      <footer>
-        <inner>
-          <p>© {new Date().getFullYear()} Mikael Lirbank & Airlab LLC</p>
-        </inner>
+      <footer className="mx-auto flex max-w-3xl flex-col gap-10 px-8 py-4 text-center">
+        © {new Date().getFullYear()} Mikael Lirbank & Airlab LLC
       </footer>
-    </page>
+    </>
   );
 }
