@@ -72,8 +72,6 @@ export default function Home() {
           </div>
         </inner>
       </section>
-
-      {/* <section className="mx-auto flex max-w-3xl flex-col gap-10 bg-stone-100 px-8 py-10"> */}
       <section className="bg-stone-100">
         <inner className="gap-10">
           <h2>Things I&apos;d love to take off your plate</h2>
@@ -113,7 +111,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-
           <p>
             I&apos;m a tech lead, product manager, UI designer, and code quality
             expert with over 20 years of experience building apps from scratch,
