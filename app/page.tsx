@@ -48,7 +48,7 @@ export default function Home() {
           <Image
             className="mx-auto size-64 rounded-full object-cover sm:row-span-2 sm:rounded sm:shadow"
             src={mikaelImage}
-            alt="Mikael Lirbank"
+            alt="Mikael Lirbank, a web development expert smiling at the camera"
           />
           <div className="flex flex-col gap-2">
             <div>
@@ -59,13 +59,19 @@ export default function Home() {
               </p>
             </div>
             <div className="flex gap-2">
-              <a href="https://www.linkedin.com/in/mikaellirbank">
+              <a
+                href="https://www.linkedin.com/in/mikaellirbank"
+                aria-label="LinkedIn profile"
+              >
                 <LinkedInIcon className="size-8" />
               </a>
-              <a href="https://x.com/mikaellirbank">
+              <a
+                href="https://x.com/mikaellirbank"
+                aria-label="Twitter profile"
+              >
                 <SquareXTwitterIcon className="size-8" />
               </a>
-              <a href="https://github.com/lirbank">
+              <a href="https://github.com/lirbank" aria-label="GitHub profile">
                 <SquareGitHubIcon className="size-8" />
               </a>
             </div>
@@ -73,9 +79,11 @@ export default function Home() {
         </inner>
       </header>
       <main className="min-h-dvh bg-stone-200 text-slate-800">
-        <section className="bg-stone-100">
+        <section className="bg-stone-100" aria-labelledby="services-heading">
           <inner className="gap-10">
-            <h2>Things I&apos;d love to take off your plate</h2>
+            <h2 id="services-heading">
+              Things I&apos;d love to take off your plate
+            </h2>
             <div className="flex flex-col gap-2">
               <h3>Build from scratch</h3>
               <p>
@@ -92,9 +100,9 @@ export default function Home() {
             </div>
           </inner>
         </section>
-        <section>
+        <section aria-labelledby="about-heading">
           <inner className="gap-6">
-            <h2>About me</h2>
+            <h2 id="about-heading">About me</h2>
             <p>
               I have a strong track record of building apps from scratch,
               rescuing existing ones, and leading development teams.
