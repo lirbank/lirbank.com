@@ -17,7 +17,7 @@ p {
 }
 
 h1 {
-  @apply mx-auto text-center text-4xl font-medium;
+  @apply text-4xl/tight font-medium;
 }
 
 h2 {
@@ -30,4 +30,8 @@ h3 {
 
 p {
   @apply text-lg;
+}
+
+inner {
+  @apply mx-auto flex max-w-3xl flex-col px-8 py-10;
 }
