@@ -10,8 +10,10 @@ const technologies = [
   ["Docker", "https://www.docker.com/"],
   ["Drizzle", "https://orm.drizzle.team/"],
   ["Expo", "https://expo.dev/"],
+  ["GitHub Actions", "https://github.com/features/actions"],
   ["Heroku", "https://www.heroku.com/"],
   ["LLM", "https://en.wikipedia.org/wiki/Large_language_model"],
+  ["MongoDB", "https://www.mongodb.com/"],
   ["Neon", "https://neon.tech/"],
   ["Next.js", "https://nextjs.org/"],
   ["OpenAI", "https://openai.com/"],
@@ -39,10 +41,14 @@ export default function Home() {
   return (
     <>
       <main>
-        <container className="bg-stone-200">
-          <section className="mx-auto flex max-w-3xl flex-col gap-10 px-8 py-10 sm:grid sm:grid-cols-2">
-            <h1 className="text-center sm:text-left">
-              Unleash your{" "}
+        {/* 1. Hero */}
+        <container>
+          <section
+            aria-labelledby="main-heading"
+            className="mx-auto flex max-w-3xl flex-col gap-10 px-8 py-10 sm:grid sm:grid-cols-2"
+          >
+            <h1 id="main-heading" className="text-center sm:text-left">
+              Let&apos;s unleash your{" "}
               <span className="font-semibold text-cyan-600">web app</span>
               &apos;s true potential
             </h1>
@@ -82,6 +88,8 @@ export default function Home() {
             </div>
           </section>
         </container>
+
+        {/* 2. Services */}
         <container>
           <section
             aria-labelledby="services-heading"
@@ -106,19 +114,58 @@ export default function Home() {
             </div>
           </section>
         </container>
-        <container className="bg-stone-200">
+
+        {/* 3. Benefits */}
+        <container>
+          <section
+            aria-labelledby="about-heading"
+            className="mx-auto flex max-w-3xl flex-col gap-6 px-8 py-10"
+          >
+            <h2 id="about-heading">Why work with me</h2>
+          </section>
+        </container>
+
+        {/* 4. Contact */}
+        <container>
+          <section
+            aria-labelledby="about-heading"
+            className="mx-auto flex max-w-3xl flex-col gap-6 px-8 py-10"
+          >
+            <h2 id="about-heading">Let&apos;s get in touch</h2>
+          </section>
+        </container>
+
+        {/* 5. About */}
+        <container>
           <section
             aria-labelledby="about-heading"
             className="mx-auto flex max-w-3xl flex-col gap-6 px-8 py-10"
           >
             <h2 id="about-heading">About me</h2>
             <p>
+              I live in Corte Madera with my wife and children, just north of
+              the Golden Gate Bridge, in the San Francisco Bay Area. I am a bit
+              of a cycling fanatic so if you&apos;d ever want to go mountain
+              biking or road cycling in Marin County, hit me up.
+            </p>
+            <p>
               I have a strong track record of building apps from scratch,
               rescuing existing ones, and leading development teams.
             </p>
-            <h2>Expertise</h2>
+            <p>
+              I&apos;m a tech lead, product manager, UI designer, and code
+              quality expert with over 20 years of experience building apps from
+              scratch, rescuing existing ones, and managing development teams.
+              I&apos;m very hands-on and I love building web apps, whether solo
+              or as part of a team.
+            </p>
+            <p>
+              I take ownership of every project, delivering predictability and
+              peace of mind to you.
+            </p>
+            <h3>Expertise</h3>
             <p>I consider myself an expert in the following technologies:</p>
-            <div className="-mx-4 flex flex-wrap justify-center gap-1">
+            <div className="-mx-6 flex flex-wrap justify-center gap-1 sm:mx-0">
               {technologies.map(([name, url]) => (
                 <div
                   key={name}
@@ -130,21 +177,6 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <p>
-              I&apos;m a tech lead, product manager, UI designer, and code
-              quality expert with over 20 years of experience building apps from
-              scratch, rescuing existing ones, and managing development teams.
-              I&apos;m very hands-on and I love building web apps, whether solo
-              or as part of a team.
-            </p>
-            <p>
-              I live in Corte Madera, just north of the Golden Gate Bridge, in
-              the San Francisco Bay Area.
-            </p>
-            <p>
-              I take ownership of every project, delivering predictability and
-              peace of mind to you.
-            </p>
           </section>
         </container>
       </main>

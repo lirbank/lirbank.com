@@ -33,7 +33,6 @@ p {
 }
 
 /* Custom elements */
-page,
 container {
-  @apply block;
+  @apply block odd:bg-stone-200;
 }
