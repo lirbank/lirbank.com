@@ -2,6 +2,36 @@ import Image from "next/image";
 import mikaelImage from "../public/mikael-lirbank.jpg";
 import { LinkedInIcon, SquareGitHubIcon, SquareXTwitterIcon } from "./icons";
 
+const technologies = [
+  ["AWS", "https://aws.amazon.com/"],
+  ["bun", "https://bun.sh/"],
+  ["Convex", "https://convex.dev/"],
+  ["Docker", "https://www.docker.com/"],
+  ["Drizzle", "https://orm.drizzle.team/"],
+  ["Expo", "https://expo.dev/"],
+  ["Heroku", "https://www.heroku.com/"],
+  ["Neon", "https://neon.tech/"],
+  ["Next.js", "https://nextjs.org/"],
+  ["Playwright", "https://playwright.dev/"],
+  ["pnpm", "https://pnpm.io/"],
+  ["Postgres", "https://www.postgresql.org/"],
+  [
+    "React Server Actions",
+    "https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions",
+  ],
+  ["React", "https://react.dev/"],
+  [
+    "RSC",
+    "https://nextjs.org/docs/app/building-your-application/optimizing/rsc",
+  ],
+  ["Tailwind CSS", "https://tailwindcss.com/"],
+  ["tRPC", "https://trpc.io/"],
+  ["tubo repo", "https://turbo.build/repo"],
+  ["TypeScript", "https://www.typescriptlang.org/"],
+  ["Vercel", "https://vercel.com/"],
+  ["Vitest", "https://vitest.dev/"],
+] as const;
+
 export default function Home() {
   return (
     <main className="min-h-dvh bg-stone-300 text-slate-800">
@@ -63,31 +93,14 @@ export default function Home() {
         <h2>Expertise</h2>
         <p>I consider myself an expert in the following technologies:</p>
         <div className="-mx-4 flex flex-wrap justify-center gap-1">
-          {[
-            "AWS",
-            "Convex",
-            "Docker",
-            "Drizzle",
-            "Expo",
-            "Heroku",
-            "Neon",
-            "Next.js",
-            "Playwright",
-            "Postgres",
-            "React Server Actions",
-            "React",
-            "RSC",
-            "Tailwind CSS",
-            "tRPC",
-            "TypeScript",
-            "Vercel",
-            "Vitest",
-          ].map((e) => (
+          {technologies.map(([name, url]) => (
             <div
-              key={e}
-              className="rounded-lg bg-stone-200 px-3 py-2 text-sm text-nowrap"
+              key={name}
+              className="rounded-lg bg-stone-200 px-3 py-1 text-sm text-nowrap"
             >
-              {e}
+              <a href={url} target="_blank" rel="noopener noreferrer">
+                {name}
+              </a>
             </div>
           ))}
         </div>
