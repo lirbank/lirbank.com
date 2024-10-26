@@ -6,7 +6,11 @@ export default function Home() {
   return (
     <main className="min-h-dvh bg-stone-300 text-slate-800">
       <section className="flex flex-col gap-10 px-8 py-10">
-        <h1>Unleash your web app&apos;s true potential</h1>
+        <h1>
+          Unleash your{" "}
+          <span className="font-semibold text-cyan-600">web app</span>&apos;s
+          true potential
+        </h1>
         <Image
           className="mx-auto size-64 rounded-full object-cover"
           src={mikaelImage}
@@ -56,6 +60,37 @@ export default function Home() {
           I have a strong track record of building apps from scratch, rescuing
           existing ones, and leading development teams.
         </p>
+        <h2>Expertise</h2>
+        <p>I consider myself an expert in the following technologies:</p>
+        <div className="-mx-4 flex flex-wrap justify-center gap-1">
+          {[
+            "AWS",
+            "Convex",
+            "Docker",
+            "Drizzle",
+            "Expo",
+            "Heroku",
+            "Neon",
+            "Next.js",
+            "Playwright",
+            "Postgres",
+            "React Server Actions",
+            "React",
+            "RSC",
+            "Tailwind CSS",
+            "tRPC",
+            "TypeScript",
+            "Vercel",
+            "Vitest",
+          ].map((e) => (
+            <div
+              key={e}
+              className="rounded-lg bg-stone-200 px-3 py-2 text-sm text-nowrap"
+            >
+              {e}
+            </div>
+          ))}
+        </div>
 
         <p>
           I&apos;m a tech lead, product manager, UI designer, and code quality

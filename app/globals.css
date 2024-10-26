@@ -17,7 +17,7 @@ p {
 }
 
 h1 {
-  @apply mx-auto text-center text-4xl font-semibold;
+  @apply mx-auto text-center text-4xl font-medium;
 }
 
 h2 {
