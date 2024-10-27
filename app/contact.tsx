@@ -6,17 +6,10 @@ import {
   SquarePhoneIcon,
 } from "./icons";
 
-const smsBody = encodeURIComponent(
-  "Hello Mikael,\n\nI'm reaching out regarding...",
-);
+const smsBody = encodeURIComponent("Hi Mikael,\n\nLet's unleash our app...");
 
-const emailSubject = encodeURIComponent(
-  "Let's unleash your web app's true potential",
-);
-
-const emailBody = encodeURIComponent(
-  "Hello Mikael,\n\nI'm reaching out regarding...",
-);
+const emailSubject = encodeURIComponent("Let's unleash our app");
+const emailBody = encodeURIComponent("Hi Mikael,\n\n...");
 
 interface Contact {
   id: string;
@@ -41,7 +34,7 @@ export const contact = [
   {
     id: "Email",
     type: "contact",
-    href: `mailto:mikael@airlab.io?subject=${emailSubject}&body=${emailBody}`,
+    href: `mailto:mikael+lp@airlab.io?subject=${emailSubject}&body=${emailBody}`,
     icon: SquareEnvelopeIcon,
     text: "mikael@airlab.io",
     label: "Send email to Mikael at mikael@airlab.io",
