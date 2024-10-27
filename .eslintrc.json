@@ -35,5 +35,14 @@
     "react/jsx-no-leaked-render": "error",
     "react/no-unescaped-entities": "off",
     "react/self-closing-comp": "error"
-  }
+  },
+  "ignorePatterns": ["**/*.js", "**/*.cjs", "**/*.mjs"],
+  "overrides": [
+    {
+      "files": ["**/*.test.ts"],
+      "rules": {
+        "@typescript-eslint/no-unsafe-assignment": "off"
+      }
+    }
+  ]
 }
