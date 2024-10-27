@@ -1,7 +1,7 @@
 import Image from "next/image";
 import mikaelImage from "../public/mikael-lirbank.jpg";
-import { LinkedInIcon, SquareGitHubIcon, SquareXTwitterIcon } from "./icons";
-import { technologies } from "./technologies";
+import { highlightedTechnologies, technologies } from "./technologies";
+import { contact } from "./contact";
 
 export default function Home() {
   return (
@@ -48,24 +48,11 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex gap-2">
-                <a
-                  href="https://www.linkedin.com/in/mikaellirbank"
-                  aria-label="LinkedIn profile"
-                >
-                  <LinkedInIcon className="size-8" />
-                </a>
-                <a
-                  href="https://x.com/mikaellirbank"
-                  aria-label="Twitter profile"
-                >
-                  <SquareXTwitterIcon className="size-8" />
-                </a>
-                <a
-                  href="https://github.com/lirbank"
-                  aria-label="GitHub profile"
-                >
-                  <SquareGitHubIcon className="size-8" />
-                </a>
+                {contact.map(({ href, icon: Icon, label }) => (
+                  <a key={href} href={href} aria-label={label} title={label}>
+                    <Icon className="size-8" />
+                  </a>
+                ))}
               </div>
             </div>
           </section>
@@ -74,7 +61,7 @@ export default function Home() {
         {/* 2. Services */}
         <container>
           <section aria-labelledby="services-heading">
-            <h2 id="services-heading">
+            <h2 id="services-heading" className="scroll-mt-10">
               Things I'd love to take off your plate
             </h2>
             <h3>Hands-on web app development</h3>
@@ -91,10 +78,10 @@ export default function Home() {
             <h3>Deployment and quality assurance</h3>
             <p>
               A bug-free, fast, and stable app that is a delight to use starts
-              with robust test automation. I set up test automation frameworks
-              to eliminate regressions and keep your app thoroughly tested, from
-              integration to end-to-end testing. Quality is at the heart of what
-              I do, and I'm happy to get your team up to speed with test-driven
+              with robust test automation. I set up test automation to eliminate
+              regressions and keep your app thoroughly tested, from integration
+              to end-to-end testing. Quality is at the heart of what I do, and
+              I'm happy to get your team up to speed with test-driven
               development if that's a focus.
             </p>
             <p>
@@ -137,64 +124,99 @@ export default function Home() {
         {/* 3. Benefits */}
         <container>
           <section aria-labelledby="benefits-heading">
-            <h2 id="benefits-heading">Why work with me</h2>
+            <h2 id="benefits-heading" className="scroll-mt-10">
+              Why work with me
+            </h2>
+            <h3>Peace of mind</h3>
             <p>
-              I pay close attention to detail and quality, in both code and
-              design.
+              My main deliverable is peace of mind. Working with me, you'll have
+              an app leader who takes ownership of every aspect of the project,
+              handles complex situations independently, and keeps everything
+              moving smoothly.
             </p>
-            <p>TBD</p>
-            {/* <p>
-              With years of experience building apps from scratch and saving
-              existing ones through refactoring and optimization, I ensure every
-              project gets the attention it needs to succeed. My approach
-              delivers stability, scalability, and ease of maintenance, giving
-              you confidence in your app's long-term success.
-            </p> */}
+            <p>
+              I'll keep you informed on what really matters, so you can stay
+              focused on your core priorities without unnecessary interruptions.
+            </p>
+            <h3>Experience and quality</h3>
+            <p>
+              With years of experience building and refining apps, I create
+              stable, scalable software that's ready to grow with your business.
+            </p>
+            <p>
+              My commitment to quality—from clean, maintainable code to
+              thoughtful architecture, rigorous testing, and gorgeous
+              design—means you'll have a reliable and performant app to impress
+              your users with.
+            </p>
           </section>
         </container>
 
         {/* 4. Contact */}
         <container>
           <section aria-labelledby="contact-heading">
-            <h2 id="contact-heading">Let's get in touch</h2>
-            <p>TBD</p>
+            <h2 id="contact-heading" className="scroll-mt-10">
+              Let's get to work
+            </h2>
+            <p>
+              Ready to take your web app to the next level? I am here to help.
+              Whether you need an urgent fix or a long-term partner, let's make
+              it happen. The sky's the limit.
+            </p>
+            <div className="mt-4 flex flex-col gap-2 first:mt-0" />
+            <ul className="mt-4 ml-4 flex list-disc flex-col gap-2 first:mt-0">
+              {contact
+                .filter((e) => e.type === "contact" || e.id === "linkedIn")
+                .map(({ href, label, text, cta }) => (
+                  <li key={href}>
+                    <span className="font-semibold">{cta}: </span>
+                    <a
+                      href={href}
+                      aria-label={label}
+                      title={label}
+                      className="underline"
+                    >
+                      {text}
+                    </a>
+                  </li>
+                ))}
+            </ul>
           </section>
         </container>
 
         {/* 5. About */}
         <container>
           <section aria-labelledby="about-heading">
-            <h2 id="about-heading">About me</h2>
+            <h2 id="about-heading" className="scroll-mt-10">
+              About me
+            </h2>
             <p>
-              I live in Corte Madera with my wife and children, just north of
-              the Golden Gate Bridge, in the San Francisco Bay Area. I am a bit
-              of a cycling fanatic so if you'd ever want to go mountain biking
-              or road cycling in Marin County, hit me up.
-            </p>
-            <p>TBD</p>
-            {/* <p>
-              I have a strong track record of building apps from scratch,
-              rescuing existing ones, and leading development teams.
+              I'm Mikael Lirbank, based in Corte Madera, just north of the
+              Golden Gate Bridge in the beautiful San Francisco Bay Area. I live
+              here with my amazing wife and children. In my spare time, I'm a
+              bit of a cycling fanatic, so if you'd ever want to go mountain
+              biking or road cycling in Marin County, hit me up!
             </p>
             <p>
-              I'm a tech lead, product manager, UI designer, and code quality
-              expert with over 20 years of experience building apps from
-              scratch, rescuing existing ones, and managing development teams.
-              I'm very hands-on and I love building web apps, whether solo or as
-              part of a team.
+              With over 20 years of experience, I've built a strong track record
+              of building apps from scratch, rescuing existing ones, and leading
+              development teams. I'm a tech lead, product manager, UI designer,
+              and code quality expert, known for taking ownership of every
+              project and delivering predictability and peace of mind to my
+              clients.
             </p>
-            <p>
-              I take ownership of every project, delivering predictability and
-              peace of mind to you.
-            </p>
-            <h3>Expertise</h3>
-            <p>I consider myself an expert in the following technologies:</p> */}
-            <h3>Technologies</h3>
-            <div className="-mx-6 flex flex-wrap justify-center gap-1 pt-8 sm:mx-0">
+            <h3>Technologies & tooling</h3>
+            <p>I thrive with these tools and technologies.</p>
+            <div className="-mx-6 flex flex-wrap justify-center gap-1 pt-4 sm:-mx-3">
               {technologies.map(([name, url]) => (
                 <div
                   key={name}
-                  className="rounded-lg bg-stone-100 px-3 py-1 text-sm text-nowrap"
+                  className={
+                    "rounded-lg px-3 py-1 text-sm text-nowrap" +
+                    (highlightedTechnologies.includes(name)
+                      ? " bg-cyan-100 font-medium text-cyan-900"
+                      : " bg-stone-100")
+                  }
                 >
                   <a href={url} target="_blank" rel="noopener noreferrer">
                     {name}
@@ -205,8 +227,8 @@ export default function Home() {
           </section>
         </container>
       </main>
-      <footer className="mx-auto flex max-w-3xl flex-col gap-10 px-8 py-4 text-center">
-        © {new Date().getFullYear()} Mikael Lirbank & Airlab LLC
+      <footer className="mx-auto max-w-3xl px-8 py-4 text-center">
+        © {new Date().getFullYear()} Airlab LLC. All rights reserved.
       </footer>
     </>
   );
