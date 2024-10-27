@@ -12,6 +12,8 @@ h3,
 h4,
 h5,
 h6,
+ul,
+ol,
 p {
   @apply max-h-full;
 }
@@ -38,7 +40,13 @@ h3 {
   @apply text-xl font-semibold;
 }
 
-p {
+strong {
+  @apply font-semibold;
+}
+
+p,
+ul,
+ol {
   @apply text-lg;
 }
 
@@ -49,6 +57,9 @@ h3 {
   @apply mt-8 first:mt-0;
 }
 
-p {
+p,
+ul,
+ol,
+li {
   @apply mt-4 first:mt-0;
 }

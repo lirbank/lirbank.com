@@ -140,18 +140,28 @@ export default function Home() {
             <h2 id="benefits-heading" className="scroll-mt-10">
               Why work with me
             </h2>
+            <h3>Peace of mind</h3>
             <p>
-              I pay close attention to detail and quality, in both code and
-              design.
+              My main deliverable is peace of mind. Working with me, you'll have
+              an app leader who takes ownership of every aspect of the project,
+              handles complex situations independently, and keeps everything
+              moving smoothly.
             </p>
-            <p>TBD</p>
-            {/* <p>
-              With years of experience building apps from scratch and saving
-              existing ones through refactoring and optimization, I ensure every
-              project gets the attention it needs to succeed. My approach
-              delivers stability, scalability, and ease of maintenance, giving
-              you confidence in your app's long-term success.
-            </p> */}
+            <p>
+              I'll keep you informed on what really matters, so you can stay
+              focused on your core priorities without unnecessary interruptions.
+            </p>
+            <h3>Experience and quality</h3>
+            <p>
+              With years of experience building and refining apps, I create
+              stable, scalable software that's ready to grow with your business.
+            </p>
+            <p>
+              My commitment to quality—from clean, maintainable code to
+              thoughtful architecture, rigorous testing, and gorgeous
+              design—means you'll have a reliable and performant app to impress
+              your users with.
+            </p>
           </section>
         </container>
 
