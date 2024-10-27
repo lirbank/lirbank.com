@@ -91,10 +91,10 @@ export default function Home() {
             <h3>Deployment and quality assurance</h3>
             <p>
               A bug-free, fast, and stable app that is a delight to use starts
-              with robust test automation. I set up test automation frameworks
-              to eliminate regressions and keep your app thoroughly tested, from
-              integration to end-to-end testing. Quality is at the heart of what
-              I do, and I'm happy to get your team up to speed with test-driven
+              with robust test automation. I set up test automation to eliminate
+              regressions and keep your app thoroughly tested, from integration
+              to end-to-end testing. Quality is at the heart of what I do, and
+              I'm happy to get your team up to speed with test-driven
               development if that's a focus.
             </p>
             <p>
