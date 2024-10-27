@@ -61,29 +61,56 @@ export default function Home() {
             <h2 id="services-heading">
               Things I&apos;d love to take off your plate
             </h2>
-            <h3>Build from scratch</h3>
+            <h3>App development</h3>
             <p>
-              Standing up a new project from scratch? I can help you with that.
+              I love building web apps from scratch, and I&apos;m great at
+              fixing up broken ones, too. I&apos;m happy to work solo or
+              alongside your existing dev team, to ship a well-crafted app.
             </p>
-            <h3>JavaScript to TypeScript</h3>
             <p>
-              TypeScript boosts productivity and reduces bugs. If your app is
-              written in JavaScript, I can convert it to TypeScript for you.
+              If your app needs a modern look or a smoother experience, I can
+              refresh the design and create a consistent design system that your
+              users will appreciate.
+            </p>
+            <h3>Deployment and quality assurance</h3>
+            <p>
+              Encompasses deployment and CI/CD setup along with quality
+              assurance and automated testing. I&apos;ll establish a reliable
+              deployment pipeline and ensure app stability through comprehensive
+              testing practices.
+            </p>
+            <h3>Tech strategy and stack optimization</h3>
+            <p>
+              Combines tech stack consulting and optimization with JavaScript to
+              TypeScript migration. Perfect for clients looking to improve or
+              transform their tech foundation for better performance,
+              productivity, and maintainability.
+            </p>
+            <h3>Leadership and product direction</h3>
+            <p>
+              Combines team leadership with product management expertise. Ideal
+              for clients seeking someone to lead development efforts, provide
+              direction to their team, or guide product decisions with an eye
+              for quality and scalability.
             </p>
           </section>
         </container>
 
         {/* 3. Benefits */}
         <container>
-          <section aria-labelledby="about-heading">
-            <h2 id="about-heading">Why work with me</h2>
+          <section aria-labelledby="benefits-heading">
+            <h2 id="benefits-heading">Why work with me</h2>
+            <p>
+              I pay close attention to detail and quality, in both code and
+              design.
+            </p>
           </section>
         </container>
 
         {/* 4. Contact */}
         <container>
-          <section aria-labelledby="about-heading">
-            <h2 id="about-heading">Let&apos;s get in touch</h2>
+          <section aria-labelledby="contact-heading">
+            <h2 id="contact-heading">Let&apos;s get in touch</h2>
           </section>
         </container>
 
