@@ -61,11 +61,11 @@ export default function Home() {
             <h2 id="services-heading">
               Things I'd love to take off your plate
             </h2>
-            <h3>Hands-on app development</h3>
+            <h3>Hands-on web app development</h3>
             <p>
               I love building web apps from scratch, and I'm great at fixing up
               broken ones, too. I'm happy to work solo or alongside your
-              existing dev team, to ship a well-crafted app.
+              existing dev team, to ship a well-crafted web application.
             </p>
             <p>
               If your app needs a modern look or a smoother experience, I can
@@ -122,11 +122,18 @@ export default function Home() {
         <container>
           <section aria-labelledby="benefits-heading">
             <h2 id="benefits-heading">Why work with me</h2>
-            <p>TBD</p>
             <p>
               I pay close attention to detail and quality, in both code and
               design.
             </p>
+            <p>TBD</p>
+            {/* <p>
+              With years of experience building apps from scratch and saving
+              existing ones through refactoring and optimization, I ensure every
+              project gets the attention it needs to succeed. My approach
+              delivers stability, scalability, and ease of maintenance, giving
+              you confidence in your app's long-term success.
+            </p> */}
           </section>
         </container>
 
@@ -142,14 +149,14 @@ export default function Home() {
         <container>
           <section aria-labelledby="about-heading">
             <h2 id="about-heading">About me</h2>
-            <p>TBD</p>
             <p>
               I live in Corte Madera with my wife and children, just north of
               the Golden Gate Bridge, in the San Francisco Bay Area. I am a bit
               of a cycling fanatic so if you'd ever want to go mountain biking
               or road cycling in Marin County, hit me up.
             </p>
-            <p>
+            <p>TBD</p>
+            {/* <p>
               I have a strong track record of building apps from scratch,
               rescuing existing ones, and leading development teams.
             </p>
@@ -165,7 +172,8 @@ export default function Home() {
               peace of mind to you.
             </p>
             <h3>Expertise</h3>
-            <p>I consider myself an expert in the following technologies:</p>
+            <p>I consider myself an expert in the following technologies:</p> */}
+            <h3>Technologies</h3>
             <div className="-mx-6 flex flex-wrap justify-center gap-1 pt-8 sm:mx-0">
               {technologies.map(([name, url]) => (
                 <div
