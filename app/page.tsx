@@ -74,7 +74,7 @@ export default function Home() {
         {/* 2. Services */}
         <container>
           <section aria-labelledby="services-heading">
-            <h2 id="services-heading">
+            <h2 id="services-heading" className="scroll-mt-10">
               Things I'd love to take off your plate
             </h2>
             <h3>Hands-on web app development</h3>
@@ -137,7 +137,9 @@ export default function Home() {
         {/* 3. Benefits */}
         <container>
           <section aria-labelledby="benefits-heading">
-            <h2 id="benefits-heading">Why work with me</h2>
+            <h2 id="benefits-heading" className="scroll-mt-10">
+              Why work with me
+            </h2>
             <p>
               I pay close attention to detail and quality, in both code and
               design.
@@ -156,7 +158,9 @@ export default function Home() {
         {/* 4. Contact */}
         <container>
           <section aria-labelledby="contact-heading">
-            <h2 id="contact-heading">Let's get in touch</h2>
+            <h2 id="contact-heading" className="scroll-mt-10">
+              Let's get in touch
+            </h2>
             <p>TBD</p>
           </section>
         </container>
@@ -164,7 +168,9 @@ export default function Home() {
         {/* 5. About */}
         <container>
           <section aria-labelledby="about-heading">
-            <h2 id="about-heading">About me</h2>
+            <h2 id="about-heading" className="scroll-mt-10">
+              About me
+            </h2>
             <p>
               I live in Corte Madera with my wife and children, just north of
               the Golden Gate Bridge, in the San Francisco Bay Area. I am a bit
