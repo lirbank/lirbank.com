@@ -1,7 +1,7 @@
 import Image from "next/image";
 import mikaelImage from "../public/mikael-lirbank.jpg";
-import { LinkedInIcon, SquareGitHubIcon, SquareXTwitterIcon } from "./icons";
 import { technologies } from "./technologies";
+import { contact } from "./contact";
 
 export default function Home() {
   return (
@@ -48,24 +48,11 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex gap-2">
-                <a
-                  href="https://www.linkedin.com/in/mikaellirbank"
-                  aria-label="LinkedIn profile"
-                >
-                  <LinkedInIcon className="size-8" />
-                </a>
-                <a
-                  href="https://x.com/mikaellirbank"
-                  aria-label="Twitter profile"
-                >
-                  <SquareXTwitterIcon className="size-8" />
-                </a>
-                <a
-                  href="https://github.com/lirbank"
-                  aria-label="GitHub profile"
-                >
-                  <SquareGitHubIcon className="size-8" />
-                </a>
+                {contact.map(({ href, icon: Icon, label }) => (
+                  <a key={href} href={href} aria-label={label} title={label}>
+                    <Icon className="size-8" />
+                  </a>
+                ))}
               </div>
             </div>
           </section>
@@ -169,9 +156,31 @@ export default function Home() {
         <container>
           <section aria-labelledby="contact-heading">
             <h2 id="contact-heading" className="scroll-mt-10">
-              Let's get in touch
+              Let's get to work
             </h2>
-            <p>TBD</p>
+            <p>
+              Ready to take your web app to the next level? I am here to help.
+              Whether you need an urgent fix or a long-term partner, let's make
+              it happen. The sky is the limit.
+            </p>
+            <div className="mt-4 flex flex-col gap-2 first:mt-0" />
+            <ul className="mt-4 ml-4 flex list-disc flex-col gap-2 first:mt-0">
+              {contact
+                .filter((e) => e.type === "contact" || e.id === "linkedIn")
+                .map(({ href, label, text, cta }) => (
+                  <li key={href}>
+                    <span className="font-semibold">{cta}: </span>
+                    <a
+                      href={href}
+                      aria-label={label}
+                      title={label}
+                      className="underline"
+                    >
+                      {text}
+                    </a>
+                  </li>
+                ))}
+            </ul>
           </section>
         </container>
 
@@ -221,8 +230,8 @@ export default function Home() {
           </section>
         </container>
       </main>
-      <footer className="mx-auto flex max-w-3xl flex-col gap-10 px-8 py-4 text-center">
-        © {new Date().getFullYear()} Mikael Lirbank & Airlab LLC
+      <footer className="mx-auto max-w-3xl px-8 py-4 text-center">
+        © {new Date().getFullYear()} Airlab LLC. All rights reserved.
       </footer>
     </>
   );
