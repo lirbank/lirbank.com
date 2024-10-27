@@ -102,10 +102,18 @@ export default function Home() {
             </p>
             <h3>Leadership and product direction</h3>
             <p>
-              Combines team leadership with product management expertise. Ideal
-              for clients seeking someone to lead development efforts, provide
-              direction to their team, or guide product decisions with an eye
-              for quality and scalability.
+              With a relaxed but high-accountability approach to leadership,
+              I'll help your development team stay focused, aligned, and
+              motivated. Whether guiding your team's day-to-day work, mentoring
+              individual developers, or setting long-term goals, I keep quality
+              and consistency at the forefront.
+            </p>
+            <p>
+              As a product manager, I make sure every decision supports both
+              business objectives and user needs, creating a clear path from
+              concept to delivery. My approach brings peace of mind, knowing
+              that your project is in good hands and moving in the right
+              direction.
             </p>
           </section>
         </container>
@@ -114,6 +122,7 @@ export default function Home() {
         <container>
           <section aria-labelledby="benefits-heading">
             <h2 id="benefits-heading">Why work with me</h2>
+            <p>TBD</p>
             <p>
               I pay close attention to detail and quality, in both code and
               design.
@@ -125,6 +134,7 @@ export default function Home() {
         <container>
           <section aria-labelledby="contact-heading">
             <h2 id="contact-heading">Let's get in touch</h2>
+            <p>TBD</p>
           </section>
         </container>
 
@@ -132,6 +142,7 @@ export default function Home() {
         <container>
           <section aria-labelledby="about-heading">
             <h2 id="about-heading">About me</h2>
+            <p>TBD</p>
             <p>
               I live in Corte Madera with my wife and children, just north of
               the Golden Gate Bridge, in the San Francisco Bay Area. I am a bit
