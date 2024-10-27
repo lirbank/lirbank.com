@@ -61,7 +61,7 @@ export default function Home() {
             <h2 id="services-heading">
               Things I'd love to take off your plate
             </h2>
-            <h3>App development</h3>
+            <h3>Hands-on app development</h3>
             <p>
               I love building web apps from scratch, and I'm great at fixing up
               broken ones, too. I'm happy to work solo or alongside your
@@ -103,10 +103,10 @@ export default function Home() {
             <h3>Leadership and product direction</h3>
             <p>
               With a relaxed but high-accountability approach to leadership,
-              I'll help your development team stay focused, aligned, and
-              motivated. Whether guiding your team's day-to-day work, mentoring
-              individual developers, or setting long-term goals, I keep quality
-              and consistency at the forefront.
+              I'll help your dev team stay focused, aligned, and motivated.
+              Whether guiding your team's day-to-day work, mentoring individual
+              developers, or setting long-term goals, I keep quality and
+              consistency at the forefront.
             </p>
             <p>
               As a product manager, I make sure every decision supports both
