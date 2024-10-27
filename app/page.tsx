@@ -114,7 +114,7 @@ export default function Home() {
             </p>
             <h3>Expertise</h3>
             <p>I consider myself an expert in the following technologies:</p>
-            <div className="-mx-6 flex flex-wrap justify-center gap-1 sm:mx-0">
+            <div className="-mx-6 flex flex-wrap justify-center gap-1 pt-8 sm:mx-0">
               {technologies.map(([name, url]) => (
                 <div
                   key={name}
