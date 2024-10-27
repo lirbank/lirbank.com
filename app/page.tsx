@@ -6,6 +6,22 @@ import { technologies } from "./technologies";
 export default function Home() {
   return (
     <>
+      <header className="border-b border-stone-300 bg-stone-200">
+        <header className="mx-auto flex max-w-3xl justify-between px-6">
+          <a href="#services-heading" className="p-2">
+            Services
+          </a>
+          <a href="#benefits-heading" className="p-2">
+            Benefits
+          </a>
+          <a href="#contact-heading" className="p-2">
+            Contact
+          </a>
+          <a href="#about-heading" className="p-2">
+            About
+          </a>
+        </header>
+      </header>
       <main>
         {/* 1. Hero */}
         <container>
