@@ -14,9 +14,9 @@ export default function Home() {
             className="flex flex-col gap-10 sm:grid sm:grid-cols-2"
           >
             <h1 id="main-heading" className="text-center sm:text-left">
-              Let&apos;s unleash your{" "}
+              Let's unleash your{" "}
               <span className="font-semibold text-cyan-600">web app</span>
-              &apos;s true potential
+              's true potential
             </h1>
             <Image
               className="mx-auto size-64 rounded-full object-cover sm:row-span-2 sm:rounded sm:shadow"
@@ -59,13 +59,13 @@ export default function Home() {
         <container>
           <section aria-labelledby="services-heading">
             <h2 id="services-heading">
-              Things I&apos;d love to take off your plate
+              Things I'd love to take off your plate
             </h2>
             <h3>App development</h3>
             <p>
-              I love building web apps from scratch, and I&apos;m great at
-              fixing up broken ones, too. I&apos;m happy to work solo or
-              alongside your existing dev team, to ship a well-crafted app.
+              I love building web apps from scratch, and I'm great at fixing up
+              broken ones, too. I'm happy to work solo or alongside your
+              existing dev team, to ship a well-crafted app.
             </p>
             <p>
               If your app needs a modern look or a smoother experience, I can
@@ -74,17 +74,31 @@ export default function Home() {
             </p>
             <h3>Deployment and quality assurance</h3>
             <p>
-              Encompasses deployment and CI/CD setup along with quality
-              assurance and automated testing. I&apos;ll establish a reliable
-              deployment pipeline and ensure app stability through comprehensive
-              testing practices.
+              A bug-free, fast, and stable app that is a delight to use starts
+              with robust test automation. I set up test automation frameworks
+              to eliminate regressions and keep your app thoroughly tested, from
+              integration to end-to-end testing. Quality is at the heart of what
+              I do, and I'm happy to get your team up to speed with test-driven
+              development if that's a focus.
             </p>
-            <h3>Tech strategy and stack optimization</h3>
             <p>
-              Combines tech stack consulting and optimization with JavaScript to
-              TypeScript migration. Perfect for clients looking to improve or
-              transform their tech foundation for better performance,
-              productivity, and maintainability.
+              I'll also streamline your deployment process, setting up a
+              reliable release pipeline—whether you're using Vercel, Heroku,
+              GitHub Actions, or another service—so you can release with
+              confidence.
+            </p>
+            <h3>Tech strategy, architecture, and stack optimization</h3>
+            <p>
+              Choosing the right tech stack and architecture is key to a
+              productive, scalable app. I'll work with you to select and
+              optimize the technologies that best fit your goals, ensuring a
+              solid foundation for growth and maintainability.
+            </p>
+            <p>
+              If your app is currently in JavaScript, I can convert it to
+              TypeScript to improve reliability and reduce bugs. For projects
+              that need a refresh, I'll clean up code, update dependencies, and
+              streamline your setup to keep everything running smoothly.
             </p>
             <h3>Leadership and product direction</h3>
             <p>
@@ -110,7 +124,7 @@ export default function Home() {
         {/* 4. Contact */}
         <container>
           <section aria-labelledby="contact-heading">
-            <h2 id="contact-heading">Let&apos;s get in touch</h2>
+            <h2 id="contact-heading">Let's get in touch</h2>
           </section>
         </container>
 
@@ -121,19 +135,19 @@ export default function Home() {
             <p>
               I live in Corte Madera with my wife and children, just north of
               the Golden Gate Bridge, in the San Francisco Bay Area. I am a bit
-              of a cycling fanatic so if you&apos;d ever want to go mountain
-              biking or road cycling in Marin County, hit me up.
+              of a cycling fanatic so if you'd ever want to go mountain biking
+              or road cycling in Marin County, hit me up.
             </p>
             <p>
               I have a strong track record of building apps from scratch,
               rescuing existing ones, and leading development teams.
             </p>
             <p>
-              I&apos;m a tech lead, product manager, UI designer, and code
-              quality expert with over 20 years of experience building apps from
+              I'm a tech lead, product manager, UI designer, and code quality
+              expert with over 20 years of experience building apps from
               scratch, rescuing existing ones, and managing development teams.
-              I&apos;m very hands-on and I love building web apps, whether solo
-              or as part of a team.
+              I'm very hands-on and I love building web apps, whether solo or as
+              part of a team.
             </p>
             <p>
               I take ownership of every project, delivering predictability and
