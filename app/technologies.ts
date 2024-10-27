@@ -1,7 +1,7 @@
 export const technologies = [
   ["AI", "https://en.wikipedia.org/wiki/Artificial_intelligence"],
   ["AWS", "https://aws.amazon.com/"],
-  ["bun", "https://bun.sh/"],
+  ["Bun", "https://bun.sh/"],
   ["Convex", "https://convex.dev/"],
   ["CRDTs", "https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type"],
   ["Docker", "https://www.docker.com/"],
@@ -48,3 +48,14 @@ export const technologies = [
   ["WebSockets", "https://en.wikipedia.org/wiki/WebSocket"],
   ["Zod", "https://zod.dev/"],
 ] as const;
+
+type TechnologyName = (typeof technologies)[number][0];
+
+export const highlightedTechnologies: TechnologyName[] = [
+  "TypeScript",
+  "Next.js",
+  "PostgreSQL",
+  "MongoDB",
+  "Vitest",
+  "Playwright",
+];

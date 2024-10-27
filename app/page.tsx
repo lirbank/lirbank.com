@@ -1,6 +1,6 @@
 import Image from "next/image";
 import mikaelImage from "../public/mikael-lirbank.jpg";
-import { technologies } from "./technologies";
+import { highlightedTechnologies, technologies } from "./technologies";
 import { contact } from "./contact";
 
 export default function Home() {
@@ -211,7 +211,12 @@ export default function Home() {
               {technologies.map(([name, url]) => (
                 <div
                   key={name}
-                  className="rounded-lg bg-stone-100 px-3 py-1 text-sm text-nowrap"
+                  className={
+                    "rounded-lg px-3 py-1 text-sm text-nowrap" +
+                    (highlightedTechnologies.includes(name)
+                      ? " bg-cyan-100 font-medium text-cyan-900"
+                      : " bg-stone-100")
+                  }
                 >
                   <a href={url} target="_blank" rel="noopener noreferrer">
                     {name}
