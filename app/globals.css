@@ -5,6 +5,7 @@
   --font-family-mono: var(--font-geist-mono);
 }
 
+/* Prevent font boosting on Android Chrome */
 h1,
 h2,
 h3,
@@ -12,10 +13,19 @@ h4,
 h5,
 h6,
 p {
-  /* Prevents font boosting on Android Chrome */
   @apply max-h-full;
 }
 
+/* Blocks */
+container {
+  @apply block odd:bg-stone-200;
+}
+
+section {
+  @apply mx-auto max-w-3xl px-8 py-10;
+}
+
+/* Typography */
 h1 {
   @apply text-4xl/tight font-medium;
 }
@@ -32,7 +42,13 @@ p {
   @apply text-lg;
 }
 
-/* Custom elements */
-container {
-  @apply block odd:bg-stone-200;
+/* Spacing */
+h1,
+h2,
+h3 {
+  @apply mt-8 first:mt-0;
+}
+
+p {
+  @apply mt-4 first:mt-0;
 }

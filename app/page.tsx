@@ -45,7 +45,7 @@ export default function Home() {
         <container>
           <section
             aria-labelledby="main-heading"
-            className="mx-auto flex max-w-3xl flex-col gap-10 px-8 py-10 sm:grid sm:grid-cols-2"
+            className="flex flex-col gap-10 sm:grid sm:grid-cols-2"
           >
             <h1 id="main-heading" className="text-center sm:text-left">
               Let&apos;s unleash your{" "}
@@ -60,7 +60,7 @@ export default function Home() {
             <div className="flex flex-col gap-2">
               <div>
                 <h3>Mikael Lirbank</h3>
-                <p>
+                <p className="mt-1!">
                   I help companies build better software, focusing on web
                   technologies.
                 </p>
@@ -91,56 +91,39 @@ export default function Home() {
 
         {/* 2. Services */}
         <container>
-          <section
-            aria-labelledby="services-heading"
-            className="mx-auto flex max-w-3xl flex-col gap-10 px-8 py-10"
-          >
+          <section aria-labelledby="services-heading">
             <h2 id="services-heading">
               Things I&apos;d love to take off your plate
             </h2>
-            <div className="flex flex-col gap-2">
-              <h3>Build from scratch</h3>
-              <p>
-                Standing up a new project from scratch? I can help you with
-                that.
-              </p>
-            </div>
-            <div className="flex flex-col gap-2">
-              <h3>JavaScript to TypeScript</h3>
-              <p>
-                TypeScript boosts productivity and reduces bugs. If your app is
-                written in JavaScript, I can convert it to TypeScript for you.
-              </p>
-            </div>
+            <h3>Build from scratch</h3>
+            <p>
+              Standing up a new project from scratch? I can help you with that.
+            </p>
+            <h3>JavaScript to TypeScript</h3>
+            <p>
+              TypeScript boosts productivity and reduces bugs. If your app is
+              written in JavaScript, I can convert it to TypeScript for you.
+            </p>
           </section>
         </container>
 
         {/* 3. Benefits */}
         <container>
-          <section
-            aria-labelledby="about-heading"
-            className="mx-auto flex max-w-3xl flex-col gap-6 px-8 py-10"
-          >
+          <section aria-labelledby="about-heading">
             <h2 id="about-heading">Why work with me</h2>
           </section>
         </container>
 
         {/* 4. Contact */}
         <container>
-          <section
-            aria-labelledby="about-heading"
-            className="mx-auto flex max-w-3xl flex-col gap-6 px-8 py-10"
-          >
+          <section aria-labelledby="about-heading">
             <h2 id="about-heading">Let&apos;s get in touch</h2>
           </section>
         </container>
 
         {/* 5. About */}
         <container>
-          <section
-            aria-labelledby="about-heading"
-            className="mx-auto flex max-w-3xl flex-col gap-6 px-8 py-10"
-          >
+          <section aria-labelledby="about-heading">
             <h2 id="about-heading">About me</h2>
             <p>
               I live in Corte Madera with my wife and children, just north of
