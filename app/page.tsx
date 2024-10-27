@@ -161,7 +161,7 @@ export default function Home() {
             <p>
               Ready to take your web app to the next level? I am here to help.
               Whether you need an urgent fix or a long-term partner, let's make
-              it happen. The sky is the limit.
+              it happen. The sky's the limit.
             </p>
             <div className="mt-4 flex flex-col gap-2 first:mt-0" />
             <ul className="mt-4 ml-4 flex list-disc flex-col gap-2 first:mt-0">
@@ -191,31 +191,23 @@ export default function Home() {
               About me
             </h2>
             <p>
-              I live in Corte Madera with my wife and children, just north of
-              the Golden Gate Bridge, in the San Francisco Bay Area. I am a bit
-              of a cycling fanatic so if you'd ever want to go mountain biking
-              or road cycling in Marin County, hit me up.
-            </p>
-            <p>TBD</p>
-            {/* <p>
-              I have a strong track record of building apps from scratch,
-              rescuing existing ones, and leading development teams.
+              I'm Mikael Lirbank, based in Corte Madera, just north of the
+              Golden Gate Bridge in the beautiful San Francisco Bay Area. I live
+              here with my amazing wife and children. In my spare time, I'm a
+              bit of a cycling fanatic, so if you'd ever want to go mountain
+              biking or road cycling in Marin County, hit me up!
             </p>
             <p>
-              I'm a tech lead, product manager, UI designer, and code quality
-              expert with over 20 years of experience building apps from
-              scratch, rescuing existing ones, and managing development teams.
-              I'm very hands-on and I love building web apps, whether solo or as
-              part of a team.
+              With over 20 years of experience, I've built a strong track record
+              of building apps from scratch, rescuing existing ones, and leading
+              development teams. I'm a tech lead, product manager, UI designer,
+              and code quality expert, known for taking ownership of every
+              project and delivering predictability and peace of mind to my
+              clients.
             </p>
-            <p>
-              I take ownership of every project, delivering predictability and
-              peace of mind to you.
-            </p>
-            <h3>Expertise</h3>
-            <p>I consider myself an expert in the following technologies:</p> */}
-            <h3>Technologies</h3>
-            <div className="-mx-6 flex flex-wrap justify-center gap-1 pt-8 sm:mx-0">
+            <h3>Technologies & tooling</h3>
+            <p>I thrive with these tools and technologies.</p>
+            <div className="-mx-6 flex flex-wrap justify-center gap-1 pt-4 sm:mx-0">
               {technologies.map(([name, url]) => (
                 <div
                   key={name}
