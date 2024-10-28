@@ -29,7 +29,11 @@ section {
 
 /* Typography */
 h1 {
-  @apply text-4xl/tight font-medium;
+  @apply text-4xl font-extrabold sm:text-5xl;
+}
+
+h1 > span {
+  @apply font-black text-cyan-600;
 }
 
 h2 {

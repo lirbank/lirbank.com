@@ -30,8 +30,7 @@ export default function Home() {
             className="flex flex-col gap-10 sm:grid sm:grid-cols-2"
           >
             <h1 id="main-heading" className="text-center sm:text-left">
-              Let's unleash your{" "}
-              <span className="font-semibold text-cyan-600">web app</span>
+              Let's unleash your <span>web app</span>
               's true potential
             </h1>
             <Image
