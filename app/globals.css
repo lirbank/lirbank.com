@@ -30,6 +30,7 @@ section {
 /* Typography */
 h1 {
   @apply text-4xl font-extrabold sm:text-5xl;
+  @apply bg-gradient-to-br from-cyan-800 to-slate-800 bg-clip-text text-transparent;
 }
 
 h1 > span {
