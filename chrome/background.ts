@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-deprecated */
-import invariant from "tiny-invariant";
 console.log("Background service worker initialized!");
 
 // Log all registered commands on startup with JSON.stringify
@@ -9,7 +8,10 @@ void chrome.commands.getAll().then((commands) => {
 
 // This handler is called for both keyboard shortcut and icon click
 chrome.action.onClicked.addListener((tab) => {
-  invariant(tab.id, "tab.id is required");
+  if (!tab.id) {
+    console.error("tab.id is required");
+    return;
+  }
 
   console.log("Action triggered!", {
     source: "Keyboard shortcut or icon click",
@@ -26,7 +28,11 @@ chrome.action.onClicked.addListener((tab) => {
 
       if (element) {
         const text = element.innerText || element.textContent;
-        invariant(text, "text is required");
+
+        if (!text) {
+          console.error("text is required");
+          return;
+        }
 
         const url = window.location.href;
         const formattedText = `${text}\t${url}`;
