@@ -23,7 +23,7 @@ chrome.action.onClicked.addListener((tab) => {
   void chrome.scripting.executeScript({
     target: { tabId: tab.id },
     func: () => {
-      const selector = "#profile-content h1";
+      const selector = "h1";
       const element: HTMLElement | null = document.querySelector(selector);
 
       if (element) {
