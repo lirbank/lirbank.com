@@ -28,7 +28,7 @@ export default function RootLayout(
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} bg-stone-100 font-sans text-slate-800 antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} bg-stone-100 font-sans text-stone-800 antialiased`}
       >
         {props.children}
       </body>
