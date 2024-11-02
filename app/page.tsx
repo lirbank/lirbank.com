@@ -6,8 +6,8 @@ import { contact } from "./contact";
 export default function Home() {
   return (
     <>
-      <header className="border-b border-stone-300 bg-stone-200">
-        <header className="mx-auto flex max-w-3xl justify-between px-6">
+      <header className="sticky top-0 border-b border-stone-300 bg-stone-200">
+        <div className="mx-auto flex max-w-3xl justify-between px-6">
           <a href="#services-heading" className="p-2">
             Services
           </a>
@@ -20,7 +20,7 @@ export default function Home() {
           <a href="#about-heading" className="p-2">
             About
           </a>
-        </header>
+        </div>
       </header>
       <main>
         {/* 1. Hero */}
