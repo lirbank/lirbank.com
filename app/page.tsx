@@ -2,6 +2,7 @@ import Image from "next/image";
 import mikaelImage from "../public/mikael-lirbank.jpg";
 import justinImage from "../public/justin-muncaster.jpg";
 import chrisImage from "../public/chris-jamieson.jpg";
+import hansImage from "../public/hans-pedersen.jpg";
 import { highlightedTechnologies, technologies } from "./technologies";
 import { contact } from "./contact";
 import { Testimonial } from "./atoms";
@@ -107,6 +108,23 @@ export default function Home() {
                 title: "Web Developer, Formcode",
                 avatar: "JH",
                 url: "https://www.linkedin.com/in/joe-hochgreve-71053316/",
+              }}
+            />
+            <Testimonial
+              project={{
+                name: "The Check Station",
+                description: "App rescue",
+              }}
+              quote="Mikael did a great job with our project. He provided excellent documentation and handed over all of the necessary information.
+
+He also worked with my to make sure my AWS S3 was setup properly and found solutions before and during the project that allow our web app to re-launch and to be cost effective.
+
+Very solid person and developer. Excellent communication and that is key for me."
+              author={{
+                name: "Hans Pedersen",
+                title: "Owner, The Check Station",
+                avatar: hansImage,
+                url: "https://www.linkedin.com/in/hanspedersen/",
               }}
             />
           </section>

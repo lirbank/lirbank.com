@@ -1,5 +1,15 @@
 import Image, { StaticImageData } from "next/image";
 
+export function A(props: React.PropsWithChildren<{ href?: string }>) {
+  return props.href ? (
+    <a href={props.href} target="_blank">
+      {props.children}
+    </a>
+  ) : (
+    <span>{props.children}</span>
+  );
+}
+
 export function Testimonial(props: {
   quote: string;
   project: {
@@ -11,7 +21,7 @@ export function Testimonial(props: {
     name: string;
     title: string;
     avatar: StaticImageData | string;
-    url: string;
+    url?: string;
   };
 }) {
   return (
@@ -34,7 +44,7 @@ export function Testimonial(props: {
         {props.quote}
       </blockquote>
       <div className="mt-4 flex items-center gap-2">
-        <a href={props.author.url} target="_blank">
+        <A href={props.author.url}>
           {typeof props.author.avatar !== "string" ? (
             <Image
               className="size-12 rounded-full object-cover shadow"
@@ -46,7 +56,8 @@ export function Testimonial(props: {
               {props.author.avatar}
             </div>
           )}
-        </a>
+        </A>
+
         <div className="flex flex-col">
           <strong className="text-lg">{props.author.name}</strong>
           <div className="text-stone-700">{props.author.title}</div>
