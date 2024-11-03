@@ -30,7 +30,9 @@ export function Testimonial(props: {
           <span>{props.project.description}</span>
         )}
       </div>
-      <blockquote>{props.quote}</blockquote>
+      <blockquote className="border-l-4 border-stone-300 pl-4 italic">
+        {props.quote}
+      </blockquote>
       <div className="mt-4 flex items-center gap-2">
         <a href={props.author.url} target="_blank">
           <Image

@@ -69,7 +69,6 @@ export default function Home() {
             <h2 id="testimonials-heading" className="scroll-mt-10">
               What people say
             </h2>
-
             <Testimonial
               project={{
                 name: "FLIR Conservator",

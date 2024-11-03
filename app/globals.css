@@ -54,7 +54,10 @@ p,
 ul,
 ol,
 blockquote {
+  /* Typography */
   @apply text-lg;
+  /* Spacing */
+  @apply mt-4 first:mt-0;
 }
 
 /* Spacing */
@@ -62,15 +65,4 @@ h1,
 h2,
 h3 {
   @apply mt-8 first:mt-0;
-}
-
-p,
-ul,
-ol,
-blockquote {
-  @apply mt-4 first:mt-0;
-}
-
-blockquote {
-  @apply border-l-4 border-stone-300 pl-4 italic;
 }
