@@ -25,7 +25,7 @@ export function Testimonial(props: {
   };
 }) {
   return (
-    <>
+    <div className="-mx-4 mt-8 rounded-md bg-stone-50 p-4">
       <h3>{props.project.name}</h3>
       <div className="text-lg text-stone-600">
         {props.project.url ? (
@@ -57,12 +57,11 @@ export function Testimonial(props: {
             </div>
           )}
         </A>
-
         <div className="flex flex-col">
           <strong className="text-lg">{props.author.name}</strong>
           <div className="text-stone-700">{props.author.title}</div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
