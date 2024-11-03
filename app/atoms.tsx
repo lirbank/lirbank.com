@@ -17,7 +17,7 @@ export function Testimonial(props: {
   return (
     <>
       <h3>{props.project.name}</h3>
-      <div className="text-stone-600">
+      <div className="text-lg text-stone-600">
         {props.project.url ? (
           <a
             href={props.project.url}
@@ -27,7 +27,7 @@ export function Testimonial(props: {
             {props.project.description}
           </a>
         ) : (
-          <span>{props.project.description}</span>
+          props.project.description
         )}
       </div>
       <blockquote className="border-l-4 border-stone-300 pl-4 italic">
