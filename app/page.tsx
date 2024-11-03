@@ -137,6 +137,7 @@ Very solid person and developer. Excellent communication and that is key for me.
                 name: "Dane Theisen",
                 title: "Founder, R We Still On Time",
                 avatar: "DT",
+                url: "https://www.linkedin.com/in/danetheisen/",
               }}
             />
           </section>
