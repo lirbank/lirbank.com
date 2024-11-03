@@ -61,7 +61,7 @@ export function Testimonial(props: {
         </A>
         <div className="flex flex-col">
           <strong className="text-lg">{props.author.name}</strong>
-          <div className="text-stone-700">{props.author.title}</div>
+          <div className="text-stone-600">{props.author.title}</div>
         </div>
       </div>
     </div>
