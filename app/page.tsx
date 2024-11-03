@@ -67,7 +67,7 @@ export default function Home() {
         {/* 2. Testimonials */}
         <container>
           <section aria-labelledby="testimonials-heading">
-            <h2 id="testimonials-heading" className="scroll-mt-10">
+            <h2 id="testimonials-heading" className="scroll-mt-20">
               What people say
             </h2>
             <Testimonial
@@ -181,7 +181,7 @@ export default function Home() {
         {/* 3. Services */}
         <container>
           <section aria-labelledby="services-heading">
-            <h2 id="services-heading" className="scroll-mt-10">
+            <h2 id="services-heading" className="scroll-mt-20">
               Things I'd love to take off your plate
             </h2>
             <h3>Hands-on web app development</h3>
@@ -244,7 +244,7 @@ export default function Home() {
         {/* 4. Benefits */}
         <container>
           <section aria-labelledby="benefits-heading">
-            <h2 id="benefits-heading" className="scroll-mt-10">
+            <h2 id="benefits-heading" className="scroll-mt-20">
               Why work with me
             </h2>
             <h3>Peace of mind</h3>
@@ -275,7 +275,7 @@ export default function Home() {
         {/* 5. Contact */}
         <container>
           <section aria-labelledby="contact-heading">
-            <h2 id="contact-heading" className="scroll-mt-10">
+            <h2 id="contact-heading" className="scroll-mt-20">
               Let's get to work
             </h2>
             <p>
@@ -307,7 +307,7 @@ export default function Home() {
         {/* 6. About */}
         <container>
           <section aria-labelledby="about-heading">
-            <h2 id="about-heading" className="scroll-mt-10">
+            <h2 id="about-heading" className="scroll-mt-20">
               About me
             </h2>
             <p>
