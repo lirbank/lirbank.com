@@ -4,6 +4,7 @@ import justinImage from "../public/justin-muncaster.jpg";
 import chrisImage from "../public/chris-jamieson.jpg";
 import { highlightedTechnologies, technologies } from "./technologies";
 import { contact } from "./contact";
+import { Testimonial } from "./atoms";
 
 export default function Home() {
   return (
@@ -69,71 +70,33 @@ export default function Home() {
               What people say
             </h2>
 
-            <h3>FLIR Conservator</h3>
-            <div className="text-stone-600">
-              <a
-                href="https://www.flirconservator.com/"
-                target="_blank"
-                className="underline hover:text-cyan-700"
-              >
-                Image and Video Repository
-              </a>
-            </div>
-            <blockquote>
-              Mikael was a pleasure to work with. Very knowledgable, very
-              competent, very productive.
-            </blockquote>
-            <div className="mt-4 flex items-center gap-2">
-              <a href="https://www.linkedin.com/in/jmuncaster/" target="_blank">
-                <Image
-                  className="size-12 rounded-full object-cover"
-                  src={justinImage}
-                  alt="Justin Muncaster, Teledyne FLIR/Muncaster Consulting"
-                />
-              </a>
-              <div className="flex flex-col">
-                <strong className="text-lg">Justin Muncaster</strong>
-                <div className="text-stone-700">
-                  Teledyne FLIR/Muncaster Consulting
-                </div>
-              </div>
-            </div>
-
-            <h3>POD</h3>
-            <p className="mt-0! text-lg text-stone-600">
-              Logistics and payments app
-            </p>
-            <blockquote>
-              We couldn't have asked for anything more from Mikael. We had a
-              relatively difficult new application which needed to be built, on
-              a short timeframe and to specific requirements. His approach was
-              careful, considered and fast throughout. He is an excellent
-              communicator and was able to work considerately, prioritise tasks
-              appropriately and ask questions when needed. He understood the
-              task well and he produced very high quality code, in line with all
-              the best practices etc. - I am confident that his code will be
-              running with us for a long time to come. Thank you Mikael for a
-              job well done, we're looking forward to working with you again in
-              the future.
-            </blockquote>
-            <div className="mt-4 flex items-center gap-2">
-              <a
-                href="https://www.linkedin.com/in/chris-jamieson-02776a19/"
-                target="_blank"
-              >
-                <Image
-                  className="size-12 rounded-full object-cover"
-                  src={chrisImage}
-                  alt="Chris Jamieson, Director, Melior Enterprises"
-                />
-              </a>
-              <div className="flex flex-col">
-                <strong className="text-lg">Chris Jamieson</strong>
-                <div className="text-stone-700">
-                  Director, Melior Enterprises
-                </div>
-              </div>
-            </div>
+            <Testimonial
+              project={{
+                name: "FLIR Conservator",
+                url: "https://www.flirconservator.com/",
+                description: "Image and Video Repository",
+              }}
+              quote="Mikael was a pleasure to work with. Very knowledgable, very competent, very productive."
+              author={{
+                name: "Justin Muncaster",
+                title: "Teledyne FLIR/Muncaster Consulting",
+                image: justinImage,
+                url: "https://www.linkedin.com/in/jmuncaster/",
+              }}
+            />
+            <Testimonial
+              project={{
+                name: "POD",
+                description: "Logistics and payments app",
+              }}
+              quote="We couldn't have asked for anything more from Mikael. We had a relatively difficult new application which needed to be built, on a short timeframe and to specific requirements. His approach was careful, considered and fast throughout. He is an excellent communicator and was able to work considerately, prioritise tasks appropriately and ask questions when needed. He understood the task well and he produced very high quality code, in line with all the best practices etc. - I am confident that his code will be running with us for a long time to come. Thank you Mikael for a job well done, we're looking forward to working with you again in the future."
+              author={{
+                name: "Chris Jamieson",
+                title: "Director, Melior Enterprises",
+                image: chrisImage,
+                url: "https://www.linkedin.com/in/chris-jamieson-02776a19/",
+              }}
+            />
           </section>
         </container>
 
