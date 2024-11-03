@@ -255,8 +255,8 @@ export default function Home() {
                   className={
                     "rounded-lg px-3 py-1 text-sm text-nowrap" +
                     (highlightedTechnologies.includes(name)
-                      ? " bg-cyan-100 font-medium text-cyan-900"
-                      : " bg-stone-100")
+                      ? " bg-cyan-50 font-medium text-cyan-900"
+                      : " bg-stone-50")
                   }
                 >
                   <a href={url} target="_blank" rel="noopener noreferrer">
