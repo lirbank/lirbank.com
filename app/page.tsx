@@ -89,7 +89,28 @@ export default function Home() {
                 name: "POD",
                 description: "Logistics and payments app",
               }}
-              quote="We couldn't have asked for anything more from Mikael. We had a relatively difficult new application which needed to be built, on a short timeframe and to specific requirements. His approach was careful, considered and fast throughout. He is an excellent communicator and was able to work considerately, prioritise tasks appropriately and ask questions when needed. He understood the task well and he produced very high quality code, in line with all the best practices etc. - I am confident that his code will be running with us for a long time to come. Thank you Mikael for a job well done, we're looking forward to working with you again in the future."
+              quote={
+                <>
+                  <p>
+                    We couldn't have asked for anything more from Mikael. We had
+                    a relatively difficult new application which needed to be
+                    built, on a short timeframe and to specific requirements.
+                    His approach was careful, considered and fast throughout.
+                  </p>
+                  <p>
+                    He is an excellent communicator and was able to work
+                    considerately, prioritise tasks appropriately and ask
+                    questions when needed. He understood the task well and he
+                    produced very high quality code, in line with all the best
+                    practices etc. - I am confident that his code will be
+                    running with us for a long time to come.
+                  </p>
+                  <p>
+                    Thank you Mikael for a job well done, we're looking forward
+                    to working with you again in the future.
+                  </p>
+                </>
+              }
               author={{
                 name: "Chris Jamieson",
                 title: "Director, Melior Enterprises",
@@ -115,11 +136,25 @@ export default function Home() {
                 name: "The Check Station",
                 description: "App rescue",
               }}
-              quote="Mikael did a great job with our project. He provided excellent documentation and handed over all of the necessary information.
-
-He also worked with my to make sure my AWS S3 was setup properly and found solutions before and during the project that allow our web app to re-launch and to be cost effective.
-
-Very solid person and developer. Excellent communication and that is key for me."
+              quote={
+                <>
+                  <p>
+                    Mikael did a great job with our project. He provided
+                    excellent documentation and handed over all of the necessary
+                    information.
+                  </p>
+                  <p>
+                    He also worked with my to make sure my AWS S3 was setup
+                    properly and found solutions before and during the project
+                    that allow our web app to re-launch and to be cost
+                    effective.
+                  </p>
+                  <p>
+                    Very solid person and developer. Excellent communication and
+                    that is key for me.
+                  </p>
+                </>
+              }
               author={{
                 name: "Hans Pedersen",
                 title: "Owner, The Check Station",

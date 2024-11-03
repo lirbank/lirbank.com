@@ -11,7 +11,7 @@ export function A(props: React.PropsWithChildren<{ href?: string }>) {
 }
 
 export function Testimonial(props: {
-  quote: string;
+  quote: string | React.ReactNode;
   project: {
     name: string;
     description: string;
@@ -26,6 +26,7 @@ export function Testimonial(props: {
 }) {
   return (
     <div className="-mx-4 mt-8 rounded-md bg-stone-50 p-4 shadow">
+      {/*
       <h3>{props.project.name}</h3>
       <div className="text-lg text-stone-600">
         {props.project.url ? (
@@ -40,6 +41,7 @@ export function Testimonial(props: {
           props.project.description
         )}
       </div>
+      */}
       <blockquote className="border-l-4 border-stone-300 pl-4 italic">
         {props.quote}
       </blockquote>
