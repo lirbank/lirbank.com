@@ -127,6 +127,18 @@ Very solid person and developer. Excellent communication and that is key for me.
                 url: "https://www.linkedin.com/in/hanspedersen/",
               }}
             />
+            <Testimonial
+              project={{
+                name: "R We Still On Time",
+                description: "App rescue",
+              }}
+              quote="Great communication, highly organized, works efficiently without delay. I look forward to working with Mikael again."
+              author={{
+                name: "Dane Theisen",
+                title: "Founder, R We Still On Time",
+                avatar: "DT",
+              }}
+            />
           </section>
         </container>
 
