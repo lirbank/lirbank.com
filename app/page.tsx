@@ -1,13 +1,19 @@
 import Image from "next/image";
 import mikaelImage from "../public/mikael-lirbank.jpg";
+import justinImage from "../public/justin-muncaster.jpg";
+import chrisImage from "../public/chris-jamieson.jpg";
 import { highlightedTechnologies, technologies } from "./technologies";
 import { contact } from "./contact";
+import { Testimonial } from "./atoms";
 
 export default function Home() {
   return (
     <>
-      <header className="border-b border-stone-300 bg-stone-200">
-        <header className="mx-auto flex max-w-3xl justify-between px-6">
+      <header className="sticky top-0 border-b border-stone-300 bg-stone-200">
+        <div className="mx-auto flex max-w-3xl justify-between px-6">
+          <a href="#testimonials-heading" className="hidden p-2 sm:block">
+            Testimonials
+          </a>
           <a href="#services-heading" className="p-2">
             Services
           </a>
@@ -20,7 +26,7 @@ export default function Home() {
           <a href="#about-heading" className="p-2">
             About
           </a>
-        </header>
+        </div>
       </header>
       <main>
         {/* 1. Hero */}
@@ -57,7 +63,43 @@ export default function Home() {
           </section>
         </container>
 
-        {/* 2. Services */}
+        {/* 2. Testimonials */}
+        <container>
+          <section aria-labelledby="testimonials-heading">
+            <h2 id="testimonials-heading" className="scroll-mt-10">
+              What people say
+            </h2>
+            <Testimonial
+              project={{
+                name: "FLIR Conservator",
+                url: "https://www.flirconservator.com/",
+                description: "Image and Video Repository",
+              }}
+              quote="Mikael was a pleasure to work with. Very knowledgable, very competent, very productive."
+              author={{
+                name: "Justin Muncaster",
+                title: "Teledyne FLIR/Muncaster Consulting",
+                image: justinImage,
+                url: "https://www.linkedin.com/in/jmuncaster/",
+              }}
+            />
+            <Testimonial
+              project={{
+                name: "POD",
+                description: "Logistics and payments app",
+              }}
+              quote="We couldn't have asked for anything more from Mikael. We had a relatively difficult new application which needed to be built, on a short timeframe and to specific requirements. His approach was careful, considered and fast throughout. He is an excellent communicator and was able to work considerately, prioritise tasks appropriately and ask questions when needed. He understood the task well and he produced very high quality code, in line with all the best practices etc. - I am confident that his code will be running with us for a long time to come. Thank you Mikael for a job well done, we're looking forward to working with you again in the future."
+              author={{
+                name: "Chris Jamieson",
+                title: "Director, Melior Enterprises",
+                image: chrisImage,
+                url: "https://www.linkedin.com/in/chris-jamieson-02776a19/",
+              }}
+            />
+          </section>
+        </container>
+
+        {/* 3. Services */}
         <container>
           <section aria-labelledby="services-heading">
             <h2 id="services-heading" className="scroll-mt-10">
@@ -120,7 +162,7 @@ export default function Home() {
           </section>
         </container>
 
-        {/* 3. Benefits */}
+        {/* 4. Benefits */}
         <container>
           <section aria-labelledby="benefits-heading">
             <h2 id="benefits-heading" className="scroll-mt-10">
@@ -151,7 +193,7 @@ export default function Home() {
           </section>
         </container>
 
-        {/* 4. Contact */}
+        {/* 5. Contact */}
         <container>
           <section aria-labelledby="contact-heading">
             <h2 id="contact-heading" className="scroll-mt-10">
@@ -183,7 +225,7 @@ export default function Home() {
           </section>
         </container>
 
-        {/* 5. About */}
+        {/* 6. About */}
         <container>
           <section aria-labelledby="about-heading">
             <h2 id="about-heading" className="scroll-mt-10">
@@ -213,8 +255,8 @@ export default function Home() {
                   className={
                     "rounded-lg px-3 py-1 text-sm text-nowrap" +
                     (highlightedTechnologies.includes(name)
-                      ? " bg-cyan-100 font-medium text-cyan-900"
-                      : " bg-stone-100")
+                      ? " bg-cyan-50 font-medium text-cyan-900"
+                      : " bg-stone-50")
                   }
                 >
                   <a href={url} target="_blank" rel="noopener noreferrer">

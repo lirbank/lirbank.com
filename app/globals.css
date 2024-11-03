@@ -14,7 +14,8 @@ h5,
 h6,
 ul,
 ol,
-p {
+p,
+blockquote {
   @apply max-h-full;
 }
 
@@ -30,11 +31,11 @@ section {
 /* Typography */
 h1 {
   @apply text-4xl font-extrabold sm:text-5xl;
-  @apply bg-gradient-to-br from-cyan-800 to-slate-800 bg-clip-text text-transparent;
+  @apply bg-gradient-to-br from-cyan-800 to-stone-800 bg-clip-text text-transparent;
 }
 
 h1 > span {
-  @apply font-black text-cyan-600;
+  @apply font-black text-cyan-700;
 }
 
 h2 {
@@ -51,8 +52,12 @@ strong {
 
 p,
 ul,
-ol {
+ol,
+blockquote {
+  /* Typography */
   @apply text-lg;
+  /* Spacing */
+  @apply mt-4 first:mt-0;
 }
 
 /* Spacing */
@@ -60,10 +65,4 @@ h1,
 h2,
 h3 {
   @apply mt-8 first:mt-0;
-}
-
-p,
-ul,
-ol {
-  @apply mt-4 first:mt-0;
 }
