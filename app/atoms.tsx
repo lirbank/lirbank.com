@@ -1,16 +1,16 @@
 import Image, { StaticImageData } from "next/image";
 
 export function Testimonial(props: {
+  quote: string;
   project: {
     name: string;
-    url?: string;
     description: string;
+    url?: string;
   };
-  quote: string;
   author: {
     name: string;
     title: string;
-    image: StaticImageData;
+    avatar: StaticImageData | string;
     url: string;
   };
 }) {
@@ -35,11 +35,17 @@ export function Testimonial(props: {
       </blockquote>
       <div className="mt-4 flex items-center gap-2">
         <a href={props.author.url} target="_blank">
-          <Image
-            className="size-12 rounded-full object-cover"
-            src={props.author.image}
-            alt={props.author.name}
-          />
+          {typeof props.author.avatar !== "string" ? (
+            <Image
+              className="size-12 rounded-full object-cover shadow"
+              src={props.author.avatar}
+              alt={`${props.author.name}, ${props.author.title}`}
+            />
+          ) : (
+            <div className="flex size-12 items-center justify-center rounded-full bg-stone-200 text-base font-bold tracking-widest text-stone-600">
+              {props.author.avatar}
+            </div>
+          )}
         </a>
         <div className="flex flex-col">
           <strong className="text-lg">{props.author.name}</strong>

@@ -79,7 +79,7 @@ export default function Home() {
               author={{
                 name: "Justin Muncaster",
                 title: "Teledyne FLIR/Muncaster Consulting",
-                image: justinImage,
+                avatar: justinImage,
                 url: "https://www.linkedin.com/in/jmuncaster/",
               }}
             />
@@ -92,8 +92,21 @@ export default function Home() {
               author={{
                 name: "Chris Jamieson",
                 title: "Director, Melior Enterprises",
-                image: chrisImage,
+                avatar: chrisImage,
                 url: "https://www.linkedin.com/in/chris-jamieson-02776a19/",
+              }}
+            />
+            <Testimonial
+              project={{
+                name: "Formcode",
+                description: "Field inspection app",
+              }}
+              quote="Mikael is fantastic! We are already finding new ways to utilize his vast knowledge. HIGHLY RECOMMEND!"
+              author={{
+                name: "Joe Hochgreve",
+                title: "Web Developer, Formcode",
+                avatar: "JH",
+                url: "https://www.linkedin.com/in/joe-hochgreve-71053316/",
               }}
             />
           </section>
