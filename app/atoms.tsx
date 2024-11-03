@@ -54,7 +54,7 @@ export function Testimonial(props: {
               alt={`${props.author.name}, ${props.author.title}`}
             />
           ) : (
-            <div className="flex size-12 items-center justify-center rounded-full bg-stone-200 text-base font-bold tracking-widest text-stone-600">
+            <div className="flex size-12 items-center justify-center rounded-full bg-stone-200 text-base font-bold tracking-wide text-stone-600">
               {props.author.avatar}
             </div>
           )}
