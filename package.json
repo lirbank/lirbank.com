@@ -6,6 +6,7 @@
     "next:build": "prettier --check . && next build",
     "next:start": "next start",
     "chrome:dev": "bun build ./chrome/background.ts --outdir ./chrome --watch",
+    "chrome:build": "bun build ./chrome/background.ts --outdir ./chrome",
     "lint": "next lint",
     "format": "prettier --write ."
   },

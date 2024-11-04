@@ -34,7 +34,10 @@ chrome.action.onClicked.addListener((tab) => {
           return;
         }
 
-        const url = window.location.href;
+        // Get the origin and pathname of the current URL (without query params)
+        const url =
+          new URL(window.location.href).origin +
+          new URL(window.location.href).pathname;
         const formattedText = `${text}\t${url}`;
 
         navigator.clipboard
