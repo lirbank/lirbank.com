@@ -22,6 +22,7 @@ chrome.action.onClicked.addListener((tab) => {
   // Inject and execute the content script
   void chrome.scripting.executeScript({
     target: { tabId: tab.id },
+    args: [],
     func: () => {
       const selector = "h1";
       const element = document.querySelector(selector);
