@@ -19,13 +19,16 @@ export default function Home() {
           <a href="#services-heading" className="p-2">
             Services
           </a>
+          <a href="#projects-heading" className="p-2">
+            Projects
+          </a>
           <a href="#benefits-heading" className="p-2">
             Benefits
           </a>
           <a href="#contact-heading" className="p-2">
             Contact
           </a>
-          <a href="#about-heading" className="p-2">
+          <a href="#about-heading" className="hidden p-2 sm:block">
             About
           </a>
         </div>
