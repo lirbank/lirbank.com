@@ -83,17 +83,17 @@ export default function Home() {
                     to a production-ready product of true enterprise quality.
                   </p>
                   <p>
-                    What stood out the most was Mikael’s incredible attention to
-                    detail. He’s always up-to-date on the latest technology
+                    What stood out the most was Mikael's incredible attention to
+                    detail. He's always up-to-date on the latest technology
                     trends and consistently recommends modern, high-performing
                     solutions that have significantly improved the functionality
-                    and performance of our platform. He didn’t just upgrade the
+                    and performance of our platform. He didn't just upgrade the
                     code; he transformed our development process with a
                     disciplined, organized approach that brought real structure
                     to our team.
                   </p>
                   <p>
-                    Mikael’s work has elevated BenAi in ways I hadn’t imagined.
+                    Mikael's work has elevated BenAi in ways I hadn't imagined.
                     If you need someone who can turn ideas into robust, scalable
                     solutions, I would highly recommend working with Mikael.
                   </p>
@@ -101,7 +101,7 @@ export default function Home() {
               }
               author={{
                 name: "Spencer Smith",
-                title: "Principal Data Scientist, BenAi",
+                title: "Principal Data Scientist, Zillow Group, Founder, BenAi",
                 avatar: spencerImage,
                 url: "https://www.linkedin.com/in/spencergsmith6/",
               }}
@@ -277,7 +277,87 @@ export default function Home() {
           </section>
         </container>
 
-        {/* 4. Benefits */}
+        {/* 4. Select projects */}
+        <container>
+          <section aria-labelledby="projects-heading">
+            <h2 id="projects-heading" className="scroll-mt-20">
+              Select projects
+            </h2>
+            <p>
+              Here are a few favorite AI applications I've built or been a main
+              contributor to.
+            </p>
+            <h3>STΛR MODΞ</h3>
+            <p>
+              Built from the ground up as an AI-first, humanless bookkeeping
+              application that fully handles financial accounting without human
+              intervention. Powered by OpenAI APIs and custom data pipelines,
+              STΛR MODΞ employs a next-gen AI-driven user interface with voice
+              input and voice+screen output.
+            </p>
+            <p>
+              <a
+                href="https://www.starmode.app/"
+                target="_blank"
+                className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
+              >
+                Visit starmode.app
+              </a>
+            </p>
+            <h3>BenAi</h3>
+            <p>
+              A dedicated AI-first chatbot for health benefits administrators
+              (TPAs), BenAi quickly and accurately answers questions on
+              individual member claims and plans by ingesting plan documents and
+              claims data at the individual member level. Built with OpenAI LLMs
+              and custom embeddings.
+            </p>
+            <p>
+              <a
+                href="https://www.benefits-ai.com/"
+                target="_blank"
+                className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
+              >
+                Visit benefits-ai.com
+              </a>
+            </p>
+            <h3>Shorty</h3>
+            <p>
+              An AI-augmented communication platform that enhances team
+              productivity by organizing conversations and interactions into a
+              graph of nodes and edges. Integrated with OpenAI LLMs, Shorty
+              relies on AI agents to summarize discussions, identify consensus
+              points, and enable seamless information flow and decision-making
+              support.
+            </p>
+            <h3>TELEDYN FLIR Conservator</h3>
+            <p>
+              A curated repository of video, imagery, and analytics components.
+              This application allows users to build and manage repositories of
+              annotated data, and to test and experiment with machine-learning
+              video analytics algorithms.
+            </p>
+            <p>
+              <a
+                href="https://www.flirconservator.com/"
+                target="_blank"
+                className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
+              >
+                Visit flirconservator.com
+              </a>
+              <br />
+              <a
+                href="https://www.flir.com/oem/conservator/"
+                target="_blank"
+                className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
+              >
+                Visit flir.com/oem/conservator
+              </a>
+            </p>
+          </section>
+        </container>
+
+        {/* 5. Benefits */}
         <container>
           <section aria-labelledby="benefits-heading">
             <h2 id="benefits-heading" className="scroll-mt-20">
@@ -308,7 +388,7 @@ export default function Home() {
           </section>
         </container>
 
-        {/* 5. Contact */}
+        {/* 6. Contact */}
         <container>
           <section aria-labelledby="contact-heading">
             <h2 id="contact-heading" className="scroll-mt-20">
@@ -329,7 +409,7 @@ export default function Home() {
                       href={href}
                       aria-label={label}
                       title={label}
-                      className="underline"
+                      className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
                     >
                       {text}
                     </a>
@@ -339,7 +419,7 @@ export default function Home() {
           </section>
         </container>
 
-        {/* 6. About */}
+        {/* 7. About */}
         <container>
           <section aria-labelledby="about-heading">
             <h2 id="about-heading" className="scroll-mt-20">
@@ -373,7 +453,7 @@ export default function Home() {
                       : " bg-stone-50")
                   }
                 >
-                  <a href={url} target="_blank" rel="noopener noreferrer">
+                  <a href={url} target="_blank">
                     {name}
                   </a>
                 </div>
