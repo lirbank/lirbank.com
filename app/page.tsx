@@ -454,21 +454,23 @@ export default function Home() {
             <h3>Technologies & tooling</h3>
             <p>I thrive with these tools and technologies.</p>
             <div className="-mx-6 flex flex-wrap justify-center gap-1 pt-4 sm:-mx-3">
-              {technologies.map(([name, url]) => (
-                <div
-                  key={name}
-                  className={
-                    "rounded-lg px-3 py-1 text-sm text-nowrap" +
-                    (highlightedTechnologies.includes(name)
-                      ? " bg-cyan-50 font-medium text-cyan-900"
-                      : " bg-stone-50")
-                  }
-                >
-                  <a href={url} target="_blank">
-                    {name}
-                  </a>
-                </div>
-              ))}
+              {technologies
+                .toSorted((a, b) => a[0].localeCompare(b[0]))
+                .map(([name, url]) => (
+                  <div
+                    key={name}
+                    className={
+                      "rounded-lg px-3 py-1 text-sm text-nowrap" +
+                      (highlightedTechnologies.includes(name)
+                        ? " bg-cyan-50 font-medium text-cyan-900"
+                        : " bg-stone-50")
+                    }
+                  >
+                    <a href={url} target="_blank">
+                      {name}
+                    </a>
+                  </div>
+                ))}
             </div>
           </section>
         </container>

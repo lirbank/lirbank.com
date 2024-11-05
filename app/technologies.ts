@@ -12,7 +12,7 @@ export const technologies = [
   ["GitHub Actions", "https://github.com/features/actions"],
   ["GraphQL", "https://graphql.org/"],
   ["Heroku", "https://www.heroku.com/"],
-  ["LLM", "https://en.wikipedia.org/wiki/Large_language_model"],
+  ["LLMs", "https://en.wikipedia.org/wiki/Large_language_model"],
   ["Local-first", "https://localfirstweb.dev/"],
   ["Message queues", "https://en.wikipedia.org/wiki/Message_queue"],
   ["MongoDB", "https://www.mongodb.com/"],
@@ -47,6 +47,9 @@ export const technologies = [
   ["WebRTC", "https://webrtc.org/"],
   ["WebSockets", "https://en.wikipedia.org/wiki/WebSocket"],
   ["Zod", "https://zod.dev/"],
+  ["Cursor", "https://www.cursor.com/"],
+  ["Inngest", "https://www.inngest.com/"],
+  ["Ably", "https://ably.com/"],
 ] as const;
 
 type TechnologyName = (typeof technologies)[number][0];
@@ -58,4 +61,7 @@ export const highlightedTechnologies: TechnologyName[] = [
   "MongoDB",
   "Vitest",
   "Playwright",
+  "LLMs",
+  "OpenAI",
+  "ESLint",
 ];
