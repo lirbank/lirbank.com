@@ -17,7 +17,7 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Mikael Lirbank",
   description:
-    "I help companies build better software, focusing on web technologies.",
+    "I help companies build better software, focusing on AI and web technologies.",
 };
 
 export default function RootLayout(

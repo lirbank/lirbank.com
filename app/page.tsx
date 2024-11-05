@@ -7,6 +7,7 @@ import spencerImage from "../public/spencer-smith.jpg";
 import { highlightedTechnologies, technologies } from "./technologies";
 import { contact } from "./contact";
 import { Testimonial } from "./atoms";
+import { metadata } from "./layout";
 
 export default function Home() {
   return (
@@ -52,10 +53,7 @@ export default function Home() {
             <div className="flex flex-col gap-2">
               <div>
                 <h3>Mikael Lirbank</h3>
-                <p className="mt-1!">
-                  I help companies build better software, focusing on AI/LLMs
-                  and web technologies.
-                </p>
+                <p>{metadata.description}</p>
               </div>
               <div className="flex gap-2">
                 {contact.map(({ href, icon: Icon, label }) => (
