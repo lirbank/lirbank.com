@@ -290,11 +290,11 @@ export default function Home() {
             </p>
             <h3>STΛR MODΞ</h3>
             <p>
-              Built from the ground up as an AI-first, humanless bookkeeping
-              application that fully handles financial accounting without human
-              intervention. Powered by OpenAI APIs and custom data pipelines,
-              STΛR MODΞ employs a next-gen AI-driven user interface with voice
-              input and voice+screen output.
+              Built from the ground up as an AI-first, humanless bookkeeper that
+              handles financial business accounting without human intervention.
+              Powered by OpenAI APIs and custom data pipelines, STΛR MODΞ
+              employs a next-gen AI-driven user interface with voice input and
+              voice+screen output.
             </p>
             <p>
               <a
