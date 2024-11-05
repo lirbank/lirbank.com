@@ -328,8 +328,7 @@ export default function Home() {
               productivity by organizing conversations and interactions into a
               graph of nodes and edges. Integrated with OpenAI LLMs, Shorty
               relies on AI agents to summarize discussions, identify consensus
-              points, and enable seamless information flow and decision-making
-              support.
+              points, and enable seamless decision-making support.
             </p>
             <h3>TELEDYN FLIR Conservator</h3>
             <p>
