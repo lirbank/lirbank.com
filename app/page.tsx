@@ -10,7 +10,7 @@ import { Testimonial } from "./atoms";
 export default function Home() {
   return (
     <>
-      <header className="sticky top-0 border-b border-stone-300 bg-stone-200">
+      <header className="sticky top-0 border-b border-stone-300/50 bg-stone-50/70 backdrop-blur-sm">
         <div className="mx-auto flex max-w-3xl justify-between px-6">
           <a href="#testimonials-heading" className="hidden p-2 sm:block">
             Testimonials
