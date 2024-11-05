@@ -283,8 +283,7 @@ export default function Home() {
               Whether you need an urgent fix or a long-term partner, let's make
               it happen. The sky's the limit.
             </p>
-            <div className="mt-4 flex flex-col gap-2 first:mt-0" />
-            <ul className="mt-4 ml-4 flex list-disc flex-col gap-2 first:mt-0">
+            <ul className="ml-4 flex list-disc flex-col gap-2">
               {contact
                 .filter((e) => e.type === "contact" || e.id === "linkedIn")
                 .map(({ href, label, text, cta }) => (
