@@ -3,6 +3,7 @@ import mikaelImage from "../public/mikael-lirbank.jpg";
 import justinImage from "../public/justin-muncaster.jpg";
 import chrisImage from "../public/chris-jamieson.jpg";
 import hansImage from "../public/hans-pedersen.jpg";
+import spencerImage from "../public/spencer-smith.jpg";
 import { highlightedTechnologies, technologies } from "./technologies";
 import { contact } from "./contact";
 import { Testimonial } from "./atoms";
@@ -49,8 +50,8 @@ export default function Home() {
               <div>
                 <h3>Mikael Lirbank</h3>
                 <p className="mt-1!">
-                  I help companies build better software, focusing on web
-                  technologies.
+                  I help companies build better software, focusing on AI/LLMs
+                  and web technologies.
                 </p>
               </div>
               <div className="flex gap-2">
@@ -70,6 +71,41 @@ export default function Home() {
             <h2 id="testimonials-heading" className="scroll-mt-20">
               What people say
             </h2>
+            <Testimonial
+              project={{ name: "", url: "", description: "" }}
+              quote={
+                <>
+                  <p>
+                    I had the pleasure of working with Mikael on my company,
+                    BenAi, and he brought a whole new level of professionalism
+                    and polish to our software. From day one, he zeroed in on
+                    areas for improvement and took our platform from a prototype
+                    to a production-ready product of true enterprise quality.
+                  </p>
+                  <p>
+                    What stood out the most was Mikael’s incredible attention to
+                    detail. He’s always up-to-date on the latest technology
+                    trends and consistently recommends modern, high-performing
+                    solutions that have significantly improved the functionality
+                    and performance of our platform. He didn’t just upgrade the
+                    code; he transformed our development process with a
+                    disciplined, organized approach that brought real structure
+                    to our team.
+                  </p>
+                  <p>
+                    Mikael’s work has elevated BenAi in ways I hadn’t imagined.
+                    If you need someone who can turn ideas into robust, scalable
+                    solutions, I would highly recommend working with Mikael.
+                  </p>
+                </>
+              }
+              author={{
+                name: "Spencer Smith",
+                title: "Principal Data Scientist, BenAi",
+                avatar: spencerImage,
+                url: "https://www.linkedin.com/in/spencergsmith6/",
+              }}
+            />
             <Testimonial
               project={{
                 name: "FLIR Conservator",
