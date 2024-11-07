@@ -296,6 +296,18 @@ export default function Home() {
               Select projects
             </h2>
             <p>
+              I've recently spent six years as a tech lead and product inventor
+              at{" "}
+              <a
+                href="https://www.aresmgmt.com/"
+                target="_blank"
+                className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
+              >
+                Ares/BootstrapLabs
+              </a>
+              , a venture capital firm investing in applied AI.
+            </p>
+            <p>
               Here are a few favorite AI applications I've built or been a main
               contributor to.
             </p>
