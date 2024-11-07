@@ -242,7 +242,8 @@ export default function Home() {
               >
                 Ares/BootstrapLabs
               </a>
-              , a venture capital firm investing in applied AI.
+              , a venture capital firm investing in applied AI, where I led a
+              series of applied AI projects.
             </p>
             <p>
               Here are a few favorite AI applications I've built or been a main
