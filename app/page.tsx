@@ -15,22 +15,22 @@ export default function Home() {
     <>
       <header className="sticky top-0 border-b border-stone-300/50 bg-stone-50/70 backdrop-blur-sm">
         <div className="mx-auto flex max-w-3xl justify-between px-6">
-          <a href="#testimonials-heading" className="hidden p-2 sm:block">
+          <a href="#testimonials" className="hidden p-2 sm:block">
             Testimonials
           </a>
-          <a href="#projects-heading" className="p-2">
+          <a href="#projects" className="p-2">
             Projects
           </a>
-          <a href="#services-heading" className="p-2">
+          <a href="#services" className="p-2">
             Services
           </a>
-          <a href="#benefits-heading" className="p-2">
+          <a href="#benefits" className="p-2">
             Benefits
           </a>
-          <a href="#contact-heading" className="p-2">
+          <a href="#contact" className="p-2">
             Contact
           </a>
-          <a href="#about-heading" className="hidden p-2 sm:block">
+          <a href="#about" className="hidden p-2 sm:block">
             About
           </a>
         </div>
@@ -39,10 +39,10 @@ export default function Home() {
         {/* 1. Hero */}
         <container>
           <section
-            aria-labelledby="main-heading"
+            aria-labelledby="main"
             className="flex flex-col gap-10 sm:grid sm:grid-cols-2"
           >
-            <h1 id="main-heading" className="text-center sm:text-left">
+            <h1 id="main" className="text-center sm:text-left">
               Let's unleash your <span>web app</span>
               's true potential
             </h1>
@@ -69,8 +69,8 @@ export default function Home() {
 
         {/* 2. Testimonials */}
         <container>
-          <section aria-labelledby="testimonials-heading">
-            <h2 id="testimonials-heading" className="scroll-mt-20">
+          <section aria-labelledby="testimonials">
+            <h2 id="testimonials" className="scroll-mt-20">
               What people say
             </h2>
             <Testimonial
@@ -228,8 +228,8 @@ export default function Home() {
 
         {/* 3. Select projects */}
         <container>
-          <section aria-labelledby="projects-heading">
-            <h2 id="projects-heading" className="scroll-mt-20">
+          <section aria-labelledby="projects">
+            <h2 id="projects" className="scroll-mt-20">
               Select projects
             </h2>
             <p>
@@ -320,8 +320,8 @@ export default function Home() {
 
         {/* 4. Services */}
         <container>
-          <section aria-labelledby="services-heading">
-            <h2 id="services-heading" className="scroll-mt-20">
+          <section aria-labelledby="services">
+            <h2 id="services" className="scroll-mt-20">
               Things I'd love to take off your plate
             </h2>
             <h3>Hands-on web app development</h3>
@@ -383,8 +383,8 @@ export default function Home() {
 
         {/* 5. Benefits */}
         <container>
-          <section aria-labelledby="benefits-heading">
-            <h2 id="benefits-heading" className="scroll-mt-20">
+          <section aria-labelledby="benefits">
+            <h2 id="benefits" className="scroll-mt-20">
               Why work with me
             </h2>
             <h3>Peace of mind</h3>
@@ -414,8 +414,8 @@ export default function Home() {
 
         {/* 6. Contact */}
         <container>
-          <section aria-labelledby="contact-heading">
-            <h2 id="contact-heading" className="scroll-mt-20">
+          <section aria-labelledby="contact">
+            <h2 id="contact" className="scroll-mt-20">
               Let's get to work
             </h2>
             <p>
@@ -445,8 +445,8 @@ export default function Home() {
 
         {/* 7. About */}
         <container>
-          <section aria-labelledby="about-heading">
-            <h2 id="about-heading" className="scroll-mt-20">
+          <section aria-labelledby="about">
+            <h2 id="about" className="scroll-mt-20">
               About me
             </h2>
             <p>
