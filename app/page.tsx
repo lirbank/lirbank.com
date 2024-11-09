@@ -5,6 +5,7 @@ import chrisImage from "../public/chris-jamieson.jpg";
 import hansImage from "../public/hans-pedersen.jpg";
 import spencerImage from "../public/spencer-smith.jpg";
 import victorImage from "../public/victor-meyer.jpg";
+import joeImage from "../public/joe-hochgreve.jpg";
 import { highlightedTechnologies, technologies } from "./technologies";
 import { contact } from "./contact";
 import { Testimonial } from "./atoms";
@@ -73,6 +74,10 @@ export default function Home() {
             <h2 id="testimonials" className="scroll-mt-20">
               What people say
             </h2>
+            <p>
+              My peers and clients often point out my attention to detail and
+              excellent communication skills.
+            </p>
             <Testimonial
               project={{ name: "", url: "", description: "" }}
               quote={
@@ -175,7 +180,7 @@ export default function Home() {
               author={{
                 name: "Joe Hochgreve",
                 title: "Web Developer, Formcode",
-                avatar: "JH",
+                avatar: joeImage,
                 url: "https://www.linkedin.com/in/joe-hochgreve-71053316/",
               }}
             />
