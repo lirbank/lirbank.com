@@ -296,7 +296,7 @@ export default function Home() {
               relies on AI agents to summarize discussions, identify consensus
               points, and enable seamless decision-making support.
             </p>
-            <h3>TELEDYN FLIR Conservator</h3>
+            <h3>Teledyne FLIR Conservator</h3>
             <p>
               A curated repository of video, imagery, and analytics components.
               This application allows users to build and manage repositories of
