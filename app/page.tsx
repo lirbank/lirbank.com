@@ -299,9 +299,9 @@ export default function Home() {
             <h3>Teledyne FLIR Conservator</h3>
             <p>
               A curated repository of video, imagery, and analytics components.
-              This application allows users to build and manage repositories of
-              annotated data, and to test and experiment with machine-learning
-              video analytics algorithms.
+              This application allows data scientists to build and manage
+              repositories of annotated data, and to test and experiment with
+              machine-learning video analytics algorithms.
             </p>
             <p>
               <a
