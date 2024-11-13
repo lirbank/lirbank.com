@@ -298,6 +298,15 @@ export default function Home() {
               relies on AI agents to summarize discussions, identify consensus
               points, and enable seamless decision-making support.
             </p>
+            <p>
+              <a
+                href="https://shorty.run/"
+                target="_blank"
+                className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
+              >
+                Visit shorty.run
+              </a>
+            </p>
             <h3>Teledyne FLIR Conservator</h3>
             <p>
               A curated repository of video, imagery, and analytics components.
