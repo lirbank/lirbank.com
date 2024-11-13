@@ -240,17 +240,18 @@ export default function Home() {
               Select projects
             </h2>
             <p>
-              I've recently spent six years as a tech lead and product inventor
-              at{" "}
+              I've recently spent six years as a tech lead, engineering manager,
+              and product inventor within the{" "}
+              <strong>Applied AI Venture Studio</strong> at{" "}
               <a
                 href="https://www.aresmgmt.com/"
                 target="_blank"
                 className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
               >
-                Ares/BootstrapLabs
+                BootstrapLabs, an Ares Management company
               </a>
-              , a venture capital firm investing in applied AI, where I led a
-              series of applied AI projects.
+              , a venture capital firm investing in applied AI. During this
+              time, I led a series of applied AI projects.
             </p>
             <p>
               Here are a few favorite AI applications I've built or been a main
