@@ -6,6 +6,7 @@ import hansImage from "../public/hans-pedersen.jpg";
 import spencerImage from "../public/spencer-smith.jpg";
 import victorImage from "../public/victor-meyer.jpg";
 import joeImage from "../public/joe-hochgreve.jpg";
+import daneImage from "../public/dane-theisen.jpg";
 import { highlightedTechnologies, technologies } from "./technologies";
 import { contact } from "./contact";
 import { Testimonial } from "./atoms";
@@ -224,7 +225,8 @@ export default function Home() {
               author={{
                 name: "Dane Theisen",
                 title: "Founder, R We Still On Time",
-                avatar: "DT",
+                // avatar: "DT",
+                avatar: daneImage,
                 url: "https://www.linkedin.com/in/danetheisen/",
               }}
             />
