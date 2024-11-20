@@ -237,8 +237,40 @@ export default function Home() {
         <container>
           <section aria-labelledby="projects">
             <h2 id="projects" className="scroll-mt-20">
-              Select projects
+              Open source
             </h2>
+            <h3>PimDB</h3>
+            <p>
+              A lightweight, persisted in-memory database built from the ground
+              up for the browser. PimDB provides fast and efficient text
+              indexing with substring, n-gram, and sorted indexes, enabling
+              quick lookups for partial and exact matches. It's{" "}
+              <strong>4,000x+ faster</strong> than Array.filter for sorted
+              lookups and <strong>700x+ faster</strong> for substring searches
+              on a dataset of 100,000 documents.
+            </p>
+            <p>
+              <a
+                href="https://www.npmjs.com/package/pimdb"
+                target="_blank"
+                className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
+              >
+                npmjs.com/package/pimdb
+              </a>
+              <br />
+              <a
+                href="https://github.com/lirbank/pimdb"
+                target="_blank"
+                className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
+              >
+                github.com/lirbank/pimdb
+              </a>
+            </p>
+          </section>
+        </container>
+        <container>
+          <section>
+            <h2 className="scroll-mt-20">Select commercial projects</h2>
             <p>
               I've recently spent six years as a tech lead, engineering manager,
               and product inventor within the{" "}
