@@ -233,12 +233,13 @@ export default function Home() {
           </section>
         </container>
 
-        {/* 3. Select projects */}
+        {/* 3. Projects */}
         <container>
           <section aria-labelledby="projects">
             <h2 id="projects" className="scroll-mt-20">
               Open source
             </h2>
+            <p>Author and maintainer of this project.</p>
             <h3>PimDB</h3>
             <p>
               A lightweight, persisted in-memory database built from the ground
