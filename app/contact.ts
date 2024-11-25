@@ -4,6 +4,7 @@ import {
   SquareGitHubIcon,
   SquareEnvelopeIcon,
   SquarePhoneIcon,
+  SquareBlueskyIcon,
 } from "./icons";
 
 const smsBody = encodeURIComponent("Hi Mikael,\n\nLet's unleash our app...");
@@ -49,14 +50,23 @@ export const contact = [
     label: "Visit Mikael's LinkedIn profile",
     cta: "Connect on LinkedIn",
   },
+  // {
+  //   id: "x",
+  //   type: "social",
+  //   href: "https://x.com/mikaellirbank",
+  //   icon: SquareXTwitterIcon,
+  //   text: "mikaellirbank",
+  //   label: "Visit Mikael's X (formerly Twitter) profile",
+  //   cta: "Follow on X",
+  // },
   {
-    id: "x",
+    id: "bluesky",
     type: "social",
-    href: "https://x.com/mikaellirbank",
-    icon: SquareXTwitterIcon,
+    href: "https://bsky.app/profile/lirbank.bsky.social",
+    icon: SquareBlueskyIcon,
     text: "mikaellirbank",
-    label: "Visit Mikael's X (formerly Twitter) profile",
-    cta: "Follow on X",
+    label: "Visit Mikael's Bluesky profile",
+    cta: "Follow on Bluesky",
   },
   {
     id: "github",
