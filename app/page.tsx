@@ -539,7 +539,8 @@ export default function Home() {
         </container>
       </main>
       <footer className="mx-auto max-w-3xl px-8 py-4 text-center">
-        © {new Date().getFullYear()} Airlab LLC. All rights reserved.
+        © {new Date().getFullYear()} Mikael Lirbank / Airlab LLC. All rights
+        reserved.
       </footer>
     </>
   );
