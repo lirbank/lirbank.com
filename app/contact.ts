@@ -1,6 +1,6 @@
 import {
   LinkedInIcon,
-  SquareXTwitterIcon,
+  // SquareXTwitterIcon,
   SquareGitHubIcon,
   SquareEnvelopeIcon,
   SquarePhoneIcon,
