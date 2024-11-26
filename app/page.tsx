@@ -539,8 +539,15 @@ export default function Home() {
         </container>
       </main>
       <footer className="mx-auto max-w-3xl px-8 py-4 text-center">
-        © {new Date().getFullYear()} Mikael Lirbank / Airlab LLC. All rights
-        reserved.
+        © {new Date().getFullYear()} Mikael Lirbank /{" "}
+        <a
+          href="https://www.airlab.io/"
+          className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
+          target="_blank"
+        >
+          Airlab LLC
+        </a>
+        . All rights reserved.
       </footer>
     </>
   );
