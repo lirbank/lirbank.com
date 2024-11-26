@@ -50,6 +50,18 @@ export const technologies = [
   ["Cursor", "https://www.cursor.com/"],
   ["Inngest", "https://www.inngest.com/"],
   ["Ably", "https://ably.com/"],
+  ["Stripe", "https://stripe.com/"],
+  ["Kubernetes", "https://kubernetes.io/"],
+  ["Message brokers", "https://en.wikipedia.org/wiki/Message_broker"],
+  ["React Native", "https://reactnative.dev/"],
+  ["PimDB", "https://www.npmjs.com/package/pimdb"],
+  ["Dexie", "https://dexie.org/"],
+  [
+    "IndexedDB",
+    "https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API",
+  ],
+  ["TS Reset", "https://www.totaltypescript.com/ts-reset"],
+  ["tinybench", "https://github.com/tinylibs/tinybench"],
 ] as const;
 
 type TechnologyName = (typeof technologies)[number][0];
