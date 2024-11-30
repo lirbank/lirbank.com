@@ -62,6 +62,8 @@ export const technologies = [
   ],
   ["TS Reset", "https://www.totaltypescript.com/ts-reset"],
   ["tinybench", "https://github.com/tinylibs/tinybench"],
+  ["Auth0", "https://auth0.com/"],
+  ["Clerk", "https://clerk.com/"],
 ] as const;
 
 type TechnologyName = (typeof technologies)[number][0];
