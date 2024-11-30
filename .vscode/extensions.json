@@ -5,6 +5,7 @@
     "esbenp.prettier-vscode",
     "github.vscode-github-actions",
     "github.vscode-pull-request-github",
+    "oven.bun-vscode",
     "stkb.rewrap",
     "wmaurer.change-case"
   ]
