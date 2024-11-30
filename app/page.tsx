@@ -15,28 +15,6 @@ import { metadata } from "./layout";
 export default function Home() {
   return (
     <>
-      <header className="sticky top-0 border-b border-stone-300/50 bg-stone-50/70 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-3xl justify-between px-6">
-          <a href="#testimonials" className="hidden p-2 sm:block">
-            Testimonials
-          </a>
-          <a href="#projects" className="p-2">
-            Projects
-          </a>
-          <a href="#services" className="p-2">
-            Services
-          </a>
-          <a href="#benefits" className="p-2">
-            Benefits
-          </a>
-          <a href="#contact" className="p-2">
-            Contact
-          </a>
-          <a href="#about" className="hidden p-2 sm:block">
-            About
-          </a>
-        </div>
-      </header>
       <main>
         {/* 1. Hero */}
         <container>
@@ -538,17 +516,6 @@ export default function Home() {
           </section>
         </container>
       </main>
-      <footer className="mx-auto max-w-3xl px-8 py-4 text-center">
-        © {new Date().getFullYear()} Mikael Lirbank /{" "}
-        <a
-          href="https://www.airlab.io/"
-          className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
-          target="_blank"
-        >
-          Airlab LLC
-        </a>
-        . All rights reserved.
-      </footer>
     </>
   );
 }
