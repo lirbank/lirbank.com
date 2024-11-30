@@ -62,7 +62,8 @@ export const contact = [
   {
     id: "bluesky",
     type: "social",
-    href: "https://bsky.app/profile/lirbank.bsky.social",
+    // href: "https://bsky.app/profile/lirbank.bsky.social",
+    href: "https://bsky.app/profile/lirbank.com",
     icon: SquareBlueskyIcon,
     text: "mikaellirbank",
     label: "Visit Mikael's Bluesky profile",
