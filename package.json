@@ -9,7 +9,7 @@
     "chrome:build": "bun build ./chrome/background.ts --outdir ./chrome",
     "lint": "next lint",
     "format": "prettier --write .",
-    "deps:update": "bun update --latest && bun install @tailwindcss/postcss@next tailwindcss@next"
+    "deps:update": "bun update --latest && bun install @tailwindcss/postcss@next tailwindcss@next @types/react@18 eslint@8"
   },
   "dependencies": {
     "@vercel/analytics": "1.4.1",
@@ -22,9 +22,9 @@
     "@total-typescript/ts-reset": "0.6.1",
     "@types/chrome": "0.0.287",
     "@types/node": "22.10.1",
-    "@types/react": "18.3.12",
+    "@types/react": "18",
     "@types/react-dom": "19.0.1",
-    "eslint": "9.16.0",
+    "eslint": "8",
     "eslint-config-next": "15.0.4",
     "prettier": "3.4.2",
     "prettier-plugin-tailwindcss": "0.6.9",
