@@ -2,9 +2,9 @@
   "name": "lirbank.com",
   "private": true,
   "scripts": {
-    "next:dev": "PORT=3000 bun ./scripts/ipv4.mjs && next dev --turbopack",
-    "next:build": "prettier --check . && next build",
-    "next:start": "next start",
+    "dev": "PORT=3000 bun ./scripts/ipv4.mjs && next dev --turbopack",
+    "build": "prettier --check . && next build",
+    "start": "next start",
     "chrome:dev": "bun build ./chrome/background.ts --outdir ./chrome --watch",
     "chrome:build": "bun build ./chrome/background.ts --outdir ./chrome",
     "lint": "next lint",
