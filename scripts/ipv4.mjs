@@ -22,6 +22,7 @@ const getLocalExternalIP = () => {
 
 console.log("-".repeat(80));
 console.log(`🚀 Server listening on http://localhost:${PORT}/`);
+console.log(`🚀 Server listening on http://0.0.0.0:${PORT}/`);
 console.log(`🚀 Server listening on http://${getLocalExternalIP()}:${PORT}/`);
 console.log();
 console.log(
