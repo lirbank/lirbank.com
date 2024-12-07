@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
+import Link from "next/link";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -33,24 +34,24 @@ export default function RootLayout(
       >
         <header className="sticky top-0 border-b border-stone-300/50 bg-stone-50/70 backdrop-blur-sm">
           <div className="mx-auto flex max-w-3xl justify-between px-6">
-            <a href="#testimonials" className="hidden p-2 sm:block">
+            <Link href="/#testimonials" className="hidden p-2 sm:block">
               Testimonials
-            </a>
-            <a href="#projects" className="p-2">
+            </Link>
+            <Link href="/#projects" className="p-2">
               Projects
-            </a>
-            <a href="#services" className="p-2">
+            </Link>
+            <Link href="/#services" className="p-2">
               Services
-            </a>
-            <a href="#benefits" className="p-2">
+            </Link>
+            <Link href="/#benefits" className="p-2">
               Benefits
-            </a>
-            <a href="#contact" className="p-2">
+            </Link>
+            <Link href="/#contact" className="p-2">
               Contact
-            </a>
-            <a href="#about" className="hidden p-2 sm:block">
+            </Link>
+            <Link href="/#about" className="hidden p-2 sm:block">
               About
-            </a>
+            </Link>
           </div>
         </header>
         {props.children}
