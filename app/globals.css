@@ -30,7 +30,7 @@ section {
 
 /* Typography */
 h1 {
-  @apply text-4xl font-extrabold sm:pb-0.5 sm:text-5xl;
+  @apply text-4xl font-extrabold sm:text-5xl;
   @apply bg-gradient-to-br from-cyan-800 to-stone-800 bg-clip-text text-transparent;
 }
 
