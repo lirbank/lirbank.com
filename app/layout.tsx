@@ -7,13 +7,11 @@ import "./globals.css";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
-  weight: "100 900",
 });
 
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
-  weight: "100 900",
 });
 
 export const metadata: Metadata = {
@@ -28,10 +26,11 @@ export default function RootLayout(
   }>,
 ) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} bg-stone-100 font-sans text-stone-800 antialiased`}
-      >
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}
+    >
+      <body className={"bg-stone-100 font-sans text-stone-800 antialiased"}>
         <header className="sticky top-0 border-b border-stone-300/50 bg-stone-50/70 backdrop-blur-sm">
           <div className="mx-auto flex max-w-3xl justify-between px-6">
             <Link href="/#testimonials" className="hidden p-2 sm:block">
