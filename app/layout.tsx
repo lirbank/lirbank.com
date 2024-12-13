@@ -33,22 +33,25 @@ export default function RootLayout(
       <body className={"bg-stone-100 font-sans text-stone-800 antialiased"}>
         <header className="sticky top-0 border-b border-stone-300/50 bg-stone-50/70 backdrop-blur-sm">
           <div className="mx-auto flex max-w-3xl justify-between px-6">
-            <Link href="/#testimonials" className="hidden p-2 sm:block">
+            <Link href="/#testimonials" className="px-2 py-3">
               Testimonials
             </Link>
-            <Link href="/#projects" className="p-2">
+            <Link href="/#projects" className="px-2 py-3">
               Projects
             </Link>
-            <Link href="/#services" className="p-2">
+            <Link href="/#services" className="px-2 py-3">
               Services
             </Link>
-            <Link href="/#benefits" className="p-2">
+            <Link href="/#benefits" className="px-2 py-3">
               Benefits
             </Link>
-            <Link href="/#contact" className="p-2">
+            <Link href="/#contact" className="hidden px-2 py-3 md:block">
               Contact
             </Link>
-            <Link href="/#about" className="hidden p-2 sm:block">
+            <Link href="/#talks" className="hidden px-2 py-3 md:block">
+              Talks
+            </Link>
+            <Link href="/#about" className="hidden px-2 py-3 md:block">
               About
             </Link>
           </div>
@@ -63,8 +66,24 @@ export default function RootLayout(
           >
             Airlab LLC
           </a>
-          . All rights reserved.
+          . All rights reserved. San Francisco Bay Area.
         </footer>
+        <nav className="sticky bottom-0 border-t border-stone-300/50 bg-stone-50/70 backdrop-blur-sm md:hidden">
+          <div className="mx-auto flex max-w-3xl justify-between px-6">
+            <Link href="/#contact" className="px-2 py-3">
+              Contact
+            </Link>
+            <Link href="/#talks" className="px-2 py-3">
+              Talks
+            </Link>
+            <Link href="/#about" className="px-2 py-3">
+              About
+            </Link>
+            <Link href="/#main" className="px-2 py-3">
+              Home
+            </Link>
+          </div>
+        </nav>
         <Analytics />
       </body>
     </html>

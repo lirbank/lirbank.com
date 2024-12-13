@@ -21,7 +21,7 @@ export default function Home() {
           aria-labelledby="main"
           className="flex flex-col gap-10 sm:grid sm:grid-cols-2"
         >
-          <h1 id="main" className="text-center sm:text-left">
+          <h1 id="main" className="scroll-mt-[81px] text-center sm:text-left">
             Let's unleash your <span>web app</span>
             's true potential
           </h1>
@@ -465,7 +465,80 @@ export default function Home() {
         </section>
       </container>
 
-      {/* 7. About */}
+      {/* 7. Talks */}
+      <container>
+        <section aria-labelledby="about">
+          <h2 id="talks" className="scroll-mt-20">
+            Talks
+          </h2>
+          <p>
+            I speak at meetups, conferences, and private corporate events about
+            leveraging AI to build better software.
+          </p>
+          <ul className="ml-4 flex list-disc flex-col gap-2">
+            {[
+              {
+                date: "December 2, 2024",
+                title: "SpikeGadgets",
+                url: "https://spikegadgets.com/",
+                isPublic: false,
+              },
+              {
+                date: "January, 2025",
+                title: "All Things Web",
+                url: "https://allthingsweb.dev/",
+                isPublic: true,
+              },
+              {
+                date: "March, 2025",
+                title: "Silicon Valley AI Think Tank",
+                url: "https://lu.ma/JTA",
+                isPublic: true,
+              },
+            ].map(({ date, title, url, isPublic }) => (
+              <li key={url + date}>
+                <span>{date} - </span>
+                <a
+                  href={url}
+                  aria-label={title}
+                  title={title}
+                  className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
+                >
+                  {title}
+                </a>{" "}
+                <span className="italic_ text-stone-600">
+                  ({isPublic ? "public" : "private"})
+                </span>
+              </li>
+            ))}
+          </ul>
+          <h3>
+            <span className="font-bold">Synopsis: Leading LLMs</span>
+          </h3>
+          <p className="font-semibold">
+            A structured approach to building quality software with AI
+          </p>
+          <p>
+            I've been working on a way to use AI to write high-quality,
+            well-tested, high-performing code really fast. This approach is
+            inspired by my work building PimDB, a browser-based persisted
+            in-memory database. In this talk, we'll explore a structured process
+            to empower teams to leverage AI to tackle complex projects with
+            incredible velocity without compromising on quality.
+          </p>
+          <p>Through live coding, we'll cover:</p>
+
+          <ol className="ml-5 flex list-decimal flex-col gap-2">
+            <li>API design and architecture</li>
+            <li>Writing tests</li>
+            <li>Performance benchmarking</li>
+            <li>Writing documentation</li>
+            <li>Implementation and optimization</li>
+          </ol>
+        </section>
+      </container>
+
+      {/* 8. About */}
       <container>
         <section aria-labelledby="about">
           <h2 id="about" className="scroll-mt-20">
