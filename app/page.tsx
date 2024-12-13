@@ -503,6 +503,7 @@ export default function Home() {
                   aria-label={title}
                   title={title}
                   className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
+                  target="_blank"
                 >
                   {title}
                 </a>{" "}
