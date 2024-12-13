@@ -1,4 +1,4 @@
-declare namespace JSX {
+declare namespace React.JSX {
   interface IntrinsicElements {
     container: React.DetailedHTMLProps<
       React.HTMLAttributes<HTMLElement>,
