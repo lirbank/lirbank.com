@@ -1,6 +1,9 @@
 {
   "name": "lirbank.com",
   "private": true,
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "dev": "PORT=3000 bun ./scripts/ipv4.mjs && next dev --turbopack",
     "build": "prettier --check . && next build",
