@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-deprecated */
 console.log("Background service worker initialized!");
 
 // Log all registered commands on startup with JSON.stringify
