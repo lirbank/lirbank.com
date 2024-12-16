@@ -484,13 +484,13 @@ export default function Home() {
                 isPublic: false,
               },
               {
-                date: "January, 2025",
+                date: "January, 2025 (date TBA)",
                 title: "All Things Web",
                 url: "https://allthingsweb.dev/",
                 isPublic: true,
               },
               {
-                date: "March, 2025",
+                date: "March, 2025 (date TBA)",
                 title: "Silicon Valley AI Think Tank",
                 url: "https://lu.ma/JTA",
                 isPublic: true,
