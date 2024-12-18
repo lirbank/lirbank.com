@@ -7,6 +7,7 @@ import spencerImage from "../public/spencer-smith.jpg";
 import victorImage from "../public/victor-meyer.jpg";
 import joeImage from "../public/joe-hochgreve.jpg";
 import daneImage from "../public/dane-theisen.jpg";
+import mattiasImage from "../public/mattias-karlsson.jpg";
 import { highlightedTechnologies, technologies } from "./technologies";
 import { contact } from "./contact";
 import { Testimonial } from "./atoms";
@@ -514,7 +515,7 @@ export default function Home() {
             ))}
           </ul>
           <h3>
-            <span className="font-bold">Synopsis: Leading LLMs</span>
+            <span className="font-bold">Synopsis:</span> Leading LLMs
           </h3>
           <p className="font-semibold">
             A structured approach to building quality software with AI
@@ -528,7 +529,6 @@ export default function Home() {
             incredible velocity without compromising on quality.
           </p>
           <p>Through live coding, we'll cover:</p>
-
           <ol className="ml-5 flex list-decimal flex-col gap-2">
             <li>API design and architecture</li>
             <li>Writing tests</li>
@@ -536,6 +536,27 @@ export default function Home() {
             <li>Writing documentation</li>
             <li>Implementation and optimization</li>
           </ol>
+          <h3>What people say</h3>
+          <Testimonial
+            project={{ name: "", url: "", description: "" }}
+            quote={
+              <p>
+                Mikael came to our company and gave a well-organized and highly
+                informative talk to our developers about how to use AI to speed
+                up software development in a practical way. Mikael has a knack
+                for explaining complex ideas in a way that is very accessible,
+                and our entire group was immediately inspired and empowered to
+                use the emerging methodologies he showcased. I was super
+                impressed!
+              </p>
+            }
+            author={{
+              name: "Mattias Karlsson",
+              title: "SpikeGadgets CEO",
+              avatar: mattiasImage,
+              url: "https://www.linkedin.com/in/mattias-karlsson-32100b119/",
+            }}
+          />
         </section>
       </container>
 
