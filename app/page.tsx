@@ -12,6 +12,7 @@ import { highlightedTechnologies, technologies } from "./technologies";
 import { contact } from "./contact";
 import { Testimonial } from "./atoms";
 import { metadata } from "./layout";
+import { talks } from "./talks";
 
 export default function Home() {
   return (
@@ -477,40 +478,24 @@ export default function Home() {
             leveraging AI to build better software.
           </p>
           <ul className="ml-4 flex list-disc flex-col gap-2">
-            {[
-              {
-                date: "December 2, 2024",
-                title: "SpikeGadgets",
-                url: "https://spikegadgets.com/",
-                isPublic: false,
-              },
-              {
-                date: "January, 2025 (date TBA)",
-                title: "All Things Web",
-                url: "https://allthingsweb.dev/",
-                isPublic: true,
-              },
-              {
-                date: "March, 2025 (date TBA)",
-                title: "Silicon Valley AI Think Tank",
-                url: "https://lu.ma/JTA",
-                isPublic: true,
-              },
-            ].map(({ date, title, url, isPublic }) => (
+            {talks.map(({ date, title, url, isPublic, location }) => (
               <li key={url + date}>
-                <span>{date} - </span>
-                <a
-                  href={url}
-                  aria-label={title}
-                  title={title}
-                  className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
-                  target="_blank"
-                >
-                  {title}
-                </a>{" "}
-                <span className="italic_ text-stone-600">
-                  ({isPublic ? "public" : "private"})
-                </span>
+                <div>
+                  <a
+                    href={url}
+                    aria-label={title}
+                    title={title}
+                    className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
+                    target="_blank"
+                  >
+                    {title}
+                  </a>
+                  {isPublic ? null : (
+                    <span className="text-stone-500">{" (private event)"}</span>
+                  )}
+                </div>
+                <div>{date}</div>
+                <div>{location}</div>
               </li>
             ))}
           </ul>

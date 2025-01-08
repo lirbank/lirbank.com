@@ -64,7 +64,13 @@ export const technologies = [
   ["tinybench", "https://github.com/tinylibs/tinybench"],
   ["Auth0", "https://auth0.com/"],
   ["Clerk", "https://clerk.com/"],
-] as const;
+  ["Google Analytics", "https://analytics.google.com/"],
+  ["Mixpanel", "https://mixpanel.com/"],
+  ["Segment", "https://segment.com/"],
+  ["Vercel Analytics", "https://vercel.com/analytics"],
+  ["Amplitude", "https://amplitude.com/"],
+  ["TanStack Start", "https://tanstack.com/start"],
+] as const satisfies [string, string][];
 
 type TechnologyName = (typeof technologies)[number][0];
 
@@ -78,4 +84,5 @@ export const highlightedTechnologies: TechnologyName[] = [
   "LLMs",
   "OpenAI",
   "ESLint",
+  "Inngest",
 ];
