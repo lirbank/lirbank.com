@@ -231,7 +231,7 @@ export default function Home() {
             <a
               href="https://www.npmjs.com/package/pimdb"
               target="_blank"
-              className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
+              className="link"
             >
               npmjs.com/package/pimdb
             </a>
@@ -239,7 +239,7 @@ export default function Home() {
             <a
               href="https://github.com/lirbank/pimdb"
               target="_blank"
-              className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
+              className="link"
             >
               github.com/lirbank/pimdb
             </a>
@@ -256,7 +256,7 @@ export default function Home() {
             <a
               href="https://www.aresmgmt.com/"
               target="_blank"
-              className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
+              className="link"
             >
               BootstrapLabs, an Ares Management company
             </a>
@@ -279,7 +279,7 @@ export default function Home() {
             <a
               href="https://www.starmode.app/"
               target="_blank"
-              className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
+              className="link"
             >
               Visit starmode.app
             </a>
@@ -296,7 +296,7 @@ export default function Home() {
             <a
               href="https://www.benefits-ai.com/"
               target="_blank"
-              className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
+              className="link"
             >
               Visit benefits-ai.com
             </a>
@@ -310,11 +310,7 @@ export default function Home() {
             and enable seamless decision-making support.
           </p>
           <p>
-            <a
-              href="https://shorty.run/"
-              target="_blank"
-              className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
-            >
+            <a href="https://shorty.run/" target="_blank" className="link">
               Visit shorty.run
             </a>
           </p>
@@ -329,7 +325,7 @@ export default function Home() {
             <a
               href="https://www.flirconservator.com/"
               target="_blank"
-              className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
+              className="link"
             >
               Visit flirconservator.com
             </a>
@@ -337,7 +333,7 @@ export default function Home() {
             <a
               href="https://www.flir.com/oem/conservator/"
               target="_blank"
-              className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
+              className="link"
             >
               Visit flir.com/oem/conservator
             </a>
@@ -457,13 +453,22 @@ export default function Home() {
                     href={href}
                     aria-label={label}
                     title={label}
-                    className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
+                    className="link"
                   >
                     {text}
                   </a>
                 </li>
               ))}
           </ul>
+          <p>
+            <a
+              href={mikaelImage.src}
+              download="mikael-lirbank.jpg"
+              className="link"
+            >
+              High-res photo of me
+            </a>
+          </p>
         </section>
       </container>
 
@@ -485,7 +490,7 @@ export default function Home() {
                     href={url}
                     aria-label={title}
                     title={title}
-                    className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
+                    className="link"
                     target="_blank"
                   >
                     {title}
@@ -574,6 +579,15 @@ export default function Home() {
             development teams. I'm a tech lead, product manager, UI designer,
             and code quality expert, known for taking ownership of every project
             and delivering predictability and peace of mind to my clients.
+          </p>
+          <p>
+            <a
+              href={mikaelImage.src}
+              download="mikael-lirbank.jpg"
+              className="link"
+            >
+              High-res photo of me
+            </a>
           </p>
           <h3>Technologies & tooling</h3>
           <p>I thrive with these tools and technologies.</p>

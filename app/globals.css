@@ -66,3 +66,7 @@ h2,
 h3 {
   @apply mt-8 first:mt-0;
 }
+
+@utility link {
+  @apply text-cyan-600 underline underline-offset-3 hover:text-cyan-700;
+}
