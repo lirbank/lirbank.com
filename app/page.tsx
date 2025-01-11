@@ -506,14 +506,19 @@ export default function Home() {
             A structured approach to building quality software with AI
           </p>
           <p>
-            I've been working on a way to use AI to write high-quality,
-            well-tested, high-performing code really fast. This approach is
-            inspired by my work building PimDB, a browser-based persisted
-            in-memory database. In this talk, we'll explore a structured process
-            to empower teams to leverage AI to tackle complex projects with
-            incredible velocity without compromising on quality.
+            AI dramatically accelerates software development, but how it is used
+            often compromises quality and structure. Without a clear process,
+            AI-generated code can become inconsistent and difficult to maintain.
           </p>
-          <p>Through live coding, we'll cover:</p>
+          <p>
+            In my recent work, I've been developing a way to use AI to write
+            high-quality, well-tested, and high-performing code really fast.
+            This approach is inspired by my work building PimDB, a browser-based
+            persisted in-memory database. In this talk, we'll explore a
+            structured process to empower teams to leverage AI to tackle complex
+            projects with incredible velocity without compromising on quality.
+          </p>
+          <p>We'll cover:</p>
           <ol className="ml-5 flex list-decimal flex-col gap-2">
             <li>API design and architecture</li>
             <li>Writing tests</li>
@@ -521,6 +526,11 @@ export default function Home() {
             <li>Writing documentation</li>
             <li>Implementation and optimization</li>
           </ol>
+          <p>
+            Attendees will gain practical strategies for using AI to write
+            maintainable, reliable code at AI speed—without compromising on
+            quality.
+          </p>
           <h3>What people say</h3>
           <Testimonial
             project={{ name: "", url: "", description: "" }}
