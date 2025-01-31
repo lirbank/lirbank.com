@@ -22,9 +22,9 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
-    "@tailwindcss/postcss": "next",
+    "@tailwindcss/postcss": "^4.0.1",
     "@total-typescript/ts-reset": "^0.6.1",
-    "@types/chrome": "^0.0.287",
+    "@types/chrome": "^0.0.300",
     "@types/node": "^22.12.0",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
@@ -33,7 +33,7 @@
     "postcss": "^8.5.1",
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.11",
-    "tailwindcss": "next",
+    "tailwindcss": "^4.0.1",
     "typescript": "^5.7.3"
   }
 }
