@@ -483,26 +483,48 @@ export default function Home() {
             leveraging AI to build better software.
           </p>
           <ul className="ml-4 flex list-disc flex-col gap-2">
-            {talks.map(({ date, title, url, isPublic, location }) => (
-              <li key={url + date}>
-                <div>
-                  <a
-                    href={url}
-                    aria-label={title}
-                    title={title}
-                    className="link"
-                    target="_blank"
-                  >
-                    {title}
-                  </a>
-                  {isPublic ? null : (
-                    <span className="text-stone-500">{" (private event)"}</span>
+            {talks.map(
+              ({ date, title, url, isPublic, location, status, host }) => (
+                <li key={url + date}>
+                  <div className="">
+                    <a
+                      href={url}
+                      aria-label={title}
+                      title={title}
+                      className="link text-xl"
+                      target="_blank"
+                    >
+                      {title}
+                    </a>
+                    {isPublic ? null : (
+                      <span className="text-stone-500">
+                        {" (private event)"}
+                      </span>
+                    )}
+                    {status ? (
+                      <span className="text-stone-500">
+                        {" (" + status + ")"}
+                      </span>
+                    ) : null}
+                  </div>
+                  <div className="text-base">{date}</div>
+                  {host ? (
+                    <div className="text-base">
+                      <a
+                        className="link-secondary"
+                        href={host.url}
+                        target="_blank"
+                      >
+                        {host.name}
+                      </a>
+                      , {host.location}
+                    </div>
+                  ) : (
+                    <div className="text-base">{location}</div>
                   )}
-                </div>
-                <div>{date}</div>
-                <div>{location}</div>
-              </li>
-            ))}
+                </li>
+              ),
+            )}
           </ul>
           <h3>
             <span className="font-bold">Synopsis:</span> Leading LLMs
