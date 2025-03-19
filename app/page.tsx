@@ -22,16 +22,19 @@ export default function Home() {
       {/* 1. Hero */}
       <container>
         {nextTalk ? (
-          <div className="bg-cyan-500 text-white">
-            <div className="mx-auto flex max-w-3xl flex-col items-center justify-center px-8 py-1 sm:flex-row sm:gap-4">
-              I'm speaking at {nextTalk.host.name} on {nextTalk.date}
-              <a
-                href={nextTalk.ticketUrl}
-                target="_blank"
-                className="text-cyan-50 underline hover:text-white"
-              >
-                Register
-              </a>
+          <div className="bg-cyan-600 text-white">
+            <div className="mx-auto flex max-w-3xl flex-col items-center justify-center px-8 py-2 sm:flex-row">
+              <div>I'm speaking at {nextTalk.host.name}</div>
+              <div>
+                on {nextTalk.date} —{" "}
+                <a
+                  href={nextTalk.ticketUrl}
+                  target="_blank"
+                  className="text-cyan-50 underline hover:text-white"
+                >
+                  Register here
+                </a>
+              </div>
             </div>
           </div>
         ) : null}
