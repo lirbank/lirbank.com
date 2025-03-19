@@ -31,7 +31,7 @@ export const talks = [
     status: "rescheduled",
   },
   {
-    date: "Apr 5, 2025",
+    date: "Apr 3, 2025",
     title: "AI x All Things Web",
     url: "https://allthingsweb.dev/2025-04-03-ai-x-all-things-web",
     ticketUrl: "https://lu.ma/9dga4f43?tk=QkmdTN",
