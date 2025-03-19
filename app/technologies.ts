@@ -70,13 +70,14 @@ export const technologies = [
   ["Vercel Analytics", "https://vercel.com/analytics"],
   ["Amplitude", "https://amplitude.com/"],
   ["TanStack Start", "https://tanstack.com/start"],
+  ["Helicone", "https://www.helicone.ai/"],
 ] as const satisfies [string, string][];
 
 type TechnologyName = (typeof technologies)[number][0];
 
 export const highlightedTechnologies: TechnologyName[] = [
   "TypeScript",
-  "Next.js",
+  "TanStack Start",
   "PostgreSQL",
   "MongoDB",
   "Vitest",
@@ -85,4 +86,5 @@ export const highlightedTechnologies: TechnologyName[] = [
   "OpenAI",
   "ESLint",
   "Inngest",
+  "Helicone",
 ];
