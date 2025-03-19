@@ -483,48 +483,55 @@ export default function Home() {
             leveraging AI to build better software.
           </p>
           <ul className="ml-4 flex list-disc flex-col gap-2">
-            {talks.map(
-              ({ date, title, url, isPublic, location, status, host }) => (
-                <li key={url + date}>
-                  <div className="">
+            {talks.map((talk) => (
+              <li key={talk.url + talk.date}>
+                <div className="">
+                  <a
+                    href={talk.url}
+                    aria-label={talk.title}
+                    title={talk.title}
+                    className="link"
+                    target="_blank"
+                  >
+                    {talk.title}
+                  </a>
+                  {talk.isPublic ? null : (
+                    <span className="text-stone-500">{" (private event)"}</span>
+                  )}
+                  {talk.status ? (
+                    <span className="text-stone-500">
+                      {" (" + talk.status + ")"}
+                    </span>
+                  ) : null}
+                </div>
+                <div className="text-base">{talk.date}</div>
+                {talk.ticketUrl ? (
+                  <div className="text-base">
                     <a
-                      href={url}
-                      aria-label={title}
-                      title={title}
-                      className="link text-xl"
+                      href={talk.ticketUrl}
+                      target="_blank"
+                      className="link-secondary"
+                    >
+                      Register
+                    </a>
+                  </div>
+                ) : null}
+                {talk.host ? (
+                  <div className="text-base">
+                    <a
+                      className="link-secondary"
+                      href={talk.host.url}
                       target="_blank"
                     >
-                      {title}
+                      {talk.host.name}
                     </a>
-                    {isPublic ? null : (
-                      <span className="text-stone-500">
-                        {" (private event)"}
-                      </span>
-                    )}
-                    {status ? (
-                      <span className="text-stone-500">
-                        {" (" + status + ")"}
-                      </span>
-                    ) : null}
+                    , {talk.host.location}
                   </div>
-                  <div className="text-base">{date}</div>
-                  {host ? (
-                    <div className="text-base">
-                      <a
-                        className="link-secondary"
-                        href={host.url}
-                        target="_blank"
-                      >
-                        {host.name}
-                      </a>
-                      , {host.location}
-                    </div>
-                  ) : (
-                    <div className="text-base">{location}</div>
-                  )}
-                </li>
-              ),
-            )}
+                ) : (
+                  <div className="text-base">{talk.location}</div>
+                )}
+              </li>
+            ))}
           </ul>
           <h3>
             <span className="font-bold">Synopsis:</span> Leading LLMs

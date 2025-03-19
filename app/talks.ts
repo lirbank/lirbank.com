@@ -2,14 +2,11 @@ type Talk = {
   date: string;
   title: string;
   url: string;
+  ticketUrl?: string;
   isPublic: boolean;
   location: string;
   status?: "cancelled" | "postponed" | "rescheduled" | "confirmed";
-  host?: {
-    name: string;
-    url: string;
-    location: string;
-  };
+  host?: { name: string; url: string; location: string };
 };
 
 export const talks = [
@@ -22,7 +19,7 @@ export const talks = [
   },
   {
     date: "Feb 25, 2025",
-    title: "Register for: All Things Web",
+    title: "All Things Web",
     url: "https://allthingsweb.dev/2025-02-25-all-things-web-at-sentry",
     isPublic: true,
     location: "Sentry HQ, San Francisco, CA",
@@ -36,7 +33,8 @@ export const talks = [
   {
     date: "Apr 5, 2025",
     title: "AI x All Things Web",
-    url: "https://allthingsweb.dev/",
+    url: "https://allthingsweb.dev/2025-04-03-ai-x-all-things-web",
+    ticketUrl: "https://lu.ma/9dga4f43?tk=QkmdTN",
     isPublic: true,
     location: "AWS GenAI Loft, San Francisco, CA",
     host: {
