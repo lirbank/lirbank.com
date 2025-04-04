@@ -24,8 +24,9 @@ export default function Home() {
         {nextTalk ? (
           <div className="bg-cyan-600 text-white">
             <div className="mx-auto flex max-w-3xl flex-col items-center justify-center px-8 py-2 sm:flex-row">
-              <div>I'm speaking at {nextTalk.host.name}</div>
               <div>
+                I'm speaking at {nextTalk.host.name}{" "}
+                <br className="sm:hidden" />
                 on {nextTalk.date} —{" "}
                 <a
                   href={nextTalk.ticketUrl}
