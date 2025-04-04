@@ -17,9 +17,9 @@ export const talks = [
     url: "https://allthingsweb.dev/2025-04-03-ai-x-all-things-web",
     ticketUrl: "https://lu.ma/9dga4f43?tk=QkmdTN",
     isPublic: true,
-    location: "AWS GenAI Loft, San Francisco, CA",
+    location: "AWS Gen AI Loft, San Francisco, CA",
     host: {
-      name: "AWS GenAI Loft",
+      name: "AWS Gen AI Loft",
       url: "https://aws.amazon.com/startups/lp/aws-gen-ai-loft-san-francisco",
       location: "San Francisco, CA",
     },
