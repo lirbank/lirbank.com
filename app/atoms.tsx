@@ -57,3 +57,9 @@ export function Testimonial(props: {
     </div>
   );
 }
+
+export function Card(props: React.PropsWithChildren) {
+  return (
+    <div className="rounded-md bg-stone-50 p-4 shadow">{props.children}</div>
+  );
+}

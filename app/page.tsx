@@ -10,7 +10,7 @@ import daneImage from "../public/dane-theisen.jpg";
 import mattiasImage from "../public/mattias-karlsson.jpg";
 import { highlightedTechnologies, technologies } from "./technologies";
 import { contact } from "./contact";
-import { Testimonial } from "./atoms";
+import { Card, Testimonial } from "./atoms";
 import { metadata } from "./layout";
 import { talks } from "./talks";
 
@@ -502,57 +502,72 @@ export default function Home() {
             I speak at meetups, conferences, and private corporate events about
             leveraging AI to build better software.
           </p>
-          <ul className="ml-4 flex list-disc flex-col gap-2">
+          <div className="-mx-4 grid gap-4 py-4 md:grid-cols-2">
             {talks.map((talk) => (
-              <li key={talk.url + talk.date}>
-                <div className="">
-                  <a
-                    href={talk.url}
-                    aria-label={talk.title}
-                    title={talk.title}
-                    className="link"
-                    target="_blank"
-                  >
-                    {talk.title}
-                  </a>
-                  {talk.isPublic ? null : (
-                    <span className="text-stone-500">{" (private event)"}</span>
+              <Card key={talk.url + talk.date}>
+                <div className="flex h-full flex-col">
+                  <div className="pb-2">
+                    <a
+                      href={talk.url}
+                      aria-label={talk.title}
+                      title={talk.title}
+                      className="link text-lg"
+                      target="_blank"
+                    >
+                      {talk.title}
+                    </a>
+                    {talk.isPublic ? null : (
+                      <span className="text-stone-500">
+                        {" (private event)"}
+                      </span>
+                    )}
+                    {talk.status ? (
+                      <span className="text-stone-500">
+                        {" (" + talk.status + ")"}
+                      </span>
+                    ) : null}
+                  </div>
+                  <div className="text-base">{talk.date}</div>
+                  {talk.ticketUrl ? (
+                    <div className="text-base">
+                      <a
+                        href={talk.ticketUrl}
+                        target="_blank"
+                        className="link-secondary"
+                      >
+                        Register
+                      </a>
+                    </div>
+                  ) : null}
+                  {talk.host ? (
+                    <div className="text-base">
+                      <a
+                        className="link-secondary"
+                        href={talk.host.url}
+                        target="_blank"
+                      >
+                        {talk.host.name}
+                      </a>
+                      , {talk.host.location}
+                    </div>
+                  ) : (
+                    <div className="text-base">{talk.location}</div>
                   )}
-                  {talk.status ? (
-                    <span className="text-stone-500">
-                      {" (" + talk.status + ")"}
-                    </span>
+                  {talk.deck ? (
+                    <div className="mt-auto pt-2">
+                      <a
+                        href={talk.deck}
+                        target="_blank"
+                        className="link-secondary"
+                      >
+                        Presentation deck
+                      </a>
+                    </div>
                   ) : null}
                 </div>
-                <div className="text-base">{talk.date}</div>
-                {talk.ticketUrl ? (
-                  <div className="text-base">
-                    <a
-                      href={talk.ticketUrl}
-                      target="_blank"
-                      className="link-secondary"
-                    >
-                      Register
-                    </a>
-                  </div>
-                ) : null}
-                {talk.host ? (
-                  <div className="text-base">
-                    <a
-                      className="link-secondary"
-                      href={talk.host.url}
-                      target="_blank"
-                    >
-                      {talk.host.name}
-                    </a>
-                    , {talk.host.location}
-                  </div>
-                ) : (
-                  <div className="text-base">{talk.location}</div>
-                )}
-              </li>
+              </Card>
             ))}
-          </ul>
+          </div>
           <h3>
             <span className="font-bold">Synopsis:</span> Leading LLMs
           </h3>

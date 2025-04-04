@@ -7,29 +7,10 @@ type Talk = {
   location: string;
   status?: "cancelled" | "postponed" | "rescheduled" | "confirmed";
   host?: { name: string; url: string; location: string };
+  deck?: string;
 };
 
 export const talks = [
-  {
-    date: "December 2, 2024",
-    title: "SpikeGadgets",
-    url: "https://spikegadgets.com/",
-    isPublic: false,
-    location: "SpikeGadgets HQ, San Francisco, CA",
-  },
-  {
-    date: "Feb 25, 2025",
-    title: "All Things Web",
-    url: "https://allthingsweb.dev/2025-02-25-all-things-web-at-sentry",
-    isPublic: true,
-    location: "Sentry HQ, San Francisco, CA",
-    host: {
-      name: "Sentry HQ",
-      url: "https://sentry.io/",
-      location: "San Francisco, CA",
-    },
-    status: "rescheduled",
-  },
   {
     date: "Apr 3, 2025",
     title: "AI x All Things Web",
@@ -43,6 +24,28 @@ export const talks = [
       location: "San Francisco, CA",
     },
     status: "confirmed",
+    deck: "https://www.figma.com/deck/eJwtTQUnW3Zvy5994vM5qR",
+  },
+  {
+    date: "December 2, 2024",
+    title: "SpikeGadgets",
+    url: "https://spikegadgets.com/",
+    isPublic: false,
+    location: "SpikeGadgets HQ, San Francisco, CA",
+    deck: "https://www.figma.com/deck/qUZ9ZiFV0RQfYUMdWjeFBf",
+  },
+  {
+    date: "Feb 25, 2025",
+    title: "All Things Web",
+    url: "https://allthingsweb.dev/2025-02-25-all-things-web-at-sentry",
+    isPublic: true,
+    location: "Sentry HQ, San Francisco, CA",
+    host: {
+      name: "Sentry HQ",
+      url: "https://sentry.io/",
+      location: "San Francisco, CA",
+    },
+    status: "rescheduled",
   },
   {
     date: "March, 2025 (date TBA)",
