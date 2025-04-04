@@ -35,10 +35,10 @@ export const contact = [
   {
     id: "Email",
     type: "contact",
-    href: `mailto:mikael+lp@airlab.io?subject=${emailSubject}&body=${emailBody}`,
+    href: `mailto:mikael+lp@lirbank.com?subject=${emailSubject}&body=${emailBody}`,
     icon: SquareEnvelopeIcon,
-    text: "mikael@airlab.io",
-    label: "Send email to Mikael at mikael@airlab.io",
+    text: "mikael@lirbank.com",
+    label: "Send email to Mikael at mikael@lirbank.com",
     cta: "Email me",
   },
   {
