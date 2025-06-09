@@ -236,7 +236,32 @@ export default function Home() {
           <h2 id="projects" className="scroll-mt-20">
             Open source
           </h2>
-          <p>Author and maintainer of this project.</p>
+          <p>Author and maintainer of these projects.</p>
+          <h3>Neon testing</h3>
+          <p>
+            A Vitest utility for automated integration tests with{" "}
+            <a href="https://neon.com/" target="_blank" className="link">
+              Neon
+            </a>
+            .
+          </p>
+          <p>
+            <a
+              href="https://www.npmjs.com/package/neon-testing"
+              target="_blank"
+              className="link"
+            >
+              npmjs.com/package/neon-testing
+            </a>
+            <br />
+            <a
+              href="https://github.com/starmode-base/neon-testing"
+              target="_blank"
+              className="link"
+            >
+              github.com/starmode-base/neon-testing
+            </a>
+          </p>
           <h3>PimDB</h3>
           <p>
             A lightweight, persisted in-memory database built from the ground up
