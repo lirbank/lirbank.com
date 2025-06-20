@@ -13,6 +13,7 @@ import { contact } from "./contact";
 import { Card, Testimonial } from "./atoms";
 import { metadata } from "./layout";
 import { talks } from "./talks";
+import { SiGithub, SiNpm } from "@icons-pack/react-simple-icons";
 
 const nextTalk = talks.find((talk) => talk.status === "confirmed");
 
@@ -245,23 +246,28 @@ export default function Home() {
             </a>
             .
           </p>
-          <p>
-            <a
-              href="https://www.npmjs.com/package/neon-testing"
-              target="_blank"
-              className="link"
-            >
-              npmjs.com/package/neon-testing
-            </a>
-            <br />
-            <a
-              href="https://github.com/starmode-base/neon-testing"
-              target="_blank"
-              className="link"
-            >
-              github.com/starmode-base/neon-testing
-            </a>
-          </p>
+          <div className="mt-4 flex flex-col gap-2">
+            <div className="flex items-center gap-4">
+              <SiNpm className="size-6" />
+              <a
+                href="https://www.npmjs.com/package/neon-testing"
+                target="_blank"
+                className="link"
+              >
+                npmjs.com/package/neon-testing
+              </a>
+            </div>
+            <div className="flex items-center gap-4">
+              <SiGithub className="size-6" />
+              <a
+                href="https://github.com/starmode-base/neon-testing"
+                target="_blank"
+                className="link"
+              >
+                github.com/starmode-base/neon-testing
+              </a>
+            </div>
+          </div>
           <h3>PimDB</h3>
           <p>
             A lightweight, persisted in-memory database built from the ground up
@@ -272,23 +278,52 @@ export default function Home() {
             <strong>700x+ faster</strong> for substring searches on a dataset of
             100,000 documents.
           </p>
-          <p>
-            <a
-              href="https://www.npmjs.com/package/pimdb"
-              target="_blank"
-              className="link"
-            >
-              npmjs.com/package/pimdb
-            </a>
-            <br />
-            <a
-              href="https://github.com/lirbank/pimdb"
-              target="_blank"
-              className="link"
-            >
-              github.com/lirbank/pimdb
-            </a>
-          </p>
+          <div className="mt-4 flex flex-col gap-2">
+            <div className="flex items-center gap-4">
+              <SiNpm className="size-6" />
+              <a
+                href="https://www.npmjs.com/package/pimdb"
+                target="_blank"
+                className="link"
+              >
+                npmjs.com/package/pimdb
+              </a>
+            </div>
+            <div className="flex items-center gap-4">
+              <SiGithub className="size-6" />
+              <a
+                href="https://github.com/lirbank/pimdb"
+                target="_blank"
+                className="link"
+              >
+                github.com/lirbank/pimdb
+              </a>
+            </div>
+          </div>
+          <h3>Google Calendar URL</h3>
+          <p>Generate shareable URLs for adding Google Calendar events.</p>
+          <div className="mt-4 flex flex-col gap-2">
+            <div className="flex items-center gap-4">
+              <SiNpm className="size-6" />
+              <a
+                href="https://www.npmjs.com/package/google-calendar-url"
+                target="_blank"
+                className="link"
+              >
+                npmjs.com/package/google-calendar-url
+              </a>
+            </div>
+            <div className="flex items-center gap-4">
+              <SiGithub className="size-6" />
+              <a
+                href="https://github.com/lirbank/google-calendar-url"
+                target="_blank"
+                className="link"
+              >
+                github.com/lirbank/google-calendar-url
+              </a>
+            </div>
+          </div>
         </section>
       </container>
       <container>
