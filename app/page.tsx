@@ -488,11 +488,10 @@ export default function Home() {
           </p>
           <h3>Leadership and product direction</h3>
           <p>
-            With a relaxed but high-accountability approach to leadership, I'll
-            help your dev team stay focused, aligned, and motivated. Whether
-            guiding your team's day-to-day work, mentoring individual
-            developers, or setting long-term goals, I keep quality and
-            consistency at the forefront.
+            With a relaxed but high-accountability approach to leadership, I
+            help teams stay focused, aligned, and motivated. Whether guiding
+            day-to-day work, mentoring individual developers, or setting
+            long-term goals, I keep quality and consistency at the forefront.
           </p>
           <p>
             As a product manager, I make sure every decision supports both
