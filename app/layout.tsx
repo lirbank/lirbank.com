@@ -61,15 +61,8 @@ export default function RootLayout(
         </header>
         {props.children}
         <footer className="mx-auto max-w-3xl px-8 py-4 text-center">
-          © {new Date().getFullYear()} Mikael Lirbank /{" "}
-          <a
-            href="https://www.airlab.io/"
-            className="text-cyan-600 underline underline-offset-3 hover:text-cyan-700"
-            target="_blank"
-          >
-            Airlab LLC
-          </a>
-          . All rights reserved. San Francisco Bay Area.
+          © {new Date().getFullYear()} Mikael Lirbank · Airlab LLC · San
+          Francisco Bay Area
         </footer>
         <nav className="sticky bottom-0 border-t border-stone-300/50 bg-stone-50/70 backdrop-blur-sm md:hidden">
           <div className="mx-auto flex max-w-3xl justify-between px-6">
