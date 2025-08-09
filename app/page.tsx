@@ -725,6 +725,16 @@ export default function Home() {
             and delivering predictability and peace of mind to my clients.
           </p>
           <p>
+            <img
+              src="/progress-pride-flag.svg"
+              alt="Progress Pride flag"
+              className="inline-block w-6"
+              aria-label="Progress Pride flag"
+            />
+            &nbsp; I’m committed to DEI and creating an environment where
+            everyone feels safe, respected, and able to work together openly.
+          </p>
+          <p>
             <a
               href={mikaelImage.src}
               download="mikael-lirbank.jpg"

@@ -22,6 +22,7 @@ const eslintConfig = [
       "react/jsx-no-leaked-render": "error",
       "react/no-unescaped-entities": "off",
       "react/self-closing-comp": "error",
+      "@next/next/no-img-element": "off",
     },
   },
 ];
