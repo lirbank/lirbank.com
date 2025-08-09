@@ -36,8 +36,8 @@ export default function RootLayout(
       <body className={"bg-stone-100 font-sans text-stone-800 antialiased"}>
         <header className="sticky top-0 border-b border-stone-300/50 bg-stone-50/70 backdrop-blur-sm">
           <div className="mx-auto flex max-w-3xl justify-between px-6">
-            <Link href="/#testimonials" className="px-2 py-3">
-              Testimonials
+            <Link href="/#reviews" className="px-2 py-3">
+              Reviews
             </Link>
             <Link href="/#projects" className="px-2 py-3">
               Projects

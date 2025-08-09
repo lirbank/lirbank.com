@@ -72,8 +72,8 @@ export default function Home() {
 
       {/* 2. Testimonials */}
       <container>
-        <section aria-labelledby="testimonials">
-          <h2 id="testimonials" className="scroll-mt-20">
+        <section aria-labelledby="reviews">
+          <h2 id="reviews" className="scroll-mt-20">
             What people say
           </h2>
           <p>
