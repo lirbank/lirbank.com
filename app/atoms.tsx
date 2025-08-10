@@ -15,7 +15,7 @@ export function Testimonial(props: {
   };
 }) {
   return (
-    <div className="-mx-4 mt-8 rounded-md bg-stone-50 p-4 shadow">
+    <div className="-mx-4 mt-8 p-4 sm:rounded-md sm:bg-stone-50 sm:shadow">
       {/*
       <h3>{props.project.name}</h3>
       <div className="text-lg text-stone-600">

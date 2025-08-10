@@ -745,7 +745,7 @@ export default function Home() {
           </p>
           <h3>Technologies & tooling</h3>
           <p>I thrive with these tools and technologies.</p>
-          <div className="-mx-6 flex flex-wrap justify-center gap-1 pt-4 sm:-mx-3">
+          <div className="-mx-4 flex flex-wrap justify-center gap-1 pt-4">
             {technologies
               .toSorted((a, b) => a[0].localeCompare(b[0]))
               .map(([name, url]) => (
