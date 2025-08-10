@@ -20,7 +20,7 @@ const nextTalk = talks.find((talk) => talk.status === "confirmed");
 
 export default function Home() {
   return (
-    <main>
+    <main id="main" className="scroll-mt-20">
       {/* 1. Hero */}
       <container>
         {nextTalk ? (
@@ -45,7 +45,7 @@ export default function Home() {
           aria-labelledby="main"
           className="flex flex-col gap-10 sm:grid sm:grid-cols-2"
         >
-          <h1 id="main" className="scroll-mt-[81px] text-center sm:text-left">
+          <h1 className="text-center sm:text-left">
             Let's unleash your <span>web app</span>
             's true potential
           </h1>
