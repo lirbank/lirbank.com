@@ -1,0 +1,83 @@
+# Making integration testing a breeze with Neon Testing
+
+Your tests pass, but your production deploy fails because of a unique constraint violation. Sound familiar? The problem isn't your code—it's that you're testing mocks instead of real database behavior, or your test database has drifted from production. Either way, your tests aren't reflecting what will actually happen when your code hits production.
+
+To be confident our code behaves as expected, our tests need to run against a real database that's in sync with production. But that's easier said than done—spinning up containers, managing schema migrations, coordinating between dev environments, CI/CD pipelines, and production. Many teams either skip it entirely or settle for inadequate mocks.
+
+That's where [Neon branching](https://neon.tech/docs/introduction/branching)+[Neon Testing](https://www.npmjs.com/package/neon-testing) changes everything. Neon gives you instant, isolated copies of your production database without infrastructure headache. Neon Testing turns those branches into disposable test environments, so your tests run against the same database constraints and behaviors as production.
+
+The result? Reliable integration tests that are finally as easy as unit tests, and the confidence to release more often—even on Fridays!
+
+## Getting started
+
+Let's start with a simple example. Here's a basic user creation function that relies on a unique index to prevent multiple users with the same email address.
+
+```ts
+// db/users.ts
+import { Pool } from "@neondatabase/serverless";
+
+const pool = new Pool({ connectionString: process.env.DATABASE_URL! });
+
+export async function createUser(email: string) {
+  return pool.query("INSERT INTO users (email) VALUES ($1)", [email]);
+}
+```
+
+If your `users` table has a unique constraint on email, calling this function twice with the same email should fail the second time. That's exactly the kind of behavior you can't mock, and a stale test database without the unique constraint would give you a false positive.
+
+Let's test this!
+
+**Step 1: Install the packages**
+
+```sh
+bun add @neondatabase/serverless
+bun add -D neon-testing vitest
+```
+
+**Step 2: Set up your test configuration once**
+
+Create a small setup module that you'll reuse across all your test files.
+
+```ts
+// test-setup.ts
+import { makeNeonTesting } from "neon-testing";
+
+// Configure once (see npm docs for options)
+export const withNeonTestBranch = makeNeonTesting({
+  apiKey: process.env.NEON_API_KEY!,
+  projectId: process.env.NEON_PROJECT_ID!,
+});
+```
+
+**Step 3: Write tests that verify real database behavior**
+
+Now you can test the actual constraint behavior against your real production schema (with or without production data, or even with anonymized production data). Each test file automatically gets its own fresh database clone on each run, so tests are completely isolated.
+
+```ts
+// db/users.test.ts
+import { test, expect } from "vitest";
+import { withNeonTestBranch } from "../test-setup";
+import { createUser } from "./users";
+
+// Enable Neon Testing for this file
+withNeonTestBranch();
+
+test("unique email constraint", async () => {
+  await createUser("test@example.com");
+  await expect(createUser("test@example.com")).rejects.toThrow();
+});
+```
+
+**Run your tests**
+
+Start [Vitest](https://vitest.dev/) in watch mode and see your tests run as you edit.
+
+```sh
+bunx vitest
+```
+
+That's it! Your tests now run against the same database constraints and behaviors as production, with the simplicity of unit tests.
+
+With Neon's branching infrastructure and the simple Neon Testing API, you can have reliable integration testing across your entire development lifecycle—from local development to staging to CI/CD.
+
+Neon Testing solves real testing challenges in production applications, helping teams ship with confidence. You can find it on [npm](https://www.npmjs.com/package/neon-testing) and [GitHub](https://github.com/starmode-base/neon-testing).
