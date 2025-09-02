@@ -4,9 +4,13 @@ Your tests pass, but your production deploy fails because of a unique constraint
 
 To be confident our code behaves as expected, our tests need to run against a real database that's in sync with production. But that's easier said than done—spinning up containers, managing schema migrations, coordinating between dev environments, CI/CD pipelines, and production. Many teams either skip it entirely or settle for inadequate mocks.
 
-That's where [Neon branching](https://neon.tech/docs/introduction/branching)+[Neon Testing](https://www.npmjs.com/package/neon-testing) changes everything. Neon gives you instant, isolated copies of your production database without infrastructure headache. Neon Testing turns those branches into disposable test environments, so your tests run against the same database constraints and behaviors as production.
+That's where [Neon branching](https://neon.tech/docs/introduction/branching) and [Neon Testing](https://www.npmjs.com/package/neon-testing) changes everything. Neon gives you instant, isolated copies of your production database without infrastructure headache. Neon Testing turns those branches into disposable test environments, so your tests run against the same database constraints and behaviors as production.
 
 The result? Reliable integration tests that are finally as easy as unit tests, and the confidence to release more often—even on Fridays!
+
+## Why I built Neon Testing
+
+I’m [Mikael Lirbank](https://www.lirbank.com/). I build robust, reliable, high-quality AI systems. Neon Testing started as a way to make my own integration testing easier, and it worked so well that I open sourced it.
 
 ## Getting started
 
