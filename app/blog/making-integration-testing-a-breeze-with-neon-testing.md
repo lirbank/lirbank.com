@@ -4,13 +4,13 @@ Your tests pass, but your production deploy fails because of a unique constraint
 
 To be confident our code behaves as expected, our tests need to run against a real database that's in sync with production. But that's easier said than done—spinning up containers, managing schema migrations, coordinating between dev environments, CI/CD pipelines, and production. Many teams either skip it entirely or settle for inadequate mocks.
 
-That's where [Neon branching](https://neon.tech/docs/introduction/branching) and [Neon Testing](https://www.npmjs.com/package/neon-testing) changes everything. Neon gives you instant, isolated copies of your production database without infrastructure headache. Neon Testing turns those branches into disposable test environments, so your tests run against the same database constraints and behaviors as production.
+That's where [Neon branching](https://neon.tech/docs/introduction/branching) and [Neon Testing](https://www.npmjs.com/package/neon-testing) change everything. Neon gives you instant, isolated copies of your production database without infrastructure headache. Neon Testing turns those branches into disposable test environments, so your tests run against the same database constraints and behaviors as production.
 
 The result? Reliable integration tests that are finally as easy as unit tests, and the confidence to release more often—even on Fridays!
 
 ## Why I built Neon Testing
 
-I’m [Mikael Lirbank](https://www.lirbank.com/). I build robust, reliable, high-quality AI systems. Neon Testing started as a way to make my own integration testing easier, and it worked so well that I open sourced it.
+I'm [Mikael Lirbank](https://www.lirbank.com/). I build robust, reliable, high-quality AI systems. Neon Testing started as a way to make my own integration testing easier, and it worked so well that I open-sourced it.
 
 ## Getting started
 
@@ -31,14 +31,14 @@ If your `users` table has a unique constraint on email, calling this function tw
 
 Let's test this!
 
-**Step 1: Install the packages**
+### Step 1: Set up
+
+Install the packages.
 
 ```sh
 bun add @neondatabase/serverless
 bun add -D neon-testing vitest
 ```
-
-**Step 2: Set up your test configuration once**
 
 Create a small setup module that you'll reuse across all your test files.
 
@@ -53,7 +53,7 @@ export const withNeonTestBranch = makeNeonTesting({
 });
 ```
 
-**Step 3: Write tests that verify real database behavior**
+### Step 2: Write tests that verify real database behavior
 
 Now you can test the actual constraint behavior against your real production schema (with or without production data, or even with anonymized production data). Each test file automatically gets its own fresh database clone on each run, so tests are completely isolated.
 
@@ -72,7 +72,7 @@ test("unique email constraint", async () => {
 });
 ```
 
-**Run your tests**
+### Step 3: Run your tests
 
 Start [Vitest](https://vitest.dev/) in watch mode and see your tests run as you edit.
 
@@ -80,8 +80,12 @@ Start [Vitest](https://vitest.dev/) in watch mode and see your tests run as you 
 bunx vitest
 ```
 
-That's it! Your tests now run against the same database constraints and behaviors as production, with the simplicity of unit tests.
+That's it! Your tests now run against the same database constraints and behaviors as production.
 
-With Neon's branching infrastructure and the simple Neon Testing API, you can have reliable integration testing across your entire development lifecycle—from local development to staging to CI/CD.
+## Wrapping up
 
-Neon Testing solves real testing challenges in production applications, helping teams ship with confidence. You can find it on [npm](https://www.npmjs.com/package/neon-testing) and [GitHub](https://github.com/starmode-base/neon-testing).
+Integration testing usually fails teams, not because the tests are hard to write, but because the infrastructure is hard to stand up and maintain. With Neon's branching infrastructure and the Neon Testing library, that pain is gone. Now you can have reliable integration testing across your entire development lifecycle—local development, preview, staging, CI/CD, and production.
+
+Neon Testing solves real testing challenges, helping teams ship with confidence. If integration testing has been slowing you down, give Neon Testing a try and see how much simpler it can be.
+
+You can find it on [npm](https://www.npmjs.com/package/neon-testing) and [GitHub](https://github.com/starmode-base/neon-testing).
