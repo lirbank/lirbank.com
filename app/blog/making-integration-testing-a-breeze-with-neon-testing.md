@@ -40,6 +40,18 @@ bun add @neondatabase/serverless
 bun add -D neon-testing vitest
 ```
 
+Configure Vitest to ensure tests use isolated databases. This plugin clears any existing `DATABASE_URL` environment variable, preventing tests from accidentally using your local or production database instead of the isolated test branches.
+
+```ts
+// vitest.config.ts
+import { defineConfig } from "vitest/config";
+import { neonTesting } from "neon-testing/utils";
+
+export default defineConfig({
+  plugins: [neonTesting()],
+});
+```
+
 Create a small setup module that you'll reuse across all your test files.
 
 ```ts
