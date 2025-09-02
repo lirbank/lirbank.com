@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: "Mikael Lirbank",
   description: `I help companies build better software, focusing on Agentic AI and web technologies.`,
   openGraph: {
-    url: "https://lirbank.com/",
+    url: "https://www.lirbank.com/",
     siteName: "Mikael Lirbank",
   },
 };
