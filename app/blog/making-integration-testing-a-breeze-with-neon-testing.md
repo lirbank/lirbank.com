@@ -45,7 +45,7 @@ Configure Vitest to ensure tests use isolated databases. This plugin clears any 
 ```ts
 // vitest.config.ts
 import { defineConfig } from "vitest/config";
-import { neonTesting } from "neon-testing/utils";
+import { neonTesting } from "neon-testing/vite";
 
 export default defineConfig({
   plugins: [neonTesting()],
