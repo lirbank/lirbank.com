@@ -16,14 +16,14 @@ import { metadata } from "./layout";
 import { talks } from "./talks";
 import { SiGithub, SiNpm } from "@icons-pack/react-simple-icons";
 
-const nextTalk = talks.find((talk) => talk.status === "confirmed");
+// const nextTalk = talks.find((talk) => talk.status === "confirmed");
 
 export default function Home() {
   return (
     <main id="main" className="scroll-mt-20">
       {/* 1. Hero */}
       <container>
-        {nextTalk ? (
+        {/* {nextTalk ? (
           <div className="bg-cyan-600 px-8 py-2 text-center text-white">
             I'm speaking at{" "}
             <span className="text-nowrap">{nextTalk.host.name}</span> on{" "}
@@ -38,7 +38,18 @@ export default function Home() {
               </a>
             </span>
           </div>
-        ) : null}
+        ) : null} */}
+        <div className="bg-cyan-600 px-8 py-2 text-center text-white">
+          My new guest post on integration testing with Neon and Vitest, read it
+          on{" "}
+          <a
+            href="https://neon.com/blog/neon-testing-a-vitest-library-for-your-integration-tests"
+            target="_blank"
+            className="text-nowrap text-cyan-50 underline hover:text-white"
+          >
+            Neon.com
+          </a>
+        </div>
         <section
           aria-labelledby="main"
           className="flex flex-col gap-10 sm:grid sm:grid-cols-2"
@@ -254,14 +265,46 @@ export default function Home() {
       <container>
         <section aria-labelledby="projects">
           <h2 id="projects" className="scroll-mt-20">
-            Open source
+            Guest posts
           </h2>
+          {/* <p>
+            I enjoy sharing my expertise through technical writing, contributing
+            insights on modern development practices, testing strategies, and
+            emerging technologies.
+
+             I enjoy sharing my expertise through
+            technical writing and contributing to the developer community.
+
+          </p> */}
+          <p className="text-base! text-stone-500">Sep 09, 2025</p>
+          <h3 className="mt-1!">
+            Neon Testing: a Vitest Library for Your Integration Tests
+          </h3>
+          <p className="mt-!">
+            <a
+              href="https://neon.com/blog/neon-testing-a-vitest-library-for-your-integration-tests"
+              target="_blank"
+              className="link"
+            >
+              Set up disposable Postgres test databases powered by Neon
+              branching
+            </a>
+          </p>
+        </section>
+      </container>
+      <container>
+        <section>
+          <h2 className="scroll-mt-20">Open source</h2>
           <p>Author and maintainer of these projects.</p>
-          <h3>Neon testing</h3>
+          <h3>Neon Testing</h3>
           <p>
-            A Vitest utility for automated integration tests with{" "}
+            A{" "}
+            <a href="https://vitest.dev/" target="_blank" className="link">
+              Vitest
+            </a>{" "}
+            utility for seamless integration tests with{" "}
             <a href="https://neon.com/" target="_blank" className="link">
-              Neon
+              Neon Postgres
             </a>
             .
           </p>
@@ -347,7 +390,7 @@ export default function Home() {
       </container>
       <container>
         <section>
-          <h2 className="scroll-mt-20">Select commercial projects</h2>
+          <h2>Select commercial projects</h2>
           <p>
             I've recently spent six years as a tech lead, engineering manager,
             and product inventor within the{" "}
