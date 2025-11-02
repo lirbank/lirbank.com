@@ -5,19 +5,20 @@
     "node": "22.x"
   },
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "prettier --check . && next build",
     "start": "next start",
-    "clean": "rm -rf .next node_modules tsconfig.tsbuildinfo bun.lockb bun.lock && bun install",
+    "format": "prettier --write .",
+    "lint": "eslint --max-warnings 0 --fix",
+    "clean:soft": "rm -rf node_modules tsconfig.tsbuildinfo .next && bun install",
+    "clean:hard": "rm -rf node_modules tsconfig.tsbuildinfo .next bun.lock && bun install",
     "chrome:dev": "bun build ./chrome/background.ts --outdir ./chrome --watch",
-    "chrome:build": "bun build ./chrome/background.ts --outdir ./chrome",
-    "lint": "next lint",
-    "format": "prettier --write ."
+    "chrome:build": "bun build ./chrome/background.ts --outdir ./chrome"
   },
   "dependencies": {
     "@icons-pack/react-simple-icons": "^13.8.0",
     "@vercel/analytics": "^1.5.0",
-    "next": "^15.5.6",
+    "next": "^16.0.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
@@ -30,10 +31,10 @@
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "eslint": "^9.39.0",
-    "eslint-config-next": "^15.5.6",
+    "eslint-config-next": "^16.0.1",
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
-    "prettier-plugin-tailwindcss": "^0.6.14",
+    "prettier-plugin-tailwindcss": "^0.7.1",
     "tailwindcss": "^4.1.16",
     "typescript": "^5.9.3"
   }

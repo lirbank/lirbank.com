@@ -772,7 +772,7 @@ export default function Home() {
               className="inline-block w-6"
               aria-label="Progress Pride flag"
             />
-            &nbsp; I’m committed to DEI and creating an environment where
+            &nbsp; I'm committed to DEI and creating an environment where
             everyone feels safe, respected, and able to work together openly.
           </p>
           <p>

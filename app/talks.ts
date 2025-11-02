@@ -1,4 +1,4 @@
-type Talk = {
+interface Talk {
   date: string;
   title: string;
   url: string;
@@ -8,7 +8,7 @@ type Talk = {
   status?: "cancelled" | "postponed" | "rescheduled" | "confirmed";
   host?: { name: string; url: string; location: string };
   deck?: string;
-};
+}
 
 export const talks = [
   {
