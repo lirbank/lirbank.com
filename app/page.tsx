@@ -770,7 +770,6 @@ export default function Home() {
             and delivering predictability and peace of mind to my clients.
           </p>
           <p>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/progress-pride-flag.svg"
               alt="Progress Pride flag"
