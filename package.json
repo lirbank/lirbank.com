@@ -6,10 +6,10 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "prettier --check . && eslint --max-warnings 0 --fix && next build",
+    "build": "prettier --check . && eslint --max-warnings 0 && next build",
     "start": "next start",
     "format": "prettier --write .",
-    "lint": "eslint --max-warnings 0 --fix",
+    "lint": "eslint --fix",
     "clean:soft": "rm -rf node_modules tsconfig.tsbuildinfo .next && bun install",
     "clean:hard": "rm -rf node_modules tsconfig.tsbuildinfo .next bun.lock && bun install",
     "chrome:dev": "bun build ./chrome/background.ts --outdir ./chrome --watch",
