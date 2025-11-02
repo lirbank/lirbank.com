@@ -16,7 +16,8 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Mikael Lirbank",
-  description: `I help companies build better software, focusing on Agentic AI and web technologies.`,
+  // description: `I help companies build better software, focusing on Agentic AI and web technologies.`,
+  description: `I help teams build robust, reliable, high-quality AI systems.`,
   openGraph: {
     url: "https://www.lirbank.com/",
     siteName: "Mikael Lirbank",

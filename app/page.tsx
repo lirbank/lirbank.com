@@ -55,8 +55,7 @@ export default function Home() {
           className="flex flex-col gap-10 sm:grid sm:grid-cols-2"
         >
           <h1 className="text-center sm:text-left">
-            Let's unleash your <span>web app</span>
-            's true potential
+            Ship AI systems with confidence
           </h1>
           <Image
             className="mx-auto size-64 rounded-full object-cover sm:row-span-2 sm:rounded sm:shadow"
