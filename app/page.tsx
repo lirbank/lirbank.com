@@ -461,10 +461,14 @@ export default function Home() {
           </p>
           <h3>Teledyne FLIR Conservator</h3>
           <p>
-            A curated repository of video, imagery, and analytics components.
-            This application allows data scientists to build and manage
-            repositories of annotated data, and to test and experiment with
-            machine-learning video analytics algorithms.
+            Conservator™ is a powerful cloud-based data lifecycle management
+            (DLM) application that enables data scientists to quickly build
+            image datasets and accelerate AI development. Conservator empowers
+            distributed teams to input and curate raw data, create and manage
+            ground-truth annotations, and track revisions on large-scale
+            datasets. The platform provides an enterprise-grade, end-to-end
+            solution for managing perception data for systems such as neural
+            network-based object detectors.
           </p>
           <p>
             <a
