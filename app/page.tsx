@@ -280,6 +280,10 @@ export default function Home() {
           <h3 className="mt-1!">
             Neon Testing: a Vitest Library for Your Integration Tests
           </h3>
+          <p>
+            🚀 My guest post for the Neon blog is live! Want to make Postgres
+            integration testing dead simple? Read on:
+          </p>
           <p className="mt-!">
             <a
               href="https://neon.com/blog/neon-testing-a-vitest-library-for-your-integration-tests"

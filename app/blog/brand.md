@@ -82,13 +82,19 @@ TBD
 
 - https://bsky.app/profile/lirbank.com
 
-TBD
+TBD, currently showing (should be updated/synced with my brand):
+
+I help companies build reliable software, focusing on AI and web technologies https://www.lirbank.com/
+
+Author of https://www.npmjs.com/package/neon-testing
 
 ## lirbank.com
 
 - https://www.lirbank.com/
 
-TBD
+TBD, currently showing (should be updated/synced with my brand):
+
+I help companies build better software, focusing on AI and web technologies. I consider peace of mind my primary deliverable.
 
 ## starmode.dev
 
@@ -112,7 +118,9 @@ TBD
 
 - https://github.com/starmode-base
 
-TBD
+TBD, currently showing (should be updated/synced with the STΛR MODΞ brand):
+
+The first humanless bookkeeper
 
 ## NPM
 
