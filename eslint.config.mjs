@@ -28,12 +28,12 @@ export default defineConfig([
   /**
    * Next.js overrides
    */
-  {
-    rules: {
-      /** https://nextjs.org/docs/pages/api-reference/config/eslint */
-      "@next/next/no-img-element": "off",
-    },
-  },
+  // {
+  //   rules: {
+  //     /** https://nextjs.org/docs/pages/api-reference/config/eslint */
+  //     "@next/next/no-img-element": "off",
+  //   },
+  // },
 
   /**
    * ESLint
