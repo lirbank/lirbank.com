@@ -27,10 +27,11 @@ export default defineConfig([
 
   /**
    * Next.js overrides
+   *
+   * https://nextjs.org/docs/pages/api-reference/config/eslint
    */
   {
     rules: {
-      /** https://nextjs.org/docs/pages/api-reference/config/eslint */
       "@next/next/no-img-element": "off",
     },
   },
@@ -82,8 +83,6 @@ export default defineConfig([
      * https://typescript-eslint.io/rules/
      */
     rules: {
-      /** Disable due to bug with TypeScript function parameter types */
-      "@typescript-eslint/unified-signatures": "off",
       /** https://typescript-eslint.io/rules/no-misused-promises/ */
       "@typescript-eslint/no-misused-promises": [
         "error",
