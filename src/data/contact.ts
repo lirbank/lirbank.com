@@ -1,3 +1,12 @@
+// import {
+//   LinkedInIcon,
+//   // SquareXTwitterIcon,
+//   SquareGitHubIcon,
+//   SquareEnvelopeIcon,
+//   SquarePhoneIcon,
+//   SquareBlueskyIcon,
+// } from "./icons";
+
 const smsBody = encodeURIComponent("Hi Mikael,\n\nLet's unleash our app...");
 
 const emailSubject = encodeURIComponent("Let's unleash our app");
@@ -49,9 +58,19 @@ export const contact = [
     label: "Visit Mikael's LinkedIn profile",
     cta: "Connect on LinkedIn",
   },
+  // {
+  //   id: "x",
+  //   type: "social",
+  //   href: "https://x.com/mikaellirbank",
+  //   icon: "x-twitter",
+  //   text: "mikaellirbank",
+  //   label: "Visit Mikael's X (formerly Twitter) profile",
+  //   cta: "Follow on X",
+  // },
   {
     id: "bluesky",
     type: "social",
+    // href: "https://bsky.app/profile/lirbank.bsky.social",
     href: "https://bsky.app/profile/lirbank.com",
     icon: "bluesky",
     text: "mikaellirbank",
