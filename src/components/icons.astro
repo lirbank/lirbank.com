@@ -1,13 +1,4 @@
 ---
-/**
- * SVG Icon components
- * Icons from Font Awesome Free 6.6.0/6.7.1
- * https://fontawesome.com/license/free
- *
- * Simple Icons (npm, github-simple)
- * https://simpleicons.org/
- */
-
 // Original React exports:
 // export function LinkedInIcon({ className }: { className?: string }) { ... }
 // export function SquareXTwitterIcon({ className }: { className?: string }) { ... }
@@ -32,8 +23,14 @@ export interface Props {
 const { icon, class: className } = Astro.props;
 ---
 
-{/* LinkedIn */}
 {
+  /**
+   * LinkedIn icon
+   *
+   * https://fontawesome.com/icons/linkedin?f=brands&s=solid
+   *
+   * !Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.
+   */
   icon === "linkedin" && (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -46,8 +43,14 @@ const { icon, class: className } = Astro.props;
   )
 }
 
-{/* X (formerly Twitter) */}
 {
+  /**
+   * X (formerly Twitter) icon
+   *
+   * https://fontawesome.com/icons/square-x-twitter?f=brands&s=solid
+   *
+   * !Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.
+   */
   icon === "x-twitter" && (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -60,8 +63,14 @@ const { icon, class: className } = Astro.props;
   )
 }
 
-{/* GitHub (Font Awesome square) */}
 {
+  /**
+   * GitHub icon (square)
+   *
+   * https://fontawesome.com/icons/square-github?f=brands&s=solid
+   *
+   * !Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.
+   */
   icon === "github" && (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -74,8 +83,12 @@ const { icon, class: className } = Astro.props;
   )
 }
 
-{/* GitHub (Simple Icons - octocat, non-square) */}
 {
+  /**
+   * GitHub icon (Simple Icons - octocat, non-square)
+   *
+   * https://simpleicons.org/?q=github
+   */
   icon === "github-simple" && (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -88,8 +101,14 @@ const { icon, class: className } = Astro.props;
   )
 }
 
-{/* Envelope / Email */}
 {
+  /**
+   * Envelope icon
+   *
+   * https://fontawesome.com/icons/square-envelope?f=classic&s=solid
+   *
+   * !Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.
+   */
   icon === "envelope" && (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -102,8 +121,14 @@ const { icon, class: className } = Astro.props;
   )
 }
 
-{/* Phone */}
 {
+  /**
+   * Phone icon
+   *
+   * https://fontawesome.com/icons/square-phone?f=classic&s=solid
+   *
+   * !Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.
+   */
   icon === "phone" && (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -116,8 +141,14 @@ const { icon, class: className } = Astro.props;
   )
 }
 
-{/* Bluesky */}
 {
+  /**
+   * Bluesky icon
+   *
+   * https://fontawesome.com/icons/square-bluesky?f=brands&s=solid
+   *
+   * !Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.
+   */
   icon === "bluesky" && (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -130,8 +161,12 @@ const { icon, class: className } = Astro.props;
   )
 }
 
-{/* npm (Simple Icons) */}
 {
+  /**
+   * npm icon (Simple Icons)
+   *
+   * https://simpleicons.org/?q=npm
+   */
   icon === "npm" && (
     <svg
       xmlns="http://www.w3.org/2000/svg"
