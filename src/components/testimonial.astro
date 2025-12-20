@@ -1,6 +1,5 @@
 ---
 export interface Props {
-  quote: string;
   author: {
     name: string;
     title: string;
@@ -9,7 +8,7 @@ export interface Props {
   };
 }
 
-const { quote, author } = Astro.props;
+const { author } = Astro.props;
 ---
 
 <div class="-mx-4 mt-8 p-4 sm:rounded-md sm:bg-stone-50 sm:shadow">
