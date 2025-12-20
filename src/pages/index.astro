@@ -1,16 +1,24 @@
 ---
-
+import "../styles/global.css";
+import metadata from "../../metadata.json";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <!-- Preload Inter normal (must match src URL in global.css @font-face) -->
+    <link
+      rel="preload"
+      href="https://fonts.gstatic.com/s/inter/v20/UcCo3FwrK3iLTcviYwYZ8UA3.woff2"
+      as="font"
+      crossorigin
+    />
+    <link rel="icon" type="image/svg+xml" href={metadata.browserIcon} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{metadata.name}</title>
+    <meta name="description" content={metadata.description} />
+    <meta property="og:image" content={metadata.shareCard} />
+  </head>
+  <body class="bg-slate-50 text-slate-800 antialiased"> Hello World</body>
 </html>

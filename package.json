@@ -1,14 +1,27 @@
 {
-  "name": "lirbank-com",
+  "name": "lirbank.com",
   "type": "module",
-  "version": "0.0.1",
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "prettier --check . && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "prettier --write .",
+    "og": "npx @resvg/resvg-js-cli --fit-width 2400 public/lirbank-og.svg public/lirbank-og.png",
+    "clean:soft": "rm -rf node_modules tsconfig.tsbuildinfo .astro dist && bun install",
+    "clean:hard": "rm -rf node_modules tsconfig.tsbuildinfo .astro dist bun.lock && bun install"
   },
   "dependencies": {
-    "astro": "^5.16.5"
+    "@tailwindcss/vite": "^4.1.18",
+    "astro": "^5.16.6",
+    "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "prettier": "^3.7.4",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.7.2"
   }
 }
