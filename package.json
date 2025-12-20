@@ -12,7 +12,9 @@
     "format": "prettier --write .",
     "og": "npx @resvg/resvg-js-cli --fit-width 2400 public/lirbank-og.svg public/lirbank-og.png",
     "clean:soft": "rm -rf node_modules tsconfig.tsbuildinfo .astro dist && bun install",
-    "clean:hard": "rm -rf node_modules tsconfig.tsbuildinfo .astro dist bun.lock && bun install"
+    "clean:hard": "rm -rf node_modules tsconfig.tsbuildinfo .astro dist bun.lock && bun install",
+    "chrome:dev": "bun build ./chrome/background.ts --outdir ./chrome --watch",
+    "chrome:build": "bun build ./chrome/background.ts --outdir ./chrome"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
@@ -20,8 +22,10 @@
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
+    "@types/chrome": "^0.1.32",
     "prettier": "^3.7.4",
     "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-tailwindcss": "^0.7.2"
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "typescript": "^5.9.3"
   }
 }
