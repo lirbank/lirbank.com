@@ -1,5 +1,11 @@
 ---
 layout: ../layouts/layout.astro
+
+# Inpiration
+# https://neon.com/brand
+# https://discord.com/branding
+# https://github.com/logos
+# https://brand.github.com/
 ---
 
 ## LinkedIn: Mikael Lirbank (person)
