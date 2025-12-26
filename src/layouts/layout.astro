@@ -1,29 +1,7 @@
 ---
 import "../styles/global.css";
 import "../styles/fonts.css";
-// import localFont from "next/font/local";
-// import { Analytics } from "@vercel/analytics/next";
-// import Link from "next/link";
-
-// const geistSans = localFont({
-//   src: "./fonts/GeistVF.woff",
-//   variable: "--font-geist-sans",
-// });
-
-// const geistMono = localFont({
-//   src: "./fonts/GeistMonoVF.woff",
-//   variable: "--font-geist-mono",
-// });
-
-export const metadata = {
-  title: "Mikael Lirbank",
-  // description: `I help companies build better software, focusing on Agentic AI and web technologies.`,
-  description: `I help teams build robust, reliable, high-quality AI systems.`,
-  openGraph: {
-    url: "https://www.lirbank.com/",
-    siteName: "Mikael Lirbank",
-  },
-};
+import metadata from "../../metadata.json";
 
 const year = new Date().getFullYear();
 ---
@@ -42,10 +20,13 @@ const year = new Date().getFullYear();
     <link rel="icon" type="image/svg+xml" href="/brand/icon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{metadata.title}</title>
+    <title>{metadata.name}</title>
     <meta name="description" content={metadata.description} />
     <meta property="og:url" content={metadata.openGraph.url} />
     <meta property="og:site_name" content={metadata.openGraph.siteName} />
+    <meta property="og:title" content={metadata.name} />
+    <meta property="og:description" content={metadata.description} />
+    <meta property="og:image" content={metadata.shareCard} />
     <script>
       import { configure } from "onedollarstats";
 

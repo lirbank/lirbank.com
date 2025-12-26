@@ -1,14 +1,4 @@
-// import {
-//   LinkedInIcon,
-//   // SquareXTwitterIcon,
-//   SquareGitHubIcon,
-//   SquareEnvelopeIcon,
-//   SquarePhoneIcon,
-//   SquareBlueskyIcon,
-// } from "./icons";
-
 const smsBody = encodeURIComponent("Hi Mikael,\n\nLet's unleash our app...");
-
 const emailSubject = encodeURIComponent("Let's unleash our app");
 const emailBody = encodeURIComponent("Hi Mikael,\n\n...");
 
