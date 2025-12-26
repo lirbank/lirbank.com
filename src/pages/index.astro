@@ -632,10 +632,8 @@ import Icons from "../components/icons.astro";
                         class="link-secondary"
                         href={talk.host.url}
                         target="_blank"
-                      >
-                        {talk.host.name}
-                      </a>
-                      , {talk.host.location}
+                      >{talk.host.name}<!--
+                      --></a>, {talk.host.location}
                     </div>
                   ) : (
                     <div class="text-base">{talk.location}</div>
