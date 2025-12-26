@@ -6,7 +6,7 @@ import Testimonial from "../components/testimonial.astro";
 import Card from "../components/card.astro";
 import metadata from "../../metadata.json";
 import { talks } from "../data/talks";
-import Icons from "../components/icons.astro";
+import { Icon } from "astro-icon/components";
 import { Content as ProjectsContent } from "../content/projects.md";
 import { Content as ServicesContent } from "../content/services.md";
 import { Content as BenefitsContent } from "../content/benefits.md";
@@ -65,7 +65,7 @@ import { Content as AboutContent } from "../content/about.md";
             {
               contact.map(({ href, icon, label }) => (
                 <a href={href} aria-label={label} title={label}>
-                  <Icons icon={icon} class="size-8" />
+                  <Icon name={icon} class="size-8" />
                 </a>
               ))
             }
@@ -284,7 +284,7 @@ import { Content as AboutContent } from "../content/about.md";
         </p>
         <div class="mt-4 flex flex-col gap-2">
           <div class="flex items-center gap-4">
-            <Icons icon="npm" class="size-6" />
+            <Icon name="simple-icons:npm" class="size-6" />
             <a
               href="https://www.npmjs.com/package/neon-testing"
               target="_blank"
@@ -294,7 +294,7 @@ import { Content as AboutContent } from "../content/about.md";
             </a>
           </div>
           <div class="flex items-center gap-4">
-            <Icons icon="github-simple" class="size-6" />
+            <Icon name="simple-icons:github" class="size-6" />
             <a
               href="https://github.com/starmode-base/neon-testing"
               target="_blank"
@@ -316,7 +316,7 @@ import { Content as AboutContent } from "../content/about.md";
         </p>
         <div class="mt-4 flex flex-col gap-2">
           <div class="flex items-center gap-4">
-            <Icons icon="npm" class="size-6" />
+            <Icon name="simple-icons:npm" class="size-6" />
             <a
               href="https://www.npmjs.com/package/pimdb"
               target="_blank"
@@ -326,7 +326,7 @@ import { Content as AboutContent } from "../content/about.md";
             </a>
           </div>
           <div class="flex items-center gap-4">
-            <Icons icon="github-simple" class="size-6" />
+            <Icon name="simple-icons:github" class="size-6" />
             <a
               href="https://github.com/lirbank/pimdb"
               target="_blank"
@@ -340,7 +340,7 @@ import { Content as AboutContent } from "../content/about.md";
         <p>Generate shareable URLs for adding Google Calendar events.</p>
         <div class="mt-4 flex flex-col gap-2">
           <div class="flex items-center gap-4">
-            <Icons icon="npm" class="size-6" />
+            <Icon name="simple-icons:npm" class="size-6" />
             <a
               href="https://www.npmjs.com/package/google-calendar-url"
               target="_blank"
@@ -350,7 +350,7 @@ import { Content as AboutContent } from "../content/about.md";
             </a>
           </div>
           <div class="flex items-center gap-4">
-            <Icons icon="github-simple" class="size-6" />
+            <Icon name="simple-icons:github" class="size-6" />
             <a
               href="https://github.com/lirbank/google-calendar-url"
               target="_blank"
