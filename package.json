@@ -10,7 +10,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier --write .",
-    "og": "npx @resvg/resvg-js-cli --fit-width 2400 public/lirbank-og.svg public/lirbank-og.png",
+    "icons": "bun run scripts/generate-icons.ts",
     "clean:soft": "rm -rf node_modules tsconfig.tsbuildinfo .astro dist && bun install",
     "clean:hard": "rm -rf node_modules tsconfig.tsbuildinfo .astro dist bun.lock && bun install",
     "chrome:dev": "bun build ./chrome/background.ts --outdir ./chrome --watch",
@@ -31,6 +31,7 @@
     "prettier": "^3.7.4",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
+    "sharp": "^0.34.5",
     "typescript": "^5.9.3"
   }
 }
