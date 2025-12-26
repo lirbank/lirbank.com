@@ -43,6 +43,14 @@ const variants: IconVariant[] = [
     background: colors.stone50,
     description: "Apple touch icon (iOS home screen)",
   },
+  {
+    name: "icon-400",
+    outputDir: "brand",
+    size: 400,
+    padding: 0,
+    background: null,
+    description: "LinkedIn icon (light bg for dark mode visibility)",
+  },
 ];
 
 async function generateIcon(
