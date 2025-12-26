@@ -1,42 +1,37 @@
 {
   "name": "lirbank.com",
-  "private": true,
+  "type": "module",
   "engines": {
-    "node": "22.x"
+    "node": "24.x"
   },
   "scripts": {
-    "dev": "next dev",
-    "build": "prettier --check . && next build",
-    "__build": "prettier --check . && eslint --max-warnings 0 && next build",
-    "start": "next start",
+    "dev": "astro dev",
+    "build": "prettier --check . && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
     "format": "prettier --write .",
-    "lint": "eslint --fix",
-    "clean:soft": "rm -rf node_modules tsconfig.tsbuildinfo .next && bun install",
-    "clean:hard": "rm -rf node_modules tsconfig.tsbuildinfo .next bun.lock && bun install",
+    "icons": "bun run scripts/generate-icons.ts",
+    "clean:soft": "rm -rf node_modules tsconfig.tsbuildinfo .astro dist && bun install",
+    "clean:hard": "rm -rf node_modules tsconfig.tsbuildinfo .astro dist bun.lock && bun install",
     "chrome:dev": "bun build ./chrome/background.ts --outdir ./chrome --watch",
     "chrome:build": "bun build ./chrome/background.ts --outdir ./chrome"
   },
   "dependencies": {
-    "@icons-pack/react-simple-icons": "^13.8.0",
-    "@vercel/analytics": "^1.6.1",
-    "next": "^16.0.10",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3"
+    "@iconify-json/fa6-brands": "^1.2.6",
+    "@iconify-json/fa6-solid": "^1.2.4",
+    "@iconify-json/simple-icons": "^1.2.63",
+    "@tailwindcss/vite": "^4.1.18",
+    "astro": "^5.16.6",
+    "astro-icon": "^1.1.5",
+    "onedollarstats": "^0.0.11",
+    "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.1",
-    "@tailwindcss/postcss": "^4.1.18",
-    "@total-typescript/ts-reset": "^0.6.1",
     "@types/chrome": "^0.1.32",
-    "@types/node": "^25.0.1",
-    "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.3",
-    "eslint": "^9.39.1",
-    "eslint-config-next": "^16.0.10",
     "prettier": "^3.7.4",
+    "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
-    "tailwindcss": "^4.1.18",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.49.0"
+    "sharp": "^0.34.5",
+    "typescript": "^5.9.3"
   }
 }

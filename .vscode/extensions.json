@@ -1,12 +1,8 @@
 {
   "recommendations": [
+    "astro-build.astro-vscode",
     "bradlc.vscode-tailwindcss",
-    "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode",
-    "github.vscode-github-actions",
-    "github.vscode-pull-request-github",
-    "oven.bun-vscode",
-    "stkb.rewrap",
-    "wmaurer.change-case"
-  ]
+    "esbenp.prettier-vscode"
+  ],
+  "unwantedRecommendations": []
 }

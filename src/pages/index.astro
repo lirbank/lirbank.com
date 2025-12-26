@@ -1,0 +1,585 @@
+---
+import Layout from "../layouts/layout.astro";
+import { highlightedTechnologies, technologies } from "../data/technologies";
+import { contact } from "../data/contact";
+import Testimonial from "../components/testimonial.astro";
+import Card from "../components/card.astro";
+import metadata from "../../metadata.json";
+import { talks } from "../data/talks";
+import { Icon } from "astro-icon/components";
+import { Content as ProjectsContent } from "../content/projects.md";
+import { Content as ServicesContent } from "../content/services.md";
+import { Content as BenefitsContent } from "../content/benefits.md";
+import { Content as AboutContent } from "../content/about.md";
+---
+
+<Layout>
+  <main id="main" class="scroll-mt-20">
+    <!-- 1. Hero -->
+    <container>
+      <!-- {nextTalk ? (
+          <div class="bg-cyan-600 px-8 py-2 text-center text-white">
+            I'm speaking at{" "}
+            <span class="text-nowrap">{nextTalk.host.name}</span> on{" "}
+            <span class="text-nowrap">
+              {nextTalk.date} —{" "}
+              <a
+                href={nextTalk.ticketUrl}
+                target="_blank"
+                class="text-cyan-50 underline hover:text-white"
+              >
+                Register here
+              </a>
+            </span>
+          </div>
+        ) : null} -->
+      <div class="bg-cyan-600 px-8 py-2 text-center text-white">
+        My new guest post on integration testing with Neon and Vitest, read it
+        on{" "}
+        <a
+          href="https://neon.com/blog/neon-testing-a-vitest-library-for-your-integration-tests"
+          target="_blank"
+          class="text-nowrap text-cyan-50 underline hover:text-white"
+        >
+          Neon.com
+        </a>
+      </div>
+      <section
+        aria-labelledby="main"
+        class="flex flex-col gap-10 sm:grid sm:grid-cols-2"
+      >
+        <h1 class="text-center sm:text-left">
+          Ship AI systems with confidence
+        </h1>
+        <img
+          class="mx-auto size-64 rounded-full object-cover sm:row-span-2 sm:rounded sm:shadow"
+          src="brand/mikael-lirbank.jpg"
+          alt="Mikael Lirbank, a web development expert smiling at the camera"
+        />
+        <div class="flex flex-col gap-2">
+          <div>
+            <h3>Mikael Lirbank</h3>
+            <p>{metadata.description}</p>
+          </div>
+          <div class="flex gap-2">
+            {
+              contact.map(({ href, icon, label }) => (
+                <a href={href} aria-label={label} title={label}>
+                  <Icon name={icon} class="size-8" />
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+    </container>
+
+    <!-- 2. Testimonials -->
+    <container>
+      <section aria-labelledby="reviews">
+        <h2 id="reviews" class="scroll-mt-20">What people say</h2>
+        <p>
+          My peers and clients often point out my attention to detail and
+          excellent communication skills.
+        </p>
+        <Testimonial
+          author={{
+            name: "Gregor Stühler",
+            title: "CEO at scoutbee.com",
+            avatar: "testimonials/gregor-stuhler.jpg",
+            url: "https://www.linkedin.com/in/gregor-st%C3%BChler-9756a072/",
+          }}
+        >
+          <p>
+            Mikael is a great developer with a natural interest and
+            understanding in the business side of the applications, which makes
+            it very easy to coop with him. He is fast, thorough and working
+            always with bleeding edge tech. All I am looking for when working
+            with a freelancer. Highly recommend Mikael!
+          </p>
+        </Testimonial>
+        <Testimonial
+          author={{
+            name: "Spencer Smith",
+            title: "Principal Data Scientist, Zillow Group, Founder, BenAi",
+            avatar: "testimonials/spencer-smith.jpg",
+            url: "https://www.linkedin.com/in/spencergsmith6/",
+          }}
+        >
+          <p>
+            I had the pleasure of working with Mikael on my company, BenAi, and
+            he brought a whole new level of professionalism and polish to our
+            software. From day one, he zeroed in on areas for improvement and
+            took our platform from a prototype to a production-ready product of
+            true enterprise quality.
+          </p>
+          <p>
+            What stood out the most was Mikael's incredible attention to detail.
+            He's always up-to-date on the latest technology trends and
+            consistently recommends modern, high-performing solutions that have
+            significantly improved the functionality and performance of our
+            platform. He didn't just upgrade the code; he transformed our
+            development process with a disciplined, organized approach that
+            brought real structure to our team.
+          </p>
+          <p>
+            Mikael's work has elevated BenAi in ways I hadn't imagined. If you
+            need someone who can turn ideas into robust, scalable solutions, I
+            would highly recommend working with Mikael.
+          </p>
+        </Testimonial>
+        <Testimonial
+          author={{
+            name: "Victor Meyer",
+            title: "Co-Founder and Creative Web Developer, Pixby Media",
+            avatar: "testimonials/victor-meyer.jpg",
+            url: "https://www.linkedin.com/in/victor-meyer-9784702b/",
+          }}
+        >
+          <p>
+            It's been a privilege to work alongside Mikael for the past 15
+            years. He's not only an exceptional developer and mentor but also
+            has an impressive talent for breaking down complex, emerging
+            technologies like AI into insights that are accessible and easy to
+            understand. His expertise and guidance have been invaluable, and we
+            look forward to future collaborations with Mikael.
+          </p>
+        </Testimonial>
+        <Testimonial
+          author={{
+            name: "Justin Muncaster",
+            title: "Teledyne FLIR/Muncaster Consulting",
+            avatar: "testimonials/justin-muncaster.jpg",
+            url: "https://www.linkedin.com/in/jmuncaster/",
+          }}
+        >
+          <p>
+            Mikael was a pleasure to work with. Very knowledgable, very
+            competent, very productive.
+          </p>
+        </Testimonial>
+        <Testimonial
+          author={{
+            name: "Chris Jamieson",
+            title: "Director, Melior Enterprises",
+            avatar: "testimonials/chris-jamieson.jpg",
+            url: "https://www.linkedin.com/in/chris-jamieson-02776a19/",
+          }}
+        >
+          <p>
+            We couldn't have asked for anything more from Mikael. We had a
+            relatively difficult new application which needed to be built, on a
+            short timeframe and to specific requirements. His approach was
+            careful, considered and fast throughout.
+          </p>
+          <p>
+            He is an excellent communicator and was able to work considerately,
+            prioritise tasks appropriately and ask questions when needed. He
+            understood the task well and he produced very high quality code, in
+            line with all the best practices etc. - I am confident that his code
+            will be running with us for a long time to come.
+          </p>
+          <p>
+            Thank you Mikael for a job well done, we're looking forward to
+            working with you again in the future.
+          </p>
+        </Testimonial>
+        <Testimonial
+          author={{
+            name: "Joe Hochgreve",
+            title: "Web Developer, Formcode",
+            avatar: "testimonials/joe-hochgreve.jpg",
+            url: "https://www.linkedin.com/in/joe-hochgreve-71053316/",
+          }}
+        >
+          <p>
+            Mikael is fantastic! We are already finding new ways to utilize his
+            vast knowledge. HIGHLY RECOMMEND!
+          </p>
+        </Testimonial>
+        <Testimonial
+          author={{
+            name: "Hans Pedersen",
+            title: "Owner, The Check Station",
+            avatar: "testimonials/hans-pedersen.jpg",
+            url: "https://www.linkedin.com/in/hanspedersen/",
+          }}
+        >
+          <p>
+            Mikael did a great job with our project. He provided excellent
+            documentation and handed over all of the necessary information.
+          </p>
+          <p>
+            He also worked with my to make sure my AWS S3 was setup properly and
+            found solutions before and during the project that allow our web app
+            to re-launch and to be cost effective.
+          </p>
+          <p>
+            Very solid person and developer. Excellent communication and that is
+            key for me.
+          </p>
+        </Testimonial>
+        <Testimonial
+          author={{
+            name: "Dane Theisen",
+            title: "Founder, R We Still On Time",
+            avatar: "testimonials/dane-theisen.jpg",
+            url: "https://www.linkedin.com/in/danetheisen/",
+          }}
+        >
+          <p>
+            Great communication, highly organized, works efficiently without
+            delay. I look forward to working with Mikael again.
+          </p>
+        </Testimonial>
+      </section>
+    </container>
+
+    <!-- 3. Projects -->
+    <container>
+      <section aria-labelledby="projects">
+        <h2 id="projects" class="scroll-mt-20">Guest posts</h2>
+        <!-- <p>
+            I enjoy sharing my expertise through technical writing, contributing
+            insights on modern development practices, testing strategies, and
+            emerging technologies.
+
+             I enjoy sharing my expertise through
+            technical writing and contributing to the developer community.
+
+          </p> -->
+        <p class="text-base! text-stone-500">Sep 09, 2025</p>
+        <h3 class="mt-1!">
+          Neon Testing: a Vitest Library for Your Integration Tests
+        </h3>
+        <p>
+          🚀 My guest post for the Neon blog is live! Want to make Postgres
+          integration testing dead simple? Read on:
+        </p>
+        <p class="mt-!">
+          <a
+            href="https://neon.com/blog/neon-testing-a-vitest-library-for-your-integration-tests"
+            target="_blank"
+            class="link"
+          >
+            Set up disposable Postgres test databases powered by Neon branching
+          </a>
+        </p>
+      </section>
+    </container>
+    <container>
+      <section>
+        <h2 class="scroll-mt-20">Open source</h2>
+        <p>Author and maintainer of these projects.</p>
+        <h3>Neon Testing</h3>
+        <p>
+          A{" "}
+          <a href="https://vitest.dev/" target="_blank" class="link">Vitest</a>{
+            " "
+          }
+          utility for seamless integration tests with{" "}
+          <a href="https://neon.com/" target="_blank" class="link">
+            Neon Postgres
+          </a>.
+        </p>
+        <div class="mt-4 flex flex-col gap-2">
+          <div class="flex items-center gap-4">
+            <Icon name="simple-icons:npm" class="size-6" />
+            <a
+              href="https://www.npmjs.com/package/neon-testing"
+              target="_blank"
+              class="link"
+            >
+              npmjs.com/package/neon-testing
+            </a>
+          </div>
+          <div class="flex items-center gap-4">
+            <Icon name="simple-icons:github" class="size-6" />
+            <a
+              href="https://github.com/starmode-base/neon-testing"
+              target="_blank"
+              class="link"
+            >
+              github.com/starmode-base/neon-testing
+            </a>
+          </div>
+        </div>
+        <h3>PimDB</h3>
+        <p>
+          A lightweight, persisted in-memory database built from the ground up
+          for the browser. PimDB provides fast and efficient text indexing with
+          substring, n-gram, and sorted indexes, enabling quick lookups for
+          partial and exact matches. It's <strong>4,000x+ faster</strong>{" "}
+          than Array.filter for sorted lookups and{" "}
+          <strong>700x+ faster</strong> for substring searches on a dataset of 100,000
+          documents.
+        </p>
+        <div class="mt-4 flex flex-col gap-2">
+          <div class="flex items-center gap-4">
+            <Icon name="simple-icons:npm" class="size-6" />
+            <a
+              href="https://www.npmjs.com/package/pimdb"
+              target="_blank"
+              class="link"
+            >
+              npmjs.com/package/pimdb
+            </a>
+          </div>
+          <div class="flex items-center gap-4">
+            <Icon name="simple-icons:github" class="size-6" />
+            <a
+              href="https://github.com/lirbank/pimdb"
+              target="_blank"
+              class="link"
+            >
+              github.com/lirbank/pimdb
+            </a>
+          </div>
+        </div>
+        <h3>Google Calendar URL</h3>
+        <p>Generate shareable URLs for adding Google Calendar events.</p>
+        <div class="mt-4 flex flex-col gap-2">
+          <div class="flex items-center gap-4">
+            <Icon name="simple-icons:npm" class="size-6" />
+            <a
+              href="https://www.npmjs.com/package/google-calendar-url"
+              target="_blank"
+              class="link"
+            >
+              npmjs.com/package/google-calendar-url
+            </a>
+          </div>
+          <div class="flex items-center gap-4">
+            <Icon name="simple-icons:github" class="size-6" />
+            <a
+              href="https://github.com/lirbank/google-calendar-url"
+              target="_blank"
+              class="link"
+            >
+              github.com/lirbank/google-calendar-url
+            </a>
+          </div>
+        </div>
+      </section>
+    </container>
+    <container>
+      <section class="markdown">
+        <h2>Select commercial projects</h2>
+        <ProjectsContent />
+      </section>
+    </container>
+
+    <!-- 4. Services -->
+    <container>
+      <section aria-labelledby="services" class="markdown">
+        <h2 id="services" class="block scroll-mt-20">
+          Things I'd love to take off your plate
+        </h2>
+        <ServicesContent />
+      </section>
+    </container>
+
+    <!-- 5. Benefits -->
+    <container>
+      <section aria-labelledby="benefits" class="markdown">
+        <h2 id="benefits" class="scroll-mt-20">Why work with me</h2>
+        <BenefitsContent />
+      </section>
+    </container>
+
+    <!-- 6. Contact -->
+    <container>
+      <section aria-labelledby="contact">
+        <h2 id="contact" class="scroll-mt-20">Let's get to work</h2>
+        <p>
+          Ready to take your web app to the next level? I am here to help.
+          Whether you need an urgent fix or a long-term partner, let's make it
+          happen. The sky's the limit.
+        </p>
+        <ul class="ml-4 flex list-disc flex-col gap-2">
+          {
+            contact
+              .filter((e) => e.type === "contact" || e.id === "linkedIn")
+              .map(({ href, label, text, cta }) => (
+                <li>
+                  <span class="font-semibold">{cta}: </span>
+                  <a href={href} aria-label={label} title={label} class="link">
+                    {text}
+                  </a>
+                </li>
+              ))
+          }
+        </ul>
+        <p>
+          <a
+            href="/brand/mikael-lirbank.jpg"
+            download="mikael-lirbank.jpg"
+            class="link"
+          >
+            High-res photo of me
+          </a>
+        </p>
+      </section>
+    </container>
+
+    <!-- 7. Talks -->
+    <container>
+      <section aria-labelledby="about">
+        <h2 id="talks" class="scroll-mt-20">Talks</h2>
+        <p>
+          I speak at meetups, conferences, and private corporate events about
+          leveraging AI to build better software.
+        </p>
+        <div class="-mx-4 grid gap-4 py-4 md:grid-cols-2">
+          {
+            talks.map((talk) => (
+              <Card>
+                <div class="flex h-full flex-col">
+                  <div class="pb-2">
+                    <a
+                      href={talk.url}
+                      aria-label={talk.title}
+                      title={talk.title}
+                      class="link text-lg"
+                      target="_blank"
+                    >
+                      {talk.title}
+                    </a>
+                    {talk.isPublic ? null : (
+                      <span class="text-stone-500">{" (private event)"}</span>
+                    )}
+                    {talk.status ? (
+                      <span class="text-stone-500">
+                        {" (" + talk.status + ")"}
+                      </span>
+                    ) : null}
+                  </div>
+                  <div class="text-base">{talk.date}</div>
+                  {talk.ticketUrl ? (
+                    <div class="text-base">
+                      <a
+                        href={talk.ticketUrl}
+                        target="_blank"
+                        class="link-secondary"
+                      >
+                        Register
+                      </a>
+                    </div>
+                  ) : null}
+                  {talk.host ? (
+                    <div
+                      class="text-base"
+                      set:html={`<a class="link-secondary" href="${talk.host.url}" target="_blank">${talk.host.name}</a>, ${talk.host.location}`}
+                    />
+                  ) : (
+                    <div class="text-base">{talk.location}</div>
+                  )}
+                  {talk.deck ? (
+                    <div class="mt-auto pt-2">
+                      <a
+                        href={talk.deck}
+                        target="_blank"
+                        class="link-secondary"
+                      >
+                        Presentation deck
+                      </a>
+                    </div>
+                  ) : null}
+                </div>
+              </Card>
+            ))
+          }
+        </div>
+        <h3>
+          <span class="font-bold">Synopsis:</span> Leading LLMs
+        </h3>
+        <p class="font-semibold">
+          A structured approach to building quality software with AI
+        </p>
+        <p>
+          AI dramatically accelerates software development, but how it is used
+          often compromises quality and structure. Without a clear process,
+          AI-generated code can become inconsistent and difficult to maintain.
+        </p>
+        <p>
+          In my recent work, I've been developing a way to use AI to write
+          high-quality, well-tested, and high-performing code really fast. This
+          approach is inspired by my work building PimDB, a browser-based
+          persisted in-memory database. In this talk, we'll explore a structured
+          process to empower teams to leverage AI to tackle complex projects
+          with incredible velocity without compromising on quality.
+        </p>
+        <p>We'll cover:</p>
+        <ol class="ml-5 flex list-decimal flex-col gap-2">
+          <li>API design and architecture</li>
+          <li>Writing tests</li>
+          <li>Performance benchmarking</li>
+          <li>Writing documentation</li>
+          <li>Implementation and optimization</li>
+        </ol>
+        <p>
+          Attendees will gain practical strategies for using AI to write
+          maintainable, reliable code at AI speed—without compromising on
+          quality.
+        </p>
+        <h3>What people say</h3>
+        <Testimonial
+          author={{
+            name: "Mattias Karlsson",
+            title: "SpikeGadgets CEO",
+            avatar: "testimonials/mattias-karlsson.jpg",
+            url: "https://www.linkedin.com/in/mattias-karlsson-32100b119/",
+          }}
+        >
+          <p>
+            Mikael came to our company and gave a well-organized and highly
+            informative talk to our developers about how to use AI to speed up
+            software development in a practical way. Mikael has a knack for
+            explaining complex ideas in a way that is very accessible, and our
+            entire group was immediately inspired and empowered to use the
+            emerging methodologies he showcased. I was super impressed!
+          </p>
+        </Testimonial>
+      </section>
+    </container>
+
+    <!-- 8. About -->
+    <container>
+      <section aria-labelledby="about" class="markdown">
+        <h2 id="about" class="scroll-mt-20">About me</h2>
+        <AboutContent />
+        <p>
+          <a
+            href="/brand/mikael-lirbank.jpg"
+            download="mikael-lirbank.jpg"
+            class="link"
+          >
+            High-res photo of me
+          </a>
+        </p>
+        <h3>Technologies & tooling</h3>
+        <p>I thrive with these tools and technologies.</p>
+        <div class="-mx-4 flex flex-wrap justify-center gap-1 pt-4">
+          {
+            technologies
+              .toSorted((a, b) => a[0].localeCompare(b[0]))
+              .map(([name, url]) => (
+                <div
+                  class={
+                    "rounded-lg px-3 py-1 text-sm text-nowrap" +
+                    (highlightedTechnologies.includes(name)
+                      ? " bg-cyan-50 font-medium text-cyan-900"
+                      : " bg-stone-50")
+                  }
+                >
+                  <a href={url} target="_blank" class="no-style">
+                    {name}
+                  </a>
+                </div>
+              ))
+          }
+        </div>
+      </section>
+    </container>
+  </main>
+</Layout>

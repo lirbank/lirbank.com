@@ -1,0 +1,63 @@
+---
+import "../styles/fonts.css";
+import "../styles/global.css";
+import metadata from "../../metadata.json";
+
+const year = new Date().getFullYear();
+---
+
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <!-- Preload Inter normal (must match src URL in global.css @font-face) -->
+    <link
+      rel="preload"
+      href="https://fonts.gstatic.com/s/inter/v20/UcCo3FwrK3iLTcviYwYZ8UA3.woff2"
+      as="font"
+      crossorigin
+    />
+    <link rel="icon" type="image/svg+xml" href={metadata.browserIcon} />
+    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{metadata.name}</title>
+    <meta name="description" content={metadata.description} />
+    <meta property="og:image" content={metadata.shareCard} />
+    <script>
+      import { configure } from "onedollarstats";
+
+      configure({
+        trackLocalhostAs: "www.lirbank.com",
+      });
+    </script>
+  </head>
+  <body class="bg-stone-100 font-sans text-stone-800 antialiased">
+    <header
+      class="sticky top-0 border-b border-stone-300/50 bg-stone-50/70 backdrop-blur-sm"
+    >
+      <div class="mx-auto flex max-w-3xl justify-between px-6">
+        <a href="/#reviews" class="px-2 py-3">Reviews</a>
+        <a href="/#projects" class="px-2 py-3">Projects</a>
+        <a href="/#services" class="px-2 py-3">Services</a>
+        <a href="/#benefits" class="px-2 py-3">Benefits</a>
+        <a href="/#contact" class="hidden px-2 py-3 md:block">Contact</a>
+        <a href="/#talks" class="hidden px-2 py-3 md:block">Talks</a>
+        <a href="/#about" class="hidden px-2 py-3 md:block">About</a>
+      </div>
+    </header>
+    <slot />
+    <footer class="mx-auto max-w-3xl px-8 py-4 text-center">
+      © {year} Mikael Lirbank · Airlab LLC · San Francisco Bay Area
+    </footer>
+    <nav
+      class="sticky bottom-0 border-t border-stone-300/50 bg-stone-50/70 backdrop-blur-sm md:hidden"
+    >
+      <div class="mx-auto flex max-w-3xl justify-between px-6">
+        <a href="/#contact" class="px-2 py-3">Contact</a>
+        <a href="/#talks" class="px-2 py-3">Talks</a>
+        <a href="/#about" class="px-2 py-3">About</a>
+        <a href="/#main" class="px-2 py-3">Home</a>
+      </div>
+    </nav>
+  </body>
+</html>

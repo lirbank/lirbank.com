@@ -1,6 +1,20 @@
 # lirbank.com
 
+https://www.lirbank.com/
+
 Mikael Lirbank's professional website.
+
+- [metadata](./metadata.json)
+
+## Tech stack
+
+- **Framework:** [Astro](https://astro.build/)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+
+## Services
+
+- https://app.netlify.com
+- https://onedollarstats.com/analytics/dashboard/www.lirbank.com
 
 ## Open Graph
 
@@ -8,4 +22,4 @@ Mikael Lirbank's professional website.
 - [Facebook](https://developers.facebook.com/tools/debug/?q=https%3A%2F%2Fwww.lirbank.com%2F)
 - [LinkedIn](https://www.linkedin.com/post-inspector/inspect/https:%2F%2Fwww.lirbank.com%2F)
 - [Vercel](https://vercel.com/starmode/lirbank.com/Eru7C2tkTtxsqZLitBeiWokLXFQS/og)
-- [X](https://cards-dev.twitter.com/validator)
+- [Twitter](https://cards-dev.twitter.com/validator)

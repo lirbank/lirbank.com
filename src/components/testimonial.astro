@@ -1,0 +1,31 @@
+---
+export interface Props {
+  author: {
+    name: string;
+    title: string;
+    avatar: string;
+    url: string;
+  };
+}
+
+const { author } = Astro.props;
+---
+
+<div class="-mx-4 mt-8 p-4 sm:rounded-md sm:bg-stone-50 sm:shadow">
+  <blockquote class="border-l-4 border-stone-300 pl-4 italic">
+    <slot />
+  </blockquote>
+  <div class="mt-4 flex items-center gap-2">
+    <a href={author.url} target="_blank" class="shrink-0">
+      <img
+        class="size-12 rounded-full object-cover shadow"
+        src={author.avatar}
+        alt={`${author.name}, ${author.title}`}
+      />
+    </a>
+    <div class="flex flex-col">
+      <strong class="text-lg">{author.name}</strong>
+      <div class="text-stone-600">{author.title}</div>
+    </div>
+  </div>
+</div>

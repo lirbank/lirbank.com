@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: Inter, sans-serif;
+}
+
+@layer base {
+  /* Prevent font boosting on Android Chrome */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  ul,
+  ol,
+  p,
+  blockquote {
+    @apply max-h-full;
+  }
+
+  /* Blocks */
+  container {
+    @apply block odd:bg-stone-200;
+  }
+
+  section {
+    @apply mx-auto max-w-3xl px-4 py-10 sm:px-8;
+  }
+
+  /* Typography */
+  h1 {
+    @apply text-4xl font-extrabold sm:text-5xl;
+    @apply bg-linear-to-br from-cyan-800 to-stone-800 bg-clip-text text-transparent;
+  }
+
+  h1 > span {
+    @apply font-black text-cyan-700;
+  }
+
+  h2 {
+    @apply text-3xl font-semibold;
+  }
+
+  h3 {
+    @apply text-2xl font-semibold;
+  }
+
+  strong {
+    @apply font-semibold;
+  }
+
+  p,
+  ul,
+  ol,
+  blockquote {
+    /* Typography */
+    @apply text-lg;
+    /* Spacing */
+    @apply mt-4 first:mt-0;
+  }
+
+  /* Spacing */
+  h1,
+  h2,
+  h3 {
+    @apply mt-8 first:mt-0;
+  }
+}
+
+@layer components {
+  .markdown a:not(.no-style) {
+    @apply text-cyan-600 underline underline-offset-3 hover:text-cyan-700;
+  }
+}
+
+@utility link {
+  @apply text-cyan-600 underline underline-offset-3 hover:text-cyan-700;
+}
+
+@utility link-secondary {
+  @apply text-stone-800 underline hover:text-stone-900;
+}
