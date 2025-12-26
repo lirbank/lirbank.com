@@ -1,3 +1,7 @@
+---
+layout: ../layouts/layout.astro
+---
+
 ## LinkedIn: Mikael Lirbank (person)
 
 - https://www.linkedin.com/in/mikaellirbank/
