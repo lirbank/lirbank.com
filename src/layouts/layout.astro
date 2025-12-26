@@ -1,6 +1,6 @@
 ---
-import "../styles/global.css";
 import "../styles/fonts.css";
+import "../styles/global.css";
 import metadata from "../../metadata.json";
 
 const year = new Date().getFullYear();
@@ -9,12 +9,11 @@ const year = new Date().getFullYear();
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
-    <!-- Preload Geist font -->
+    <!-- Preload Inter normal (must match src URL in global.css @font-face) -->
     <link
       rel="preload"
-      href="/fonts/GeistVF.woff"
+      href="https://fonts.gstatic.com/s/inter/v20/UcCo3FwrK3iLTcviYwYZ8UA3.woff2"
       as="font"
-      type="font/woff"
       crossorigin
     />
     <link rel="icon" type="image/svg+xml" href={metadata.browserIcon} />
