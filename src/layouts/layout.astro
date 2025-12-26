@@ -22,10 +22,6 @@ const year = new Date().getFullYear();
     <meta name="generator" content={Astro.generator} />
     <title>{metadata.name}</title>
     <meta name="description" content={metadata.description} />
-    <meta property="og:url" content={metadata.openGraph.url} />
-    <meta property="og:site_name" content={metadata.openGraph.siteName} />
-    <meta property="og:title" content={metadata.name} />
-    <meta property="og:description" content={metadata.description} />
     <meta property="og:image" content={metadata.shareCard} />
     <script>
       import { configure } from "onedollarstats";
