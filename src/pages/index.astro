@@ -1,16 +1,5 @@
 ---
 import Layout from "../layouts/layout.astro";
-// import Image from "next/image";
-// import mikaelImage from "../public/mikael-lirbank.jpg";
-// import justinImage from "../public/justin-muncaster.jpg";
-// import chrisImage from "../public/chris-jamieson.jpg";
-// import hansImage from "../public/hans-pedersen.jpg";
-// import spencerImage from "../public/spencer-smith.jpg";
-// import victorImage from "../public/victor-meyer.jpg";
-// import joeImage from "../public/joe-hochgreve.jpg";
-// import daneImage from "../public/dane-theisen.jpg";
-// import mattiasImage from "../public/mattias-karlsson.jpg";
-// import gregorImage from "../public/gregor-stuhler.jpg";
 import { highlightedTechnologies, technologies } from "../data/technologies";
 import { contact } from "../data/contact";
 import Testimonial from "../components/testimonial.astro";
@@ -18,9 +7,10 @@ import Card from "../components/card.astro";
 import metadata from "../../metadata.json";
 import { talks } from "../data/talks";
 import Icons from "../components/icons.astro";
-// import { SiGithub, SiNpm } from "@icons-pack/react-simple-icons";
-
-// const nextTalk = talks.find((talk) => talk.status === "confirmed");
+import { Content as ProjectsContent } from "../content/projects.md";
+import { Content as ServicesContent } from "../content/services.md";
+import { Content as BenefitsContent } from "../content/benefits.md";
+import { Content as AboutContent } from "../content/about.md";
 ---
 
 <Layout>
@@ -285,9 +275,9 @@ import Icons from "../components/icons.astro";
         <h3>Neon Testing</h3>
         <p>
           A{" "}
-          <a href="https://vitest.dev/" target="_blank" class="link">
-            Vitest
-          </a>{" "}
+          <a href="https://vitest.dev/" target="_blank" class="link">Vitest</a>{
+            " "
+          }
           utility for seamless integration tests with{" "}
           <a href="https://neon.com/" target="_blank" class="link">
             Neon Postgres
@@ -374,176 +364,27 @@ import Icons from "../components/icons.astro";
       </section>
     </container>
     <container>
-      <section>
+      <section class="markdown">
         <h2>Select commercial projects</h2>
-        <p>
-          I've recently spent six years as a tech lead, engineering manager, and
-          product inventor within the{" "}
-          <strong>Applied AI Venture Studio</strong> at{" "}
-          <a href="https://www.aresmgmt.com/" target="_blank" class="link">
-            BootstrapLabs, an Ares Management company
-          </a>, a venture capital firm investing in applied AI. During this
-          time, I led a series of applied AI projects.
-        </p>
-        <p>
-          Here are a few favorite AI applications I've built or been a main
-          contributor to.
-        </p>
-        <h3>STΛR MODΞ</h3>
-        <p>
-          Built from the ground up as an AI-first, humanless bookkeeper that
-          handles financial business accounting without human intervention.
-          Powered by OpenAI APIs and custom data pipelines, STΛR MODΞ employs a
-          next-gen AI-driven user interface with voice input and voice+screen
-          output.
-        </p>
-        <p>
-          <a href="https://www.starmode.app/" target="_blank" class="link">
-            Visit starmode.app
-          </a>
-        </p>
-        <h3>BenAi</h3>
-        <p>
-          A dedicated AI-first chatbot for health benefits administrators
-          (TPAs), BenAi quickly and accurately answers questions on individual
-          member claims and plans by ingesting plan documents and claims data at
-          the individual member level. Built with OpenAI LLMs and custom
-          embeddings.
-        </p>
-        <p>
-          <a href="https://www.benefits-ai.com/" target="_blank" class="link">
-            Visit benefits-ai.com
-          </a>
-        </p>
-        <h3>Shorty</h3>
-        <p>
-          An AI-augmented communication platform that enhances team productivity
-          by organizing conversations and interactions into a graph of nodes and
-          edges. Integrated with OpenAI LLMs, Shorty relies on AI agents to
-          summarize discussions, identify consensus points, and enable seamless
-          decision-making support.
-        </p>
-        <p>
-          <a href="https://shorty.run/" target="_blank" class="link">
-            Visit shorty.run
-          </a>
-        </p>
-        <h3>Teledyne FLIR Conservator</h3>
-        <p>
-          Conservator™ is a powerful cloud-based data lifecycle management (DLM)
-          application that enables data scientists to quickly build image
-          datasets and accelerate AI development. Conservator empowers
-          distributed teams to input and curate raw data, create and manage
-          ground-truth annotations, and track revisions on large-scale datasets.
-          The platform provides an enterprise-grade, end-to-end solution for
-          managing perception data for systems such as neural network-based
-          object detectors.
-        </p>
-        <p>
-          <a
-            href="https://www.flirconservator.com/"
-            target="_blank"
-            class="link"
-          >
-            Visit flirconservator.com
-          </a>
-          <br />
-          <a
-            href="https://www.flir.com/oem/conservator/"
-            target="_blank"
-            class="link"
-          >
-            Visit flir.com/oem/conservator
-          </a>
-        </p>
+        <ProjectsContent />
       </section>
     </container>
 
     <!-- 4. Services -->
     <container>
-      <section aria-labelledby="services">
-        <h2 id="services" class="scroll-mt-20">
+      <section aria-labelledby="services" class="markdown">
+        <h2 id="services" class="block scroll-mt-20">
           Things I'd love to take off your plate
         </h2>
-        <h3>Hands-on web app development</h3>
-        <p>
-          I love building web apps from scratch, and I'm great at fixing up
-          broken ones, too. I'm happy to work solo or alongside your existing
-          dev team, to ship a well-crafted web application.
-        </p>
-        <p>
-          If your app needs a modern look or a smoother experience, I can
-          refresh the design and create a consistent design system that your
-          users will appreciate.
-        </p>
-        <h3>Deployment and quality assurance</h3>
-        <p>
-          A bug-free, fast, and stable app that is a delight to use starts with
-          robust test automation. I set up test automation to eliminate
-          regressions and keep your app thoroughly tested, from integration to
-          end-to-end testing. Quality is at the heart of what I do, and I'm
-          happy to get your team up to speed with test-driven development if
-          that's a focus.
-        </p>
-        <p>
-          I'll also streamline your deployment process, setting up a reliable
-          release pipeline—whether you're using Vercel, Heroku, GitHub Actions,
-          or another service—so you can release with confidence.
-        </p>
-        <h3>Tech strategy, architecture, and stack optimization</h3>
-        <p>
-          Choosing the right tech stack and architecture is key to a productive,
-          scalable app. I'll work with you to select and optimize the
-          technologies that best fit your goals, ensuring a solid foundation for
-          growth and maintainability.
-        </p>
-        <p>
-          If your app is currently in JavaScript, I can convert it to TypeScript
-          to improve reliability and reduce bugs. For projects that need a
-          refresh, I'll clean up code, update dependencies, and streamline your
-          setup to keep everything running smoothly.
-        </p>
-        <h3>Leadership and product direction</h3>
-        <p>
-          With a relaxed but high-accountability approach to leadership, I help
-          teams stay focused, aligned, and motivated. Whether guiding day-to-day
-          work, mentoring individual developers, or setting long-term goals, I
-          keep quality and consistency at the forefront.
-        </p>
-        <p>
-          As a product manager, I make sure every decision supports both
-          business objectives and user needs, creating a clear path from concept
-          to delivery. My approach brings peace of mind, knowing that your
-          project is in good hands and moving in the right direction.
-        </p>
+        <ServicesContent />
       </section>
     </container>
 
     <!-- 5. Benefits -->
     <container>
-      <section aria-labelledby="benefits">
+      <section aria-labelledby="benefits" class="markdown">
         <h2 id="benefits" class="scroll-mt-20">Why work with me</h2>
-        <h3>Peace of mind</h3>
-        <p>
-          My main deliverable is peace of mind. Working with me, you'll have an
-          app leader who takes ownership of every aspect of the project, handles
-          complex situations independently, and keeps everything moving
-          smoothly.
-        </p>
-        <p>
-          I'll keep you informed on what really matters, so you can stay focused
-          on your core priorities without unnecessary interruptions.
-        </p>
-        <h3>Experience and quality</h3>
-        <p>
-          With years of experience building and refining apps, I create stable,
-          scalable software that's ready to grow with your business.
-        </p>
-        <p>
-          My commitment to quality—from clean, maintainable code to thoughtful
-          architecture, rigorous testing, and gorgeous design—means you'll have
-          a reliable and performant app to impress your users with.
-        </p>
+        <BenefitsContent />
       </section>
     </container>
 
@@ -627,14 +468,10 @@ import Icons from "../components/icons.astro";
                     </div>
                   ) : null}
                   {talk.host ? (
-                    <div class="text-base">
-                      <a
-                        class="link-secondary"
-                        href={talk.host.url}
-                        target="_blank"
-                      >{talk.host.name}<!--
-                      --></a>, {talk.host.location}
-                    </div>
+                    <div
+                      class="text-base"
+                      set:html={`<a class="link-secondary" href="${talk.host.url}" target="_blank">${talk.host.name}</a>, ${talk.host.location}`}
+                    />
                   ) : (
                     <div class="text-base">{talk.location}</div>
                   )}
@@ -709,41 +546,9 @@ import Icons from "../components/icons.astro";
 
     <!-- 8. About -->
     <container>
-      <section aria-labelledby="about">
+      <section aria-labelledby="about" class="markdown">
         <h2 id="about" class="scroll-mt-20">About me</h2>
-        <p>
-          I'm Mikael Lirbank, based in Corte Madera, just north of the Golden
-          Gate Bridge in the beautiful San Francisco Bay Area. I live here with
-          my amazing wife and children. In my spare time, I'm a bit of a cycling
-          fanatic, so if you'd ever want to go mountain biking or road cycling
-          in Marin County, hit me up!
-        </p>
-        <p>
-          With over 20 years of experience, I've built a strong track record of
-          building apps from scratch, rescuing existing ones, and leading
-          development teams. I'm a tech lead, product manager, UI designer, and
-          code quality expert, known for taking ownership of every project and
-          delivering predictability and peace of mind to my clients.
-        </p>
-        <p>
-          <img
-            src="/progress-pride-flag.svg"
-            alt="Progress Pride flag"
-            class="inline-block w-6"
-            aria-label="Progress Pride flag"
-          />
-          &nbsp;I'm committed to DEI and creating an environment where everyone feels
-          safe, respected, and able to work together openly.
-        </p>
-        <p>
-          <a
-            href="/mikael-lirbank.jpg"
-            download="mikael-lirbank.jpg"
-            class="link"
-          >
-            High-res photo of me
-          </a>
-        </p>
+        <AboutContent />
         <h3>Technologies & tooling</h3>
         <p>I thrive with these tools and technologies.</p>
         <div class="-mx-4 flex flex-wrap justify-center gap-1 pt-4">
@@ -759,7 +564,7 @@ import Icons from "../components/icons.astro";
                       : " bg-stone-50")
                   }
                 >
-                  <a href={url} target="_blank">
+                  <a href={url} target="_blank" class="no-style">
                     {name}
                   </a>
                 </div>
