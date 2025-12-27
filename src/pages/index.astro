@@ -11,6 +11,8 @@ import { Content as ProjectsContent } from "../content/projects.md";
 import { Content as ServicesContent } from "../content/services.md";
 import { Content as BenefitsContent } from "../content/benefits.md";
 import { Content as AboutContent } from "../content/about.md";
+import { Image } from "astro:assets";
+import heroImage from "../assets/brand/mikael-lirbank.jpg";
 ---
 
 <Layout>
@@ -51,10 +53,14 @@ import { Content as AboutContent } from "../content/about.md";
         <h1 class="text-center sm:text-left">
           Ship AI systems with confidence
         </h1>
-        <img
+        <Image
           class="mx-auto size-64 rounded-full object-cover sm:row-span-2 sm:rounded sm:shadow"
-          src="brand/mikael-lirbank.jpg"
+          src={heroImage}
           alt="Mikael Lirbank, a web development expert smiling at the camera"
+          width={512}
+          height={512}
+          quality={80}
+          loading="eager"
         />
         <div class="flex flex-col gap-2">
           <div>
@@ -86,7 +92,7 @@ import { Content as AboutContent } from "../content/about.md";
           author={{
             name: "Gregor Stühler",
             title: "CEO at scoutbee.com",
-            avatar: "testimonials/gregor-stuhler.jpg",
+            avatar: "gregor-stuhler.jpg",
             url: "https://www.linkedin.com/in/gregor-st%C3%BChler-9756a072/",
           }}
         >
@@ -102,7 +108,7 @@ import { Content as AboutContent } from "../content/about.md";
           author={{
             name: "Spencer Smith",
             title: "Principal Data Scientist, Zillow Group, Founder, BenAi",
-            avatar: "testimonials/spencer-smith.jpg",
+            avatar: "spencer-smith.jpg",
             url: "https://www.linkedin.com/in/spencergsmith6/",
           }}
         >
@@ -132,7 +138,7 @@ import { Content as AboutContent } from "../content/about.md";
           author={{
             name: "Victor Meyer",
             title: "Co-Founder and Creative Web Developer, Pixby Media",
-            avatar: "testimonials/victor-meyer.jpg",
+            avatar: "victor-meyer.jpg",
             url: "https://www.linkedin.com/in/victor-meyer-9784702b/",
           }}
         >
@@ -149,7 +155,7 @@ import { Content as AboutContent } from "../content/about.md";
           author={{
             name: "Justin Muncaster",
             title: "Teledyne FLIR/Muncaster Consulting",
-            avatar: "testimonials/justin-muncaster.jpg",
+            avatar: "justin-muncaster.jpg",
             url: "https://www.linkedin.com/in/jmuncaster/",
           }}
         >
@@ -162,7 +168,7 @@ import { Content as AboutContent } from "../content/about.md";
           author={{
             name: "Chris Jamieson",
             title: "Director, Melior Enterprises",
-            avatar: "testimonials/chris-jamieson.jpg",
+            avatar: "chris-jamieson.jpg",
             url: "https://www.linkedin.com/in/chris-jamieson-02776a19/",
           }}
         >
@@ -188,7 +194,7 @@ import { Content as AboutContent } from "../content/about.md";
           author={{
             name: "Joe Hochgreve",
             title: "Web Developer, Formcode",
-            avatar: "testimonials/joe-hochgreve.jpg",
+            avatar: "joe-hochgreve.jpg",
             url: "https://www.linkedin.com/in/joe-hochgreve-71053316/",
           }}
         >
@@ -201,7 +207,7 @@ import { Content as AboutContent } from "../content/about.md";
           author={{
             name: "Hans Pedersen",
             title: "Owner, The Check Station",
-            avatar: "testimonials/hans-pedersen.jpg",
+            avatar: "hans-pedersen.jpg",
             url: "https://www.linkedin.com/in/hanspedersen/",
           }}
         >
@@ -223,7 +229,7 @@ import { Content as AboutContent } from "../content/about.md";
           author={{
             name: "Dane Theisen",
             title: "Founder, R We Still On Time",
-            avatar: "testimonials/dane-theisen.jpg",
+            avatar: "dane-theisen.jpg",
             url: "https://www.linkedin.com/in/danetheisen/",
           }}
         >
@@ -527,7 +533,7 @@ import { Content as AboutContent } from "../content/about.md";
           author={{
             name: "Mattias Karlsson",
             title: "SpikeGadgets CEO",
-            avatar: "testimonials/mattias-karlsson.jpg",
+            avatar: "mattias-karlsson.jpg",
             url: "https://www.linkedin.com/in/mattias-karlsson-32100b119/",
           }}
         >

@@ -1,4 +1,12 @@
 ---
+import { Image } from "astro:assets";
+
+// Import all testimonial images from src/assets
+const avatarImages = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/testimonials/*.jpg",
+  { eager: true },
+);
+
 export interface Props {
   author: {
     name: string;
@@ -9,6 +17,10 @@ export interface Props {
 }
 
 const { author } = Astro.props;
+
+// Build path from filename
+const avatarPath = `../assets/testimonials/${author.avatar}`;
+const avatarImage = avatarImages[avatarPath]?.default;
 ---
 
 <div class="-mx-4 mt-8 p-4 sm:rounded-md sm:bg-stone-50 sm:shadow">
@@ -17,10 +29,14 @@ const { author } = Astro.props;
   </blockquote>
   <div class="mt-4 flex items-center gap-2">
     <a href={author.url} target="_blank" class="shrink-0">
-      <img
+      <Image
         class="size-12 rounded-full object-cover shadow"
-        src={author.avatar}
+        src={avatarImage}
         alt={`${author.name}, ${author.title}`}
+        width={96}
+        height={96}
+        quality={80}
+        loading="lazy"
       />
     </a>
     <div class="flex flex-col">
