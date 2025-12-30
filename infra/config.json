@@ -1,0 +1,28 @@
+{
+  "$schema": "./config.schema.json",
+  "domains": [
+    {
+      "url": "https://www.lirbank.com/",
+      "status": 200,
+      "server": "Netlify"
+    },
+    {
+      "url": "https://lirbank.com/",
+      "status": 301,
+      "location": "https://www.lirbank.com/",
+      "server": "Netlify"
+    },
+    {
+      "url": "http://www.lirbank.com/",
+      "status": 301,
+      "location": "https://www.lirbank.com/",
+      "server": "Netlify"
+    },
+    {
+      "url": "http://lirbank.com/",
+      "status": 301,
+      "location": "https://lirbank.com/",
+      "server": "Netlify"
+    }
+  ]
+}

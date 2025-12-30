@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Infrastructure Config",
+  "description": "Configuration for infrastructure health checks",
+  "type": "object",
+  "required": ["domains"],
+  "additionalProperties": false,
+  "properties": {
+    "domains": {
+      "type": "array",
+      "description": "Domain/URL endpoint checks",
+      "items": {
+        "type": "object",
+        "required": ["url", "status"],
+        "additionalProperties": false,
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to check"
+          },
+          "status": {
+            "type": "integer",
+            "description": "Expected HTTP status code"
+          },
+          "location": {
+            "type": "string",
+            "format": "uri",
+            "description": "Expected Location header (for redirects)"
+          },
+          "server": {
+            "type": "string",
+            "description": "Expected Server header value"
+          }
+        }
+      }
+    },
+    "cloudflare": {
+      "type": "object",
+      "description": "Cloudflare-specific checks (future)"
+    },
+    "namecheap": {
+      "type": "object",
+      "description": "Namecheap-specific checks (future)"
+    },
+    "neon": {
+      "type": "object",
+      "description": "Neon-specific checks (future)"
+    },
+    "netlify": {
+      "type": "object",
+      "description": "Netlify-specific checks (future)"
+    },
+    "vercel": {
+      "type": "object",
+      "description": "Vercel-specific checks (future)"
+    }
+  }
+}

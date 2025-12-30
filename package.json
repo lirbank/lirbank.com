@@ -6,13 +6,15 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "prettier --check . && astro build",
+    "build": "bun test && prettier --check . && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier --write .",
-    "icons": "bun run scripts/generate-icons.ts",
+    "test": "bun test",
+    "icons": "bun scripts/generate-icons.ts",
     "clean:soft": "rm -rf node_modules tsconfig.tsbuildinfo .astro dist && bun install",
     "clean:hard": "rm -rf node_modules tsconfig.tsbuildinfo .astro dist bun.lock && bun install",
+    "infra:check": "bun infra/check.ts",
     "chrome:dev": "bun build ./chrome/background.ts --outdir ./chrome --watch",
     "chrome:build": "bun build ./chrome/background.ts --outdir ./chrome"
   },
@@ -27,6 +29,7 @@
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
+    "@types/bun": "^1.3.5",
     "@types/chrome": "^0.1.32",
     "prettier": "^3.7.4",
     "prettier-plugin-astro": "^0.14.1",
