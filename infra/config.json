@@ -23,6 +23,78 @@
       "status": 301,
       "location": "https://lirbank.com/",
       "server": "Netlify"
+    },
+
+    {
+      "url": "https://www.starmode.dev/",
+      "status": 200,
+      "server": "Vercel"
+    },
+    {
+      "url": "https://starmode.dev/",
+      "status": 308,
+      "location": "https://www.starmode.dev/",
+      "server": "Vercel"
+    },
+    {
+      "url": "http://www.starmode.dev/",
+      "status": 308,
+      "location": "https://www.starmode.dev/",
+      "server": "Vercel"
+    },
+    {
+      "url": "http://starmode.dev/",
+      "status": 308,
+      "location": "https://starmode.dev/",
+      "server": "Vercel"
+    },
+
+    {
+      "url": "https://www.starmode.app/",
+      "status": 200,
+      "server": "Vercel"
+    },
+    {
+      "url": "https://starmode.app/",
+      "status": 308,
+      "location": "https://www.starmode.app/",
+      "server": "Vercel"
+    },
+    {
+      "url": "http://www.starmode.app/",
+      "status": 308,
+      "location": "https://www.starmode.app/",
+      "server": "Vercel"
+    },
+    {
+      "url": "http://starmode.app/",
+      "status": 308,
+      "location": "https://starmode.app/",
+      "server": "Vercel"
+    },
+
+    {
+      "url": "https://www.heartbeats.co/",
+      "status": 200,
+      "server": "Vercel"
+    },
+    {
+      "url": "https://heartbeats.co/",
+      "status": 307,
+      "location": "https://www.heartbeats.co/",
+      "server": "Vercel"
+    },
+    {
+      "url": "http://www.heartbeats.co/",
+      "status": 308,
+      "location": "https://www.heartbeats.co/",
+      "server": "Vercel"
+    },
+    {
+      "url": "http://heartbeats.co/",
+      "status": 308,
+      "location": "https://heartbeats.co/",
+      "server": "Vercel"
     }
   ]
 }
