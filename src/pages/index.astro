@@ -13,6 +13,13 @@ import { Content as BenefitsContent } from "../content/benefits.md";
 import { Content as AboutContent } from "../content/about.md";
 import { Image } from "astro:assets";
 import heroImage from "../assets/brand/mikael-lirbank.jpg";
+import { getCollection } from "astro:content";
+
+const allTestimonials = await getCollection("testimonials");
+const clientTestimonials = allTestimonials
+  .filter((t) => !t.data.featured)
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+const featuredTestimonial = allTestimonials.find((t) => t.data.featured);
 ---
 
 <Layout>
@@ -88,156 +95,11 @@ import heroImage from "../assets/brand/mikael-lirbank.jpg";
           My peers and clients often point out my attention to detail and
           excellent communication skills.
         </p>
-        <Testimonial
-          author={{
-            name: "Gregor Stühler",
-            title: "CEO at scoutbee.com",
-            avatar: "gregor-stuhler.jpg",
-            url: "https://www.linkedin.com/in/gregor-st%C3%BChler-9756a072/",
-          }}
-        >
-          <p>
-            Mikael is a great developer with a natural interest and
-            understanding in the business side of the applications, which makes
-            it very easy to coop with him. He is fast, thorough and working
-            always with bleeding edge tech. All I am looking for when working
-            with a freelancer. Highly recommend Mikael!
-          </p>
-        </Testimonial>
-        <Testimonial
-          author={{
-            name: "Spencer Smith",
-            title: "Principal Data Scientist, Zillow Group, Founder, BenAi",
-            avatar: "spencer-smith.jpg",
-            url: "https://www.linkedin.com/in/spencergsmith6/",
-          }}
-        >
-          <p>
-            I had the pleasure of working with Mikael on my company, BenAi, and
-            he brought a whole new level of professionalism and polish to our
-            software. From day one, he zeroed in on areas for improvement and
-            took our platform from a prototype to a production-ready product of
-            true enterprise quality.
-          </p>
-          <p>
-            What stood out the most was Mikael's incredible attention to detail.
-            He's always up-to-date on the latest technology trends and
-            consistently recommends modern, high-performing solutions that have
-            significantly improved the functionality and performance of our
-            platform. He didn't just upgrade the code; he transformed our
-            development process with a disciplined, organized approach that
-            brought real structure to our team.
-          </p>
-          <p>
-            Mikael's work has elevated BenAi in ways I hadn't imagined. If you
-            need someone who can turn ideas into robust, scalable solutions, I
-            would highly recommend working with Mikael.
-          </p>
-        </Testimonial>
-        <Testimonial
-          author={{
-            name: "Victor Meyer",
-            title: "Co-Founder and Creative Web Developer, Pixby Media",
-            avatar: "victor-meyer.jpg",
-            url: "https://www.linkedin.com/in/victor-meyer-9784702b/",
-          }}
-        >
-          <p>
-            It's been a privilege to work alongside Mikael for the past 15
-            years. He's not only an exceptional developer and mentor but also
-            has an impressive talent for breaking down complex, emerging
-            technologies like AI into insights that are accessible and easy to
-            understand. His expertise and guidance have been invaluable, and we
-            look forward to future collaborations with Mikael.
-          </p>
-        </Testimonial>
-        <Testimonial
-          author={{
-            name: "Justin Muncaster",
-            title: "Teledyne FLIR/Muncaster Consulting",
-            avatar: "justin-muncaster.jpg",
-            url: "https://www.linkedin.com/in/jmuncaster/",
-          }}
-        >
-          <p>
-            Mikael was a pleasure to work with. Very knowledgable, very
-            competent, very productive.
-          </p>
-        </Testimonial>
-        <Testimonial
-          author={{
-            name: "Chris Jamieson",
-            title: "Director, Melior Enterprises",
-            avatar: "chris-jamieson.jpg",
-            url: "https://www.linkedin.com/in/chris-jamieson-02776a19/",
-          }}
-        >
-          <p>
-            We couldn't have asked for anything more from Mikael. We had a
-            relatively difficult new application which needed to be built, on a
-            short timeframe and to specific requirements. His approach was
-            careful, considered and fast throughout.
-          </p>
-          <p>
-            He is an excellent communicator and was able to work considerately,
-            prioritise tasks appropriately and ask questions when needed. He
-            understood the task well and he produced very high quality code, in
-            line with all the best practices etc. - I am confident that his code
-            will be running with us for a long time to come.
-          </p>
-          <p>
-            Thank you Mikael for a job well done, we're looking forward to
-            working with you again in the future.
-          </p>
-        </Testimonial>
-        <Testimonial
-          author={{
-            name: "Joe Hochgreve",
-            title: "Web Developer, Formcode",
-            avatar: "joe-hochgreve.jpg",
-            url: "https://www.linkedin.com/in/joe-hochgreve-71053316/",
-          }}
-        >
-          <p>
-            Mikael is fantastic! We are already finding new ways to utilize his
-            vast knowledge. HIGHLY RECOMMEND!
-          </p>
-        </Testimonial>
-        <Testimonial
-          author={{
-            name: "Hans Pedersen",
-            title: "Owner, The Check Station",
-            avatar: "hans-pedersen.jpg",
-            url: "https://www.linkedin.com/in/hanspedersen/",
-          }}
-        >
-          <p>
-            Mikael did a great job with our project. He provided excellent
-            documentation and handed over all of the necessary information.
-          </p>
-          <p>
-            He also worked with my to make sure my AWS S3 was setup properly and
-            found solutions before and during the project that allow our web app
-            to re-launch and to be cost effective.
-          </p>
-          <p>
-            Very solid person and developer. Excellent communication and that is
-            key for me.
-          </p>
-        </Testimonial>
-        <Testimonial
-          author={{
-            name: "Dane Theisen",
-            title: "Founder, R We Still On Time",
-            avatar: "dane-theisen.jpg",
-            url: "https://www.linkedin.com/in/danetheisen/",
-          }}
-        >
-          <p>
-            Great communication, highly organized, works efficiently without
-            delay. I look forward to working with Mikael again.
-          </p>
-        </Testimonial>
+        {
+          clientTestimonials.map((testimonial) => (
+            <Testimonial testimonial={testimonial} />
+          ))
+        }
       </section>
     </container>
 
@@ -529,23 +391,11 @@ import heroImage from "../assets/brand/mikael-lirbank.jpg";
           quality.
         </p>
         <h3>What people say</h3>
-        <Testimonial
-          author={{
-            name: "Mattias Karlsson",
-            title: "SpikeGadgets CEO",
-            avatar: "mattias-karlsson.jpg",
-            url: "https://www.linkedin.com/in/mattias-karlsson-32100b119/",
-          }}
-        >
-          <p>
-            Mikael came to our company and gave a well-organized and highly
-            informative talk to our developers about how to use AI to speed up
-            software development in a practical way. Mikael has a knack for
-            explaining complex ideas in a way that is very accessible, and our
-            entire group was immediately inspired and empowered to use the
-            emerging methodologies he showcased. I was super impressed!
-          </p>
-        </Testimonial>
+        {
+          featuredTestimonial && (
+            <Testimonial testimonial={featuredTestimonial} />
+          )
+        }
       </section>
     </container>
 
