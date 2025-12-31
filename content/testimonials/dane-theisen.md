@@ -8,4 +8,3 @@ order: 8
 ---
 
 Great communication, highly organized, works efficiently without delay. I look forward to working with Mikael again.
-

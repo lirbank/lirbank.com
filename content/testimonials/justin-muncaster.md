@@ -8,4 +8,3 @@ order: 4
 ---
 
 Mikael was a pleasure to work with. Very knowledgable, very competent, very productive.
-

@@ -12,4 +12,3 @@ We couldn't have asked for anything more from Mikael. We had a relatively diffic
 He is an excellent communicator and was able to work considerately, prioritise tasks appropriately and ask questions when needed. He understood the task well and he produced very high quality code, in line with all the best practices etc. - I am confident that his code will be running with us for a long time to come.
 
 Thank you Mikael for a job well done, we're looking forward to working with you again in the future.
-

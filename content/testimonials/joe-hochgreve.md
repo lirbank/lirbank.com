@@ -8,4 +8,3 @@ order: 6
 ---
 
 Mikael is fantastic! We are already finding new ways to utilize his vast knowledge. HIGHLY RECOMMEND!
-
