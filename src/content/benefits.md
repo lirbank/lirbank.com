@@ -1,3 +1,5 @@
+## Why work with me
+
 ### Peace of mind
 
 My main deliverable is peace of mind. Working with me, you'll have an app leader who takes ownership of every aspect of the project, handles complex situations independently, and keeps everything moving smoothly.

@@ -1,3 +1,5 @@
+## Select commercial projects
+
 I've recently spent six years as a tech lead, engineering manager, and product inventor within the **Applied AI Venture Studio** at [BootstrapLabs, an Ares Management company](https://www.aresmgmt.com/), a venture capital firm investing in applied AI. During this time, I led a series of applied AI projects.
 
 Here are a few favorite AI applications I've built or been a main contributor to.

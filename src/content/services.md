@@ -1,4 +1,4 @@
-<!-- <h2 id="services" class="scroll-mt-20">Things I'd love to take off your plate</h2> -->
+## Things I'd love to take off your plate
 
 ### Hands-on web app development
 
