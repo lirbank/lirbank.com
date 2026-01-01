@@ -48,15 +48,6 @@ export const contact = [
     label: "Visit Mikael's LinkedIn profile",
     cta: "Connect on LinkedIn",
   },
-  // {
-  //   id: "x",
-  //   type: "social",
-  //   href: "https://x.com/mikaellirbank",
-  //   icon: "fa6-brands:square-x-twitter",
-  //   text: "mikaellirbank",
-  //   label: "Visit Mikael's X (formerly Twitter) profile",
-  //   cta: "Follow on X",
-  // },
   {
     id: "bluesky",
     type: "social",
@@ -66,6 +57,15 @@ export const contact = [
     text: "mikaellirbank",
     label: "Visit Mikael's Bluesky profile",
     cta: "Follow on Bluesky",
+  },
+  {
+    id: "twitter",
+    type: "social",
+    href: "https://x.com/mikaellirbank",
+    icon: "fa6-brands:square-x-twitter",
+    text: "mikaellirbank",
+    label: "Visit Mikael's Twitter profile",
+    cta: "Follow on Twitter",
   },
   {
     id: "github",
