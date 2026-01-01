@@ -5,7 +5,6 @@ import { contact } from "../data/contact";
 import Testimonial from "../components/testimonial.astro";
 import Card from "../components/card.astro";
 import metadata from "../../metadata.json";
-import { talks } from "../data/talks";
 import { Icon } from "astro-icon/components";
 import { Content as ProjectsContent } from "../content/projects.md";
 import { Content as ServicesContent } from "../content/services.md";
@@ -13,13 +12,18 @@ import { Content as BenefitsContent } from "../content/benefits.md";
 import { Content as AboutContent } from "../content/about.md";
 import { Image } from "astro:assets";
 import heroImage from "../assets/brand/mikael-lirbank.jpg";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 
 const allTestimonials = await getCollection("testimonials");
 const clientTestimonials = allTestimonials
   .filter((t) => !t.data.featured)
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 const featuredTestimonial = allTestimonials.find((t) => t.data.featured);
+
+const talks = await getCollection("talks");
+const sortedTalks = talks.sort(
+  (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99),
+);
 ---
 
 <Layout>
@@ -300,62 +304,16 @@ const featuredTestimonial = allTestimonials.find((t) => t.data.featured);
         </p>
         <div class="-mx-4 grid gap-4 py-4 md:grid-cols-2">
           {
-            talks.map((talk) => (
-              <Card>
-                <div class="flex h-full flex-col">
-                  <div class="pb-2">
-                    <a
-                      href={talk.url}
-                      aria-label={talk.title}
-                      title={talk.title}
-                      class="link text-lg"
-                      target="_blank"
-                    >
-                      {talk.title}
-                    </a>
-                    {talk.isPublic ? null : (
-                      <span class="text-stone-500">{" (private event)"}</span>
-                    )}
-                    {talk.status ? (
-                      <span class="text-stone-500">
-                        {" (" + talk.status + ")"}
-                      </span>
-                    ) : null}
+            sortedTalks.map(async (talk) => {
+              const { Content } = await render(talk);
+              return (
+                <Card>
+                  <div class="talk-content flex h-full flex-col">
+                    <Content />
                   </div>
-                  <div class="text-base">{talk.date}</div>
-                  {talk.ticketUrl ? (
-                    <div class="text-base">
-                      <a
-                        href={talk.ticketUrl}
-                        target="_blank"
-                        class="link-secondary"
-                      >
-                        Register
-                      </a>
-                    </div>
-                  ) : null}
-                  {talk.host ? (
-                    <div
-                      class="text-base"
-                      set:html={`<a class="link-secondary" href="${talk.host.url}" target="_blank">${talk.host.name}</a>, ${talk.host.location}`}
-                    />
-                  ) : (
-                    <div class="text-base">{talk.location}</div>
-                  )}
-                  {talk.deck ? (
-                    <div class="mt-auto pt-2">
-                      <a
-                        href={talk.deck}
-                        target="_blank"
-                        class="link-secondary"
-                      >
-                        Presentation deck
-                      </a>
-                    </div>
-                  ) : null}
-                </div>
-              </Card>
-            ))
+                </Card>
+              );
+            })
           }
         </div>
         <h3>

@@ -24,4 +24,13 @@ const testimonials = defineCollection({
   }),
 });
 
-export const collections = { blog, testimonials };
+const talks = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./content/talks" }),
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    order: z.number().optional(),
+  }),
+});
+
+export const collections = { blog, testimonials, talks };
