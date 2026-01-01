@@ -85,6 +85,14 @@
   .talk-content .aside {
     @apply text-base text-stone-500;
   }
+
+  .talks-markdown h3 strong {
+    @apply font-bold;
+  }
+
+  .talks-markdown ol {
+    @apply ml-5 flex list-decimal flex-col gap-2;
+  }
 }
 
 @utility link {
