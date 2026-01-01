@@ -1,0 +1,2 @@
+- Semantics is everything - always look for new better patterns
+- Less is more - always look for the simplest solution
