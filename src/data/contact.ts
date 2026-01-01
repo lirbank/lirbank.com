@@ -1,5 +1,5 @@
-const smsBody = encodeURIComponent("Hi Mikael,\n\nLet's unleash our app...");
-const emailSubject = encodeURIComponent("Let's unleash our app");
+const smsBody = encodeURIComponent("Hi Mikael,\n\nLet's talk...");
+const emailSubject = encodeURIComponent("Let's talk");
 const emailBody = encodeURIComponent("Hi Mikael,\n\n...");
 
 type IconName =
