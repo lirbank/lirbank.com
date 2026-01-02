@@ -195,7 +195,7 @@ const sortedTalks = talks.sort(
               const { Content } = await render(talk);
               return (
                 <Card>
-                  <div class="talk-content flex h-full flex-col [&>p]:my-0 [&>p]:text-base [&>p:first-child]:pb-2 [&>p:first-child]:text-lg [&>p:last-child]:mt-auto [&>p:last-child]:pt-2">
+                  <div class="talk-content flex h-full flex-col">
                     <Content />
                   </div>
                 </Card>

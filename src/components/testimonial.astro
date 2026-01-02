@@ -22,6 +22,16 @@ const avatarImage = avatarImages[avatarPath]?.default;
 ---
 
 <div class="-mx-4 mt-8 p-4 sm:rounded-md sm:bg-stone-50 sm:shadow">
+  {
+    testimonial.data.company && (
+      <strong class="block pb-2 text-lg">{testimonial.data.company}</strong>
+    )
+  }
+  {
+    testimonial.data.intro && (
+      <div class="text-stone-600">{testimonial.data.intro}</div>
+    )
+  }
   <blockquote class="border-l-4 border-stone-300 pl-4 italic">
     <Content />
   </blockquote>

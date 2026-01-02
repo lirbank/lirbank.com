@@ -13,6 +13,8 @@ const blog = defineCollection({
 const testimonials = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./content/testimonials" }),
   schema: z.object({
+    company: z.string().optional(),
+    intro: z.string().optional(),
     author: z.object({
       name: z.string(),
       title: z.string(),
