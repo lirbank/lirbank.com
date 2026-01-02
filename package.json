@@ -21,7 +21,6 @@
   "dependencies": {
     "@iconify-json/fa6-brands": "^1.2.6",
     "@iconify-json/fa6-solid": "^1.2.4",
-    "@iconify-json/simple-icons": "^1.2.63",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.16.6",
     "astro-icon": "^1.1.5",
