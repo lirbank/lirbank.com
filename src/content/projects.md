@@ -31,7 +31,9 @@ TODO
 
 ### BenAi
 
-A dedicated AI-first chatbot for health benefits administrators (TPAs), BenAi quickly and accurately answers questions on individual member claims and plans by ingesting plan documents and claims data at the individual member level. Built with OpenAI LLMs and custom embeddings.
+A dedicated AI-first chatbot for health benefits administrators (TPAs). BenAi ingests plan documents and claims data at the individual member level, using OpenAI LLMs and custom embeddings to provide accurate, member-specific answers on claims and coverage.
+
+Built for TPA call centers, BenAi helps agents answer member questions faster and more accurately—reducing call times and escalations.
 
 _(Project archived)_
 
