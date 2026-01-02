@@ -35,7 +35,7 @@ A dedicated AI-first chatbot for health benefits administrators (TPAs). BenAi in
 
 Built for TPA call centers, BenAi helps agents answer member questions faster and more accurately—reducing call times and escalations.
 
-_(Project archived)_
+[View case study →](/benai)
 
 ### Shorty
 

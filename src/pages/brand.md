@@ -1,5 +1,5 @@
 ---
-layout: ../layouts/layout.astro
+layout: ../layouts/page.astro
 
 # Inpiration
 # https://neon.com/brand
