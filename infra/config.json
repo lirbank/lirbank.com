@@ -50,6 +50,30 @@
     },
 
     {
+      "url": "https://expert-system.starmode.dev/",
+      "status": 200,
+      "server": "Vercel"
+    },
+    {
+      "url": "http://expert-system.starmode.dev/",
+      "status": 308,
+      "location": "https://expert-system.starmode.dev/",
+      "server": "Vercel"
+    },
+
+    {
+      "url": "https://app-template.starmode.dev/",
+      "status": 200,
+      "server": "Vercel"
+    },
+    {
+      "url": "http://app-template.starmode.dev/",
+      "status": 308,
+      "location": "https://app-template.starmode.dev/",
+      "server": "Vercel"
+    },
+
+    {
       "url": "https://www.starmode.app/",
       "status": 200,
       "server": "Vercel"
