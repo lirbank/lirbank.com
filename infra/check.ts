@@ -60,16 +60,31 @@ export function validateResult(
 }
 
 async function checkUrl(url: string, expected: Expected): Promise<CheckResult> {
-  const res = await fetch(url, { method: "GET", redirect: "manual" });
-  const actual: Actual = {
-    status: res.status,
-    location: res.headers.get("location"),
-    server: res.headers.get("server"),
-  };
+  try {
+    const res = await fetch(url, { method: "GET", redirect: "manual" });
+    const actual: Actual = {
+      status: res.status,
+      location: res.headers.get("location"),
+      server: res.headers.get("server"),
+    };
 
-  const { pass, failures } = validateResult(expected, actual);
+    const { pass, failures } = validateResult(expected, actual);
 
-  return { url, expected, actual, pass, failures };
+    return { url, expected, actual, pass, failures };
+  } catch (error) {
+    const code =
+      error instanceof Error && "code" in error
+        ? (error as Error & { code: string }).code
+        : "UNKNOWN";
+
+    return {
+      url,
+      expected,
+      actual: { status: 0, location: null, server: null },
+      pass: false,
+      failures: [`fetch failed: ${code}`],
+    };
+  }
 }
 
 function printTable(results: CheckResult[]) {
