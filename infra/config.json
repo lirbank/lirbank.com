@@ -28,25 +28,25 @@
     {
       "url": "https://www.starmode.dev/",
       "status": 200,
-      "server": "Vercel"
+      "server": "Netlify"
     },
     {
       "url": "https://starmode.dev/",
-      "status": 308,
+      "status": 301,
       "location": "https://www.starmode.dev/",
-      "server": "Vercel"
+      "server": "Netlify"
     },
     {
       "url": "http://www.starmode.dev/",
-      "status": 308,
+      "status": 301,
       "location": "https://www.starmode.dev/",
-      "server": "Vercel"
+      "server": "Netlify"
     },
     {
       "url": "http://starmode.dev/",
-      "status": 308,
+      "status": 301,
       "location": "https://starmode.dev/",
-      "server": "Vercel"
+      "server": "Netlify"
     },
 
     {
