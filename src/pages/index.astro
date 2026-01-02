@@ -92,10 +92,10 @@ const sortedTalks = talks.sort(
       </section>
     </container>
 
-    <!-- 3. Projects -->
+    <!-- 3. Blog posts (no nav) -->
     <container>
-      <section aria-labelledby="projects">
-        <h2 id="projects" class="scroll-mt-20">Guest posts</h2>
+      <section>
+        <h2>Guest posts</h2>
         <!-- <p>
             I enjoy sharing my expertise through technical writing, contributing
             insights on modern development practices, testing strategies, and
@@ -124,103 +124,10 @@ const sortedTalks = talks.sort(
         </p>
       </section>
     </container>
+
+    <!-- 3. Projects -->
     <container>
-      <section>
-        <h2 class="scroll-mt-20">Open source</h2>
-        <p>Author and maintainer of these projects.</p>
-        <h3>Neon Testing</h3>
-        <p>
-          A{" "}
-          <a href="https://vitest.dev/" target="_blank" class="link">Vitest</a>{
-            " "
-          }
-          utility for seamless integration tests with{" "}
-          <a href="https://neon.com/" target="_blank" class="link">
-            Neon Postgres
-          </a>.
-        </p>
-        <div class="mt-4 flex flex-col gap-2">
-          <div class="flex items-center gap-4">
-            <Icon name="simple-icons:npm" class="size-6" />
-            <a
-              href="https://www.npmjs.com/package/neon-testing"
-              target="_blank"
-              class="link"
-            >
-              npmjs.com/package/neon-testing
-            </a>
-          </div>
-          <div class="flex items-center gap-4">
-            <Icon name="simple-icons:github" class="size-6" />
-            <a
-              href="https://github.com/starmode-base/neon-testing"
-              target="_blank"
-              class="link"
-            >
-              github.com/starmode-base/neon-testing
-            </a>
-          </div>
-        </div>
-        <h3>PimDB</h3>
-        <p>
-          A lightweight, persisted in-memory database built from the ground up
-          for the browser. PimDB provides fast and efficient text indexing with
-          substring, n-gram, and sorted indexes, enabling quick lookups for
-          partial and exact matches. It's <strong>4,000x+ faster</strong>{" "}
-          than Array.filter for sorted lookups and{" "}
-          <strong>700x+ faster</strong> for substring searches on a dataset of 100,000
-          documents.
-        </p>
-        <div class="mt-4 flex flex-col gap-2">
-          <div class="flex items-center gap-4">
-            <Icon name="simple-icons:npm" class="size-6" />
-            <a
-              href="https://www.npmjs.com/package/pimdb"
-              target="_blank"
-              class="link"
-            >
-              npmjs.com/package/pimdb
-            </a>
-          </div>
-          <div class="flex items-center gap-4">
-            <Icon name="simple-icons:github" class="size-6" />
-            <a
-              href="https://github.com/lirbank/pimdb"
-              target="_blank"
-              class="link"
-            >
-              github.com/lirbank/pimdb
-            </a>
-          </div>
-        </div>
-        <h3>Google Calendar URL</h3>
-        <p>Generate shareable URLs for adding Google Calendar events.</p>
-        <div class="mt-4 flex flex-col gap-2">
-          <div class="flex items-center gap-4">
-            <Icon name="simple-icons:npm" class="size-6" />
-            <a
-              href="https://www.npmjs.com/package/google-calendar-url"
-              target="_blank"
-              class="link"
-            >
-              npmjs.com/package/google-calendar-url
-            </a>
-          </div>
-          <div class="flex items-center gap-4">
-            <Icon name="simple-icons:github" class="size-6" />
-            <a
-              href="https://github.com/lirbank/google-calendar-url"
-              target="_blank"
-              class="link"
-            >
-              github.com/lirbank/google-calendar-url
-            </a>
-          </div>
-        </div>
-      </section>
-    </container>
-    <container>
-      <section class="markdown">
+      <section id="projects" class="markdown scroll-mt-10">
         <ProjectsContent />
       </section>
     </container>

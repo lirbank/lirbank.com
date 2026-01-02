@@ -1,14 +1,20 @@
-## Select commercial projects
+## STΛR MODΞ
 
-I've recently spent six years as a tech lead, engineering manager, and product inventor within the **Applied AI Venture Studio** at [BootstrapLabs, an Ares Management company](https://www.aresmgmt.com/), a venture capital firm investing in applied AI. During this time, I led a series of applied AI projects.
+I run a software collective where we build open-source libraries, developer tools, and AI apps. Everything we ship reflects the same attention to detail and code quality I bring to client work.
 
-Here are a few favorite AI applications I've built or been a main contributor to.
+- **neon-testing** — Postgres integration tests, dead simple
+- **PimDB** — 4,000x faster in-browser database
+- **Heartbeats** — The first humanless bookkeeper
 
-### STΛR MODΞ
+**See the code, read the docs, try the tools** — this is how I build.
 
-Built from the ground up as an AI-first, humanless bookkeeper that handles financial business accounting without human intervention. Powered by OpenAI APIs and custom data pipelines, STΛR MODΞ employs a next-gen AI-driven user interface with voice input and voice+screen output.
+[Explore all projects on starmode.dev →](https://www.starmode.dev/)
 
-[Visit starmode.app](https://www.starmode.app/)
+## Client projects
+
+Over the past decade, I've built AI applications and ML tooling for venture-backed startups and enterprise clients—including work at the **Applied AI Venture Studio** of [BootstrapLabs, an Ares company](https://www.aresmgmt.com/).
+
+Here are a few AI projects I've led or been a main contributor to.
 
 ### BenAi
 

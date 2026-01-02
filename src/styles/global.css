@@ -73,6 +73,10 @@
     @apply text-cyan-600 underline underline-offset-3 hover:text-cyan-700;
   }
 
+  .markdown ul {
+    @apply ml-5 flex list-disc flex-col gap-2;
+  }
+
   /* Talk cards styling */
   .talk-content > p:first-child a {
     @apply text-cyan-600 underline underline-offset-3 hover:text-cyan-700;
