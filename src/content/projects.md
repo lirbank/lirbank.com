@@ -16,11 +16,24 @@ Over the past decade, I've built AI applications and ML tooling for venture-back
 
 Here are a few AI projects I've led or been a main contributor to.
 
+### Scoutbee ISS
+
+An AI-powered supplier search engine built for Fortune 50 procurement teams. Instant Supplier Search (ISS) enables buyers to find and evaluate suppliers across any category with natural-language queries and rich filtering. Designed for speed, precision, and scale in high-stakes sourcing workflows.
+
+[Visit Scoutbee ISS](https://scoutbee-iss.vercel.app/)\
+[Visit scoutbee.com](https://www.scoutbee.com/)
+
+<!--
+### Scoutbee Aura
+
+TODO
+-->
+
 ### BenAi
 
 A dedicated AI-first chatbot for health benefits administrators (TPAs), BenAi quickly and accurately answers questions on individual member claims and plans by ingesting plan documents and claims data at the individual member level. Built with OpenAI LLMs and custom embeddings.
 
-[Visit benefits-ai.com](https://www.benefits-ai.com/)
+_(Project archived)_
 
 ### Shorty
 
