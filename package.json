@@ -28,6 +28,7 @@
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19",
     "@types/bun": "^1.3.5",
     "@types/chrome": "^0.1.32",
     "prettier": "^3.7.4",

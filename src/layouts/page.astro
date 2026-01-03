@@ -3,11 +3,11 @@ import Layout from "./layout.astro";
 ---
 
 <Layout>
-  <main>
-    <container>
-      <section class="markdown">
-        <slot />
-      </section>
-    </container>
-  </main>
+  <div class="border-b border-stone-300/50 px-5 pb-5 sm:px-20">
+    <article
+      class="prose prose-stone sm:prose-lg prose-a:text-cyan-600 mx-auto"
+    >
+      <slot />
+    </article>
+  </div>
 </Layout>
