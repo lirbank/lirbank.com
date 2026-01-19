@@ -4,4 +4,6 @@ I'm Mikael Lirbank, based in Corte Madera, just north of the Golden Gate Bridge 
 
 With over 20 years of experience, I've built a strong track record of building apps from scratch, rescuing existing ones, and leading development teams. I'm a tech lead, product manager, UI designer, and code quality expert, known for taking ownership of every project and delivering predictability and peace of mind to my clients.
 
-<img src="/progress-pride-flag.svg" alt="Progress Pride flag" class="inline-block w-6" aria-label="Progress Pride flag" />&nbsp;I'm committed to DEI and creating an environment where everyone feels safe, respected, and able to work together openly.
+<!-- <img src="/progress-pride-flag.svg" alt="Progress Pride flag" class="inline-block w-6" aria-label="Progress Pride flag" />&nbsp;I'm committed to DEI and creating an environment where everyone feels safe, respected, and able to work together openly. -->
+
+<img src="/progress-pride-flag.svg" alt="Progress Pride flag" class="inline-block w-6" aria-label="Progress Pride flag" />&nbsp;I believe everyone deserves to feel safe, respected, and welcome—everywhere, always. That means creating an environment where people can contribute openly, ask questions freely, and be themselves. It also means calling out discrimination and exclusionary behavior—silence isn't neutrality.
