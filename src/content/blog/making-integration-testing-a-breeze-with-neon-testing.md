@@ -1,4 +1,12 @@
+---
+title: Making integration testing a breeze with Neon Testing
+description: Reliable integration tests against real Postgres with Neon Testing. No mocks, no drift, no infrastructure headache.
+date: "2025-09-09"
+---
+
 # Making integration testing a breeze with Neon Testing
+
+_A version of this post was published on the [Neon blog](https://neon.com/blog/neon-testing-a-vitest-library-for-your-integration-tests)._
 
 Your tests pass, but your production deploy fails because of a unique constraint violation. Sound familiar? The problem isn't your code—it's that you're testing mocks instead of real database behavior, or your test database has drifted from production. Either way, your tests aren't reflecting what will actually happen when your code hits production.
 
