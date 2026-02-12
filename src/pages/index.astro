@@ -27,7 +27,11 @@ const sortedTalks = talks.sort(
 );
 ---
 
-<Layout>
+<Layout
+  title={metadata.name}
+  description={metadata.description}
+  ogImage={metadata.shareCard}
+>
   <main id="main" class="scroll-mt-20">
     <!-- 1. Hero -->
     <container>

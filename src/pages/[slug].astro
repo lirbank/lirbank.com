@@ -1,6 +1,7 @@
 ---
 import { getCollection, getEntry, render } from "astro:content";
-import Article from "../layouts/article.astro";
+import Layout from "../layouts/layout.astro";
+import metadata from "../../metadata.json";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -17,7 +18,6 @@ const { Content } = await render(entry);
 
 const title = entry.data.title;
 const description = entry.data.description;
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 
 function formatDate(dateStr: string | undefined) {
   if (!dateStr) return null;
@@ -29,13 +29,15 @@ function formatDate(dateStr: string | undefined) {
 }
 ---
 
-<Article
+<Layout
   title={title}
   description={description}
-  date={entry.data.published}
-  updated={entry.data.updated}
-  slug={slug}
-  canonicalUrl={canonicalUrl}
+  ogImage={`/og/${slug}.png`}
+  article={{
+    date: entry.data.published,
+    updated: entry.data.updated,
+    author: metadata.name,
+  }}
 >
   <div class="border-b border-stone-300/50 px-5 pb-5 sm:px-20">
     <article
@@ -59,4 +61,4 @@ function formatDate(dateStr: string | undefined) {
       <Content />
     </article>
   </div>
-</Article>
+</Layout>
