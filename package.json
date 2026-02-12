@@ -6,6 +6,7 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "check": "astro check",
     "build": "bun test && prettier --check . && astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -19,6 +20,7 @@
     "chrome:build": "bun build ./chrome/background.ts --outdir ./chrome"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.6",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.17.1",
     "astro-icon": "^1.1.5",
