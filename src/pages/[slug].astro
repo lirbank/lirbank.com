@@ -16,9 +16,6 @@ if (!entry) return Astro.redirect("/404");
 
 const { Content } = await render(entry);
 
-const title = entry.data.title;
-const description = entry.data.description;
-
 function formatDate(dateStr: string | undefined) {
   if (!dateStr) return null;
   return new Date(dateStr + "T00:00:00").toLocaleDateString("en-US", {
@@ -30,8 +27,8 @@ function formatDate(dateStr: string | undefined) {
 ---
 
 <Layout
-  title={title}
-  description={description}
+  title={entry.data.title}
+  description={entry.data.description}
   ogImage={`/og/${slug}.png`}
   article={{
     date: entry.data.published,
@@ -39,26 +36,19 @@ function formatDate(dateStr: string | undefined) {
     author: metadata.name,
   }}
 >
-  <div class="border-b border-stone-300/50 px-5 pb-5 sm:px-20">
-    <article
-      class="prose prose-stone sm:prose-lg prose-a:text-cyan-600 mx-auto"
-    >
-      <header class="mb-6">
-        <h1 class="mb-2">{title}</h1>
-        <div class="space-y-1 text-sm text-stone-500">
-          <time datetime={entry.data.published}>
-            {formatDate(entry.data.published)}
-          </time>
-          {
-            entry.data.updated && (
-              <span class="block">
-                Updated {formatDate(entry.data.updated)}
-              </span>
-            )
-          }
-        </div>
+  <section>
+    <article class="prose prose-stone sm:prose-lg prose-a:text-cyan-600">
+      <header class="flex flex-col gap-2 pb-2 text-sm text-stone-600">
+        <time datetime={entry.data.published}>
+          {formatDate(entry.data.published)}
+        </time>
+        {
+          entry.data.updated && (
+            <span class="block">Updated {formatDate(entry.data.updated)}</span>
+          )
+        }
       </header>
       <Content />
     </article>
-  </div>
+  </section>
 </Layout>
