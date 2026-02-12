@@ -2,6 +2,7 @@
 title: Making integration testing a breeze with Neon Testing
 description: Reliable integration tests against real Postgres with Neon Testing. No mocks, no drift, no infrastructure headache.
 date: "2025-09-09"
+updated: null
 ---
 
 # Making integration testing a breeze with Neon Testing

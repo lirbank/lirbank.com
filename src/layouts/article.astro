@@ -6,16 +6,17 @@ import metadata from "../../metadata.json";
 interface Props {
   title: string;
   description: string;
-  date?: string;
-  updated?: string;
-  image?: string;
+  date: string;
+  updated?: string | null;
+  slug: string;
   canonicalUrl: string;
 }
 
-const { title, description, date, updated, image, canonicalUrl } = Astro.props;
+const { title, description, date, updated, slug, canonicalUrl } = Astro.props;
 const year = new Date().getFullYear();
 
-const ogImage = image ?? metadata.shareCard;
+const autoOgImage = slug ? `/og/${slug}.png` : null;
+const ogImage = autoOgImage ?? metadata.shareCard;
 const ogImageUrl =
   ogImage.startsWith("http") || ogImage.startsWith("//")
     ? ogImage
