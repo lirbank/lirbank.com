@@ -14,13 +14,7 @@ interface Props {
 
 const { title, description, date, updated, slug, canonicalUrl } = Astro.props;
 const year = new Date().getFullYear();
-
-const autoOgImage = slug ? `/og/${slug}.png` : null;
-const ogImage = autoOgImage ?? metadata.shareCard;
-const ogImageUrl =
-  ogImage.startsWith("http") || ogImage.startsWith("//")
-    ? ogImage
-    : new URL(ogImage, Astro.site).href;
+const ogImageUrl = new URL(`/og/${slug}.png`, Astro.site).href;
 ---
 
 <html lang="en" class="scroll-smooth">

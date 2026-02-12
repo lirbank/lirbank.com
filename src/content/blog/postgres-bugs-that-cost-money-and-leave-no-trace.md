@@ -1,7 +1,7 @@
 ---
 title: Postgres bugs that cost money and leave no trace
 description: Every race condition you've ever fixed is one refactor away from coming back. Synchronization barriers change that.
-date: "2026-02-10"
+published: "2026-02-10"
 updated: null
 ---
 

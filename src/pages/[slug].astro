@@ -15,8 +15,8 @@ if (!entry) return Astro.redirect("/404");
 
 const { Content } = await render(entry);
 
-const title = entry.data.title ?? entry.id;
-const description = entry.data.description ?? "";
+const title = entry.data.title;
+const description = entry.data.description;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 
 function formatDate(dateStr: string | undefined) {
@@ -32,7 +32,7 @@ function formatDate(dateStr: string | undefined) {
 <Article
   title={title}
   description={description}
-  date={entry.data.date}
+  date={entry.data.published}
   updated={entry.data.updated}
   slug={slug}
   canonicalUrl={canonicalUrl}
@@ -44,13 +44,9 @@ function formatDate(dateStr: string | undefined) {
       <header class="mb-6">
         <h1 class="mb-2">{title}</h1>
         <div class="space-y-1 text-sm text-stone-500">
-          {
-            entry.data.date && (
-              <time datetime={entry.data.date}>
-                {formatDate(entry.data.date)}
-              </time>
-            )
-          }
+          <time datetime={entry.data.published}>
+            {formatDate(entry.data.published)}
+          </time>
           {
             entry.data.updated && (
               <span class="block">
