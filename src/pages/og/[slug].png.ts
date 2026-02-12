@@ -10,6 +10,7 @@ import type { APIRoute, GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 import satori from "satori";
 import sharp from "sharp";
+import { readFileSync } from "node:fs";
 import { createMarkup, WIDTH, HEIGHT } from "../../lib/og";
 
 // Satori doesn't support woff2, so we can't use the same gstatic URL the
@@ -17,31 +18,38 @@ import { createMarkup, WIDTH, HEIGHT } from "../../lib/og";
 const FONT_URL = "https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin";
 
 /**
- * Loads the Inter font from fontsource.org
+ * All Inter weights (100–900). Fetched in parallel at build time, no runtime cost.
  */
+const WEIGHTS = [100, 200, 300, 400, 500, 600, 700, 800, 900] as const;
+
 async function loadFonts() {
-  const [regular, bold] = await Promise.all([
-    fetch(`${FONT_URL}-400-normal.woff`).then((r) => r.arrayBuffer()),
-    fetch(`${FONT_URL}-700-normal.woff`).then((r) => r.arrayBuffer()),
-  ]);
-  return [
-    {
-      name: "Inter",
-      data: regular,
-      weight: 400 as const,
-      style: "normal" as const,
-    },
-    {
-      name: "Inter",
-      data: bold,
-      weight: 700 as const,
-      style: "normal" as const,
-    },
-  ];
+  const buffers = await Promise.all(
+    WEIGHTS.map((w) =>
+      fetch(`${FONT_URL}-${w}-normal.woff`).then((r) => r.arrayBuffer()),
+    ),
+  );
+  return WEIGHTS.map((weight, i) => ({
+    name: "Inter",
+    data: buffers[i],
+    weight,
+    style: "normal" as const,
+  }));
 }
 
 // Fetched once at build time, shared across all routes
 const fontsPromise = loadFonts();
+
+/**
+ * Pre-rasterize the SVG logo to a high-res PNG buffer so Satori can embed it
+ * as a crisp image (Satori's inline SVG support is limited and produces blur).
+ */
+const logoPromise = sharp(
+  readFileSync(new URL("../../../public/brand/icon.svg", import.meta.url)),
+)
+  .resize(128, 128)
+  .png()
+  .toBuffer()
+  .then((buf) => new Uint8Array(buf).buffer as ArrayBuffer);
 
 /**
  * Enumerates all blog posts to generate the static paths
@@ -76,7 +84,8 @@ async function renderToPng(markup: ReturnType<typeof createMarkup>) {
  * The API route that generates the OG image
  */
 export const GET: APIRoute = async ({ props }) => {
-  const markup = createMarkup(props.title, props.description);
+  const logo = await logoPromise;
+  const markup = createMarkup(props.title, props.description, logo);
   const png = await renderToPng(markup);
 
   return new Response(new Uint8Array(png), {
