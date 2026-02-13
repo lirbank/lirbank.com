@@ -1,48 +1,48 @@
 ---
-title: Postgres bugs that cost money and leave no trace
-description: Every race condition you've ever fixed is one refactor away from coming back. Synchronization barriers change that.
-published: "2026-02-10"
+title: "Harnessing Postgres race conditions"
+description: "Synchronization barriers let you test for race conditions with confidence."
+published: "2026-02-12"
 updated: null
+author: "Mikael Lirbank"
 ---
 
-# Postgres bugs that cost money and leave no trace
+# Harnessing Postgres race conditions
 
-Every race condition you've ever fixed is one refactor away from coming back. And your test suite can't catch it.
+Without race condition tests, every possible race condition in your system is one refactor away from hitting production.
 
-Synchronization barriers change that. They let you force concurrent operations to interleave in exactly the dangerous order — deterministically, every time.
+Synchronization barriers let you write those tests with confidence.
 
 ## What a race condition looks like
 
-Say you have a function that credits an account. It reads the current balance, adds an amount, and writes the new value back. (Yes, this specific case could be a single `UPDATE balance = balance + 50`. The pattern matters when the computation can't be expressed as one statement — which is most real-world cases.)
+You have a function that credits an account. It reads the current balance, adds an amount, and writes the new value back. (Yes, this specific case could be a single `UPDATE balance = balance + 50`. The pattern matters when the computation can't be expressed as one statement.)
 
-When two requests run this concurrently — two $50 credits to an account with a $100 balance — here's what happens:
+When two requests run this concurrently — two $50 credits to an account with a $100 balance — the timing can line up like this:
 
 ```
-T1: SELECT balance → 100
-T2: SELECT balance → 100
-T1: UPDATE balance = 150
-T2: UPDATE balance = 150
+P1: SELECT balance → 100
+P2: SELECT balance → 100
+     ── both read 100, now both write based on it ──
+P1: UPDATE balance = 150
+P2: UPDATE balance = 150
 ```
 
-Both read 100. Both compute 150. Both write 150. Final balance: $150 instead of $200. One credit vanished. No error was raised. No transaction was rolled back. The database did exactly what it was told.
+Both read 100. Both compute 150. Both write 150. Final balance: $150 instead of $200. One $50 credit vanished. No error was raised. No transaction was rolled back. The database did exactly what it was told.
 
 This is the shape of every write race condition: two operations read the same stale value, then both write based on it. The second write overwrites the first. In a system that handles money, that's a customer with a wrong balance and no error in any log to explain it.
 
-## The testing gap
+## The testing challenge
 
-You know this pattern exists. You handle it — `SELECT ... FOR UPDATE`, proper locking, the right isolation level. The problem isn't knowledge. It's proof.
+Your test suite runs one request at a time. The interleaving above never happens. The test passes whether your code handles concurrency correctly or not.
 
-Your test suite runs one request at a time. The interleaving above never happens. The test passes with the locking, and it passes without it. If someone refactors the query and drops the `FOR UPDATE`, every test stays green. The race condition is back in production and nothing in your CI pipeline tells you.
-
-You could add `sleep()` calls to try to force the overlap. This buys you a slow, flaky test that sometimes catches the bug and sometimes doesn't, depending on how busy the CI server is. You're not testing concurrency — you're rolling dice.
+You could add `sleep()` between the two queries to try to force the overlap. This buys you a slow, flaky test that sometimes catches the bug and sometimes doesn't. You could run the test a thousand times and hope the timing lines up at least once. Both approaches are the same bet — you're not testing concurrency, you're rolling dice.
 
 What you need is a way to force two operations to read the same stale value before either writes. Every time. Not probabilistically.
 
-## Barriers
+You know this pattern exists. You know it's dangerous. The problem isn't knowledge. It's proof.
+
+## Synchronization barriers
 
 A barrier is a synchronization point for concurrent operations. You tell it how many tasks to expect. Each task runs independently until it hits the barrier, then waits. When the last task arrives, all of them are released at once.
-
-[DIAGRAM: two tasks running independently, both hitting the barrier, waiting, then released simultaneously]
 
 ```typescript
 function createBarrier(count: number) {
@@ -64,43 +64,54 @@ A counter and a list of waiters. Each caller increments the count. If it's not t
 
 Place a barrier between the read and the write in concurrent code, and you force the exact interleaving from the previous section: every task reads before any task writes. That's the race condition, manufactured on demand.
 
-## Putting it to work
+## The barrier in action
 
-Here's the crediting function under three levels of protection: no transactions, transactions, and `SELECT ... FOR UPDATE`. Same barrier, same test, same two concurrent $50 credits. The barrier shows what each level actually does.
+Apply the barrier to the crediting function from earlier. Run the same test — two concurrent $50 credits — under three levels of protection. The results are instructive.
 
-### No transactions
+### 1. Bare queries
 
 The simplest case: no transaction, just a SELECT and an UPDATE with a barrier between them:
 
 ```typescript
+// Create a barrier that blocks until 2 tasks have arrived, then releases all of
+// them at once.
 const barrier = createBarrier(2);
 
 const credit = async (accountId: number, amount: number) => {
+  // Step 1: read the current balance
   const [row] = await db.execute(
     sql`SELECT balance FROM accounts WHERE id = ${accountId}`,
   );
+
+  // Step 2: wait here until the other task has also read. This guarantees both
+  // tasks read before either writes.
   await barrier();
+
+  // Step 3: compute and write the new balance
   const newBalance = row.balance + amount;
   await db.execute(
     sql`UPDATE accounts SET balance = ${newBalance} WHERE id = ${accountId}`,
   );
 };
 
+// Run two $50 credits at the same time
 await Promise.all([credit(1, 50), credit(1, 50)]);
+
+// Check the final balance
 const [result] = await db.execute(
   sql`SELECT balance FROM accounts WHERE id = 1`,
 );
-expect(result.balance).toBe(200);
+expect(result.balance).toBe(200); // fails — balance is 150, not 200
 ```
 
 The test fails:
 
 ```
-T1: SELECT balance → 100
-T2: SELECT balance → 100
+P1: SELECT balance → 100
+P2: SELECT balance → 100
      ── barrier releases both ──
-T1: UPDATE balance = 150
-T2: UPDATE balance = 150
+P1: UPDATE balance = 150
+P2: UPDATE balance = 150
 
 Expected: 200
 Received: 150
@@ -108,12 +119,13 @@ Received: 150
 
 The same interleaving from earlier, now happening inside your test suite. Deterministic. No timing tricks.
 
-### Adding transactions
+### 2. Adding transactions
 
 Wrap the operation in a transaction:
 
 ```typescript
 const credit = async (accountId: number, amount: number) => {
+  // Same logic, now inside a transaction
   await db.transaction(async (tx) => {
     const [row] = await tx.execute(
       sql`SELECT balance FROM accounts WHERE id = ${accountId}`,
@@ -148,15 +160,15 @@ The transaction changed nothing. Postgres's default isolation level is READ COMM
 
 A transaction gives you a consistent snapshot per statement. It does not give you a write lock. The barrier just proved these are different things.
 
-### Adding FOR UPDATE
+### 3. Adding write locks
 
-`SELECT ... FOR UPDATE` acquires a row-level lock at read time. The second transaction can't read the same row until the first one commits:
+`SELECT ... FOR UPDATE` acquires a row-level lock at read time. Another transaction trying to lock the same row blocks until the first one commits:
 
 ```typescript
 const credit = async (accountId: number, amount: number) => {
   await db.transaction(async (tx) => {
     const [row] = await tx.execute(
-      sql`SELECT balance FROM accounts WHERE id = ${accountId} FOR UPDATE`,
+      sql`SELECT balance FROM accounts WHERE id = ${accountId} FOR UPDATE`, // lock the row
     );
     await barrier();
     const newBalance = row.balance + amount;
@@ -167,27 +179,37 @@ const credit = async (accountId: number, amount: number) => {
 };
 ```
 
-Same test. Something different happens.
+Same barrier, same test. Something different happens:
+
+```
+T1: BEGIN
+T1: SELECT balance FOR UPDATE → 100 (acquires lock)
+T2: BEGIN
+T2: SELECT balance FOR UPDATE → ☐ blocked (waiting for T1's lock)
+     ── T1 is at the barrier, waiting for T2.
+        T2 is at the lock, waiting for T1.
+        Neither can proceed. ──
+```
 
 The first task executes `SELECT ... FOR UPDATE` and acquires the lock. The second task tries the same query and blocks — it can't read the row until the first task releases the lock. The second task never reaches the barrier. The barrier is waiting for two tasks, but only one arrived.
 
 The barrier deadlocks.
 
-## Don't accept the deadlock
+### 4. The deadlock
 
-The deadlock proves the lock is there. You've validated the behavior. But a hanging test can't live in CI. So what do you do? If you don't know the next step, the natural response is to accept the proof and move on — remove the barrier, disable the test, whatever gets the suite green again.
+The deadlock proves the lock is there. You've validated the behavior. But a hanging test can't live in CI. The pragmatic response is to accept the proof and move on — remove the barrier, disable the test, whatever gets the suite green again.
 
-And now you have no regression protection. When someone removes the `FOR UPDATE` six months from now, nothing catches it. The proof is gone. The lock is gone. The race condition is back.
+That works until a refactor rewrites the query six months later. Nothing catches the lost lock.
 
 The deadlock is not a dead end. It's a signal that the barrier is in the wrong place.
 
-## Moving the barrier
+### 5. Moving the barrier
 
-The barrier between read and write made sense for the earlier tests — it forced both tasks to read stale data before either could write. But with `FOR UPDATE`, the lock happens at read time.
+Placing the barrier between read and write made sense for the earlier tests — it forced both tasks to read stale data before either could write, as we wanted. But with `FOR UPDATE`, the lock happens at read time.
 
-The key thing: both transactions need to be running before either tries to lock. That's what happens in production — two requests arrive at the same time, both start transactions, and then the lock decides who goes first. If your test doesn't reproduce that condition, it's not testing contention.
+The deadlock happened because one transaction held the lock while waiting at the barrier for the other — but the other was stuck on the lock and never arrived.
 
-That means the barrier goes earlier. Place it after BEGIN but before the SELECT. The goal is both transactions running before either tries to lock.
+Move the barrier earlier — after BEGIN, before the SELECT — so both transactions have started before either tries to lock.
 
 With `FOR UPDATE`:
 
@@ -203,7 +225,8 @@ T2: SELECT balance FOR UPDATE → 150     -- reads updated value
 T2: UPDATE balance = 200
 T2: COMMIT
 
-Result: 200 ✓
+Expected: 200
+Received: 200 ✓
 ```
 
 The barrier releases both tasks into their SELECT simultaneously. `FOR UPDATE` serializes them — T1 gets the lock, T2 waits at the SELECT. When T1 commits, T2 reads the updated value and computes correctly. The test passes, runs to completion, and verifies the actual result.
@@ -227,11 +250,17 @@ Received: 150
 
 Same barrier, same position. Without the lock, both read stale data. Test fails.
 
-This is what a correct barrier test looks like: passes with the fix, fails without it. No deadlocks, no timeouts, clear pass/fail.
+> **Important:** A correct barrier test passes with the lock and fails without it. If it doesn't do both, it proves nothing. Every time you change the barrier or the code it tests, verify both directions.
 
-## Getting the barrier inside the function
+## Putting it to use
 
-There's a practical problem. Barriers are test infrastructure — they shouldn't exist in production code. In the earlier examples, the barrier was baked into the function body. That works for a demonstration, but you need a way to inject the barrier only when testing.
+### Testing against a real database
+
+These tests need a real Postgres instance — mocks have no locks, no transactions, no contention to reproduce. There are many ways to do this. I use [Neon Testing](https://www.npmjs.com/package/neon-testing), which also provides a `createBarrier` function.
+
+### Injecting barriers with hooks
+
+Barriers are test infrastructure — they shouldn't exist in production code. In the earlier examples, the barrier was baked into the function body. That works for a demonstration, but you need a way to inject the barrier only when running tests.
 
 The solution is a hook: an optional callback that fires at the right point inside the transaction. Production callers don't pass it. Tests inject the barrier through it.
 
@@ -270,79 +299,22 @@ const [result] = await db.execute(
 expect(result.balance).toBe(200);
 ```
 
-Production code calls `credit(1, 50)`. No hooks, no barrier, no overhead.
-
-This is the pattern used in [Touch](https://github.com/starmode-base/touch), a WebAuthn-based encryption tool with real barrier-based concurrency tests. Here's the actual function that deletes passkeys while enforcing a business rule — users must always keep at least one:
+Production code is unchanged:
 
 ```typescript
-export function deletePasskey(
-  ids: string[],
-  viewerId: string,
-  hooks?: { onTxBegin?: () => Promise<void> | void },
-) {
-  return db().transaction(async (tx) => {
-    if (hooks?.onTxBegin) {
-      await hooks.onTxBegin();
-    }
-
-    const rows = await tx
-      .select({ id: schema.passkeys.id })
-      .from(schema.passkeys)
-      .where(eq(schema.passkeys.user_id, viewerId))
-      .for("update");
-
-    const rowsToDelete = rows.filter((row) => ids.includes(row.id));
-
-    if (rows.length - rowsToDelete.length < 1) {
-      throw new Error("Cannot delete the last passkey");
-    }
-
-    await tx
-      .delete(schema.passkeys)
-      .where(
-        and(
-          eq(schema.passkeys.user_id, viewerId),
-          inArray(schema.passkeys.id, ids),
-        ),
-      );
-  });
-}
+await credit(1, 50);
 ```
 
-And the test that proves concurrent deletions can't violate the business rule:
+No hooks, no barrier, no overhead.
 
-```typescript
-test("concurrent deletion of different passkeys leaves at least one", async () => {
-  const user = await seedUser();
-  const passkey1 = await seedPasskey(user.id);
-  const passkey2 = await seedPasskey(user.id);
+For a complete example, [Touch](https://github.com/starmode-base/touch) uses this pattern to protect a business rule: users must always keep at least one passkey. The [function](https://github.com/starmode-base/touch) uses `FOR UPDATE` with an `onTxBegin` hook, and the [barrier test](https://github.com/starmode-base/touch) proves two concurrent deletions can't violate that rule.
 
-  const barrier = createBarrier(2);
+## Don't ship vanity tests
 
-  await Promise.allSettled([
-    deletePasskey([passkey1.id], user.id, { onTxBegin: barrier }),
-    deletePasskey([passkey2.id], user.id, { onTxBegin: barrier }),
-  ]);
+Six months from now, someone refactors the data access layer. The query gets rewritten, the function gets restructured, the lock gets lost in the shuffle. With the barrier test in your suite, that change doesn't ship. The test fails before it leaves the developer's machine.
 
-  const passkeys = await db()
-    .select()
-    .from(schema.passkeys)
-    .where(eq(schema.passkeys.user_id, user.id));
-
-  expect(passkeys.length).toBeGreaterThanOrEqual(1);
-});
-```
-
-The barrier synchronizes the concurrent operations, `FOR UPDATE` serializes the reads, the test verifies the business rule holds. Remove the `.for("update")` and the test fails — both transactions see two passkeys, both allow the deletion, the user loses all their keys.
-
-## The regression guard
-
-Six months from now, someone refactors the data access layer. The query gets rewritten, the ORM changes, the function gets restructured. The `FOR UPDATE` gets lost in the shuffle. All other tests pass. The change ships. The race condition is back.
-
-With the barrier test in your suite, that change doesn't ship. The test fails. The regression is caught before it leaves the developer's machine.
-
-After writing a barrier test, remove the protection and verify the test fails. If the test passes with and without the fix, you have a vanity test — it proves nothing. The validation is simple: passes with the fix, fails without it.
+But only if you verified the test. After writing a barrier test, remove the lock and confirm the test fails. If it passes both with and without the lock, it's a vanity test — it catches nothing. The check takes seconds. Do it every time.
 
 ---
 
-Every race condition you've ever fixed is still one refactor away from coming back. Now your test suite catches it.
+Without barrier tests, every possible race condition in your system is one refactor away from hitting production. Now you know.
