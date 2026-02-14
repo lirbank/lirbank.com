@@ -8,7 +8,7 @@ author: "Mikael Lirbank"
 
 # Simplify Postgres integration testing
 
-_A version of this post was published on the [Neon blog](https://neon.com/blog/neon-testing-a-vitest-library-for-your-integration-tests)._
+_A version of this article was published on the [Neon blog](https://neon.com/blog/neon-testing-a-vitest-library-for-your-integration-tests)._
 
 Our tests pass, but our production deploy fails because of a unique constraint violation. Sound familiar? The problem isn't our code—it's that we're testing mocks instead of real database behavior, or our test database has drifted from production. Either way, our tests aren't reflecting what will actually happen when our code hits production.
 

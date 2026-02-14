@@ -1,7 +1,7 @@
 /** @jsx h */
 
 /**
- * OG image markup for blog post share cards (1200x630)
+ * OG image markup for article share cards (1200x630)
  *
  * Uses a tiny JSX factory so we can write readable markup that compiles
  * directly to the { type, props } objects Satori expects — no React needed.

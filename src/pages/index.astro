@@ -26,7 +26,7 @@ const sortedTalks = talks.sort(
   (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99),
 );
 
-const articles = (await getCollection("blog")).sort(
+const articles = (await getCollection("articles")).sort(
   (a, b) =>
     new Date(b.data.published).getTime() - new Date(a.data.published).getTime(),
 );
@@ -112,19 +112,19 @@ function formatArticleDate(dateStr: string) {
       <section aria-labelledby="articles">
         <h2 id="articles" class="scroll-mt-20">Articles</h2>
         {
-          articles.map((post) => {
-            const slug = post.id.replace(/\.md$/, "");
+          articles.map((article) => {
+            const slug = article.id.replace(/\.md$/, "");
             return (
               <div class="py-2">
                 <p class="text-base! text-stone-500">
-                  {formatArticleDate(post.data.published)}
+                  {formatArticleDate(article.data.published)}
                 </p>
                 <h3 class="mt-1!">
                   <a href={`/${slug}`} class="no-style">
-                    {post.data.title}
+                    {article.data.title}
                   </a>
                 </h3>
-                <p>{post.data.description}</p>
+                <p>{article.data.description}</p>
               </div>
             );
           })

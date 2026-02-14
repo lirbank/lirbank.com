@@ -1,7 +1,7 @@
 /**
  * OG image endpoint — generates PNG share cards at build time
  *
- * Astro calls getStaticPaths() to enumerate all blog posts, then hits GET()
+ * Astro calls getStaticPaths() to enumerate all articles, then hits GET()
  * for each one. Satori renders HTML/CSS to SVG, Sharp converts to PNG.
  *
  * Output: /og/{slug}.png (same URLs the article layout already references)
@@ -52,15 +52,15 @@ const logoPromise = sharp(
   .then((buf) => new Uint8Array(buf).buffer as ArrayBuffer);
 
 /**
- * Enumerates all blog posts to generate the static paths
+ * Enumerate all articles to generate the static paths
  */
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getCollection("blog");
-  return posts.map((post) => ({
-    params: { slug: post.id.replace(/\.md$/, "") },
+  const articles = await getCollection("articles");
+  return articles.map((article) => ({
+    params: { slug: article.id.replace(/\.md$/, "") },
     props: {
-      title: post.data.title ?? post.id,
-      description: post.data.description ?? "",
+      title: article.data.title ?? article.id,
+      description: article.data.description ?? "",
     },
   }));
 };
