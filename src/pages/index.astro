@@ -25,6 +25,19 @@ const talks = await getCollection("talks");
 const sortedTalks = talks.sort(
   (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99),
 );
+
+const articles = (await getCollection("blog")).sort(
+  (a, b) =>
+    new Date(b.data.published).getTime() - new Date(a.data.published).getTime(),
+);
+
+function formatArticleDate(dateStr: string) {
+  return new Date(dateStr + "T00:00:00").toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+  });
+}
 ---
 
 <Layout
@@ -36,14 +49,12 @@ const sortedTalks = talks.sort(
     <!-- 1. Hero -->
     <container>
       <div class="bg-cyan-600 px-8 py-2 text-center text-white">
-        My new guest post on integration testing with Neon and Vitest, read it
-        on{" "}
+        New article: Harnessing Postgres race conditions —{" "}
         <a
-          href="https://neon.com/blog/neon-testing-a-vitest-library-for-your-integration-tests"
-          target="_blank"
+          href="/harnessing-postgres-race-conditions"
           class="text-nowrap text-cyan-50 underline hover:text-white"
         >
-          Neon.com
+          Read it here
         </a>
       </div>
       <section
@@ -96,36 +107,28 @@ const sortedTalks = talks.sort(
       </section>
     </container>
 
-    <!-- 3. Blog posts (no nav) -->
+    <!-- 3. Articles (no nav) -->
     <container>
-      <section>
-        <h2>Guest posts</h2>
-        <!-- <p>
-            I enjoy sharing my expertise through technical writing, contributing
-            insights on modern development practices, testing strategies, and
-            emerging technologies.
-
-             I enjoy sharing my expertise through
-            technical writing and contributing to the developer community.
-
-          </p> -->
-        <p class="text-base! text-stone-500">Sep 09, 2025</p>
-        <h3 class="mt-1!">
-          Neon Testing: a Vitest Library for Your Integration Tests
-        </h3>
-        <p>
-          🚀 My guest post for the Neon blog is live! Want to make Postgres
-          integration testing dead simple? Read on:
-        </p>
-        <p class="mt-!">
-          <a
-            href="https://neon.com/blog/neon-testing-a-vitest-library-for-your-integration-tests"
-            target="_blank"
-            class="link"
-          >
-            Set up disposable Postgres test databases powered by Neon branching
-          </a>
-        </p>
+      <section aria-labelledby="articles">
+        <h2 id="articles" class="scroll-mt-20">Articles</h2>
+        {
+          articles.map((post) => {
+            const slug = post.id.replace(/\.md$/, "");
+            return (
+              <div class="py-2">
+                <p class="text-base! text-stone-500">
+                  {formatArticleDate(post.data.published)}
+                </p>
+                <h3 class="mt-1!">
+                  <a href={`/${slug}`} class="no-style">
+                    {post.data.title}
+                  </a>
+                </h3>
+                <p>{post.data.description}</p>
+              </div>
+            );
+          })
+        }
       </section>
     </container>
 
