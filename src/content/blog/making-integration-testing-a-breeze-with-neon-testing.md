@@ -1,38 +1,31 @@
 ---
-title: Making integration testing a breeze with Neon Testing
-description: Reliable integration tests against real Postgres with Neon Testing. No mocks, no drift, no infrastructure headache.
+title: "Simplify Postgres integration testing"
+description: "Neon Testing lets you test against real Postgres with zero infrastructure."
 published: "2025-09-09"
-updated: null
+updated: "2026-02-13"
+author: "Mikael Lirbank"
 ---
 
-# Making integration testing a breeze with Neon Testing
+# Simplify Postgres integration testing
 
 _A version of this post was published on the [Neon blog](https://neon.com/blog/neon-testing-a-vitest-library-for-your-integration-tests)._
 
-Your tests pass, but your production deploy fails because of a unique constraint violation. Sound familiar? The problem isn't your code—it's that you're testing mocks instead of real database behavior, or your test database has drifted from production. Either way, your tests aren't reflecting what will actually happen when your code hits production.
+Our tests pass, but our production deploy fails because of a unique constraint violation. Sound familiar? The problem isn't our code—it's that we're testing mocks instead of real database behavior, or our test database has drifted from production. Either way, our tests aren't reflecting what will actually happen when our code hits production.
 
 To be confident our code behaves as expected, our tests need to run against a real database that's in sync with production. But that's easier said than done—spinning up containers, managing schema migrations, coordinating between dev environments, CI/CD pipelines, and production. Many teams either skip it entirely or settle for inadequate mocks.
 
-That's where [Neon branching](https://neon.tech/docs/introduction/branching) and [Neon Testing](https://www.npmjs.com/package/neon-testing) change everything. Neon gives you instant, isolated copies of your production database without infrastructure headache. Neon Testing turns those branches into disposable test environments, so your tests run against the same database constraints and behaviors as production.
+That's where [Neon branching](https://neon.com/docs/introduction/branching) and [Neon Testing](https://www.npmjs.com/package/neon-testing) change everything. Neon gives you instant, isolated copies of your production database without infrastructure headache. Neon Testing turns those branches into disposable test environments, so your tests run against the same database constraints and behaviors as production.
 
-The result? Reliable integration tests that are finally as easy as unit tests, and the confidence to release more often—even on Fridays!
-
-## Why I built Neon Testing
-
-I'm [Mikael Lirbank](https://www.lirbank.com/). I build robust, reliable, high-quality AI systems. Neon Testing started as a way to make my own integration testing easier, and it worked so well that I open-sourced it.
+The result? Reliable integration tests that are as easy as unit tests.
 
 ## Getting started
 
-Let's start with a simple example. Here's a basic user creation function that relies on a unique index to prevent multiple users with the same email address.
+Here's a user creation function that relies on a unique index to prevent duplicate emails.
 
 ```ts
 // db/users.ts
-import { Pool } from "@neondatabase/serverless";
-
-const pool = new Pool({ connectionString: process.env.DATABASE_URL! });
-
 export async function createUser(email: string) {
-  return pool.query("INSERT INTO users (email) VALUES ($1)", [email]);
+  return sql`INSERT INTO users (email) VALUES (${email})`;
 }
 ```
 
@@ -64,11 +57,11 @@ export default defineConfig({
 Create a small setup module that you'll reuse across all your test files.
 
 ```ts
-// test-setup.ts
+// neon-testing.ts
 import { makeNeonTesting } from "neon-testing";
 
 // Configure once (see npm docs for options)
-export const withNeonTestBranch = makeNeonTesting({
+export const neonTesting = makeNeonTesting({
   apiKey: process.env.NEON_API_KEY!,
   projectId: process.env.NEON_PROJECT_ID!,
   // Recommended for Neon WebSocket drivers to automatically close connections:
@@ -78,16 +71,16 @@ export const withNeonTestBranch = makeNeonTesting({
 
 ### Step 2: Write tests that verify real database behavior
 
-Now you can test the actual constraint behavior against your real production schema (with or without production data, or even with anonymized production data). Each test file automatically gets its own fresh database clone on each run, so tests are completely isolated.
+Now you can test the actual constraint behavior against your real production schema (with or without production data). Each test file automatically gets its own fresh database clone on each run, so tests are completely isolated.
 
 ```ts
 // db/users.test.ts
 import { test, expect } from "vitest";
-import { withNeonTestBranch } from "../test-setup";
+import { neonTesting } from "../neon-testing";
 import { createUser } from "./users";
 
 // Enable Neon Testing for this file
-withNeonTestBranch();
+neonTesting();
 
 test("unique email constraint", async () => {
   await createUser("test@example.com");
@@ -107,8 +100,6 @@ That's it! Your tests now run against the same database constraints and behavior
 
 ## Wrapping up
 
-Integration testing usually fails teams, not because the tests are hard to write, but because the infrastructure is hard to stand up and maintain. With Neon's branching infrastructure and the Neon Testing library, that pain is gone. Now you can have reliable integration testing across your entire development lifecycle—local development, preview, staging, CI/CD, and production.
+Integration testing usually fails teams, not because the tests are hard to write, but because the infrastructure is hard to stand up and maintain. Neon branching and Neon Testing take that off your plate. Now you can have reliable integration testing across your entire development lifecycle—local development, preview, staging, CI/CD, and production.
 
-Neon Testing solves real testing challenges, helping teams ship with confidence. If integration testing has been slowing you down, give Neon Testing a try and see how much simpler it can be.
-
-You can find it on [npm](https://www.npmjs.com/package/neon-testing) and [GitHub](https://github.com/starmode-base/neon-testing).
+If integration testing has been slowing you down, give [Neon Testing](https://www.npmjs.com/package/neon-testing) a try. You can find it on [npm](https://www.npmjs.com/package/neon-testing) and [GitHub](https://github.com/starmode-base/neon-testing).

@@ -1,7 +1,7 @@
 ---
 title: "Harnessing Postgres race conditions"
 description: "Synchronization barriers let you test for race conditions with confidence."
-published: "2026-02-12"
+published: "2026-02-13"
 updated: null
 author: "Mikael Lirbank"
 ---
@@ -14,7 +14,7 @@ Synchronization barriers let you write those tests with confidence.
 
 ## What a race condition looks like
 
-You have a function that credits an account. It reads the current balance, adds an amount, and writes the new value back. (Yes, this specific case could be a single `UPDATE balance = balance + 50`. The pattern matters when the computation can't be expressed as one statement.)
+You have a function that credits an account. It reads the current balance, adds an amount, and writes the new value back.
 
 When two requests run this concurrently — two $50 credits to an account with a $100 balance — the timing can line up like this:
 
@@ -60,11 +60,15 @@ function createBarrier(count: number) {
 }
 ```
 
+[Source code for `createBarrier`](https://github.com/starmode-base/neon-testing/blob/54e86d453158806fd4166e662361d82dd0955a81/src/singleton.ts)
+
 A counter and a list of waiters. Each caller increments the count. If it's not the last, it waits. When the last arrives, everyone is released. The function returns a barrier — call it and you're synchronized.
 
 Place a barrier between the read and the write in concurrent code, and you force the exact interleaving from the previous section: every task reads before any task writes. That's the race condition, manufactured on demand.
 
 ## The barrier in action
+
+[Runnable versions of every test in this section](https://github.com/starmode-base/neon-testing/blob/54e86d453158806fd4166e662361d82dd0955a81/examples/barriers/inline.test.ts)
 
 Apply the barrier to the crediting function from earlier. Run the same test — two concurrent $50 credits — under three levels of protection. The results are instructive.
 
@@ -114,7 +118,7 @@ P1: UPDATE balance = 150
 P2: UPDATE balance = 150
 
 Expected: 200
-Received: 150
+Received: 150  ✗
 ```
 
 The same interleaving from earlier, now happening inside your test suite. Deterministic. No timing tricks.
@@ -153,10 +157,10 @@ T2: UPDATE balance = 150
 T2: COMMIT
 
 Expected: 200
-Received: 150
+Received: 150  ✗
 ```
 
-The transaction changed nothing. Postgres's default isolation level is READ COMMITTED — each statement sees all data committed before that statement started.
+The transaction didn't help. Postgres's default isolation level is READ COMMITTED — each statement sees all data committed before that statement started.
 
 A transaction gives you a consistent snapshot per statement. It does not give you a write lock. The barrier just proved these are different things.
 
@@ -199,7 +203,7 @@ The barrier deadlocks.
 
 The deadlock proves the lock is there. You've validated the behavior. But a hanging test can't live in CI. The pragmatic response is to accept the proof and move on — remove the barrier, disable the test, whatever gets the suite green again.
 
-That works until a refactor rewrites the query six months later. Nothing catches the lost lock.
+That works until a refactor rewrites the query. Nothing catches the lost lock.
 
 The deadlock is not a dead end. It's a signal that the barrier is in the wrong place.
 
@@ -209,9 +213,7 @@ Placing the barrier between read and write made sense for the earlier tests — 
 
 The deadlock happened because one transaction held the lock while waiting at the barrier for the other — but the other was stuck on the lock and never arrived.
 
-Move the barrier earlier — after BEGIN, before the SELECT — so both transactions have started before either tries to lock.
-
-With `FOR UPDATE`:
+Move the barrier earlier — after BEGIN, before the SELECT — so both transactions have started before either tries to lock. Here's what happens with `FOR UPDATE` still in place:
 
 ```
 T1: BEGIN
@@ -229,9 +231,9 @@ Expected: 200
 Received: 200 ✓
 ```
 
-The barrier releases both tasks into their SELECT simultaneously. `FOR UPDATE` serializes them — T1 gets the lock, T2 waits at the SELECT. When T1 commits, T2 reads the updated value and computes correctly. The test passes, runs to completion, and verifies the actual result.
+The barrier releases both tasks into their SELECT simultaneously. `FOR UPDATE` serializes them — one gets the lock, the other waits. Which one goes first is arbitrary, but the result is the same: the second transaction reads the updated value. The test passes, runs to completion, and verifies the actual result.
 
-Without `FOR UPDATE`:
+The test passes. But we moved the barrier to fix the deadlock — does the test pass because of the lock, or because of the new barrier position? Remove the `FOR UPDATE` and find out:
 
 ```
 T1: BEGIN
@@ -245,10 +247,10 @@ T2: UPDATE balance = 150
 T2: COMMIT
 
 Expected: 200
-Received: 150
+Received: 150 ✗
 ```
 
-Same barrier, same position. Without the lock, both read stale data. Test fails.
+Same barrier, same position. Without the lock, both read stale data. The test fails — proof that the lock was doing the work. This is correct!
 
 > **Important:** A correct barrier test passes with the lock and fails without it. If it doesn't do both, it proves nothing. Every time you change the barrier or the code it tests, verify both directions.
 
@@ -259,6 +261,8 @@ Same barrier, same position. Without the lock, both read stale data. Test fails.
 These tests need a real Postgres instance — mocks have no locks, no transactions, no contention to reproduce. There are many ways to do this. I use [Neon Testing](https://www.npmjs.com/package/neon-testing), which also provides a `createBarrier` function.
 
 ### Injecting barriers with hooks
+
+[Runnable version of the hooks pattern](https://github.com/starmode-base/neon-testing/blob/54e86d453158806fd4166e662361d82dd0955a81/examples/barriers/hooks.test.ts)
 
 Barriers are test infrastructure — they shouldn't exist in production code. In the earlier examples, the barrier was baked into the function body. That works for a demonstration, but you need a way to inject the barrier only when running tests.
 
@@ -307,13 +311,11 @@ await credit(1, 50);
 
 No hooks, no barrier, no overhead.
 
-For a complete example, [Touch](https://github.com/starmode-base/touch) uses this pattern to protect a business rule: users must always keep at least one passkey. The [function](https://github.com/starmode-base/touch) uses `FOR UPDATE` with an `onTxBegin` hook, and the [barrier test](https://github.com/starmode-base/touch) proves two concurrent deletions can't violate that rule.
-
 ## Don't ship vanity tests
 
-Six months from now, someone refactors the data access layer. The query gets rewritten, the function gets restructured, the lock gets lost in the shuffle. With the barrier test in your suite, that change doesn't ship. The test fails before it leaves the developer's machine.
+Six months from now, someone refactors the data access layer. The query gets rewritten, the function gets restructured, the lock gets lost in the shuffle. With barrier testing in your suite, that regression doesn't ship. The test fails before it leaves the developer's machine.
 
-But only if you verified the test. After writing a barrier test, remove the lock and confirm the test fails. If it passes both with and without the lock, it's a vanity test — it catches nothing. The check takes seconds. Do it every time.
+But only if the test actually catches the regression. Every time you change the barrier or the business logic — like moving the barrier to fix the deadlock — remove the lock and confirm the test fails. If it passes both ways, it's a vanity test.
 
 ---
 
