@@ -34,6 +34,24 @@ This is the shape of every write race condition: two operations read the same st
 
 Your test suite runs one request at a time. The interleaving above never happens. The test passes whether your code handles concurrency correctly or not.
 
+Put the crediting logic in a function and run two calls concurrently:
+
+```typescript
+// Naive implementation — no transaction, no lock
+const credit = async (accountId: number, amount: number) => {
+  const [row] = await db.execute(
+    sql`SELECT balance FROM accounts WHERE id = ${accountId}`,
+  );
+  const newBalance = row.balance + amount;
+  await db.execute(
+    sql`UPDATE accounts SET balance = ${newBalance} WHERE id = ${accountId}`,
+  );
+};
+
+await Promise.all([credit(1, 50), credit(1, 50)]);
+expect(result.balance).toBe(200); // passes — but we know the code has a race condition
+```
+
 You could add `sleep()` between the two queries to try to force the overlap. This buys you a slow, flaky test that sometimes catches the bug and sometimes doesn't. You could run the test a thousand times and hope the timing lines up at least once. Both approaches are the same bet — you're not testing concurrency, you're rolling dice.
 
 What you need is a way to force two operations to read the same stale value before either writes. Every time. Not probabilistically.
