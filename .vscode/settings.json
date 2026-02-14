@@ -1,4 +1,6 @@
 {
+  "chat.disableAIFeatures": true,
+  "editor.accessibilitySupport": "off",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "editor.rulers": [80],
