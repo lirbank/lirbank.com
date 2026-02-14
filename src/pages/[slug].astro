@@ -38,15 +38,14 @@ function formatDate(dateStr: string | undefined) {
 >
   <section>
     <article class="prose prose-stone sm:prose-lg prose-a:text-cyan-600">
-      <header class="flex pb-2 text-sm text-stone-600">
+      <header class="flex pb-2 text-base text-stone-600">
+        {entry.data.author}&nbsp;—&nbsp;
         <time datetime={entry.data.published}>
           {formatDate(entry.data.published)}
         </time>
         {
           entry.data.updated && (
-            <span class="block">
-              , updated {formatDate(entry.data.updated)}
-            </span>
+            <>&nbsp;(updated {formatDate(entry.data.updated)})</>
           )
         }
       </header>
