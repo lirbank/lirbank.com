@@ -16,6 +16,7 @@ Mikael Lirbank's professional website.
 - https://app.netlify.com
 - https://onedollarstats.com/analytics/dashboard/www.lirbank.com
 - https://app.ahrefs.com/
+- https://search.google.com/search-console?resource_id=sc-domain:lirbank.com
 
 ## Open Graph
 
