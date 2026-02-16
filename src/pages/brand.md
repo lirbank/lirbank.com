@@ -1,12 +1,16 @@
 ---
 layout: ../layouts/page.astro
 
-# Inpiration
+# Inspiration
 # https://neon.com/brand
 # https://discord.com/branding
 # https://github.com/logos
 # https://brand.github.com/
 ---
+
+# Brand
+
+TODO: Nail down a north star — a few words about who I am and how I want to come across everywhere - "I want to come across as [X] everywhere".
 
 ## LinkedIn: Mikael Lirbank (person)
 
@@ -152,3 +156,7 @@ TBD
 - https://x.com/mikaellirbank
 
 TBD
+
+## Hacker News
+
+- https://news.ycombinator.com/user?id=lirbank
