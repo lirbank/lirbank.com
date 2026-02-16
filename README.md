@@ -9,12 +9,13 @@ Mikael Lirbank's professional website.
 ## Tech stack
 
 - **Framework:** [Astro](https://astro.build/)
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 
 ## Services
 
 - https://app.netlify.com
 - https://onedollarstats.com/analytics/dashboard/www.lirbank.com
+- https://app.ahrefs.com/
 
 ## Open Graph
 
