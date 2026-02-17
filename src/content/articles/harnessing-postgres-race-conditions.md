@@ -65,22 +65,27 @@ A barrier is a synchronization point for concurrent operations. You tell it how 
 ```typescript
 function createBarrier(count: number) {
   let arrived = 0;
-  const waiters: (() => void)[] = [];
+  let release: () => void;
+
+  const barrier = new Promise<void>((resolve) => {
+    release = resolve;
+  });
 
   return async () => {
     arrived++;
+
     if (arrived === count) {
-      waiters.forEach((resolve) => resolve());
-    } else {
-      await new Promise<void>((resolve) => waiters.push(resolve));
+      release();
     }
+
+    await barrier;
   };
 }
 ```
 
 [Source code for `createBarrier`](https://github.com/starmode-base/neon-testing/blob/54e86d453158806fd4166e662361d82dd0955a81/src/barrier.ts)
 
-A counter and a list of waiters. Each caller increments the count. If it's not the last, it waits. When the last arrives, everyone is released. The function returns a barrier — call it and you're synchronized.
+A counter and a shared promise. Each caller increments the count. The last arrival resolves the promise. All callers await it — when it resolves, everyone proceeds. The function returns a barrier — call it and you're synchronized.
 
 Place a barrier between the read and the write in concurrent code, and you force the exact interleaving from the previous section: every task reads before any task writes. That's the race condition, manufactured on demand.
 
