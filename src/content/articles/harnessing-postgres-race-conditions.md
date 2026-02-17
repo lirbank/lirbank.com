@@ -78,7 +78,7 @@ function createBarrier(count: number) {
 }
 ```
 
-[Source code for `createBarrier`](https://github.com/starmode-base/neon-testing/blob/54e86d453158806fd4166e662361d82dd0955a81/src/singleton.ts)
+[Source code for `createBarrier`](https://github.com/starmode-base/neon-testing/blob/54e86d453158806fd4166e662361d82dd0955a81/src/barrier.ts)
 
 A counter and a list of waiters. Each caller increments the count. If it's not the last, it waits. When the last arrives, everyone is released. The function returns a barrier — call it and you're synchronized.
 
@@ -95,6 +95,8 @@ Apply the barrier to the crediting function from earlier. Run the same test — 
 The simplest case: no transaction, just a SELECT and an UPDATE with a barrier between them:
 
 ```typescript
+import { createBarrier } from "neon-testing/utils";
+
 // Create a barrier that blocks until 2 tasks have arrived, then releases all of
 // them at once.
 const barrier = createBarrier(2);
@@ -310,6 +312,8 @@ async function credit(
 The hook fires after the transaction begins but before any queries execute. In production, `hooks` is undefined — the `if` check costs nothing. In tests, you pass the barrier:
 
 ```typescript
+import { createBarrier } from "neon-testing/utils";
+
 const barrier = createBarrier(2);
 await Promise.all([
   credit(1, 50, { onTxBegin: barrier }),
