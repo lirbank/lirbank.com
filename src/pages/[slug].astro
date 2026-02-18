@@ -38,12 +38,24 @@ function formatDate(dateStr: string | undefined) {
 >
   <section>
     <article class="prose prose-stone sm:prose-lg prose-a:text-cyan-600">
-      <header class="pb-2 text-base text-stone-600">
-        {entry.data.author} — <time datetime={entry.data.published}
-          >{formatDate(entry.data.published)}</time
-        >{
-          entry.data.updated && <> (updated {formatDate(entry.data.updated)})</>
-        }
+      <header class="mb-8 flex flex-col gap-1">
+        <div class="text-base">
+          {entry.data.author} — <time datetime={entry.data.published}
+            >{formatDate(entry.data.published)}</time
+          >{
+            entry.data.updated && (
+              <> (updated {formatDate(entry.data.updated)})</>
+            )
+          }
+        </div>
+        <div class="text-sm text-stone-600 italic">
+          I build robust, high-quality software systems,
+          <a
+            href="/#contact"
+            class="text-cyan-600 underline underline-offset-2 hover:text-cyan-700"
+            >get in touch →</a
+          >
+        </div>
       </header>
       <Content />
     </article>
