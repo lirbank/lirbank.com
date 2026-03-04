@@ -88,10 +88,10 @@ export function createMarkup(
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
-              fontSize: 80,
+              fontSize: 70,
               fontWeight: 800,
               marginBottom: 30,
-              lineHeight: 1.1,
+              lineHeight: 1.2,
             }}
           >
             {title}
