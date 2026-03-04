@@ -10,7 +10,7 @@ author: "Mikael Lirbank"
 
 Conventional wisdom says your backend and database should be on the same cloud provider. Crossing provider boundaries means crossing the internet, and crossing the internet means slow. It's a reasonable assumption. But if it's wrong, teams are giving up optionality for nothing. The freedom to make the right decision today, instead of trying to forecast what they need down the road.
 
-I was migrating a client application to Cloudflare Workers. The database was Postgres on AWS. There's no managed Postgres on Cloudflare's infrastructure. If you want Postgres with Workers, cross-provider is the only option. That's supposed to be slow.
+I was migrating a client application to Cloudflare Workers. The database was Postgres on AWS. There's no managed Postgres on Cloudflare's infrastructure. If you want Postgres with workers, cross-provider is the only option. That's supposed to be slow.
 
 But is cross-provider slow because of the distance, or because of the internet? AWS and Cloudflare both have data centers in Ashburn. Distance is zero — does the internet hop alone actually matter?
 
@@ -47,11 +47,11 @@ Three connection strategies:
 | pooled     | Through Neon's PgBouncer                                 |
 | hyperdrive | Cloudflare's connection pooler (Cloudflare Workers only) |
 
-Each configuration ran 25 iterations, with 2 warmup iterations. Two configuration choices dominate the results: where the Worker runs, and which driver it uses.
+Each configuration ran 25 iterations, with 2 warmup iterations. Two configuration choices dominate the results: where the worker runs, and which driver it uses.
 
-## Where the Workers run
+## Where the workers run
 
-The database is in Virginia. If the Worker runs in California, 4,000 km away, every query crosses the country. If the Worker runs in Virginia, the queries stay local. Same Cloudflare infrastructure, same internet hop to AWS, different distance.
+The database is in Virginia. If the worker runs in California, 4,000 km away, every query crosses the country. If the worker runs in Virginia, the queries stay local. Same Cloudflare infrastructure, same internet hop to AWS, different distance.
 
 The difference is not subtle.
 
@@ -68,11 +68,11 @@ The difference is not subtle.
 
 A 23–24x improvement from geographic proximity alone. Each round-trip in the transaction multiplies the cross-country penalty.
 
-Every cloud provider correctly tells you to put compute and database in the same region. They're right. That's the 23x difference. But that improvement came from geographic proximity alone. The Worker is still on Cloudflare, the database is still on AWS. The traffic still crosses the internet. If the region matters this much, how much does the provider matter?
+Every cloud provider correctly tells you to put compute and database in the same region. They're right. That's the 23x difference. But that improvement came from geographic proximity alone. The worker is still on Cloudflare, the database is still on AWS. The traffic still crosses the internet. If the region matters this much, how much does the provider matter?
 
 ## Which driver to use
 
-If you don't need interactive transactions, neon-http is the fastest option. It sends queries as single HTTP requests. With the Worker near the database, queries hit 12ms. But neon-http only supports batched transactions — you can't read a row, make a decision based on it, then write within the same transaction. If your app needs that, neon-http is out. The remaining options are TCP and WebSocket drivers.
+If you don't need interactive transactions, neon-http is the fastest option. It sends queries as single HTTP requests. With the worker near the database, queries hit 12ms. But neon-http only supports batched transactions — you can't read a row, make a decision based on it, then write within the same transaction. If your app needs that, neon-http is out. The remaining options are TCP and WebSocket drivers.
 
 ### Transaction latency by driver and connection — near the database
 
@@ -89,13 +89,13 @@ If you don't need interactive transactions, neon-http is the fastest option. It 
 
 [Summary statistics](https://github.com/starmode-base/serverless-db-latency/blob/main/results/2026-03-01T18-41-27-459Z-summary.md) · [Raw data](https://github.com/starmode-base/serverless-db-latency/blob/main/results/2026-03-01T18-41-27-459Z-raw.md)
 
-Hyperdrive maintains pre-warmed connections, so the Worker skips connection setup on each invocation. That advantage shrinks with more round-trips. Connection setup is a smaller share of the total when you're doing four round-trips instead of one.
+Hyperdrive maintains pre-warmed connections, so the worker skips connection setup on each invocation. That advantage shrinks with more round-trips. Connection setup is a smaller share of the total when you're doing four round-trips instead of one.
 
 Variance matters too. The TCP drivers are consistent — p50 and average stay close. neon-ws is less predictable: transactions show a p50 of 40ms but an average of 49ms, with spikes past 120ms. For user-facing APIs, predictability matters as much as the median. The [summary statistics](https://github.com/starmode-base/serverless-db-latency/blob/main/results/2026-03-01T18-41-27-459Z-summary.md) include stddev and range for every configuration.
 
 ## Does the provider matter?
 
-The Worker is close to the database, but the traffic still crosses the internet. How much does that cost compared to staying on the same internal network?
+The worker is close to the database, but the traffic still crosses the internet. How much does that cost compared to staying on the same internal network?
 
 ### Transaction latency — internet vs internal networking
 
