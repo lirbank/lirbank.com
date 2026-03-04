@@ -71,8 +71,7 @@
 
 @layer components {
   .prose :where(table) {
-    display: block;
-    overflow-x: auto;
+    @apply block overflow-x-auto whitespace-nowrap;
   }
 
   .markdown a:not(.no-style) {
