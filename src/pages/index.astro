@@ -49,9 +49,9 @@ function formatArticleDate(dateStr: string) {
     <!-- 1. Hero -->
     <container>
       <div class="bg-cyan-600 px-8 py-2 text-center text-white">
-        New article: Harnessing Postgres race conditions —{" "}
+        New article: Liberate yourself from infrastructure over-planning —{" "}
         <a
-          href="/harnessing-postgres-race-conditions"
+          href="/liberate-yourself-from-infrastructure-over-planning"
           class="text-nowrap text-cyan-50 underline hover:text-white"
         >
           Read it here
@@ -91,23 +91,7 @@ function formatArticleDate(dateStr: string) {
       </section>
     </container>
 
-    <!-- 2. Testimonials -->
-    <container>
-      <section aria-labelledby="reviews">
-        <h2 id="reviews" class="scroll-mt-20">What people say</h2>
-        <p>
-          My peers and clients often point out my attention to detail and
-          excellent communication skills.
-        </p>
-        {
-          clientTestimonials.map((testimonial) => (
-            <Testimonial testimonial={testimonial} />
-          ))
-        }
-      </section>
-    </container>
-
-    <!-- 3. Articles (no nav) -->
+    <!-- Articles (no nav) -->
     <container>
       <section aria-labelledby="articles">
         <h2 id="articles" class="scroll-mt-20">Articles</h2>
@@ -128,6 +112,22 @@ function formatArticleDate(dateStr: string) {
               </div>
             );
           })
+        }
+      </section>
+    </container>
+
+    <!-- 2. Testimonials -->
+    <container>
+      <section aria-labelledby="reviews">
+        <h2 id="reviews" class="scroll-mt-20">What people say</h2>
+        <p>
+          My peers and clients often point out my attention to detail and
+          excellent communication skills.
+        </p>
+        {
+          clientTestimonials.map((testimonial) => (
+            <Testimonial testimonial={testimonial} />
+          ))
         }
       </section>
     </container>
