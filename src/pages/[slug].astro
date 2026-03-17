@@ -42,7 +42,7 @@ function formatDate(dateStr: string | undefined) {
 >
   <section>
     <article class="prose prose-stone sm:prose-lg prose-a:text-cyan-600">
-      <header class="mb-10 flex flex-col gap-1">
+      <header class="flex flex-col">
         <div class="text-base">
           {entry.data.author} — <time datetime={entry.data.published}
             >{formatDate(entry.data.published)}</time
@@ -52,10 +52,17 @@ function formatDate(dateStr: string | undefined) {
             )
           }
         </div>
-        <div class="text-sm text-stone-600 italic">
+        <div class="mb-10 text-sm text-stone-600 italic">
           Independent consultant. I build robust, high-quality software systems,
           <a href="/#contact" class="text-nowrap">get in touch</a>.
         </div>
+        <a
+          href={`/${slug}.md`}
+          class="mb-2 flex items-center gap-1 text-sm text-stone-600! no-underline"
+        >
+          <Icon name="fa6-brands:markdown" class="size-6" />
+          View as Markdown
+        </a>
       </header>
       <Content />
     </article>
