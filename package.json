@@ -6,7 +6,6 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "check": "astro check",
     "build": "bun test && prettier --check . && astro build",
     "preview": "astro preview",
     "astro": "astro",
