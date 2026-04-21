@@ -16,16 +16,19 @@
     "clean:hard": "rm -rf node_modules tsconfig.tsbuildinfo .astro dist bun.lock && bun install",
     "infra:check": "bun infra/check.ts",
     "chrome:dev": "bun build ./chrome/background.ts --outdir ./chrome --watch",
-    "chrome:build": "bun build ./chrome/background.ts --outdir ./chrome"
+    "chrome:build": "bun build ./chrome/background.ts --outdir ./chrome",
+    "generate-types": "wrangler types"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.8",
+    "@astrojs/cloudflare": "^13.1.10",
     "@astrojs/sitemap": "^3.7.2",
     "@tailwindcss/vite": "^4.2.4",
     "astro": "6.1.8",
     "astro-icon": "^1.1.5",
     "onedollarstats": "^0.0.19",
-    "tailwindcss": "^4.2.4"
+    "tailwindcss": "^4.2.4",
+    "wrangler": "^4.84.1"
   },
   "devDependencies": {
     "@iconify-json/fa6-brands": "^1.2.6",
@@ -39,5 +42,8 @@
     "satori": "^0.26.0",
     "sharp": "^0.34.5",
     "typescript": "^6.0.3"
+  },
+  "overrides": {
+    "vite": "^7"
   }
 }

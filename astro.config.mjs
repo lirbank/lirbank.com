@@ -3,6 +3,7 @@ import { defineConfig, fontProviders } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
 import sitemap from "@astrojs/sitemap";
+import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
@@ -40,4 +41,5 @@ export default defineConfig({
     host: true,
   },
   trailingSlash: "never",
+  adapter: cloudflare(),
 });
