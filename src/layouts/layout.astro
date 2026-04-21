@@ -1,6 +1,6 @@
 ---
-import "../styles/fonts.css";
 import "../styles/global.css";
+import { Font } from "astro:assets";
 import metadata from "../../metadata.json";
 
 interface Props {
@@ -23,12 +23,9 @@ const canonicalOgImage = new URL(ogImage, Astro.site).href;
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
-    <!-- Preload Inter normal (must match src URL in fonts.css @font-face) -->
-    <link
-      rel="preload"
-      href="https://fonts.gstatic.com/s/inter/v20/UcCo3FwrK3iLTcviYwYZ8UA3.woff2"
-      as="font"
-      crossorigin
+    <Font
+      cssVariable="--font-inter"
+      preload={[{ subset: "latin", style: "normal" }]}
     />
     <link rel="icon" type="image/svg+xml" href={metadata.browserIcon} />
     <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
