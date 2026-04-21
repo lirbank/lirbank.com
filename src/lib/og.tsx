@@ -1,34 +1,12 @@
-/** @jsx h */
+/** @jsxRuntime automatic */
+/** @jsxImportSource satori/jsx */
 
 /**
  * OG image markup for article share cards (1200x630)
  *
- * Uses a tiny JSX factory so we can write readable markup that compiles
- * directly to the { type, props } objects Satori expects — no React needed.
+ * Uses Satori's built-in JSX runtime (added in 0.26.0) so we get fully typed
+ * intrinsic elements and CSS properties without pulling in React.
  */
-
-declare global {
-  namespace JSX {
-    type Element = { type: string; props: Record<string, unknown> };
-    interface IntrinsicElements {
-      [tag: string]: Record<string, unknown>;
-    }
-  }
-}
-
-function h(
-  type: string,
-  props: Record<string, unknown> | null,
-  ...children: unknown[]
-) {
-  return {
-    type,
-    props: {
-      ...props,
-      children: children.length > 1 ? children : children[0],
-    },
-  };
-}
 
 export const WIDTH = 1200;
 export const HEIGHT = 630;
