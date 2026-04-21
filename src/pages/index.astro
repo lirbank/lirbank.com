@@ -97,7 +97,7 @@ function formatArticleDate(dateStr: string) {
         <h2 id="articles" class="scroll-mt-20">Articles</h2>
         {
           articles.map((article) => {
-            const slug = article.id.replace(/\.md$/, "");
+            const slug = article.id;
             return (
               <div class="py-2">
                 <p class="text-base! text-stone-500">

@@ -6,7 +6,7 @@ import path from "node:path";
 export async function getStaticPaths() {
   const articles = await getCollection("articles");
   return articles.map((article) => ({
-    params: { slug: article.id.replace(/\.md$/, "") },
+    params: { slug: article.id },
   }));
 }
 

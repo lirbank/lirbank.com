@@ -57,7 +57,7 @@ const logoPromise = sharp(
 export const getStaticPaths: GetStaticPaths = async () => {
   const articles = await getCollection("articles");
   return articles.map((article) => ({
-    params: { slug: article.id.replace(/\.md$/, "") },
+    params: { slug: article.id },
     props: {
       title: article.data.title ?? article.id,
       description: article.data.description ?? "",
