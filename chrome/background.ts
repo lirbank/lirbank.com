@@ -1,3 +1,4 @@
+/// <reference types="chrome" />
 console.log("Background service worker initialized!");
 
 // Log all registered commands on startup with JSON.stringify
