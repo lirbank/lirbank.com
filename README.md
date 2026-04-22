@@ -13,7 +13,7 @@ Mikael Lirbank's professional website.
 
 ## Services
 
-- https://app.netlify.com
+- https://dash.cloudflare.com/
 - https://onedollarstats.com/analytics/dashboard/www.lirbank.com
 - https://app.ahrefs.com/
 - https://search.google.com/search-console?resource_id=sc-domain:lirbank.com
