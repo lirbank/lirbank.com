@@ -1,7 +1,5 @@
 import type { APIRoute } from "astro";
-import { getCollection } from "astro:content";
-import fs from "node:fs";
-import path from "node:path";
+import { getCollection, getEntry } from "astro:content";
 
 export async function getStaticPaths() {
   const articles = await getCollection("articles");
@@ -11,14 +9,10 @@ export async function getStaticPaths() {
 }
 
 export const GET: APIRoute = async ({ params }) => {
-  const filePath = path.join(
-    process.cwd(),
-    "src/content/articles",
-    `${params.slug}.md`,
-  );
-  const content = fs.readFileSync(filePath, "utf-8");
+  const entry = await getEntry("articles", params.slug!);
+  if (!entry?.body) return new Response("Not found", { status: 404 });
 
-  return new Response(content, {
+  return new Response(entry.body, {
     headers: {
       "Content-Type": "text/markdown; charset=utf-8",
     },
