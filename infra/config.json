@@ -73,6 +73,29 @@
       "location": "https://numbernation.com/",
       "server": "Vercel"
     },
+    {
+      "url": "https://pre-alpha.numbernation.com/",
+      "status": 307,
+      "location": "https://pre-alpha.starmode.app/",
+      "server": "Vercel"
+    },
+    {
+      "url": "http://pre-alpha.numbernation.com/",
+      "status": 308,
+      "location": "https://pre-alpha.numbernation.com/",
+      "server": "Vercel"
+    },
+    {
+      "url": "https://nextjs.numbernation.com/",
+      "status": 200,
+      "server": "Vercel"
+    },
+    {
+      "url": "http://nextjs.numbernation.com/",
+      "status": 308,
+      "location": "https://nextjs.numbernation.com/",
+      "server": "Vercel"
+    },
 
     {
       "url": "https://www.starmode.dev/",
