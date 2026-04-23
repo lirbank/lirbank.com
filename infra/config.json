@@ -26,6 +26,55 @@
     },
 
     {
+      "url": "https://www.starmode.app/",
+      "status": 200,
+      "server": "Vercel"
+    },
+    {
+      "url": "https://starmode.app/",
+      "status": 308,
+      "location": "https://www.starmode.app/",
+      "server": "Vercel"
+    },
+    {
+      "url": "http://www.starmode.app/",
+      "status": 308,
+      "location": "https://www.starmode.app/",
+      "server": "Vercel"
+    },
+    {
+      "url": "http://starmode.app/",
+      "status": 308,
+      "location": "https://starmode.app/",
+      "server": "Vercel"
+    },
+
+    {
+      "url": "https://www.numbernation.com/",
+      "status": 308,
+      "location": "https://www.starmode.app/",
+      "server": "Vercel"
+    },
+    {
+      "url": "https://numbernation.com/",
+      "status": 308,
+      "location": "https://www.starmode.app/",
+      "server": "Vercel"
+    },
+    {
+      "url": "http://www.numbernation.com/",
+      "status": 308,
+      "location": "https://www.numbernation.com/",
+      "server": "Vercel"
+    },
+    {
+      "url": "http://numbernation.com/",
+      "status": 308,
+      "location": "https://numbernation.com/",
+      "server": "Vercel"
+    },
+
+    {
       "url": "https://www.starmode.dev/",
       "status": 200,
       "server": "Netlify"

@@ -1,3 +1,5 @@
+#!/usr/bin/env bun
+
 /**
  * Infrastructure health check
  *
@@ -9,6 +11,7 @@
  * Run: bun run infra:check
  */
 
+import { resolveNs } from "node:dns/promises";
 import config from "./config.json";
 
 const GREEN = "\x1b[32m";
@@ -34,6 +37,7 @@ interface CheckResult {
   actual: Actual;
   pass: boolean;
   failures: string[];
+  nameservers: string;
 }
 
 export function validateResult(
@@ -59,7 +63,11 @@ export function validateResult(
   return { pass: failures.length === 0, failures };
 }
 
-async function checkUrl(url: string, expected: Expected): Promise<CheckResult> {
+async function checkUrl(
+  url: string,
+  expected: Expected,
+  nameservers: string,
+): Promise<CheckResult> {
   try {
     const res = await fetch(url, { method: "GET", redirect: "manual" });
     const actual: Actual = {
@@ -70,7 +78,7 @@ async function checkUrl(url: string, expected: Expected): Promise<CheckResult> {
 
     const { pass, failures } = validateResult(expected, actual);
 
-    return { url, expected, actual, pass, failures };
+    return { url, expected, actual, pass, failures, nameservers };
   } catch (error) {
     const code =
       error instanceof Error && "code" in error
@@ -83,7 +91,27 @@ async function checkUrl(url: string, expected: Expected): Promise<CheckResult> {
       actual: { status: 0, location: null, server: null },
       pass: false,
       failures: [`fetch failed: ${code}`],
+      nameservers,
     };
+  }
+}
+
+function getApexDomain(url: string): string {
+  const { hostname } = new URL(url);
+  const parts = hostname.split(".");
+  return parts.slice(-2).join(".");
+}
+
+async function resolveNameservers(domain: string): Promise<string> {
+  try {
+    const nameservers = await resolveNs(domain);
+    return nameservers.sort().join(", ");
+  } catch (error) {
+    const code =
+      error instanceof Error && "code" in error
+        ? (error as Error & { code: string }).code
+        : "UNKNOWN";
+    return `NS lookup failed: ${code}`;
   }
 }
 
@@ -96,12 +124,19 @@ function printTable(results: CheckResult[]) {
       ...results.map((r) => (r.actual.location ?? "—").length),
     ),
     server: Math.max(6, ...results.map((r) => (r.actual.server ?? "—").length)),
+    nameservers: Math.max(12, ...results.map((r) => r.nameservers.length)),
   };
 
-  const totalWidth = cols.url + cols.status + cols.location + cols.server + 12;
+  const totalWidth =
+    cols.url +
+    cols.status +
+    cols.location +
+    cols.server +
+    cols.nameservers +
+    14;
 
   console.log(
-    `${"   URL".padEnd(cols.url + 3)}  ${"Status".padEnd(cols.status)}  ${"Location".padEnd(cols.location)}  Server`,
+    `${"   URL".padEnd(cols.url + 3)}  ${"Status".padEnd(cols.status)}  ${"Location".padEnd(cols.location)}  ${"Server".padEnd(cols.server)}  Name servers`,
   );
   console.log(`${DIM}${"─".repeat(totalWidth)}${RESET}`);
 
@@ -112,7 +147,7 @@ function printTable(results: CheckResult[]) {
     const server = result.actual.server ?? "—";
 
     console.log(
-      `${icon}  ${result.url.padEnd(cols.url)}  ${status.padEnd(cols.status)}  ${location.padEnd(cols.location)}  ${server}`,
+      `${icon}  ${result.url.padEnd(cols.url)}  ${status.padEnd(cols.status)}  ${location.padEnd(cols.location)}  ${server.padEnd(cols.server)}  ${result.nameservers}`,
     );
 
     for (const failure of result.failures) {
@@ -126,14 +161,27 @@ function printTable(results: CheckResult[]) {
 async function checkDomains(): Promise<CheckResult[]> {
   if (!config.domains?.length) return [];
 
+  const nsCache = new Map<string, Promise<string>>();
   const results: CheckResult[] = [];
 
   for (const check of config.domains) {
-    const result = await checkUrl(check.url, {
-      status: check.status,
-      location: check.location,
-      server: check.server,
-    });
+    const apex = getApexDomain(check.url);
+    let nsPromise = nsCache.get(apex);
+    if (!nsPromise) {
+      nsPromise = resolveNameservers(apex);
+      nsCache.set(apex, nsPromise);
+    }
+    const nameservers = await nsPromise;
+
+    const result = await checkUrl(
+      check.url,
+      {
+        status: check.status,
+        location: check.location,
+        server: check.server,
+      },
+      nameservers,
+    );
     results.push(result);
   }
 
