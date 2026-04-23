@@ -4,25 +4,25 @@
     {
       "url": "https://www.lirbank.com/",
       "status": 200,
-      "server": "Netlify"
+      "server": "cloudflare"
     },
     {
       "url": "https://lirbank.com/",
       "status": 301,
       "location": "https://www.lirbank.com/",
-      "server": "Netlify"
+      "server": "cloudflare"
     },
     {
       "url": "http://www.lirbank.com/",
       "status": 301,
       "location": "https://www.lirbank.com/",
-      "server": "Netlify"
+      "server": "cloudflare"
     },
     {
       "url": "http://lirbank.com/",
       "status": 301,
-      "location": "https://lirbank.com/",
-      "server": "Netlify"
+      "location": "https://www.lirbank.com/",
+      "server": "cloudflare"
     },
 
     {
