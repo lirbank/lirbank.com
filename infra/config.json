@@ -100,25 +100,25 @@
     {
       "url": "https://www.starmode.dev/",
       "status": 200,
-      "server": "Netlify"
+      "server": "cloudflare"
     },
     {
       "url": "https://starmode.dev/",
       "status": 301,
       "location": "https://www.starmode.dev/",
-      "server": "Netlify"
+      "server": "cloudflare"
     },
     {
       "url": "http://www.starmode.dev/",
       "status": 301,
       "location": "https://www.starmode.dev/",
-      "server": "Netlify"
+      "server": "cloudflare"
     },
     {
       "url": "http://starmode.dev/",
       "status": 301,
-      "location": "https://starmode.dev/",
-      "server": "Netlify"
+      "location": "https://www.starmode.dev/",
+      "server": "cloudflare"
     },
 
     {
