@@ -40,4 +40,7 @@ export default defineConfig({
     host: true,
   },
   trailingSlash: "never",
+  build: {
+    format: "file",
+  },
 });
