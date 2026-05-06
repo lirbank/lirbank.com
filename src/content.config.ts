@@ -7,8 +7,8 @@ const articles = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    published: z.string().date(),
-    updated: z.string().date().nullable(),
+    published: z.iso.date(),
+    updated: z.iso.date().nullable(),
     author: z.string(),
   }),
 });
@@ -22,7 +22,7 @@ const testimonials = defineCollection({
       name: z.string(),
       title: z.string(),
       avatar: z.string(),
-      url: z.string().url(),
+      url: z.url(),
     }),
     order: z.number().optional(),
     featured: z.boolean().optional().default(false),
