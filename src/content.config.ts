@@ -14,7 +14,7 @@ const articles = defineCollection({
 });
 
 const testimonials = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./content/testimonials" }),
+  loader: glob({ pattern: "**/*.md", base: "./src/content/testimonials" }),
   schema: z.object({
     company: z.string().optional(),
     intro: z.string().optional(),
@@ -30,7 +30,7 @@ const testimonials = defineCollection({
 });
 
 const talks = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./content/talks" }),
+  loader: glob({ pattern: "**/*.md", base: "./src/content/talks" }),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
