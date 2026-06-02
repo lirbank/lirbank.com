@@ -4,8 +4,6 @@ https://www.lirbank.com/
 
 Mikael Lirbank's professional website.
 
-- [metadata](./metadata.json)
-
 ## Tech stack
 
 - **Framework:** [Astro](https://astro.build/)

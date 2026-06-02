@@ -1,14 +1,14 @@
 import type { APIRoute } from "astro";
-import metadata from "../../../metadata.json";
+import { homepage } from "../../data/homepage";
 import { createHomepageMarkup } from "../../lib/og";
 import { logoPromise, renderToPng } from "../../lib/og-render";
 
 export const GET: APIRoute = async () => {
   const logo = await logoPromise;
   const markup = createHomepageMarkup(
-    "Ship AI systems with confidence",
-    metadata.description,
-    metadata.name,
+    homepage.headline,
+    homepage.description,
+    homepage.title,
     logo,
   );
   const png = await renderToPng(markup);

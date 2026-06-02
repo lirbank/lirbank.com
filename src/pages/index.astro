@@ -4,7 +4,7 @@ import { highlightedTechnologies, technologies } from "../data/technologies";
 import { contact } from "../data/contact";
 import Testimonial from "../components/testimonial.astro";
 import Card from "../components/card.astro";
-import metadata from "../../metadata.json";
+import { homepage } from "../data/homepage";
 import { Icon } from "astro-icon/components";
 import { Content as ProjectsContent } from "../partials/projects.md";
 import { Content as ServicesContent } from "../partials/services.md";
@@ -41,9 +41,9 @@ function formatArticleDate(dateStr: string) {
 ---
 
 <Layout
-  title={metadata.name}
-  description={metadata.description}
-  ogImage={metadata.shareCard}
+  title={homepage.title}
+  description={homepage.description}
+  ogImage={homepage.ogImage}
 >
   <main id="main" class="scroll-mt-20">
     <!-- 1. Hero -->
@@ -61,9 +61,7 @@ function formatArticleDate(dateStr: string) {
         aria-labelledby="main"
         class="flex flex-col gap-10 sm:grid sm:grid-cols-2"
       >
-        <h1 class="text-center sm:text-left">
-          Ship AI systems with confidence
-        </h1>
+        <h1 class="text-center sm:text-left">{homepage.headline}</h1>
         <Image
           class="mx-auto size-64 rounded-full object-cover sm:row-span-2 sm:rounded sm:shadow"
           src={heroImage}
@@ -75,8 +73,8 @@ function formatArticleDate(dateStr: string) {
         />
         <div class="flex flex-col gap-2">
           <div>
-            <h3>Mikael Lirbank</h3>
-            <p>{metadata.description}</p>
+            <h3>{homepage.title}</h3>
+            <p>{homepage.description}</p>
           </div>
           <div class="flex gap-2">
             {

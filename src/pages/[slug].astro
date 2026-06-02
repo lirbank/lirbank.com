@@ -1,7 +1,6 @@
 ---
 import { getCollection, getEntry, render } from "astro:content";
 import Layout from "../layouts/layout.astro";
-import metadata from "../../metadata.json";
 import { Image } from "astro:assets";
 import heroImage from "../assets/brand/mikael-lirbank.jpg";
 import { Icon } from "astro-icon/components";
@@ -37,7 +36,7 @@ function formatDate(dateStr: string | undefined) {
   article={{
     date: entry.data.published,
     updated: entry.data.updated,
-    author: metadata.name,
+    author: entry.data.author,
   }}
 >
   <section>

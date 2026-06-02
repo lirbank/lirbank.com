@@ -1,7 +1,6 @@
 ---
 import "../styles/global.css";
 import { Font } from "astro:assets";
-import metadata from "../../metadata.json";
 
 interface Props {
   title: string;
@@ -27,7 +26,7 @@ const canonicalOgImage = new URL(ogImage, Astro.site).href;
       cssVariable="--font-inter"
       preload={[{ subset: "latin", style: "normal" }]}
     />
-    <link rel="icon" type="image/svg+xml" href={metadata.browserIcon} />
+    <link rel="icon" type="image/svg+xml" href="/brand/icon.svg" />
     <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
