@@ -2,10 +2,7 @@
 /** @jsxImportSource satori/jsx */
 
 /**
- * OG image markup for article share cards (1200x630)
- *
- * Uses Satori's built-in JSX runtime (added in 0.26.0) so we get fully typed
- * intrinsic elements and CSS properties without pulling in React.
+ * OG image markup for share cards (1200x630)
  */
 
 export const WIDTH = 1200;
@@ -26,7 +23,168 @@ const colors = {
   cyan700: "rgb(14, 116, 144)",
 };
 
-export function createMarkup(
+export function createHomepageMarkup(
+  title: string,
+  description: string,
+  name: string,
+  logoSrc: ArrayBuffer,
+) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: WIDTH,
+        height: HEIGHT,
+        backgroundColor: colors.stone100,
+        fontFamily: "Inter",
+        color: colors.stone900,
+      }}
+    >
+      <div
+        style={{
+          width: WIDTH,
+          height: 16,
+          backgroundColor: colors.cyan700,
+          flexShrink: 0,
+        }}
+      />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          flex: 1,
+          padding: "0 96px",
+          textAlign: "center",
+        }}
+      >
+        <div
+          style={{
+            fontSize: 72,
+            fontWeight: 800,
+            lineHeight: 1.15,
+            marginBottom: 28,
+          }}
+        >
+          {title}
+        </div>
+        <div
+          style={{
+            width: 96,
+            height: 6,
+            backgroundColor: colors.cyan700,
+            marginBottom: 28,
+          }}
+        />
+        <div
+          style={{
+            maxWidth: 820,
+            color: colors.stone600,
+            fontSize: 32,
+            lineHeight: 1.45,
+          }}
+        >
+          {description}
+        </div>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          padding: "0 80px 60px 80px",
+          fontSize: 32,
+        }}
+      >
+        <Footer name={name} logoSrc={logoSrc} />
+      </div>
+    </div>
+  );
+}
+
+export function createSimplePageMarkup(
+  title: string,
+  description: string,
+  logoSrc: ArrayBuffer,
+) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        position: "relative",
+        width: WIDTH,
+        height: HEIGHT,
+        backgroundColor: colors.stone100,
+        fontFamily: "Inter",
+        color: colors.stone900,
+      }}
+    >
+      <div
+        style={{
+          width: 24,
+          height: HEIGHT,
+          backgroundColor: colors.cyan700,
+          flexShrink: 0,
+        }}
+      />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          flex: 1,
+          padding: "80px 120px",
+          textAlign: "center",
+        }}
+      >
+        <div
+          style={{
+            fontSize: 80,
+            fontWeight: 800,
+            lineHeight: 1.1,
+            marginBottom: 32,
+          }}
+        >
+          {title}
+        </div>
+        <div
+          style={{
+            maxWidth: 820,
+            color: colors.stone600,
+            fontSize: 32,
+            lineHeight: 1.45,
+          }}
+        >
+          {description}
+        </div>
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          right: 80,
+          bottom: 64,
+          display: "flex",
+          alignItems: "center",
+          gap: 14,
+          color: colors.stone600,
+          fontSize: 28,
+          fontWeight: 600,
+        }}
+      >
+        <img
+          src={logoSrc as unknown as string}
+          width={36}
+          height={36}
+          style={{ flexShrink: 0 }}
+        />
+        <div>Mikael Lirbank</div>
+      </div>
+    </div>
+  );
+}
+
+export function createArticleMarkup(
   title: string,
   description: string,
   logoSrc: ArrayBuffer,
@@ -82,43 +240,49 @@ export function createMarkup(
             {description}
           </div>
         </div>
+        <Footer name="Mikael Lirbank" logoSrc={logoSrc} />
+      </div>
+    </div>
+  );
+}
+
+function Footer({ name, logoSrc }: { name: string; logoSrc: ArrayBuffer }) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        width: "100%",
+        justifyContent: "space-between",
+        alignItems: "center",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 14,
+        }}
+      >
+        <img
+          src={logoSrc as unknown as string}
+          width={40}
+          height={40}
+          style={{ flexShrink: 0 }}
+        />
         <div
           style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
+            fontWeight: 600,
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 14,
-            }}
-          >
-            {/* Logo mark */}
-            <img
-              src={logoSrc as unknown as string}
-              width={40}
-              height={40}
-              style={{ flexShrink: 0 }}
-            />
-            <div
-              style={{
-                fontWeight: 600,
-              }}
-            >
-              Mikael Lirbank
-            </div>
-          </div>
-          <div
-            style={{
-              color: colors.stone600,
-            }}
-          >
-            www.lirbank.com
-          </div>
+          {name}
         </div>
+      </div>
+      <div
+        style={{
+          color: colors.stone600,
+        }}
+      >
+        www.lirbank.com
       </div>
     </div>
   );

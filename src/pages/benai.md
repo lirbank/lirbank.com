@@ -2,7 +2,7 @@
 layout: ../layouts/page.astro
 title: BenAi
 description: AI customer service platform for healthcare plan members, built with agentic retrieval over plan documents and claims data.
-ogImage: /benai/benai-demo-image.png
+ogImage: /og/benai.png
 ---
 
 ![BenAi logo](/benai/benai-logo.png)
