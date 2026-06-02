@@ -1,5 +1,8 @@
 ---
 layout: ../layouts/page.astro
+title: Brand
+description: Internal brand notes and assets for Mikael Lirbank.
+ogImage: /brand/lirbank-og.jpg?v=1
 
 # Inspiration
 # https://neon.com/brand
