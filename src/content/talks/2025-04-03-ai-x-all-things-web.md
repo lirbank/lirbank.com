@@ -4,7 +4,7 @@ date: 2025-04-03
 order: 1
 ---
 
-# [AI x All Things Web](https://allthingsweb.dev/2025-04-03-ai-x-all-things-web) <span class="aside">(confirmed)</span>
+### [AI x All Things Web](https://allthingsweb.dev/2025-04-03-ai-x-all-things-web) <span class="aside">(confirmed)</span>
 
 Apr 3, 2025\
 [Register](https://lu.ma/9dga4f43?tk=QkmdTN)\
