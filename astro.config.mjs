@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig, fontProviders } from "astro/config";
+import { unified } from "@astrojs/markdown-remark";
 import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
 import sitemap from "@astrojs/sitemap";
@@ -31,7 +32,7 @@ export default defineConfig({
     },
   ],
   markdown: {
-    smartypants: false,
+    processor: unified({ smartypants: false }),
   },
   vite: {
     plugins: [tailwindcss()],
