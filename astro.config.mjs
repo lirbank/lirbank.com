@@ -1,6 +1,5 @@
 // @ts-check
 import { defineConfig, fontProviders } from "astro/config";
-import { unified } from "@astrojs/markdown-remark";
 import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
 import sitemap from "@astrojs/sitemap";
@@ -20,8 +19,8 @@ export default defineConfig({
       weights: ["100 900"],
       styles: ["normal", "italic"],
       subsets: ["latin", "greek"],
-      // Request Inter's optical-sizing axis (in addition to the default wght axis)
-      // so the file matches the variable build production was using.
+      // Request Inter's optical-sizing axis in addition to wght so the Google
+      // provider returns the same variable font build used in production.
       options: {
         experimental: {
           variableAxis: {
@@ -31,9 +30,6 @@ export default defineConfig({
       },
     },
   ],
-  markdown: {
-    processor: unified({ smartypants: false }),
-  },
   vite: {
     plugins: [tailwindcss()],
   },
