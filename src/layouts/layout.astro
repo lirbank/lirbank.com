@@ -81,7 +81,8 @@ const canonicalOgImage = new URL(ogImage, Astro.site).href;
     <header
       class="sticky top-0 border-b border-stone-300/50 bg-stone-50/70 backdrop-blur-sm"
     >
-      <div class="mx-auto flex max-w-3xl justify-between px-6">
+      <!-- px-2 sm:px-6 + the links' px-2 = the site gutter (px-4 sm:px-8) -->
+      <div class="max-w-site mx-auto flex justify-between px-2 sm:px-6">
         <a href="/#main" class="px-2 py-3">Home</a>
         <a href="/#projects" class="px-2 py-3">Projects</a>
         <a href="/#services" class="px-2 py-3">Services</a>
@@ -92,13 +93,13 @@ const canonicalOgImage = new URL(ogImage, Astro.site).href;
       </div>
     </header>
     <slot />
-    <footer class="mx-auto max-w-3xl px-8 py-4 text-center">
+    <footer class="max-w-site mx-auto px-4 py-4 text-center sm:px-8">
       © {year} Mikael Lirbank · Airlab LLC · San Francisco Bay Area
     </footer>
     <nav
       class="sticky bottom-0 border-t border-stone-300/50 bg-stone-50/70 backdrop-blur-sm md:hidden"
     >
-      <div class="mx-auto flex max-w-3xl justify-between px-6">
+      <div class="max-w-site mx-auto flex justify-between px-2 sm:px-6">
         <a href="/#contact" class="px-2 py-3">Contact</a>
         <a href="/#talks" class="px-2 py-3">Talks</a>
         <a href="/#about" class="px-2 py-3">About</a>

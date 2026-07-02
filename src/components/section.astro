@@ -8,7 +8,7 @@ const { class: className, ...sectionProps } = Astro.props;
 
 <section
   {...sectionProps}
-  class:list={["mx-auto max-w-3xl px-4 py-10 sm:px-8", className]}
+  class:list={["max-w-site mx-auto px-4 py-10 sm:px-8", className]}
 >
   <slot />
 </section>

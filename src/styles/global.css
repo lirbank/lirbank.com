@@ -5,6 +5,11 @@
   --font-sans: var(--font-inter);
 }
 
+@theme {
+  /* The site's one content width (max-w-site) */
+  --container-site: 48rem;
+}
+
 @layer base {
   /* Prevent font boosting on Android Chrome */
   h1,
