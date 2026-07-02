@@ -30,6 +30,7 @@ const articles = (await getCollection("articles")).sort(
   (a, b) =>
     new Date(b.data.published).getTime() - new Date(a.data.published).getTime(),
 );
+const latestArticle = articles[0];
 
 function formatArticleDate(dateStr: string) {
   return new Date(dateStr + "T00:00:00").toLocaleDateString("en-US", {
@@ -48,15 +49,19 @@ function formatArticleDate(dateStr: string) {
   <main id="main" class="scroll-mt-20">
     <!-- 1. Hero -->
     <container>
-      <div class="bg-cyan-600 px-8 py-2 text-center text-white">
-        New article: Liberate yourself from infrastructure over-planning —{" "}
-        <a
-          href="/liberate-yourself-from-infrastructure-over-planning"
-          class="text-nowrap text-cyan-50 underline hover:text-white"
-        >
-          Read it here
-        </a>
-      </div>
+      {
+        latestArticle && (
+          <div class="bg-cyan-600 px-8 py-2 text-center text-white">
+            New article: {latestArticle.data.title} —{" "}
+            <a
+              href={`/${latestArticle.id}`}
+              class="text-nowrap text-cyan-50 underline hover:text-white"
+            >
+              Read it here
+            </a>
+          </div>
+        )
+      }
       <section
         aria-labelledby="main"
         class="flex flex-col gap-10 sm:grid sm:grid-cols-2"
