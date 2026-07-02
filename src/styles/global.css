@@ -5,6 +5,11 @@
   --font-sans: var(--font-inter);
 }
 
+@theme {
+  /* The site's one content width (max-w-site) */
+  --container-site: 48rem;
+}
+
 @layer base {
   /* Prevent font boosting on Android Chrome */
   h1,
@@ -18,15 +23,6 @@
   p,
   blockquote {
     @apply max-h-full;
-  }
-
-  /* Layout blocks */
-  container {
-    @apply block odd:bg-stone-200;
-  }
-
-  section {
-    @apply mx-auto max-w-3xl px-4 py-10 sm:px-8;
   }
 
   /* Typography */

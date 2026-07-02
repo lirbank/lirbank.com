@@ -4,6 +4,8 @@ import { highlightedTechnologies, technologies } from "../data/technologies";
 import { contact } from "../data/contact";
 import Testimonial from "../components/testimonial.astro";
 import Card from "../components/card.astro";
+import Band from "../components/band.astro";
+import Section from "../components/section.astro";
 import { homepage } from "../data/homepage";
 import { Icon } from "astro-icon/components";
 import { Content as ProjectsContent } from "../partials/projects.md";
@@ -48,7 +50,7 @@ function formatArticleDate(dateStr: string) {
 >
   <main id="main" class="scroll-mt-20">
     <!-- 1. Hero -->
-    <container>
+    <Band>
       {
         latestArticle && (
           <div class="bg-cyan-600 px-8 py-2 text-center text-white">
@@ -62,7 +64,7 @@ function formatArticleDate(dateStr: string) {
           </div>
         )
       }
-      <section
+      <Section
         aria-labelledby="main"
         class="flex flex-col gap-10 sm:grid sm:grid-cols-2"
       >
@@ -91,12 +93,12 @@ function formatArticleDate(dateStr: string) {
             }
           </div>
         </div>
-      </section>
-    </container>
+      </Section>
+    </Band>
 
     <!-- Articles (no nav) -->
-    <container>
-      <section aria-labelledby="articles">
+    <Band>
+      <Section aria-labelledby="articles">
         <h2 id="articles" class="scroll-mt-20">Articles</h2>
         {
           articles.map((article) => {
@@ -116,12 +118,12 @@ function formatArticleDate(dateStr: string) {
             );
           })
         }
-      </section>
-    </container>
+      </Section>
+    </Band>
 
     <!-- 2. Testimonials -->
-    <container>
-      <section aria-labelledby="reviews">
+    <Band>
+      <Section aria-labelledby="reviews">
         <h2 id="reviews" class="scroll-mt-20">What people say</h2>
         <p>
           My peers and clients often point out my attention to detail and
@@ -132,33 +134,33 @@ function formatArticleDate(dateStr: string) {
             <Testimonial testimonial={testimonial} />
           ))
         }
-      </section>
-    </container>
+      </Section>
+    </Band>
 
     <!-- 3. Projects -->
-    <container>
-      <section id="projects" class="markdown scroll-mt-10">
+    <Band>
+      <Section id="projects" class="markdown scroll-mt-10">
         <ProjectsContent />
-      </section>
-    </container>
+      </Section>
+    </Band>
 
     <!-- 4. Services -->
-    <container>
-      <section id="services" class="markdown scroll-mt-10">
+    <Band>
+      <Section id="services" class="markdown scroll-mt-10">
         <ServicesContent />
-      </section>
-    </container>
+      </Section>
+    </Band>
 
     <!-- 5. Benefits -->
-    <container>
-      <section id="benefits" class="markdown scroll-mt-10">
+    <Band>
+      <Section id="benefits" class="markdown scroll-mt-10">
         <BenefitsContent />
-      </section>
-    </container>
+      </Section>
+    </Band>
 
     <!-- 6. Contact -->
-    <container>
-      <section aria-labelledby="contact">
+    <Band>
+      <Section aria-labelledby="contact">
         <h2 id="contact" class="scroll-mt-20">Let's get to work</h2>
         <p>
           Ready to take your web app to the next level? I am here to help.
@@ -196,12 +198,12 @@ function formatArticleDate(dateStr: string) {
             Landscape photo
           </a>
         </p>
-      </section>
-    </container>
+      </Section>
+    </Band>
 
     <!-- 7. Talks -->
-    <container>
-      <section aria-labelledby="about" class="talks-markdown">
+    <Band>
+      <Section aria-labelledby="about" class="talks-markdown">
         <h2 id="talks" class="scroll-mt-20">Talks</h2>
         <p>
           I speak at meetups, conferences, and private corporate events about
@@ -230,12 +232,12 @@ function formatArticleDate(dateStr: string) {
             <Testimonial testimonial={featuredTestimonial} />
           )
         }
-      </section>
-    </container>
+      </Section>
+    </Band>
 
     <!-- 8. About -->
-    <container>
-      <section id="about" class="markdown scroll-mt-10">
+    <Band>
+      <Section id="about" class="markdown scroll-mt-10">
         <AboutContent />
         <p>
           <a
@@ -276,7 +278,7 @@ function formatArticleDate(dateStr: string) {
               ))
           }
         </div>
-      </section>
-    </container>
+      </Section>
+    </Band>
   </main>
 </Layout>
