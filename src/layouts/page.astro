@@ -1,7 +1,10 @@
 ---
 import Layout from "./layout.astro";
-import Section from "../components/section.astro";
+import Container from "../components/container.astro";
+import Letterhead from "../components/letterhead.astro";
 
+// Layout for standalone markdown pages (/brand, /benai): a stripped-down
+// article — letterhead, then the measure column. No meta line, no bio card.
 interface Props {
   frontmatter: {
     title: string;
@@ -18,11 +21,16 @@ const { frontmatter } = Astro.props;
   description={frontmatter.description}
   ogImage={frontmatter.ogImage}
 >
-  <Section>
-    <article
-      class="prose prose-stone sm:prose-lg prose-a:text-cyan-600 max-w-none"
+  <Container>
+    <main
+      class="py-section-pad wide:grid wide:grid-cols-[var(--label-col)_1fr] wide:gap-x-(--col-gap)"
     >
-      <slot />
-    </article>
-  </Section>
+      <div class="wide:mb-0 mb-9">
+        <Letterhead />
+      </div>
+      <article class="max-w-measure min-w-0">
+        <slot />
+      </article>
+    </main>
+  </Container>
 </Layout>

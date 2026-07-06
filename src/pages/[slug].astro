@@ -1,11 +1,12 @@
 ---
 import { getCollection, getEntry, render } from "astro:content";
 import Layout from "../layouts/layout.astro";
+import Container from "../components/container.astro";
+import Letterhead from "../components/letterhead.astro";
+import ArticleRow from "../components/article-row.astro";
+import ContactLinks from "../components/contact-links.astro";
 import { Image } from "astro:assets";
 import heroImage from "../assets/brand/mikael-lirbank.jpg";
-import { Icon } from "astro-icon/components";
-import { contact } from "../data/contact";
-import Section from "../components/section.astro";
 
 export async function getStaticPaths() {
   const articles = await getCollection("articles");
@@ -20,14 +21,21 @@ if (!entry) return Astro.redirect("/404");
 
 const { Content } = await render(entry);
 
-function formatDate(dateStr: string | undefined) {
-  if (!dateStr) return null;
-  return new Date(dateStr + "T00:00:00").toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    // day: "numeric",
-  });
-}
+// Each h2 opens a numbered section ("01 / 10"); the total feeds the CSS
+// counter via the inline style below.
+const sectionCount = (entry.rendered?.html?.match(/<h2/g) ?? []).length;
+
+const moreArticles = (await getCollection("articles"))
+  .filter((article) => article.id !== slug)
+  .sort(
+    (a, b) =>
+      new Date(b.data.published).getTime() -
+      new Date(a.data.published).getTime(),
+  );
+
+const monthYear = new Date(
+  entry.data.published + "T00:00:00",
+).toLocaleDateString("en-US", { month: "long", year: "numeric" });
 ---
 
 <Layout
@@ -40,75 +48,73 @@ function formatDate(dateStr: string | undefined) {
     author: entry.data.author,
   }}
 >
-  <Section>
-    <article
-      class="prose prose-stone sm:prose-lg prose-a:text-cyan-600 max-w-none"
-    >
-      <header class="flex flex-col">
-        <div class="text-base">
-          {entry.data.author} — <time datetime={entry.data.published}
-            >{formatDate(entry.data.published)}</time
-          >{
-            entry.data.updated && (
-              <> (updated {formatDate(entry.data.updated)})</>
-            )
-          }
+  <Container>
+    <div class="py-section-pad">
+      <div
+        class="wide:grid wide:grid-cols-[var(--label-col)_1fr] wide:gap-x-(--col-gap)"
+      >
+        <div class="mb-stack-gap wide:mb-0">
+          <Letterhead />
         </div>
-        <div class="mb-10 text-sm text-stone-600 italic">
-          Independent consultant. I build robust, high-quality software systems,
-          {" "}
-          <a href="/#contact" class="text-nowrap">get in touch</a>.
+        <article class="max-w-measure min-w-0">
+          <div class="kicker flex flex-wrap items-center gap-x-2.5 gap-y-2">
+            <time datetime={entry.data.published}>{monthYear}</time>
+            <span>·</span>
+            <a href={`/${slug}.md`} class="link">View as Markdown</a>
+          </div>
+          <div
+            class="article-prose"
+            style={`counter-reset: section 0 section-total ${sectionCount}`}
+          >
+            <Content />
+          </div>
+        </article>
+      </div>
+
+      <!-- More articles -->
+      <aside
+        class="border-hairline mt-stack-gap pt-stack-gap wide:grid wide:grid-cols-[var(--label-col)_1fr] wide:gap-x-(--col-gap) border-t"
+      >
+        <div class="kicker wide:mb-0 wide:pt-1 mb-4">More articles</div>
+        <div class="max-w-measure grid min-w-0 gap-9">
+          {moreArticles.map((article) => <ArticleRow article={article} />)}
         </div>
-        <a
-          href={`/${slug}.md`}
-          class="mb-2 flex items-center gap-1 text-sm text-stone-600! no-underline"
-        >
-          <Icon name="fa6-brands:markdown" class="size-6" />
-          View as Markdown
-        </a>
-      </header>
-      <Content />
-    </article>
+      </aside>
 
-    <!-- <hr class="my-14 border-stone-200" /> -->
-
-    <!-- Author card -->
-    <div class="-mx-4 mt-15 p-4 sm:rounded-md sm:bg-stone-50 sm:shadow">
-      <blockquote class="border-stone-300 italic">
-        <p>
-          I'm Mikael, an independent consultant based in the SF Bay Area. I
-          build robust, high-quality software systems—<a
-            href="/#contact"
-            class="text-stone-800 underline hover:text-stone-900"
-            >get in touch</a
-          >.
-        </p>
-      </blockquote>
-      <div class="mt-4 flex items-center gap-2">
-        <a href="/#contact" class="shrink-0">
-          <Image
-            class="size-12 rounded-full object-cover shadow"
-            src={heroImage}
-            alt="Mikael Lirbank"
-            width={96}
-            height={96}
-            quality={80}
-            loading="lazy"
-          />
-        </a>
-        <div class="flex flex-col">
-          <strong class="text-lg">Mikael Lirbank</strong>
-          <div class="flex gap-1">
-            {
-              contact.map(({ href, icon, label }) => (
-                <a href={href} aria-label={label} title={label}>
-                  <Icon name={icon} class="size-5" />
-                </a>
-              ))
-            }
+      <!-- Author card -->
+      <div
+        class="border-hairline mt-stack-gap pt-stack-gap wide:grid wide:grid-cols-[var(--label-col)_1fr] wide:gap-x-(--col-gap) border-t"
+      >
+        <div class="kicker wide:mb-0 wide:pt-1 mb-4">Contact</div>
+        <div class="max-w-measure min-w-0">
+          <div class="flex items-center gap-3.5">
+            <Image
+              class="size-18 rounded-full object-cover"
+              src={heroImage}
+              alt="Mikael Lirbank"
+              width={144}
+              height={144}
+              quality={80}
+              loading="lazy"
+            />
+            <div class="text-body text-ink font-semibold">Mikael Lirbank</div>
+          </div>
+          <p class="description mt-4">
+            I’m an independent consultant in San Francisco. I help teams ship
+            robust, reliable, high-quality AI systems. I care deeply about
+            quality, from AI evals and robust test suites to solid data models
+            and clean architecture.
+          </p>
+          <p class="description mt-3">My main deliverable is peace of mind.</p>
+          <p class="description mt-3">
+            Let’s jump on a call — fifteen minutes is usually enough to know
+            whether I can help.
+          </p>
+          <div class="mt-4">
+            <ContactLinks />
           </div>
         </div>
       </div>
     </div>
-  </Section>
+  </Container>
 </Layout>

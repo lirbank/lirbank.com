@@ -1,14 +1,31 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import Container from "./container.astro";
 
-type Props = HTMLAttributes<"section">;
+// LP section: hairline rule at the container edge, section-pad vertical
+// rhythm. With a kicker, wide screens get the 260px label column; below
+// that the kicker is an eyebrow above the content.
+interface Props extends HTMLAttributes<"section"> {
+  kicker?: string;
+}
 
-const { class: className, ...sectionProps } = Astro.props;
+const { kicker, class: className, ...sectionProps } = Astro.props;
 ---
 
-<section
-  {...sectionProps}
-  class:list={["max-w-site mx-auto px-4 py-10 sm:px-8", className]}
->
-  <slot />
+<section {...sectionProps} class="scroll-mt-14 sm:scroll-mt-20">
+  <Container>
+    <div
+      class:list={[
+        "border-hairline py-section-pad border-t",
+        kicker &&
+          "wide:grid wide:grid-cols-[var(--label-col)_1fr] wide:gap-x-(--col-gap)",
+        className,
+      ]}
+    >
+      {kicker && <div class="kicker wide:mb-0 wide:pt-4 mb-4">{kicker}</div>}
+      <div class="min-w-0">
+        <slot />
+      </div>
+    </div>
+  </Container>
 </section>

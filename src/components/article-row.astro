@@ -1,0 +1,24 @@
+---
+import type { CollectionEntry } from "astro:content";
+import DateRow from "./date-row.astro";
+
+// One article in a list: date column, title link, description.
+interface Props {
+  article: CollectionEntry<"articles">;
+}
+
+const { article } = Astro.props;
+const date = new Date(article.data.published + "T00:00:00").toLocaleDateString(
+  "en-US",
+  { year: "numeric", month: "short", day: "2-digit" },
+);
+---
+
+<DateRow date={date} datetime={article.data.published}>
+  <h3>
+    <a href={`/${article.id}`} class="text-ink border-none">
+      {article.data.title}
+    </a>
+  </h3>
+  <p class="description mt-2">{article.data.description}</p>
+</DateRow>

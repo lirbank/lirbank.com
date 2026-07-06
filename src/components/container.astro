@@ -1,0 +1,15 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+// The one content width: 980px + gutter padding. Padding sits outside the
+// max-width so the content box is a true 980px at the wide breakpoint.
+type Props = HTMLAttributes<"div">;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<div {...props} class:list={["px-gutter", className]}>
+  <div class="max-w-site mx-auto">
+    <slot />
+  </div>
+</div>
