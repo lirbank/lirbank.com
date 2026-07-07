@@ -16,8 +16,6 @@ const articles = defineCollection({
 const testimonials = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/testimonials" }),
   schema: z.object({
-    company: z.string().optional(),
-    intro: z.string().optional(),
     author: z.object({
       name: z.string(),
       title: z.string(),
