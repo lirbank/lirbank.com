@@ -297,11 +297,11 @@
   }
 
   @variant wide {
+    /* The content column is indented; the rule spans label column too */
     .article-prose h2 {
       border-top: none;
     }
 
-    /* The rule reaches across the label column to the container edge */
     .article-prose h2::after {
       content: "";
       position: absolute;

@@ -9,7 +9,9 @@ const { class: className, ...props } = Astro.props;
 ---
 
 <div {...props} class:list={["px-gutter", className]}>
-  <div class="max-w-site mx-auto">
+  <!-- Below the wide breakpoint the page is one centered text column;
+       at wide it grows into the 980px container with the label column. -->
+  <div class="max-w-measure wide:max-w-site mx-auto">
     <slot />
   </div>
 </div>
