@@ -5,6 +5,7 @@ import Container from "../components/container.astro";
 import Letterhead from "../components/letterhead.astro";
 import ArticleRow from "../components/article-row.astro";
 import ContactLinks from "../components/contact-links.astro";
+import { homepage } from "../data/homepage";
 import { Image } from "astro:assets";
 import heroImage from "../assets/brand/mikael-lirbank.jpg";
 
@@ -99,17 +100,11 @@ const monthYear = new Date(
             />
             <div class="text-body text-ink font-semibold">Mikael Lirbank</div>
           </div>
-          <p class="description mt-4">
-            I’m an independent consultant in San Francisco. I help teams ship
-            robust, reliable, high-quality AI systems. I care deeply about
-            quality, from AI evals and robust test suites to solid data models
-            and clean architecture.
-          </p>
-          <p class="description mt-3">My main deliverable is peace of mind.</p>
-          <p class="description mt-3">
-            Let’s jump on a call — fifteen minutes is usually enough to know
-            whether I can help.
-          </p>
+          {
+            homepage.pitch.map((paragraph) => (
+              <p class="description mt-3 first:mt-4">{paragraph}</p>
+            ))
+          }
           <div class="mt-4">
             <ContactLinks />
           </div>

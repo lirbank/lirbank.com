@@ -273,17 +273,11 @@ const collective = [
     <!-- 07 Contact -->
     <Section id="contact" kicker="07 — CONTACT">
       <h2 class="text-title">Work with me</h2>
-      <p class="max-w-measure mt-5">
-        I’m an independent consultant in San Francisco. I help teams ship
-        robust, reliable, high-quality AI systems. I care deeply about quality,
-        from AI evals and robust test suites to solid data models and clean
-        architecture.
-      </p>
-      <p class="max-w-measure mt-5">My main deliverable is peace of mind.</p>
-      <p class="max-w-measure mt-5">
-        Let’s jump on a call — fifteen minutes is usually enough to know whether
-        I can help.
-      </p>
+      {
+        homepage.pitch.map((paragraph) => (
+          <p class="max-w-measure mt-5">{paragraph}</p>
+        ))
+      }
       <div class="mt-9">
         <ContactLinks />
       </div>

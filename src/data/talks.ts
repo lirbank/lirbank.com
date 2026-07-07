@@ -1,4 +1,3 @@
-// Speaking engagements, in curated display order (not chronological).
 interface Talk {
   date: string;
   title: string;
