@@ -51,7 +51,6 @@ const collective = [
 >
   <Nav />
   <main>
-    <!-- Hero -->
     <Container>
       <header class="py-hero-pad">
         <h1 class="text-display max-w-hero">{homepage.headline}</h1>
@@ -76,14 +75,12 @@ const collective = [
       </header>
     </Container>
 
-    <!-- 01 Articles -->
     <Section id="articles" kicker="01 — ARTICLES">
       <div class="gap-stack-gap grid">
         {articles.map((article) => <ArticleRow article={article} />)}
       </div>
     </Section>
 
-    <!-- 02 Collective -->
     <Section id="collective" kicker="02 — COLLECTIVE">
       <!-- The one heading with positive tracking, per the design -->
       <h2 class="tracking-[0.02em]">STΛR MODΞ</h2>
@@ -117,7 +114,6 @@ const collective = [
       </p>
     </Section>
 
-    <!-- 03 Client projects -->
     <Section id="projects" kicker="03 — CLIENT PROJECTS">
       <h2>Selected work</h2>
       <p class="lede max-w-measure mt-6">
@@ -155,7 +151,6 @@ const collective = [
       </div>
     </Section>
 
-    <!-- 04 Talks -->
     <Section id="talks" kicker="04 — TALKS">
       <h2>Speaking</h2>
       <p class="lede max-w-measure mt-6">
@@ -224,7 +219,6 @@ const collective = [
       }
     </Section>
 
-    <!-- 05 Testimonials -->
     <Section id="praise" kicker="05 — TESTIMONIALS">
       <h2>What people say</h2>
       <p class="lede max-w-measure mt-6">
@@ -240,7 +234,6 @@ const collective = [
       </div>
     </Section>
 
-    <!-- 06 About -->
     <Section id="about" kicker="06 — ABOUT">
       <h2>About me</h2>
       <p class="lede max-w-measure mt-6">
@@ -270,7 +263,6 @@ const collective = [
       </p>
     </Section>
 
-    <!-- 07 Contact -->
     <Section id="contact" kicker="07 — CONTACT">
       <h2 class="text-title">Work with me</h2>
       {

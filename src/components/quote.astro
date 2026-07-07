@@ -2,8 +2,6 @@
 import { render, type CollectionEntry } from "astro:content";
 import { Image } from "astro:assets";
 
-// Testimonial: italic quote on a hairline rail (no quotation marks),
-// then attribution — round avatar, name in ink, role faint.
 const avatarImages = import.meta.glob<{ default: ImageMetadata }>(
   "../assets/testimonials/*.jpg",
   { eager: true },

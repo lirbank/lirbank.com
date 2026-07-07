@@ -1,10 +1,6 @@
 ---
 import Container from "./container.astro";
 import { navLinks } from "../data/nav";
-
-// LP nav, sticky at the top. Desktop: name left, anchor links right.
-// Mobile: a chip bar — just the links, horizontally scrollable. Scrollspy
-// marks the section in view with the mock's active state (ink + underline).
 ---
 
 <nav data-site-nav class="border-hairline bg-paper sticky top-0 z-10 border-b">
@@ -16,9 +12,8 @@ import { navLinks } from "../data/nav";
       >
         Mikael Lirbank
       </a>
-      <!-- The chip bar stays until the name and all links fit on one line
-           (md). Full bleed while it scrolls: swallow the gutters so the row
-           reaches the screen edges, and give them back as padding inside -->
+      <!-- Full bleed while the chip bar scrolls: swallow the gutters so the
+           row reaches the screen edges, and give them back as padding inside -->
       <div
         class="text-small text-quote max-md:-mx-gutter max-md:px-gutter flex scrollbar-none gap-5 overflow-x-auto py-3.5 md:gap-6 md:overflow-visible md:py-0"
       >
@@ -69,7 +64,6 @@ import { navLinks } from "../data/nav";
       active = link;
       if (link) {
         link.setAttribute("aria-current", "true");
-        // Keep the active chip in view when the row scrolls (mobile)
         link.scrollIntoView({
           behavior: reducedMotion.matches ? "auto" : "smooth",
           block: "nearest",

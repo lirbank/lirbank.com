@@ -2,9 +2,6 @@
 import type { HTMLAttributes } from "astro/types";
 import Container from "./container.astro";
 
-// LP section: hairline rule at the container edge, section-pad vertical
-// rhythm. With a kicker, wide screens get the 260px label column; below
-// that the kicker is an eyebrow above the content.
 interface Props extends HTMLAttributes<"section"> {
   kicker?: string;
 }

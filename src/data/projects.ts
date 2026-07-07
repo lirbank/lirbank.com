@@ -1,10 +1,8 @@
-// Selected work, in curated display order. `testimonial` refers to an entry
-// in the testimonials collection, quoted inline under the project.
 interface Project {
   title: string;
   description: string;
   links: { label: string; href: string }[];
-  testimonial?: string;
+  testimonial?: string; // id in the testimonials collection
 }
 
 export const projects: Project[] = [
