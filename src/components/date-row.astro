@@ -1,0 +1,23 @@
+---
+interface Props {
+  date: string;
+  datetime?: string;
+  class?: string;
+}
+
+const { date, datetime, class: className } = Astro.props;
+---
+
+<div
+  class:list={[
+    "sm:grid sm:grid-cols-[var(--date-col)_1fr] sm:gap-x-6",
+    className,
+  ]}
+>
+  <time datetime={datetime} class="date mb-1.5 block sm:mb-0 sm:pt-1">
+    {date}
+  </time>
+  <div class="min-w-0">
+    <slot />
+  </div>
+</div>

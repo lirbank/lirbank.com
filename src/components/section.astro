@@ -1,0 +1,28 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import Container from "./container.astro";
+
+interface Props extends HTMLAttributes<"section"> {
+  kicker?: string;
+}
+
+const { kicker, class: className, ...sectionProps } = Astro.props;
+---
+
+<section {...sectionProps} class="scroll-mt-14 md:scroll-mt-20">
+  <Container>
+    <div
+      class:list={[
+        "border-hairline py-section-pad border-t",
+        kicker &&
+          "wide:grid wide:grid-cols-[var(--label-col)_1fr] wide:gap-x-(--col-gap)",
+        className,
+      ]}
+    >
+      {kicker && <div class="kicker wide:mb-0 wide:pt-4 mb-4">{kicker}</div>}
+      <div class="min-w-0">
+        <slot />
+      </div>
+    </div>
+  </Container>
+</section>

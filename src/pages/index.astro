@@ -1,44 +1,47 @@
 ---
 import Layout from "../layouts/layout.astro";
-import { highlightedTechnologies, technologies } from "../data/technologies";
-import { contact } from "../data/contact";
-import Testimonial from "../components/testimonial.astro";
-import Card from "../components/card.astro";
+import Nav from "../components/nav.astro";
+import Container from "../components/container.astro";
+import Section from "../components/section.astro";
+import DateRow from "../components/date-row.astro";
+import ArticleRow from "../components/article-row.astro";
+import Quote from "../components/quote.astro";
+import ContactLinks from "../components/contact-links.astro";
 import { homepage } from "../data/homepage";
-import { Icon } from "astro-icon/components";
-import { Content as ProjectsContent } from "../partials/projects.md";
-import { Content as ServicesContent } from "../partials/services.md";
-import { Content as BenefitsContent } from "../partials/benefits.md";
-import { Content as AboutContent } from "../partials/about.md";
-import { Content as TalkSynopsisContent } from "../partials/talk-synopsis.md";
+import { talks } from "../data/talks";
+import { projects } from "../data/projects";
 import { Image } from "astro:assets";
 import heroImage from "../assets/brand/mikael-lirbank.jpg";
-import { getCollection, render } from "astro:content";
-
-const allTestimonials = await getCollection("testimonials");
-const clientTestimonials = allTestimonials
-  .filter((t) => !t.data.featured)
-  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
-const featuredTestimonial = allTestimonials.find((t) => t.data.featured);
-
-const talks = await getCollection("talks");
-const sortedTalks = talks.sort(
-  (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99),
-);
+import { getCollection } from "astro:content";
 
 const articles = (await getCollection("articles")).sort(
   (a, b) =>
     new Date(b.data.published).getTime() - new Date(a.data.published).getTime(),
 );
-const latestArticle = articles[0];
 
-function formatArticleDate(dateStr: string) {
-  return new Date(dateStr + "T00:00:00").toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "2-digit",
-  });
-}
+const testimonials = await getCollection("testimonials");
+const testimonialById = new Map(testimonials.map((t) => [t.id, t]));
+const quotedInProjects = new Set(projects.map((p) => p.testimonial));
+
+const featuredTestimonial = testimonials.find((t) => t.data.featured);
+const praise = testimonials
+  .filter((t) => !t.data.featured && !quotedInProjects.has(t.id))
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+
+const collective = [
+  {
+    term: "Rendezvous",
+    detail: "30 min weekly video call — challenges, progress, feedback",
+  },
+  {
+    term: "Your project",
+    detail: "Open source or commercial — projects belong to their authors",
+  },
+  {
+    term: "Publish",
+    detail: "Showcase what you’re building on starmode.dev",
+  },
+];
 ---
 
 <Layout
@@ -46,237 +49,230 @@ function formatArticleDate(dateStr: string) {
   description={homepage.description}
   ogImage={homepage.ogImage}
 >
-  <main id="main" class="scroll-mt-20">
-    <!-- 1. Hero -->
-    <container>
-      {
-        latestArticle && (
-          <div class="bg-cyan-600 px-8 py-2 text-center text-white">
-            New article: {latestArticle.data.title} —{" "}
-            <a
-              href={`/${latestArticle.id}`}
-              class="text-nowrap text-cyan-50 underline hover:text-white"
-            >
-              Read it here
-            </a>
-          </div>
-        )
-      }
-      <section
-        aria-labelledby="main"
-        class="flex flex-col gap-10 sm:grid sm:grid-cols-2"
-      >
-        <h1 class="text-center sm:text-left">{homepage.headline}</h1>
-        <Image
-          class="mx-auto size-64 rounded-full object-cover sm:row-span-2 sm:rounded sm:shadow"
-          src={heroImage}
-          alt="Mikael Lirbank, a web development expert smiling at the camera"
-          width={512}
-          height={512}
-          quality={80}
-          loading="eager"
-        />
-        <div class="flex flex-col gap-2">
-          <div>
-            <h3>{homepage.title}</h3>
-            <p>{homepage.description}</p>
-          </div>
-          <div class="flex gap-2">
-            {
-              contact.map(({ href, icon, label }) => (
-                <a href={href} aria-label={label} title={label}>
-                  <Icon name={icon} class="size-8" />
-                </a>
-              ))
-            }
+  <Nav />
+  <main>
+    <Container>
+      <header class="py-hero-pad">
+        <h1 class="text-display max-w-hero">{homepage.headline}</h1>
+        <div class="mt-9 flex items-center gap-3.5 sm:mt-14 sm:gap-5">
+          <Image
+            class="size-14 rounded-full object-cover sm:size-18"
+            src={heroImage}
+            alt="Mikael Lirbank"
+            width={144}
+            height={144}
+            quality={80}
+            loading="eager"
+          />
+          <div class="text-body">
+            <div class="text-ink font-semibold">Mikael Lirbank</div>
+            <div>{homepage.description}</div>
           </div>
         </div>
-      </section>
-    </container>
+        <div class="mt-9">
+          <ContactLinks />
+        </div>
+      </header>
+    </Container>
 
-    <!-- Articles (no nav) -->
-    <container>
-      <section aria-labelledby="articles">
-        <h2 id="articles" class="scroll-mt-20">Articles</h2>
+    <Section id="articles" kicker="01 — ARTICLES">
+      <div class="gap-stack-gap grid">
+        {articles.map((article) => <ArticleRow article={article} />)}
+      </div>
+    </Section>
+
+    <Section id="collective" kicker="02 — COLLECTIVE">
+      <!-- The one heading with positive tracking, per the design -->
+      <h2 class="tracking-[0.02em]">STΛR MODΞ</h2>
+      <p class="lede max-w-measure mt-4">
+        I founded STΛR MODΞ, a collective of independent builders. Everyone
+        brings their own projects, from open source and developer tools to
+        commercial products, and we meet on a weekly call to discuss each
+        other’s work, share progress, and trade feedback. We publish what we’re
+        building on starmode.dev.
+      </p>
+      <div class="max-w-measure mt-8 grid gap-3.5">
         {
-          articles.map((article) => {
-            const slug = article.id;
+          collective.map(({ term, detail }) => (
+            <div class="text-body grid sm:grid-cols-[var(--date-col)_1fr] sm:gap-x-6">
+              <span class="text-ink font-semibold">{term}</span>
+              <span class="text-quote">{detail}</span>
+            </div>
+          ))
+        }
+      </div>
+      <p class="description max-w-measure mt-8">
+        <a href="https://www.npmjs.com/package/neon-testing"
+          ><strong>Neon Testing</strong></a
+        > is one of mine, a testing utility for seamless integration tests with Neon
+        Postgres, for Vitest and Bun Test.
+      </p>
+      <p class="description mt-8">
+        <a href="https://www.starmode.dev/"
+          >Meet the collective at starmode.dev</a
+        >
+      </p>
+    </Section>
+
+    <Section id="projects" kicker="03 — CLIENT PROJECTS">
+      <h2>Selected work</h2>
+      <p class="lede max-w-measure mt-6">
+        I’ve been building for AI teams for over a decade. Long before today’s
+        LLMs, I built tooling for machine learning teams. These days I architect
+        and build agentic systems for venture-backed startups, VC firms, and
+        enterprise clients.
+      </p>
+      <div class="mt-stack-gap gap-stack-gap grid">
+        {
+          projects.map((project) => {
+            const testimonial = project.testimonial
+              ? testimonialById.get(project.testimonial)
+              : undefined;
             return (
-              <div class="py-2">
-                <p class="text-base! text-stone-500">
-                  {formatArticleDate(article.data.published)}
+              <article>
+                <h3>{project.title}</h3>
+                <p class="description max-w-measure mt-2.5">
+                  {project.description}
                 </p>
-                <h3 class="mt-1!">
-                  <a href={`/${slug}`} class="no-style">
-                    {article.data.title}
-                  </a>
-                </h3>
-                <p>{article.data.description}</p>
-              </div>
+                <div class="text-small mt-3.5 flex flex-wrap gap-x-5 gap-y-3">
+                  {project.links.map(({ label, href }) => (
+                    <a href={href} class="link">
+                      {label}
+                    </a>
+                  ))}
+                </div>
+                {testimonial && (
+                  <Quote testimonial={testimonial} class="max-w-measure mt-6" />
+                )}
+              </article>
             );
           })
         }
-      </section>
-    </container>
+      </div>
+    </Section>
 
-    <!-- 2. Testimonials -->
-    <container>
-      <section aria-labelledby="reviews">
-        <h2 id="reviews" class="scroll-mt-20">What people say</h2>
-        <p>
-          My peers and clients often point out my attention to detail and
-          excellent communication skills.
-        </p>
+    <Section id="talks" kicker="04 — TALKS">
+      <h2>Speaking</h2>
+      <p class="lede max-w-measure mt-6">
+        I occasionally speak at meetups, conferences, and private corporate
+        events about leveraging AI to build better software. Want me to speak at
+        yours? <a href="#contact" class="link">Get in touch</a>.
+      </p>
+      <div class="mt-stack-gap grid gap-9">
         {
-          clientTestimonials.map((testimonial) => (
-            <Testimonial testimonial={testimonial} />
+          talks.map((talk) => (
+            <DateRow date={talk.date}>
+              <h3>
+                {talk.title}
+                {talk.note && (
+                  <span class="date ml-2 font-normal tracking-normal">
+                    {talk.note}
+                  </span>
+                )}
+              </h3>
+              <div class="text-small text-quote mt-1">{talk.venue}</div>
+              <div class="text-small mt-1 flex flex-wrap gap-x-5 gap-y-3">
+                {talk.links.map(({ label, href }) => (
+                  <a href={href} class="link">
+                    {label}
+                  </a>
+                ))}
+              </div>
+            </DateRow>
           ))
         }
-      </section>
-    </container>
-
-    <!-- 3. Projects -->
-    <container>
-      <section id="projects" class="markdown scroll-mt-10">
-        <ProjectsContent />
-      </section>
-    </container>
-
-    <!-- 4. Services -->
-    <container>
-      <section id="services" class="markdown scroll-mt-10">
-        <ServicesContent />
-      </section>
-    </container>
-
-    <!-- 5. Benefits -->
-    <container>
-      <section id="benefits" class="markdown scroll-mt-10">
-        <BenefitsContent />
-      </section>
-    </container>
-
-    <!-- 6. Contact -->
-    <container>
-      <section aria-labelledby="contact">
-        <h2 id="contact" class="scroll-mt-20">Let's get to work</h2>
-        <p>
-          Ready to take your web app to the next level? I am here to help.
-          Whether you need an urgent fix or a long-term partner, let's make it
-          happen. The sky's the limit.
+      </div>
+      <div class="border-hairline max-w-measure mt-stack-gap border px-10 py-9">
+        <div class="kicker">SYNOPSIS — LEADING LLMS</div>
+        <h3 class="mt-3.5">
+          A structured approach to building quality software with AI
+        </h3>
+        <p class="description mt-3.5">
+          AI dramatically accelerates software development, but how it is used
+          often compromises quality and structure. Without a clear process,
+          AI-generated code can become inconsistent and difficult to maintain.
+          In my recent work, I’ve been developing a way to use AI to write
+          high-quality, well-tested, and high-performing code really fast. This
+          approach is inspired by my work building PimDB, a browser-based
+          persisted in-memory database. In this talk, we’ll explore a structured
+          process to empower teams to leverage AI to tackle complex projects
+          with incredible velocity without compromising on quality.
         </p>
-        <ul class="ml-4 flex list-disc flex-col gap-2">
-          {
-            contact
-              .filter((e) => e.type === "contact" || e.id === "linkedIn")
-              .map(({ href, label, text, cta }) => (
-                <li>
-                  <span class="font-semibold">{cta}: </span>
-                  <a href={href} aria-label={label} title={label} class="link">
-                    {text}
-                  </a>
-                </li>
-              ))
-          }
-        </ul>
-        <p>
-          <a
-            href="/brand/mikael-lirbank.jpg"
-            download="mikael-lirbank.jpg"
-            class="link"
-          >
-            High-res photo of me
-          </a>
-          {" "}·{" "}
-          <a
-            href="/brand/mikael-lirbank-landscape.png"
-            download="mikael-lirbank-landscape.png"
-            class="link"
-          >
-            Landscape photo
-          </a>
+        <p class="description mt-3.5">
+          We’ll cover: API design and architecture · Writing tests · Performance
+          benchmarking · Writing documentation · Implementation and optimization
         </p>
-      </section>
-    </container>
+        <p class="description mt-3.5">
+          Attendees will gain practical strategies for using AI to write
+          maintainable, reliable code at AI speed — without compromising on
+          quality.
+        </p>
+      </div>
+      {
+        featuredTestimonial && (
+          <Quote
+            testimonial={featuredTestimonial}
+            large
+            class="max-w-measure mt-stack-gap"
+          />
+        )
+      }
+    </Section>
 
-    <!-- 7. Talks -->
-    <container>
-      <section aria-labelledby="about" class="talks-markdown">
-        <h2 id="talks" class="scroll-mt-20">Talks</h2>
-        <p>
-          I speak at meetups, conferences, and private corporate events about
-          leveraging AI to build better software.
-        </p>
-        <div class="-mx-4 grid gap-4 py-4 md:grid-cols-2">
-          {
-            sortedTalks.map(async (talk) => {
-              const { Content } = await render(talk);
-              return (
-                <Card>
-                  <div class="talk-content flex h-full flex-col">
-                    <Content />
-                  </div>
-                </Card>
-              );
-            })
-          }
-        </div>
-        <!-- <div class="talk-synopsis"> -->
-        <TalkSynopsisContent />
-        <!-- </div> -->
-        <h3>What people say</h3>
+    <Section id="praise" kicker="05 — TESTIMONIALS">
+      <h2>What people say</h2>
+      <p class="lede max-w-measure mt-6">
+        My peers and clients often point out my attention to detail and
+        excellent communication skills.
+      </p>
+      <div class="mt-stack-gap gap-stack-gap grid">
         {
-          featuredTestimonial && (
-            <Testimonial testimonial={featuredTestimonial} />
-          )
+          praise.map((testimonial) => (
+            <Quote testimonial={testimonial} large class="max-w-measure" />
+          ))
         }
-      </section>
-    </container>
+      </div>
+    </Section>
 
-    <!-- 8. About -->
-    <container>
-      <section id="about" class="markdown scroll-mt-10">
-        <AboutContent />
-        <p>
-          <a
-            href="/brand/mikael-lirbank.jpg"
-            download="mikael-lirbank.jpg"
-            class="link"
-          >
-            High-res photo of me
-          </a>
-          {" "}·{" "}
-          <a
-            href="/brand/mikael-lirbank-landscape.png"
-            download="mikael-lirbank-landscape.png"
-            class="link"
-          >
-            Landscape photo
-          </a>
-        </p>
-        <h3>Technologies & tooling</h3>
-        <p>I thrive with these tools and technologies.</p>
-        <div class="-mx-4 flex flex-wrap justify-center gap-1 pt-4">
-          {
-            technologies
-              .toSorted((a, b) => a[0].localeCompare(b[0]))
-              .map(([name, url]) => (
-                <div
-                  class={
-                    "rounded-lg px-3 py-1 text-sm text-nowrap" +
-                    (highlightedTechnologies.includes(name)
-                      ? " bg-cyan-50 font-medium text-cyan-900"
-                      : " bg-stone-50")
-                  }
-                >
-                  <a href={url} target="_blank" class="no-style">
-                    {name}
-                  </a>
-                </div>
-              ))
-          }
-        </div>
-      </section>
-    </container>
+    <Section id="about" kicker="06 — ABOUT">
+      <h2>About me</h2>
+      <p class="lede max-w-measure mt-6">
+        I’m Mikael Lirbank, based in Corte Madera, just north of the Golden Gate
+        Bridge in the beautiful San Francisco Bay Area. I live here with my
+        amazing wife and children. In my spare time, I’m a bit of a cycling
+        fanatic, so if you’d ever want to go mountain biking or road cycling in
+        Marin County, hit me up!
+      </p>
+      <img
+        src="/progress-pride-flag.svg"
+        alt="Progress Pride flag"
+        width="34"
+        height="24"
+        class="mt-5 block"
+      />
+      <p class="lede max-w-measure mt-3.5">
+        I believe everyone deserves to feel safe, respected, and welcome —
+        everywhere, always. That means creating an environment where people can
+        contribute openly, ask questions freely, and be themselves. It also
+        means calling out discrimination and exclusionary behavior — silence
+        isn’t neutrality.
+      </p>
+      <p class="date mt-9">
+        Putting me on a stage or in print? Grab a{" "}
+        <a href="/brand/mikael-lirbank.jpg" class="link">high-res photo</a>.
+      </p>
+    </Section>
+
+    <Section id="contact" kicker="07 — CONTACT">
+      <h2 class="text-title">Work with me</h2>
+      {
+        homepage.pitch.map((paragraph) => (
+          <p class="max-w-measure mt-5">{paragraph}</p>
+        ))
+      }
+      <div class="mt-9">
+        <ContactLinks />
+      </div>
+    </Section>
   </main>
 </Layout>

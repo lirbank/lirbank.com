@@ -1,5 +1,7 @@
 ---
 import Layout from "./layout.astro";
+import Container from "../components/container.astro";
+import Letterhead from "../components/letterhead.astro";
 
 interface Props {
   frontmatter: {
@@ -17,11 +19,16 @@ const { frontmatter } = Astro.props;
   description={frontmatter.description}
   ogImage={frontmatter.ogImage}
 >
-  <div class="border-b border-stone-300/50 px-5 pb-5 sm:px-20">
-    <article
-      class="prose prose-stone sm:prose-lg prose-a:text-cyan-600 mx-auto"
+  <Container>
+    <main
+      class="py-section-pad wide:grid wide:grid-cols-[var(--label-col)_1fr] wide:gap-x-(--col-gap)"
     >
-      <slot />
-    </article>
-  </div>
+      <div class="wide:mb-0 mb-9">
+        <Letterhead />
+      </div>
+      <article class="max-w-measure min-w-0">
+        <slot />
+      </article>
+    </main>
+  </Container>
 </Layout>

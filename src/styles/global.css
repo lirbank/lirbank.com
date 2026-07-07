@@ -1,125 +1,325 @@
 @import "tailwindcss";
-@plugin "@tailwindcss/typography";
+
+/*
+ * Design tokens — translated from design_handoff_lirbank_site/tokens.json.
+ *
+ * Two-value tokens (desktop / mobile) are plain vars that flip at the `sm`
+ * breakpoint, so utilities like text-title and px-gutter are fluid on their
+ * own. No responsive variants needed at call sites.
+ */
+:root {
+  /* The hero is fluid rather than stepped: the design shows it at three
+     widths (44px/72px pad at 390, 64px/88px at 800, 96px/120px at 1108),
+     and these lines pass through all three. Clamped at the ends. */
+  --size-display: clamp(44px, 10.39vw - 19.12px, 96px);
+  --hero-pad: clamp(72px, 10.39vw + 4.88px, 120px);
+
+  /* type (mobile values) */
+  --size-title: 34px;
+  --size-heading: 22px;
+  --size-item: 17px;
+  --size-body-lg: 16px;
+  --size-body: 14px;
+  --size-code: 14px;
+  --size-pre: 12px;
+
+  /* spacing (mobile values) */
+  --gutter: 24px;
+  --section-pad: 48px;
+  --stack-gap: 36px;
+
+  /* Kept out of @theme on purpose: --color-body would collide with the
+     --text-body font size (both would claim the `text-body` class). Use
+     the prose-copy/description recipes instead. */
+  --color-body: #3e3d37;
+
+  /* layout columns, for component grids (not utilities) */
+  --label-col: 260px;
+  --date-col: 130px;
+  --col-gap: 40px;
+}
+
+@media (min-width: 40rem) {
+  :root {
+    --size-title: 48px;
+    --size-heading: 28px;
+    --size-item: 20px;
+    --size-body-lg: 18px;
+    --size-body: 16px;
+    --size-code: 15px;
+    --size-pre: 14px;
+
+    --gutter: 64px;
+    --section-pad: 72px;
+    --stack-gap: 48px;
+  }
+}
+
+@theme {
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: Menlo, Consolas, monospace;
+
+  /* Where 980px container + 260px label column + 40px gap + 680px measure
+     exactly fit (980 + 2×64 gutters). Below this the label column folds
+     into an eyebrow. */
+  --breakpoint-wide: 69.25rem;
+
+  --color-ink: #1a1915;
+  --color-quote: #6e6e66; /* testimonial text; also nav/footer links */
+  --color-faint: #8a8981;
+  --color-hairline: #e5e4de;
+  --color-underline: #8a8981;
+  --color-paper: #fafaf7;
+  --color-wash: #f1f0eb;
+
+  /* max-w-site (the 980px container), max-w-measure (680px prose width),
+     max-w-hero (the hero headline) */
+  --container-site: 980px;
+  --container-measure: 680px;
+  --container-hero: 900px;
+}
 
 @theme inline {
-  --font-sans: var(--font-inter);
+  /* Text styles. Size, weight, tracking, and leading in one utility. */
+  --text-display: var(--size-display);
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.045em;
+  --text-display--font-weight: 600;
+
+  --text-title: var(--size-title);
+  --text-title--line-height: 1.05;
+  --text-title--letter-spacing: -0.03em;
+  --text-title--font-weight: 600;
+
+  --text-heading: var(--size-heading);
+  --text-heading--line-height: 1.2;
+  --text-heading--letter-spacing: -0.02em;
+  --text-heading--font-weight: 600;
+
+  --text-item: var(--size-item);
+  --text-item--line-height: 1.2;
+  --text-item--letter-spacing: -0.02em;
+  --text-item--font-weight: 600;
+
+  --text-body-lg: var(--size-body-lg);
+  --text-body-lg--line-height: 1.65;
+
+  --text-body: var(--size-body);
+  --text-body--line-height: 1.65;
+
+  --text-small: 13px;
+  --text-small--line-height: 1.45;
+
+  --text-code: var(--size-code);
+  --text-pre: var(--size-pre);
+  --text-pre--line-height: 1.65;
+
+  /* Responsive spacing tokens: px-gutter, py-section-pad, gap-stack-gap */
+  --spacing-gutter: var(--gutter);
+  --spacing-section-pad: var(--section-pad);
+  --spacing-stack-gap: var(--stack-gap);
+  --spacing-hero-pad: var(--hero-pad);
+}
+
+/*
+ * Text style recipes — the only legal color/size combinations
+ * (tokens.json -> textStyles). Compose these; don't invent new pairings.
+ */
+
+/* bodyLg + ink. Section intros. */
+@utility lede {
+  @apply text-body-lg text-ink;
+}
+
+/* bodyLg + body color. Article/about copy. Markdown gets this via base p. */
+@utility prose-copy {
+  @apply text-body-lg;
+  color: var(--color-body);
+}
+
+/* body + body color. Project/article descriptions, summaries. */
+@utility description {
+  @apply text-body;
+  color: var(--color-body);
+}
+
+/* Testimonials: italic on a hairline rail, no quotation marks. */
+@utility quote {
+  @apply text-body border-hairline border-l pl-6 italic;
+  color: var(--color-quote);
+}
+
+/* Section labels. */
+@utility kicker {
+  @apply text-faint uppercase;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+}
+
+/* Dates, venues, meta. */
+@utility date {
+  @apply text-small text-faint;
+}
+
+/* Underline link: inherits block color and size. Never arrows or icons. */
+@utility link {
+  @apply border-underline border-b pb-px no-underline transition-colors;
+  &:hover {
+    border-color: var(--color-ink);
+  }
+}
+
+/* Contact rows: small + ink + underline. */
+@utility ink-link {
+  @apply link text-small text-ink;
 }
 
 @layer base {
-  /* Prevent font boosting on Android Chrome */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  ul,
-  ol,
-  p,
-  blockquote {
-    @apply max-h-full;
+  body {
+    @apply bg-paper;
+    color: var(--color-body);
   }
 
-  /* Layout blocks */
-  container {
-    @apply block odd:bg-stone-200;
-  }
-
-  section {
-    @apply mx-auto max-w-3xl px-4 py-10 sm:px-8;
-  }
-
-  /* Typography */
+  /*
+   * Markdown mapping (articles and partials render bare elements):
+   * h1 -> title, h2 -> heading, h3 -> item, p/li -> prose, blockquote ->
+   * quote, a -> link, code/pre -> mono on wash.
+   */
   h1 {
-    @apply text-4xl font-extrabold sm:text-5xl;
-    @apply bg-linear-to-br from-cyan-800 to-stone-800 bg-clip-text text-transparent;
-  }
-
-  h1 > span {
-    @apply font-black text-cyan-700;
+    @apply text-title text-ink;
   }
 
   h2 {
-    @apply text-3xl font-semibold;
+    @apply text-heading text-ink mt-stack-gap first:mt-0;
   }
 
   h3 {
-    @apply text-2xl font-semibold;
-  }
-
-  strong {
-    @apply font-semibold;
+    @apply text-item text-ink mt-9 first:mt-0;
   }
 
   p,
   ul,
-  ol,
+  ol {
+    @apply prose-copy mt-6 first:mt-0;
+  }
+
+  ul {
+    @apply ml-5 flex list-disc flex-col gap-2.5;
+  }
+
+  ol {
+    @apply ml-5 flex list-decimal flex-col gap-2.5;
+  }
+
   blockquote {
-    /* Typography */
-    @apply text-lg;
-    /* Spacing */
-    @apply mt-4 first:mt-0;
+    @apply quote mt-6;
   }
 
-  /* Spacing */
-  h1,
-  h2,
-  h3 {
-    @apply mt-8 first:mt-0;
+  /* Markdown inside a quote takes the quote recipe, not prose sizing */
+  blockquote p,
+  blockquote li {
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+  }
+
+  strong {
+    @apply text-ink font-semibold;
+  }
+
+  a {
+    @apply link;
+  }
+
+  code {
+    @apply bg-wash text-code font-mono;
+    padding: 2px 5px;
+  }
+
+  pre {
+    @apply bg-wash border-hairline text-pre mt-6 overflow-x-auto border px-6 py-5;
+    /* Full bleed on mobile: swallow the gutters, keep only the h-rules */
+    @apply max-sm:-mx-gutter max-sm:px-gutter max-sm:border-x-0;
+  }
+
+  pre code {
+    @apply bg-transparent p-0;
+  }
+
+  /* Tables: hairline rows, ink heads, sideways scroll when too wide */
+  table {
+    @apply description mt-6 block border-collapse overflow-x-auto whitespace-nowrap;
+  }
+
+  th {
+    @apply text-ink border-hairline border-b py-2 pr-8 text-left font-semibold;
+  }
+
+  td {
+    @apply border-hairline border-b py-2 pr-8;
+  }
+
+  th:last-child,
+  td:last-child {
+    @apply pr-0;
   }
 }
 
+/*
+ * Article body: each h2 opens a numbered section. A hairline rule sits above
+ * it, and a "01 / 10" counter hangs in the label column on wide screens —
+ * an eyebrow over the heading otherwise. The page sets the total on the
+ * .article-prose element: style="counter-reset: section 0 section-total N".
+ */
 @layer components {
-  .prose :where(table) {
-    @apply block overflow-x-auto whitespace-nowrap;
+  /* The markdown h1 is the article title; it hangs below the meta line */
+  .article-prose h1 {
+    margin-top: 16px;
   }
 
-  .markdown a:not(.no-style) {
-    @apply text-cyan-600 underline underline-offset-3 hover:text-cyan-700;
+  .article-prose h1 + * {
+    margin-top: 36px;
   }
 
-  .markdown ul {
-    @apply ml-5 flex list-disc flex-col gap-2;
+  .article-prose h2 {
+    counter-increment: section;
+    position: relative;
+    border-top: 1px solid var(--color-hairline);
+    margin-top: var(--stack-gap);
+    padding-top: var(--stack-gap);
   }
 
-  /* Talk cards styling */
-  .talk-content h3 {
-    @apply text-base font-normal;
+  .article-prose h2::before {
+    @apply kicker;
+    content: counter(section, decimal-leading-zero) " / "
+      counter(section-total, decimal-leading-zero);
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 400; /* the heading's 600 would otherwise inherit */
   }
 
-  .talk-content p {
-    @apply text-base;
+  @variant wide {
+    /* The content column is indented; the rule spans label column too */
+    .article-prose h2 {
+      border-top: none;
+    }
+
+    .article-prose h2::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: calc(-1 * (var(--label-col) + var(--col-gap)));
+      width: calc(100% + var(--label-col) + var(--col-gap));
+      height: 1px;
+      background: var(--color-hairline);
+    }
+
+    .article-prose h2::before {
+      position: absolute;
+      top: calc(var(--stack-gap) + 12px);
+      left: calc(-1 * (var(--label-col) + var(--col-gap)));
+      width: var(--label-col);
+      margin-bottom: 0;
+    }
   }
-
-  .talk-content h3 a {
-    @apply text-lg text-cyan-600 underline underline-offset-3 hover:text-cyan-700;
-  }
-
-  .talk-content p a {
-    @apply text-stone-800 underline hover:text-stone-900;
-  }
-
-  .talk-content p:last-child {
-    @apply mt-auto pt-4;
-  }
-
-  .talk-content .aside {
-    @apply text-base font-normal text-stone-500;
-  }
-
-  .talks-markdown h3 strong {
-    @apply font-bold;
-  }
-
-  .talks-markdown ol {
-    @apply ml-5 flex list-decimal flex-col gap-2;
-  }
-}
-
-@utility link {
-  @apply text-cyan-600 underline underline-offset-3 hover:text-cyan-700;
-}
-
-@utility link-secondary {
-  @apply text-stone-800 underline hover:text-stone-900;
 }

@@ -16,8 +16,6 @@ const articles = defineCollection({
 const testimonials = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/testimonials" }),
   schema: z.object({
-    company: z.string().optional(),
-    intro: z.string().optional(),
     author: z.object({
       name: z.string(),
       title: z.string(),
@@ -29,13 +27,4 @@ const testimonials = defineCollection({
   }),
 });
 
-const talks = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/talks" }),
-  schema: z.object({
-    title: z.string(),
-    date: z.coerce.date(),
-    order: z.number().optional(),
-  }),
-});
-
-export const collections = { articles, testimonials, talks };
+export const collections = { articles, testimonials };

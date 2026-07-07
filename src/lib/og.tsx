@@ -1,10 +1,6 @@
 /** @jsxRuntime automatic */
 /** @jsxImportSource satori/jsx */
 
-/**
- * OG image markup for share cards (1200x630)
- */
-
 export const WIDTH = 1200;
 export const HEIGHT = 630;
 
@@ -210,8 +206,7 @@ export function createArticleMarkup(
           flexShrink: 0,
         }}
       />
-
-      {/* Content */}
+      {/* Content section */}
       <div
         style={{
           display: "flex",
