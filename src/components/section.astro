@@ -12,7 +12,7 @@ interface Props extends HTMLAttributes<"section"> {
 const { kicker, class: className, ...sectionProps } = Astro.props;
 ---
 
-<section {...sectionProps} class="scroll-mt-14 sm:scroll-mt-20">
+<section {...sectionProps} class="scroll-mt-14 md:scroll-mt-20">
   <Container>
     <div
       class:list={[

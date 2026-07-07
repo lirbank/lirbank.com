@@ -8,8 +8,13 @@
  * own. No responsive variants needed at call sites.
  */
 :root {
+  /* The hero is fluid rather than stepped: the design shows it at three
+     widths (44px/72px pad at 390, 64px/88px at 800, 96px/120px at 1108),
+     and these lines pass through all three. Clamped at the ends. */
+  --size-display: clamp(44px, 10.39vw - 19.12px, 96px);
+  --hero-pad: clamp(72px, 10.39vw + 4.88px, 120px);
+
   /* type (mobile values) */
-  --size-display: 44px;
   --size-title: 34px;
   --size-heading: 22px;
   --size-item: 17px;
@@ -22,7 +27,6 @@
   --gutter: 24px;
   --section-pad: 48px;
   --stack-gap: 36px;
-  --hero-pad: 72px;
 
   /* Kept out of @theme on purpose: --color-body would collide with the
      --text-body font size (both would claim the `text-body` class). Use
@@ -37,7 +41,6 @@
 
 @media (min-width: 40rem) {
   :root {
-    --size-display: 96px;
     --size-title: 48px;
     --size-heading: 28px;
     --size-item: 20px;
@@ -49,7 +52,6 @@
     --gutter: 64px;
     --section-pad: 72px;
     --stack-gap: 48px;
-    --hero-pad: 120px;
   }
 }
 

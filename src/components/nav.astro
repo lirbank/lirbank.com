@@ -9,15 +9,18 @@ import { navLinks } from "../data/nav";
 
 <nav data-site-nav class="border-hairline bg-paper sticky top-0 z-10 border-b">
   <Container>
-    <div class="flex items-center justify-between sm:py-6">
+    <div class="flex items-center justify-between md:py-6">
       <a
         href="/"
-        class="text-body text-ink hidden border-none font-semibold sm:block"
+        class="text-body text-ink hidden shrink-0 border-none font-semibold md:block"
       >
         Mikael Lirbank
       </a>
+      <!-- The chip bar stays until the name and all links fit on one line
+           (md). Full bleed while it scrolls: swallow the gutters so the row
+           reaches the screen edges, and give them back as padding inside -->
       <div
-        class="text-small text-quote flex scrollbar-none gap-5 overflow-x-auto py-3.5 sm:gap-6 sm:overflow-visible sm:py-0"
+        class="text-small text-quote max-md:-mx-gutter max-md:px-gutter flex scrollbar-none gap-5 overflow-x-auto py-3.5 md:gap-6 md:overflow-visible md:py-0"
       >
         {
           navLinks.map(({ label, href }) => (
