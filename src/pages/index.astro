@@ -159,32 +159,28 @@ const collective = [
     <Section id="talks" kicker="04 — TALKS">
       <h2>Speaking</h2>
       <p class="lede max-w-measure mt-6">
-        I speak at meetups, conferences, and private corporate events about
-        leveraging AI to build better software.
+        I occasionally speak at meetups, conferences, and private corporate
+        events about leveraging AI to build better software. Want me to speak at
+        yours? <a href="#contact" class="link">Get in touch</a>.
       </p>
       <div class="mt-stack-gap grid gap-9">
         {
           talks.map((talk) => (
             <DateRow date={talk.date}>
               <h3>
-                <a href={talk.href} class="text-ink border-none">
-                  {talk.title}
-                </a>
+                {talk.title}
                 {talk.note && (
                   <span class="date ml-2 font-normal tracking-normal">
                     {talk.note}
                   </span>
                 )}
               </h3>
-              <div class="text-small text-quote mt-1">
-                {talk.venue}
+              <div class="text-small text-quote mt-1">{talk.venue}</div>
+              <div class="text-small mt-1 flex flex-wrap gap-x-5 gap-y-3">
                 {talk.links.map(({ label, href }) => (
-                  <>
-                    {" · "}
-                    <a href={href} class="link">
-                      {label}
-                    </a>
-                  </>
+                  <a href={href} class="link">
+                    {label}
+                  </a>
                 ))}
               </div>
             </DateRow>
