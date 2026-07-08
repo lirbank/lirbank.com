@@ -1,7 +1,7 @@
 ---
 author:
   name: Spencer Smith
-  title: Principal Data Scientist, Zillow Group, Founder, BenAi
+  title: Founder, BenAi
   avatar: spencer-smith.jpg
   url: https://www.linkedin.com/in/spencergsmith6/
 order: 2

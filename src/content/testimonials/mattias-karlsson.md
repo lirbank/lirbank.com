@@ -1,7 +1,7 @@
 ---
 author:
   name: Mattias Karlsson
-  title: SpikeGadgets CEO
+  title: CEO, SpikeGadgets
   avatar: mattias-karlsson.jpg
   url: https://www.linkedin.com/in/mattias-karlsson-32100b119/
 order: 100

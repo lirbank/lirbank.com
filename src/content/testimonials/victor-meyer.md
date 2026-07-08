@@ -1,7 +1,7 @@
 ---
 author:
   name: Victor Meyer
-  title: Co-Founder and Creative Web Developer, Pixby Media
+  title: Co-Founder, Pixby Media
   avatar: victor-meyer.jpg
   url: https://www.linkedin.com/in/victor-meyer-9784702b/
 order: 3

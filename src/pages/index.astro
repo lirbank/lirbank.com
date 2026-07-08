@@ -74,15 +74,12 @@ const collective = [
         </div>
       </header>
     </Container>
-
     <Section id="articles" kicker="01 — ARTICLES">
       <div class="gap-stack-gap grid">
         {articles.map((article) => <ArticleRow article={article} />)}
       </div>
     </Section>
-
     <Section id="collective" kicker="02 — COLLECTIVE">
-      <!-- The one heading with positive tracking, per the design -->
       <h2 class="tracking-[0.02em]">STΛR MODΞ</h2>
       <p class="lede max-w-measure mt-4">
         I founded STΛR MODΞ, a collective of independent builders. Everyone
@@ -113,14 +110,13 @@ const collective = [
         >
       </p>
     </Section>
-
     <Section id="projects" kicker="03 — CLIENT PROJECTS">
       <h2>Selected work</h2>
       <p class="lede max-w-measure mt-6">
         I’ve been building for AI teams for over a decade. Long before today’s
-        LLMs, I built tooling for machine learning teams. These days I architect
-        and build agentic systems for venture-backed startups, VC firms, and
-        enterprise clients.
+        LLMs, I built tooling for predictive analytics and machine learning.
+        These days I architect and build agentic systems for venture-backed
+        startups, VC firms, and enterprise clients.
       </p>
       <div class="mt-stack-gap gap-stack-gap grid">
         {
@@ -150,7 +146,6 @@ const collective = [
         }
       </div>
     </Section>
-
     <Section id="talks" kicker="04 — TALKS">
       <h2>Speaking</h2>
       <p class="lede max-w-measure mt-6">
@@ -218,7 +213,6 @@ const collective = [
         )
       }
     </Section>
-
     <Section id="praise" kicker="05 — TESTIMONIALS">
       <h2>What people say</h2>
       <p class="lede max-w-measure mt-6">
@@ -233,7 +227,6 @@ const collective = [
         }
       </div>
     </Section>
-
     <Section id="about" kicker="06 — ABOUT">
       <h2>About me</h2>
       <p class="lede max-w-measure mt-6">
@@ -262,7 +255,6 @@ const collective = [
         <a href="/brand/mikael-lirbank.jpg" class="link">high-res photo</a>.
       </p>
     </Section>
-
     <Section id="contact" kicker="07 — CONTACT">
       <h2 class="text-title">Work with me</h2>
       {

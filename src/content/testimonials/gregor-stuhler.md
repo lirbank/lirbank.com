@@ -1,7 +1,7 @@
 ---
 author:
   name: Gregor Stühler
-  title: CEO at scoutbee.com
+  title: CEO, Scoutbee
   avatar: gregor-stuhler.jpg
   url: https://www.linkedin.com/in/gregor-st%C3%BChler-9756a072/
 order: 1

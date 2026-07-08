@@ -1,7 +1,7 @@
 ---
 author:
   name: Philippe Green
-  title: CTO at Evive
+  title: CTO, Evive
   avatar: philippe-green.jpg
   url: https://www.linkedin.com/in/philippe-green/
 order: 0
