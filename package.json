@@ -34,7 +34,7 @@
     "prettier-plugin-tailwindcss": "^0.8.0",
     "satori": "^0.26.0",
     "sharp": "^0.35.3",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "wrangler": "^4.109.0"
   }
 }
