@@ -4,4 +4,7 @@
   "assets": {
     "directory": "./dist",
   },
+  "observability": {
+    "enabled": true,
+  },
 }
