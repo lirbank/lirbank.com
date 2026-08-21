@@ -1,11 +1,11 @@
-interface Project {
+interface Client {
   title: string;
   description: string;
   links: { label: string; href: string }[];
   testimonial?: string; // id in the testimonials collection
 }
 
-export const projects: Project[] = [
+export const clients: Client[] = [
   {
     title: "Convex",
     description:

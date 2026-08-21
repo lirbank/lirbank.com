@@ -9,7 +9,7 @@ import Quote from "../components/quote.astro";
 import ContactLinks from "../components/contact-links.astro";
 import { homepage } from "../data/homepage";
 import { talks } from "../data/talks";
-import { projects } from "../data/projects";
+import { clients } from "../data/clients";
 import { Image } from "astro:assets";
 import heroImage from "../assets/brand/mikael-lirbank.jpg";
 import { getCollection } from "astro:content";
@@ -21,11 +21,11 @@ const articles = (await getCollection("articles")).sort(
 
 const testimonials = await getCollection("testimonials");
 const testimonialById = new Map(testimonials.map((t) => [t.id, t]));
-const quotedInProjects = new Set(projects.map((p) => p.testimonial));
+const quotedInClients = new Set(clients.map((c) => c.testimonial));
 
 const featuredTestimonial = testimonials.find((t) => t.data.featured);
 const praise = testimonials
-  .filter((t) => !t.data.featured && !quotedInProjects.has(t.id))
+  .filter((t) => !t.data.featured && !quotedInClients.has(t.id))
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
 const collective = [
@@ -109,7 +109,7 @@ const collective = [
         >
       </p>
     </Section>
-    <Section id="projects" kicker="03 — CLIENT PROJECTS">
+    <Section id="clients" kicker="03 — CLIENTS">
       <h2>Selected work</h2>
       <p class="lede max-w-measure mt-6">
         I’ve been building for AI teams for over a decade. Long before today’s
@@ -119,18 +119,18 @@ const collective = [
       </p>
       <div class="mt-stack-gap gap-stack-gap grid">
         {
-          projects.map((project) => {
-            const testimonial = project.testimonial
-              ? testimonialById.get(project.testimonial)
+          clients.map((client) => {
+            const testimonial = client.testimonial
+              ? testimonialById.get(client.testimonial)
               : undefined;
             return (
               <article>
-                <h3>{project.title}</h3>
+                <h3>{client.title}</h3>
                 <p class="description max-w-measure mt-2.5">
-                  {project.description}
+                  {client.description}
                 </p>
                 <div class="text-small mt-3.5 flex flex-wrap gap-x-5 gap-y-3">
-                  {project.links.map(({ label, href }) => (
+                  {client.links.map(({ label, href }) => (
                     <a href={href} class="link">
                       {label}
                     </a>
