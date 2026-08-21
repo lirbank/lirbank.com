@@ -7,6 +7,18 @@ interface Project {
 
 export const projects: Project[] = [
   {
+    title: "Convex",
+    description:
+      "Convex is an open-source reactive database and backend platform. I work with their AI Ergonomics team, building plugins for Claude Code, Codex, and other coding harnesses. Skills, subagents, hooks, and MCP servers, so coding agents get the platform right the first time.",
+    links: [
+      {
+        label: "Claude Code plugin",
+        href: "https://github.com/get-convex/convex-backend-skill",
+      },
+      { label: "convex.dev", href: "https://www.convex.dev/" },
+    ],
+  },
+  {
     title: "Coupa",
     description:
       "Coupa is a leader in business spend management. They brought me in to set the architecture for their supplier agent and build it out. It’s an email-native AI agent on AWS Bedrock and LangChain, with evals guarding its behavior as it evolves. Suppliers email it the way they’d email a person, and it replies in the same email thread. It answers questions about invoices and purchase orders, and takes action too, like creating and sending invoices.",
