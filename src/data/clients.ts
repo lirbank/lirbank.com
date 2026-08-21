@@ -33,6 +33,7 @@ export const clients: Client[] = [
         label: "Lakebase",
         href: "https://www.databricks.com/product/lakebase",
       },
+      { label: "databricks.com", href: "https://www.databricks.com/" },
     ],
   },
   {
@@ -52,6 +53,7 @@ export const clients: Client[] = [
         label: "Preview branches example",
         href: "https://github.com/neondatabase/preview-branches-with-cloudflare",
       },
+      { label: "neon.com", href: "https://neon.com/" },
     ],
   },
   {
@@ -75,7 +77,10 @@ export const clients: Client[] = [
     title: "BootstrapLabs, an Ares company",
     description:
       "BootstrapLabs is a venture capital firm with an applied AI venture studio, where I led a team of four building Shorty, an AI-augmented communication platform. It organizes conversations and interactions into a graph, and relies on AI agents to identify consensus points and support decision making, bringing every conversation to a conclusion as quickly as possible.",
-    links: [{ label: "shorty.run", href: "https://shorty.run/" }],
+    links: [
+      { label: "shorty.run", href: "https://shorty.run/" },
+      { label: "ares.com", href: "https://www.ares.com/" },
+    ],
     testimonial: "victor-meyer",
   },
   {
@@ -88,6 +93,7 @@ export const clients: Client[] = [
         label: "OEM product page",
         href: "https://www.flir.com/oem/conservator/",
       },
+      { label: "flir.com", href: "https://www.flir.com/" },
     ],
     testimonial: "justin-muncaster",
   },
