@@ -1,3 +1,0 @@
-- Semantics is everything - always look for new better patterns
-- Less is more - always look for the simplest solution
-- Write prose/copy/commments/docs like you're talking to a friend
