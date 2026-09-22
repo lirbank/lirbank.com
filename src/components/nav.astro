@@ -14,19 +14,15 @@ import { navLinks } from "../data/nav";
       </a>
       <!-- Full bleed while the chip bar scrolls: swallow the gutters so the
            row reaches the screen edges, and give them back as padding inside -->
-      <div
-        class="text-small text-quote max-md:-mx-gutter max-md:px-gutter flex scrollbar-none gap-5 overflow-x-auto py-3.5 md:gap-6 md:overflow-visible md:py-0"
-      >
-        {
-          navLinks.map(({ label, href }) => (
-            <a
-              href={href}
-              class="hover:text-ink aria-current:text-ink aria-current:border-ink border-b border-transparent pb-0.5 whitespace-nowrap transition-colors"
-            >
-              {label}
-            </a>
-          ))
-        }
+      <div class="text-small text-quote max-md:-mx-gutter max-md:px-gutter flex scrollbar-none gap-5 overflow-x-auto py-3.5 md:gap-6 md:overflow-visible md:py-0">
+        {navLinks.map(({ label, href }) => (
+          <a
+            href={href}
+            class="hover:text-ink aria-current:text-ink aria-current:border-ink border-b border-transparent pb-0.5 whitespace-nowrap transition-colors"
+          >
+            {label}
+          </a>
+        ))}
       </div>
     </div>
   </Container>

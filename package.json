@@ -30,7 +30,7 @@
     "@types/bun": "^1.4.2",
     "@types/chrome": "^0.2.9",
     "prettier": "^3.9.8",
-    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-astro": "^1.0.1",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "satori": "^0.33.5",
     "sharp": "^0.35.4",

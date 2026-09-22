@@ -34,17 +34,15 @@ const canonicalOgImage = new URL(ogImage, Astro.site).href;
     <meta property="og:description" content={description} />
     <meta property="og:image" content={canonicalOgImage} />
     <meta property="og:url" content={canonicalUrl} />
-    {
-      article && (
-        <>
-          <meta property="article:author" content={article.author} />
-          <meta property="article:published_time" content={article.date} />
-          {article.updated && (
-            <meta property="article:modified_time" content={article.updated} />
-          )}
-        </>
-      )
-    }
+    {article && (
+      <>
+        <meta property="article:author" content={article.author} />
+        <meta property="article:published_time" content={article.date} />
+        {article.updated && (
+          <meta property="article:modified_time" content={article.updated} />
+        )}
+      </>
+    )}
     <meta name="twitter:card" content="summary_large_image" />
     <script>
       import { configure } from "onedollarstats";
@@ -54,7 +52,8 @@ const canonicalOgImage = new URL(ogImage, Astro.site).href;
       is:inline
       src="https://analytics.ahrefs.com/analytics.js"
       data-key="PgGcntXiSuWLTT8vPLDmdg"
-      async></script>
+      async
+    ></script>
     <script>
       // Smooth-scroll only on same-page anchor clicks. Browser-initiated hash
       // scrolls (arriving on /#section from another page, back/forward) stay
@@ -80,16 +79,14 @@ const canonicalOgImage = new URL(ogImage, Astro.site).href;
       <Container>
         <div class="py-10">
           <div class="text-small text-quote flex flex-wrap gap-x-6 gap-y-3">
-            {
-              navLinks.map(({ label, href }) => (
-                <a
-                  href={href}
-                  class="hover:text-ink border-none transition-colors"
-                >
-                  {label}
-                </a>
-              ))
-            }
+            {navLinks.map(({ label, href }) => (
+              <a
+                href={href}
+                class="hover:text-ink border-none transition-colors"
+              >
+                {label}
+              </a>
+            ))}
           </div>
           <div class="date mt-9">
             © {year} Mikael Lirbank · Airlab LLC · San Francisco Bay Area

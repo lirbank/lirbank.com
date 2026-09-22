@@ -51,9 +51,7 @@ const monthYear = new Date(
 >
   <Container>
     <div class="py-section-pad">
-      <div
-        class="wide:grid wide:grid-cols-[var(--label-col)_1fr] wide:gap-x-(--col-gap)"
-      >
+      <div class="wide:grid wide:grid-cols-[var(--label-col)_1fr] wide:gap-x-(--col-gap)">
         <div class="mb-stack-gap wide:mb-0">
           <Letterhead />
         </div>
@@ -61,7 +59,9 @@ const monthYear = new Date(
           <div class="kicker flex flex-wrap items-center gap-x-2.5 gap-y-2">
             <time datetime={entry.data.published}>{monthYear}</time>
             <span>·</span>
-            <a href={`/${slug}.md`} class="link">View as Markdown</a>
+            <a href={`/${slug}.md`} class="link">
+              View as Markdown
+            </a>
           </div>
           <div
             class="article-prose"
@@ -73,19 +73,17 @@ const monthYear = new Date(
       </div>
 
       <!-- More articles -->
-      <aside
-        class="border-hairline mt-stack-gap pt-stack-gap wide:grid wide:grid-cols-[var(--label-col)_1fr] wide:gap-x-(--col-gap) border-t"
-      >
+      <aside class="border-hairline mt-stack-gap pt-stack-gap wide:grid wide:grid-cols-[var(--label-col)_1fr] wide:gap-x-(--col-gap) border-t">
         <div class="kicker wide:mb-0 wide:pt-1 mb-4">More articles</div>
         <div class="max-w-measure grid min-w-0 gap-9">
-          {moreArticles.map((article) => <ArticleRow article={article} />)}
+          {moreArticles.map((article) => (
+            <ArticleRow article={article} />
+          ))}
         </div>
       </aside>
 
       <!-- Author card -->
-      <div
-        class="border-hairline mt-stack-gap pt-stack-gap wide:grid wide:grid-cols-[var(--label-col)_1fr] wide:gap-x-(--col-gap) border-t"
-      >
+      <div class="border-hairline mt-stack-gap pt-stack-gap wide:grid wide:grid-cols-[var(--label-col)_1fr] wide:gap-x-(--col-gap) border-t">
         <div class="kicker wide:mb-0 wide:pt-1 mb-4">Contact</div>
         <div class="max-w-measure min-w-0">
           <div class="flex items-center gap-3.5">
@@ -100,11 +98,9 @@ const monthYear = new Date(
             />
             <div class="text-body text-ink font-semibold">Mikael Lirbank</div>
           </div>
-          {
-            homepage.pitch.map((paragraph) => (
-              <p class="description mt-3 first:mt-4">{paragraph}</p>
-            ))
-          }
+          {homepage.pitch.map((paragraph) => (
+            <p class="description mt-3 first:mt-4">{paragraph}</p>
+          ))}
           <div class="mt-4">
             <ContactLinks />
           </div>

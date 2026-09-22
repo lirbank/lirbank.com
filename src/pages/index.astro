@@ -76,7 +76,9 @@ const collective = [
     </Container>
     <Section id="articles" kicker="01 — ARTICLES">
       <div class="gap-stack-gap grid">
-        {articles.map((article) => <ArticleRow article={article} />)}
+        {articles.map((article) => (
+          <ArticleRow article={article} />
+        ))}
       </div>
     </Section>
     <Section id="collective" kicker="02 — COLLECTIVE">
@@ -88,25 +90,24 @@ const collective = [
         building on starmode.dev.
       </p>
       <div class="max-w-measure mt-8 grid gap-3.5">
-        {
-          collective.map(({ term, detail }) => (
-            <div class="text-body grid sm:grid-cols-[var(--date-col)_1fr] sm:gap-x-6">
-              <span class="text-ink font-semibold">{term}</span>
-              <span class="text-quote">{detail}</span>
-            </div>
-          ))
-        }
+        {collective.map(({ term, detail }) => (
+          <div class="text-body grid sm:grid-cols-[var(--date-col)_1fr] sm:gap-x-6">
+            <span class="text-ink font-semibold">{term}</span>
+            <span class="text-quote">{detail}</span>
+          </div>
+        ))}
       </div>
       <p class="description max-w-measure mt-8">
-        <a href="https://www.npmjs.com/package/neon-testing"
-          ><strong>Neon Testing</strong></a
-        > is one of mine, a testing utility for seamless integration tests with Neon
-        Postgres, for Vitest and Bun Test.
+        <a href="https://www.npmjs.com/package/neon-testing">
+          <strong>Neon Testing</strong>
+        </a>{" "}
+        is one of mine, a testing utility for seamless integration tests with
+        Neon Postgres, for Vitest and Bun Test.
       </p>
       <p class="description mt-8">
-        <a href="https://www.starmode.dev/"
-          >Meet the collective at starmode.dev</a
-        >
+        <a href="https://www.starmode.dev/">
+          Meet the collective at starmode.dev
+        </a>
       </p>
     </Section>
     <Section id="clients" kicker="03 — CLIENTS">
@@ -118,31 +119,29 @@ const collective = [
         startups, VC firms, and enterprise clients.
       </p>
       <div class="mt-stack-gap gap-stack-gap grid">
-        {
-          clients.map((client) => {
-            const testimonial = client.testimonial
-              ? testimonialById.get(client.testimonial)
-              : undefined;
-            return (
-              <article>
-                <h3>{client.title}</h3>
-                <p class="description max-w-measure mt-2.5">
-                  {client.description}
-                </p>
-                <div class="text-small mt-3.5 flex flex-wrap gap-x-5 gap-y-3">
-                  {client.links.map(({ label, href }) => (
-                    <a href={href} class="link">
-                      {label}
-                    </a>
-                  ))}
-                </div>
-                {testimonial && (
-                  <Quote testimonial={testimonial} class="max-w-measure mt-6" />
-                )}
-              </article>
-            );
-          })
-        }
+        {clients.map((client) => {
+          const testimonial = client.testimonial
+            ? testimonialById.get(client.testimonial)
+            : undefined;
+          return (
+            <article>
+              <h3>{client.title}</h3>
+              <p class="description max-w-measure mt-2.5">
+                {client.description}
+              </p>
+              <div class="text-small mt-3.5 flex flex-wrap gap-x-5 gap-y-3">
+                {client.links.map(({ label, href }) => (
+                  <a href={href} class="link">
+                    {label}
+                  </a>
+                ))}
+              </div>
+              {testimonial && (
+                <Quote testimonial={testimonial} class="max-w-measure mt-6" />
+              )}
+            </article>
+          );
+        })}
       </div>
     </Section>
     <Section id="talks" kicker="04 — TALKS">
@@ -150,31 +149,33 @@ const collective = [
       <p class="lede max-w-measure mt-6">
         I occasionally speak at meetups, conferences, and private corporate
         events about leveraging AI to build better software. Want me to speak at
-        yours? <a href="#contact" class="link">Get in touch</a>.
+        yours?{" "}
+        <a href="#contact" class="link">
+          Get in touch
+        </a>
+        .
       </p>
       <div class="mt-stack-gap grid gap-9">
-        {
-          talks.map((talk) => (
-            <DateRow date={talk.date}>
-              <h3>
-                {talk.title}
-                {talk.note && (
-                  <span class="date ml-2 font-normal tracking-normal">
-                    {talk.note}
-                  </span>
-                )}
-              </h3>
-              <div class="text-small text-quote mt-1">{talk.venue}</div>
-              <div class="text-small mt-1 flex flex-wrap gap-x-5 gap-y-3">
-                {talk.links.map(({ label, href }) => (
-                  <a href={href} class="link">
-                    {label}
-                  </a>
-                ))}
-              </div>
-            </DateRow>
-          ))
-        }
+        {talks.map((talk) => (
+          <DateRow date={talk.date}>
+            <h3>
+              {talk.title}
+              {talk.note && (
+                <span class="date ml-2 font-normal tracking-normal">
+                  {talk.note}
+                </span>
+              )}
+            </h3>
+            <div class="text-small text-quote mt-1">{talk.venue}</div>
+            <div class="text-small mt-1 flex flex-wrap gap-x-5 gap-y-3">
+              {talk.links.map(({ label, href }) => (
+                <a href={href} class="link">
+                  {label}
+                </a>
+              ))}
+            </div>
+          </DateRow>
+        ))}
       </div>
       <div class="border-hairline max-w-measure mt-stack-gap border px-10 py-9">
         <div class="kicker">SYNOPSIS — LEADING LLMS</div>
@@ -202,15 +203,13 @@ const collective = [
           quality.
         </p>
       </div>
-      {
-        featuredTestimonial && (
-          <Quote
-            testimonial={featuredTestimonial}
-            large
-            class="max-w-measure mt-stack-gap"
-          />
-        )
-      }
+      {featuredTestimonial && (
+        <Quote
+          testimonial={featuredTestimonial}
+          large
+          class="max-w-measure mt-stack-gap"
+        />
+      )}
     </Section>
     <Section id="praise" kicker="05 — TESTIMONIALS">
       <h2>What people say</h2>
@@ -219,11 +218,9 @@ const collective = [
         excellent communication skills.
       </p>
       <div class="mt-stack-gap gap-stack-gap grid">
-        {
-          praise.map((testimonial) => (
-            <Quote testimonial={testimonial} large class="max-w-measure" />
-          ))
-        }
+        {praise.map((testimonial) => (
+          <Quote testimonial={testimonial} large class="max-w-measure" />
+        ))}
       </div>
     </Section>
     <Section id="about" kicker="06 — ABOUT">
@@ -251,16 +248,17 @@ const collective = [
       </p>
       <p class="date mt-9">
         Putting me on a stage or in print? Grab a{" "}
-        <a href="/brand/mikael-lirbank.jpg" class="link">high-res photo</a>.
+        <a href="/brand/mikael-lirbank.jpg" class="link">
+          high-res photo
+        </a>
+        .
       </p>
     </Section>
     <Section id="contact" kicker="07 — CONTACT">
       <h2 class="text-title">Work with me</h2>
-      {
-        homepage.pitch.map((paragraph) => (
-          <p class="max-w-measure mt-5">{paragraph}</p>
-        ))
-      }
+      {homepage.pitch.map((paragraph) => (
+        <p class="max-w-measure mt-5">{paragraph}</p>
+      ))}
       <div class="mt-9">
         <ContactLinks />
       </div>
