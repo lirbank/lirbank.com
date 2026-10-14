@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "bun test && prettier --check . && astro check && astro build",
-    "preview": "astro preview",
+    "preview": "astro build && wrangler dev",
     "astro": "astro",
     "format": "prettier --write .",
     "test": "bun test",
@@ -16,6 +16,7 @@
     "clean:hard": "rm -rf node_modules tsconfig.tsbuildinfo .astro dist bun.lock && bun install",
     "infra:check": "infra/check.ts",
     "site:check": "infra/check-site.ts",
+    "site:check:local": "infra/check-site.ts http://localhost:8787",
     "chrome:dev": "bun build ./chrome/background.ts --outdir ./chrome --watch",
     "chrome:build": "bun build ./chrome/background.ts --outdir ./chrome"
   },
