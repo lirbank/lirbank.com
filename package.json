@@ -15,6 +15,7 @@
     "clean:soft": "rm -rf node_modules tsconfig.tsbuildinfo .astro dist && bun install",
     "clean:hard": "rm -rf node_modules tsconfig.tsbuildinfo .astro dist bun.lock && bun install",
     "infra:check": "infra/check.ts",
+    "site:check": "infra/check-site.ts",
     "chrome:dev": "bun build ./chrome/background.ts --outdir ./chrome --watch",
     "chrome:build": "bun build ./chrome/background.ts --outdir ./chrome"
   },

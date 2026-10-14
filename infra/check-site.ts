@@ -1,0 +1,367 @@
+#!/usr/bin/env bun
+
+/**
+ * Site contract check
+ *
+ * Fetches the deployed site and verifies what the deployment promises:
+ * - HTTP and the apex domain redirect to https://www.lirbank.com, path intact
+ * - robots.txt, the sitemap, and llms.txt exist and agree with the articles
+ * - Every page in the sitemap declares itself canonical
+ * - Every article has a markdown version that carries a canonical header
+ *   pointing back at the page, a markdown link from the page, and an OG image
+ *
+ * Prints one line per check. A failure gets one short reason, and a problem
+ * shared by every page reads "missing on all 6" instead of six lines.
+ *
+ * Run: bun run site:check [base-url]
+ *
+ * The base URL defaults to production. Pass a local wrangler URL to check a
+ * build before deploying. Redirects are zone configuration, so they're only
+ * checked against production.
+ */
+
+import { readdirSync } from "node:fs";
+
+const SITE = "https://www.lirbank.com";
+const base = (process.argv[2] ?? SITE).replace(/\/$/, "");
+
+const GREEN = "\x1b[32m";
+const RED = "\x1b[31m";
+const DIM = "\x1b[2m";
+const RESET = "\x1b[0m";
+
+const CANONICAL = /<link rel="canonical" href="([^"]+)">/;
+const ALTERNATE = /<link rel="alternate" type="text\/markdown" href="([^"]+)">/;
+const CANONICAL_HEADER = /<([^>]+)>;\s*rel="canonical"/;
+
+const slugs = readdirSync(new URL("../src/content/articles", import.meta.url))
+  .filter((file) => file.endsWith(".md"))
+  .map((file) => file.slice(0, -".md".length))
+  .sort();
+
+interface Fetched {
+  status: number;
+  type: string;
+  location: string | null;
+  link: string | null;
+  body: string;
+  error: string | null;
+}
+
+/** One line of output, with a short reason when the check failed */
+interface Check {
+  name: string;
+  reason: string | null;
+}
+
+/** Fetches without following redirects, so the first hop is what gets checked */
+async function get(url: string): Promise<Fetched> {
+  try {
+    const res = await fetch(url, { redirect: "manual" });
+    return {
+      status: res.status,
+      type: res.headers.get("content-type") ?? "",
+      location: res.headers.get("location"),
+      link: res.headers.get("link"),
+      body: await res.text(),
+      error: null,
+    };
+  } catch (error) {
+    return {
+      status: 0,
+      type: "",
+      location: null,
+      link: null,
+      body: "",
+      error: error instanceof Error ? error.message : String(error),
+    };
+  }
+}
+
+/** Why a response isn't a 200 of the given content type, or null if it is */
+function badResponse(res: Fetched, type = ""): string | null {
+  if (res.error) return "unreachable";
+  if (res.status !== 200) return String(res.status);
+  if (!res.type.startsWith(type)) return `served as ${res.type || "nothing"}`;
+  return null;
+}
+
+/** Why a declared URL isn't the expected one, or null if it is */
+function badValue(got: string | undefined, expected: string): string | null {
+  if (got === undefined) return "missing";
+  return got === expected ? null : `points at ${got}`;
+}
+
+/** The first problem found, so one root cause doesn't read as several */
+function first(...reasons: (string | null)[]): string | null {
+  return reasons.find((reason) => reason !== null) ?? null;
+}
+
+/**
+ * Runs one check across many URLs and folds the problems into one reason,
+ * "missing on all 4" when every URL fails the same way, otherwise each
+ * problem with the paths it affects
+ */
+function across<T>(
+  items: T[],
+  path: (item: T) => string,
+  problem: (item: T) => string | null,
+): string | null {
+  const found = items.flatMap((item) => {
+    const kind = problem(item);
+    return kind === null ? [] : [{ kind, path: path(item) }];
+  });
+  if (found.length === 0) return null;
+
+  const kinds = [...new Set(found.map(({ kind }) => kind))];
+  if (found.length === items.length && kinds.length === 1 && items.length > 1) {
+    return `${kinds[0]} on all ${items.length}`;
+  }
+  return kinds
+    .map((kind) => {
+      const paths = found.filter((f) => f.kind === kind).map((f) => f.path);
+      return `${kind} on ${paths.join(", ")}`;
+    })
+    .join(" · ");
+}
+
+/** Which of the expected URLs a list leaves out, or null if it has them all */
+function unlisted(
+  listed: (url: string) => boolean,
+  urls: string[],
+): string | null {
+  const missing = urls.filter((url) => !listed(url));
+  if (missing.length === 0) return null;
+  if (missing.length === urls.length && urls.length > 1) {
+    return `lists none of the ${urls.length} articles`;
+  }
+  return `missing ${missing.map((url) => url.slice(SITE.length)).join(", ")}`;
+}
+
+/** Expects a single 301 straight to the target, which then answers 200 */
+async function checkRedirect(from: string, to: string): Promise<Check> {
+  const hops: { url: string; status: string }[] = [];
+  let url: string | null = from;
+  // Stops after five hops, so a redirect loop shows up as a failure
+  while (url && hops.length < 5) {
+    const res = await get(url);
+    hops.push({ url, status: res.error ? "unreachable" : String(res.status) });
+    url = res.location ? new URL(res.location, url).href : null;
+  }
+
+  const [start, end] = hops;
+  const ok =
+    hops.length === 2 &&
+    start?.status === "301" &&
+    end?.url === to &&
+    end.status === "200";
+  // On failure, show where the chain actually went
+  const chain = [
+    start?.status,
+    ...hops.slice(1).map((hop) => `${hop.url} (${hop.status})`),
+  ].join(" → ");
+  return { name: from, reason: ok ? null : chain };
+}
+
+async function checkRedirects(): Promise<Check[]> {
+  const article = `/${slugs[0]!}`;
+  return Promise.all([
+    checkRedirect("http://lirbank.com/", `${SITE}/`),
+    checkRedirect("http://www.lirbank.com/", `${SITE}/`),
+    checkRedirect("https://lirbank.com/", `${SITE}/`),
+
+    checkRedirect(`http://lirbank.com${article}`, `${SITE}${article}`),
+    checkRedirect(`http://www.lirbank.com${article}`, `${SITE}${article}`),
+    checkRedirect(`https://lirbank.com${article}`, `${SITE}${article}`),
+  ]);
+}
+
+async function checkRobots(): Promise<Check> {
+  const res = await get(`${base}/robots.txt`);
+  const line = `Sitemap: ${SITE}/sitemap-index.xml`;
+  return {
+    name: "robots.txt",
+    reason: first(
+      badResponse(res, "text/plain"),
+      res.body.includes(line) ? null : "no sitemap line",
+    ),
+  };
+}
+
+/** Also returns the listed page URLs, which drive the canonical tag check */
+async function checkSitemap(): Promise<{ check: Check; pages: string[] }> {
+  const index = await get(`${base}/sitemap-index.xml`);
+  const sitemap = await get(`${base}/sitemap-0.xml`);
+  const pages = [...sitemap.body.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
+    (match) => match[1]!,
+  );
+  const markdown = pages.filter((page) => page.endsWith(".md"));
+  const indexBad = badResponse(index);
+  const sitemapBad = badResponse(sitemap);
+
+  const reason = first(
+    indexBad && `sitemap-index.xml ${indexBad}`,
+    index.body.includes(`<loc>${SITE}/sitemap-0.xml</loc>`)
+      ? null
+      : "index doesn't list sitemap-0.xml",
+    sitemapBad && `sitemap-0.xml ${sitemapBad}`,
+    unlisted(
+      (url) => pages.includes(url),
+      slugs.map((slug) => `${SITE}/${slug}`),
+    ),
+    markdown.length === 0
+      ? null
+      : `lists ${markdown.map((url) => url.slice(SITE.length)).join(", ")}`,
+  );
+  return { check: { name: "sitemap", reason }, pages };
+}
+
+async function checkLlms(): Promise<Check> {
+  const res = await get(`${base}/llms.txt`);
+  return {
+    name: "llms.txt",
+    reason: first(
+      badResponse(res, "text/plain"),
+      unlisted(
+        (url) => res.body.includes(url),
+        slugs.map((slug) => `${SITE}/${slug}.md`),
+      ),
+    ),
+  };
+}
+
+async function checkCanonicalTags(pages: string[]): Promise<Check> {
+  const name = "canonical tag";
+  if (pages.length === 0) return { name, reason: "no pages in the sitemap" };
+
+  const fetched = await Promise.all(
+    pages.map(async (url) => {
+      const path = url.slice(SITE.length) || "/";
+      return { url, path, res: await get(`${base}${path}`) };
+    }),
+  );
+  return {
+    name,
+    reason: across(
+      fetched,
+      ({ path }) => path,
+      ({ url, res }) =>
+        first(
+          badResponse(res, "text/html"),
+          badValue(res.body.match(CANONICAL)?.[1], url),
+        ),
+    ),
+  };
+}
+
+async function checkArticles(): Promise<Check[]> {
+  const articles = await Promise.all(
+    slugs.map(async (slug) => ({
+      slug,
+      html: await get(`${base}/${slug}`),
+      md: await get(`${base}/${slug}.md`),
+      og: await get(`${base}/og/${slug}.png`),
+    })),
+  );
+
+  return [
+    {
+      name: "markdown file",
+      reason: across(
+        articles,
+        ({ slug }) => `/${slug}.md`,
+        ({ md }) => badResponse(md, "text/markdown"),
+      ),
+    },
+    {
+      name: "markdown link",
+      reason: across(
+        articles,
+        ({ slug }) => `/${slug}`,
+        ({ slug, html }) =>
+          first(
+            badResponse(html, "text/html"),
+            badValue(html.body.match(ALTERNATE)?.[1], `${SITE}/${slug}.md`),
+          ),
+      ),
+    },
+    {
+      name: "canonical header",
+      reason: across(
+        articles,
+        ({ slug }) => `/${slug}.md`,
+        // A missing file is already reported on the markdown file line
+        ({ slug, md }) =>
+          badResponse(md, "text/markdown")
+            ? "no markdown file"
+            : badValue(
+                md.link?.match(CANONICAL_HEADER)?.[1],
+                `${SITE}/${slug}`,
+              ),
+      ),
+    },
+    {
+      name: "og image",
+      reason: across(
+        articles,
+        ({ slug }) => `/og/${slug}.png`,
+        ({ og }) => badResponse(og, "image/png"),
+      ),
+    },
+  ];
+}
+
+interface Group {
+  title: string;
+  checks: Check[];
+}
+
+/** The column where failure reasons start, past the longest check name */
+function reasonColumn(groups: Group[]): number {
+  const names = groups.flatMap(({ checks }) => checks.map(({ name }) => name));
+  return Math.max(...names.map((name) => name.length)) + 3;
+}
+
+function printGroup({ title, checks }: Group, column: number) {
+  console.log(`\n${DIM}${title}${RESET}`);
+  for (const { name, reason } of checks) {
+    console.log(
+      reason === null
+        ? `  ${GREEN}✓${RESET}  ${name}`
+        : `  ${RED}✗${RESET}  ${name.padEnd(column)}${RED}${reason}${RESET}`,
+    );
+  }
+}
+
+const redirects: Group | null =
+  base === SITE ? { title: "Redirects", checks: await checkRedirects() } : null;
+const { check: sitemap, pages } = await checkSitemap();
+const contract: Group[] = [
+  { title: "Files", checks: [await checkRobots(), sitemap, await checkLlms()] },
+  { title: "Pages", checks: [await checkCanonicalTags(pages)] },
+  { title: "Articles", checks: await checkArticles() },
+];
+
+console.log(`\n${DIM}${base}${RESET}`);
+if (redirects) {
+  // Redirect names are URLs, so they get their own column
+  printGroup(redirects, reasonColumn([redirects]));
+} else {
+  console.log(`${DIM}Redirects skipped, they only exist in production${RESET}`);
+}
+const column = reasonColumn(contract);
+for (const group of contract) printGroup(group, column);
+
+const checks = [
+  ...(redirects?.checks ?? []),
+  ...contract.flatMap((group) => group.checks),
+];
+const failed = checks.filter((check) => check.reason !== null).length;
+const passed = checks.length - failed;
+
+if (failed === 0) {
+  console.log(`\n${GREEN}✓ All ${passed} checks passed${RESET}\n`);
+} else {
+  console.log(`\n${RED}✗ ${failed} failed${RESET}, ${passed} passed\n`);
+  process.exit(1);
+}
