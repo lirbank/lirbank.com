@@ -21,6 +21,7 @@ const entry = await getEntry("articles", slug);
 if (!entry) return Astro.redirect("/404");
 
 const { Content } = await render(entry);
+const markdownUrl = `/${slug}.md`;
 
 // Each h2 opens a numbered section ("01 / 10"); the total feeds the CSS
 // counter via the inline style below.
@@ -43,6 +44,7 @@ const monthYear = new Date(
   title={entry.data.title}
   description={entry.data.description}
   ogImage={`/og/${slug}.png`}
+  markdownUrl={markdownUrl}
   article={{
     date: entry.data.published,
     updated: entry.data.updated,
@@ -59,7 +61,7 @@ const monthYear = new Date(
           <div class="kicker flex flex-wrap items-center gap-x-2.5 gap-y-2">
             <time datetime={entry.data.published}>{monthYear}</time>
             <span>·</span>
-            <a href={`/${slug}.md`} class="link">
+            <a href={markdownUrl} class="link">
               View as Markdown
             </a>
           </div>
