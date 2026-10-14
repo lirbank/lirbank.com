@@ -83,6 +83,7 @@ export function createHomepageMarkup(
             color: colors.stone600,
             fontSize: 32,
             lineHeight: 1.45,
+            textWrap: "balance",
           }}
         >
           {description}
