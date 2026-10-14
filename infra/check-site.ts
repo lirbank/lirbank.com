@@ -7,8 +7,11 @@
  * - HTTP and the apex domain redirect to https://www.lirbank.com, path intact
  * - robots.txt, the sitemap, and llms.txt exist and agree with the articles
  * - Every page in the sitemap declares itself canonical
+ * - Every article page answers at its URL, and the trailing slash variant
+ *   redirects to it
  * - Every article has a markdown version that carries a canonical header
  *   pointing back at the page, a markdown link from the page, and an OG image
+ *   that the page declares
  *
  * Prints one line per check. A failure gets one short reason, and a problem
  * shared by every page reads "missing on all 6" instead of six lines.
@@ -32,6 +35,7 @@ const RESET = "\x1b[0m";
 
 const CANONICAL = /<link rel="canonical" href="([^"]+)">/;
 const ALTERNATE = /<link rel="alternate" type="text\/markdown" href="([^"]+)">/;
+const OG_IMAGE = /<meta property="og:image" content="([^"]+)">/;
 const CANONICAL_HEADER = /<([^>]+)>;\s*rel="canonical"/;
 
 const slugs = readdirSync(new URL("../src/content/articles", import.meta.url))
@@ -94,6 +98,15 @@ function badResponse(res: Fetched, type = ""): string | null {
 function badValue(got: string | undefined, expected: string): string | null {
   if (got === undefined) return "missing";
   return got === expected ? null : `points at ${got}`;
+}
+
+/** Why a response isn't a redirect to the given URL, or null if it is */
+function badRedirect(res: Fetched, from: string, to: string): string | null {
+  if (res.error) return res.error;
+  if (res.status < 300 || res.status > 399 || !res.location) {
+    return `${res.status} instead of a redirect`;
+  }
+  return badValue(new URL(res.location, from).href, to);
 }
 
 /** The first problem found, so one root cause doesn't read as several */
@@ -252,12 +265,30 @@ async function checkArticles(): Promise<Check[]> {
     slugs.map(async (slug) => ({
       slug,
       html: await get(`${base}/${slug}`),
+      slash: await get(`${base}/${slug}/`),
       md: await get(`${base}/${slug}.md`),
       og: await get(`${base}/og/${slug}.png`),
     })),
   );
 
   return [
+    {
+      name: "page",
+      reason: across(
+        articles,
+        ({ slug }) => `/${slug}`,
+        ({ html }) => badResponse(html, "text/html"),
+      ),
+    },
+    {
+      name: "trailing slash",
+      reason: across(
+        articles,
+        ({ slug }) => `/${slug}/`,
+        ({ slug, slash }) =>
+          badRedirect(slash, `${base}/${slug}/`, `${base}/${slug}`),
+      ),
+    },
     {
       name: "markdown file",
       reason: across(
@@ -271,11 +302,11 @@ async function checkArticles(): Promise<Check[]> {
       reason: across(
         articles,
         ({ slug }) => `/${slug}`,
+        // A missing page is already reported on the page line
         ({ slug, html }) =>
-          first(
-            badResponse(html, "text/html"),
-            badValue(html.body.match(ALTERNATE)?.[1], `${SITE}/${slug}.md`),
-          ),
+          badResponse(html, "text/html")
+            ? "no page"
+            : badValue(html.body.match(ALTERNATE)?.[1], `${SITE}/${slug}.md`),
       ),
     },
     {
@@ -299,6 +330,20 @@ async function checkArticles(): Promise<Check[]> {
         articles,
         ({ slug }) => `/og/${slug}.png`,
         ({ og }) => badResponse(og, "image/png"),
+      ),
+    },
+    {
+      name: "og tag",
+      reason: across(
+        articles,
+        ({ slug }) => `/${slug}`,
+        ({ slug, html }) =>
+          badResponse(html, "text/html")
+            ? "no page"
+            : badValue(
+                html.body.match(OG_IMAGE)?.[1],
+                `${SITE}/og/${slug}.png`,
+              ),
       ),
     },
   ];
