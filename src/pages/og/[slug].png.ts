@@ -9,7 +9,7 @@
 import type { APIRoute, GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 import { createArticleMarkup } from "../../lib/og";
-import { logoPromise, renderToPng } from "../../lib/og-render";
+import { renderToPng } from "../../lib/og-render";
 
 /**
  * Enumerate all articles to generate the static paths
@@ -29,8 +29,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
  * The API route that generates the OG image
  */
 export const GET: APIRoute = async ({ props }) => {
-  const logo = await logoPromise;
-  const markup = createArticleMarkup(props.title, props.description, logo);
+  const markup = createArticleMarkup(props.title, props.description);
   const png = await renderToPng(markup);
 
   return new Response(new Uint8Array(png), {

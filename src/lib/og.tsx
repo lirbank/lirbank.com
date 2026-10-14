@@ -1,8 +1,12 @@
 /** @jsxRuntime automatic */
 /** @jsxImportSource satori/jsx */
 
+import icon from "../../public/brand/icon.svg?raw";
+
 export const WIDTH = 1200;
 export const HEIGHT = 630;
+
+const logoSrc = `data:image/svg+xml;base64,${btoa(icon)}`;
 
 const colors = {
   stone50: "rgb(250, 250, 249)",
@@ -23,7 +27,6 @@ export function createHomepageMarkup(
   title: string,
   description: string,
   name: string,
-  logoSrc: ArrayBuffer,
 ) {
   return (
     <div
@@ -87,22 +90,17 @@ export function createHomepageMarkup(
       </div>
       <div
         style={{
-          display: "flex",
           padding: "0 80px 60px 80px",
           fontSize: 32,
         }}
       >
-        <Footer name={name} logoSrc={logoSrc} />
+        <Footer name={name} />
       </div>
     </div>
   );
 }
 
-export function createSimplePageMarkup(
-  title: string,
-  description: string,
-  logoSrc: ArrayBuffer,
-) {
+export function createSimplePageMarkup(title: string, description: string) {
   return (
     <div
       style={{
@@ -168,23 +166,14 @@ export function createSimplePageMarkup(
           fontWeight: 600,
         }}
       >
-        <img
-          src={logoSrc as unknown as string}
-          width={36}
-          height={36}
-          style={{ flexShrink: 0 }}
-        />
+        <img src={logoSrc} width={36} height={36} style={{ flexShrink: 0 }} />
         <div>Mikael Lirbank</div>
       </div>
     </div>
   );
 }
 
-export function createArticleMarkup(
-  title: string,
-  description: string,
-  logoSrc: ArrayBuffer,
-) {
+export function createArticleMarkup(title: string, description: string) {
   return (
     <div
       style={{
@@ -216,7 +205,7 @@ export function createArticleMarkup(
           padding: "100px 80px 80px 80px",
         }}
       >
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div>
           <div
             style={{
               fontSize: 70,
@@ -235,13 +224,13 @@ export function createArticleMarkup(
             {description}
           </div>
         </div>
-        <Footer name="Mikael Lirbank" logoSrc={logoSrc} />
+        <Footer name="Mikael Lirbank" />
       </div>
     </div>
   );
 }
 
-function Footer({ name, logoSrc }: { name: string; logoSrc: ArrayBuffer }) {
+function Footer({ name }: { name: string }) {
   return (
     <div
       style={{
@@ -258,12 +247,7 @@ function Footer({ name, logoSrc }: { name: string; logoSrc: ArrayBuffer }) {
           gap: 14,
         }}
       >
-        <img
-          src={logoSrc as unknown as string}
-          width={40}
-          height={40}
-          style={{ flexShrink: 0 }}
-        />
+        <img src={logoSrc} width={40} height={40} style={{ flexShrink: 0 }} />
         <div
           style={{
             fontWeight: 600,
