@@ -40,7 +40,7 @@ interface CheckResult {
   nameservers: string;
 }
 
-export function validateResult(
+function validateResult(
   expected: Expected,
   actual: Actual,
 ): { pass: boolean; failures: string[] } {
@@ -188,24 +188,21 @@ async function checkDomains(): Promise<CheckResult[]> {
   return results;
 }
 
-// Only run when executed directly (not when imported for tests)
-if (import.meta.main) {
-  const results: CheckResult[] = [];
+const results: CheckResult[] = [];
 
-  results.push(...(await checkDomains()));
+results.push(...(await checkDomains()));
 
-  console.log(`\n${DIM}Domains${RESET}\n`);
-  printTable(results);
+console.log(`\n${DIM}Domains${RESET}\n`);
+printTable(results);
 
-  const passed = results.filter((r) => r.pass).length;
-  const failed = results.filter((r) => !r.pass).length;
+const passed = results.filter((r) => r.pass).length;
+const failed = results.filter((r) => !r.pass).length;
 
-  if (failed === 0) {
-    console.log(`\n${GREEN}✓ All ${passed} checks passed${RESET}\n`);
-  } else {
-    console.log(
-      `\n${RED}✗ ${failed} check(s) failed${RESET}, ${passed} passed\n`,
-    );
-    process.exit(1);
-  }
+if (failed === 0) {
+  console.log(`\n${GREEN}✓ All ${passed} checks passed${RESET}\n`);
+} else {
+  console.log(
+    `\n${RED}✗ ${failed} check(s) failed${RESET}, ${passed} passed\n`,
+  );
+  process.exit(1);
 }
