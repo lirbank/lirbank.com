@@ -54,10 +54,13 @@ interface Check {
   reason: string | null;
 }
 
-/** Fetches without following redirects, so the first hop is what gets checked */
+/** Fetches without following redirects, giving up after ten seconds */
 async function get(url: string): Promise<Fetched> {
   try {
-    const res = await fetch(url, { redirect: "manual" });
+    const res = await fetch(url, {
+      redirect: "manual",
+      signal: AbortSignal.timeout(10_000),
+    });
     return {
       status: res.status,
       type: res.headers.get("content-type") ?? "",
@@ -67,20 +70,21 @@ async function get(url: string): Promise<Fetched> {
       error: null,
     };
   } catch (error) {
+    const timedOut = error instanceof Error && error.name === "TimeoutError";
     return {
       status: 0,
       type: "",
       location: null,
       link: null,
       body: "",
-      error: error instanceof Error ? error.message : String(error),
+      error: timedOut ? "timed out" : "unreachable",
     };
   }
 }
 
 /** Why a response isn't a 200 of the given content type, or null if it is */
 function badResponse(res: Fetched, type = ""): string | null {
-  if (res.error) return "unreachable";
+  if (res.error) return res.error;
   if (res.status !== 200) return String(res.status);
   if (!res.type.startsWith(type)) return `served as ${res.type || "nothing"}`;
   return null;
@@ -125,19 +129,6 @@ function across<T>(
     .join(" · ");
 }
 
-/** Which of the expected URLs a list leaves out, or null if it has them all */
-function unlisted(
-  listed: (url: string) => boolean,
-  urls: string[],
-): string | null {
-  const missing = urls.filter((url) => !listed(url));
-  if (missing.length === 0) return null;
-  if (missing.length === urls.length && urls.length > 1) {
-    return `lists none of the ${urls.length} articles`;
-  }
-  return `missing ${missing.map((url) => url.slice(SITE.length)).join(", ")}`;
-}
-
 /** Expects a single 301 straight to the target, which then answers 200 */
 async function checkRedirect(from: string, to: string): Promise<Check> {
   const hops: { url: string; status: string }[] = [];
@@ -145,7 +136,7 @@ async function checkRedirect(from: string, to: string): Promise<Check> {
   // Stops after five hops, so a redirect loop shows up as a failure
   while (url && hops.length < 5) {
     const res = await get(url);
-    hops.push({ url, status: res.error ? "unreachable" : String(res.status) });
+    hops.push({ url, status: res.error ?? String(res.status) });
     url = res.location ? new URL(res.location, url).href : null;
   }
 
@@ -205,9 +196,10 @@ async function checkSitemap(): Promise<{ check: Check; pages: string[] }> {
       ? null
       : "index doesn't list sitemap-0.xml",
     sitemapBad && `sitemap-0.xml ${sitemapBad}`,
-    unlisted(
-      (url) => pages.includes(url),
-      slugs.map((slug) => `${SITE}/${slug}`),
+    across(
+      slugs,
+      (slug) => `/${slug}`,
+      (slug) => (pages.includes(`${SITE}/${slug}`) ? null : "missing"),
     ),
     markdown.length === 0
       ? null
@@ -222,9 +214,10 @@ async function checkLlms(): Promise<Check> {
     name: "llms.txt",
     reason: first(
       badResponse(res, "text/plain"),
-      unlisted(
-        (url) => res.body.includes(url),
-        slugs.map((slug) => `${SITE}/${slug}.md`),
+      across(
+        slugs,
+        (slug) => `/${slug}.md`,
+        (slug) => (res.body.includes(`${SITE}/${slug}.md`) ? null : "missing"),
       ),
     ),
   };
@@ -316,46 +309,37 @@ interface Group {
   checks: Check[];
 }
 
-/** The column where failure reasons start, past the longest check name */
-function reasonColumn(groups: Group[]): number {
-  const names = groups.flatMap(({ checks }) => checks.map(({ name }) => name));
-  return Math.max(...names.map((name) => name.length)) + 3;
-}
-
-function printGroup({ title, checks }: Group, column: number) {
+function printGroup({ title, checks }: Group) {
   console.log(`\n${DIM}${title}${RESET}`);
   for (const { name, reason } of checks) {
+    // 16 fits "canonical header". Longer names, the redirect URLs, just get
+    // the three spaces.
     console.log(
       reason === null
         ? `  ${GREEN}✓${RESET}  ${name}`
-        : `  ${RED}✗${RESET}  ${name.padEnd(column)}${RED}${reason}${RESET}`,
+        : `  ${RED}✗${RESET}  ${name.padEnd(16)}   ${RED}${reason}${RESET}`,
     );
   }
 }
 
-const redirects: Group | null =
-  base === SITE ? { title: "Redirects", checks: await checkRedirects() } : null;
+const isProduction = base === SITE;
 const { check: sitemap, pages } = await checkSitemap();
-const contract: Group[] = [
+const groups: Group[] = [
+  ...(isProduction
+    ? [{ title: "Redirects", checks: await checkRedirects() }]
+    : []),
   { title: "Files", checks: [await checkRobots(), sitemap, await checkLlms()] },
   { title: "Pages", checks: [await checkCanonicalTags(pages)] },
   { title: "Articles", checks: await checkArticles() },
 ];
 
 console.log(`\n${DIM}${base}${RESET}`);
-if (redirects) {
-  // Redirect names are URLs, so they get their own column
-  printGroup(redirects, reasonColumn([redirects]));
-} else {
+if (!isProduction) {
   console.log(`${DIM}Redirects skipped, they only exist in production${RESET}`);
 }
-const column = reasonColumn(contract);
-for (const group of contract) printGroup(group, column);
+for (const group of groups) printGroup(group);
 
-const checks = [
-  ...(redirects?.checks ?? []),
-  ...contract.flatMap((group) => group.checks),
-];
+const checks = groups.flatMap((group) => group.checks);
 const failed = checks.filter((check) => check.reason !== null).length;
 const passed = checks.length - failed;
 
