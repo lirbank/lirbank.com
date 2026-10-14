@@ -1,0 +1,4 @@
+# The markdown article files are alternates of the HTML pages. Point search
+# engines at the HTML page so the two never compete for the same query.
+/:slug.md
+  Link: <https://www.lirbank.com/:slug>; rel="canonical"

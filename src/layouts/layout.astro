@@ -7,6 +7,8 @@ interface Props {
   title: string;
   description: string;
   ogImage: string;
+  /** Absolute or site-relative URL of the page's markdown version */
+  markdownUrl?: string;
   article?: {
     date: string;
     updated: string | null;
@@ -14,9 +16,14 @@ interface Props {
   };
 }
 
-const { title, description, ogImage, article } = Astro.props;
+const { title, description, ogImage, markdownUrl, article } = Astro.props;
 const year = new Date().getFullYear();
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+// With `build.format: "file"` the build-time pathname carries the output
+// filename (`/index.html`, `/slug.html`). Public URLs never do.
+const pathname = Astro.url.pathname
+  .replace(/\/index\.html$/, "/")
+  .replace(/\.html$/, "");
+const canonicalUrl = new URL(pathname, Astro.site).href;
 const canonicalOgImage = new URL(ogImage, Astro.site).href;
 ---
 
@@ -29,11 +36,19 @@ const canonicalOgImage = new URL(ogImage, Astro.site).href;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
     <meta property="og:type" content={article ? "article" : "website"} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={canonicalOgImage} />
     <meta property="og:url" content={canonicalUrl} />
+    {markdownUrl && (
+      <link
+        rel="alternate"
+        type="text/markdown"
+        href={new URL(markdownUrl, Astro.site).href}
+      />
+    )}
     {article && (
       <>
         <meta property="article:author" content={article.author} />
