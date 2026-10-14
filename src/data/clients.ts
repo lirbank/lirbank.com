@@ -19,12 +19,6 @@ export const clients: Client[] = [
     ],
   },
   {
-    title: "Coupa",
-    description:
-      "Coupa is a leader in business spend management. They brought me in to set the architecture for their supplier agent and build it out. It’s an email-native AI agent on AWS Bedrock and LangChain, with evals guarding its behavior as it evolves. Suppliers email it the way they’d email a person, and it replies in the same email thread. It answers questions about invoices and purchase orders, and takes action too, like creating and sending invoices.",
-    links: [{ label: "coupa.com", href: "https://www.coupa.com/" }],
-  },
-  {
     title: "Databricks",
     description:
       "Lakebase is Databricks’ serverless Postgres. I’m designing their data anonymization workflow, where engineers branch production, mask the sensitive data with join-preserving transforms, and verify nothing leaks before restricted teams get access to the anonymized branch. It ships as an agent skill, so a coding agent can walk any engineer through it.",
@@ -55,6 +49,13 @@ export const clients: Client[] = [
       },
       { label: "neon.com", href: "https://neon.com/" },
     ],
+  },
+  {
+    title: "Coupa",
+    description:
+      "Coupa is a leader in business spend management. They brought me in to set the architecture for their supplier agent and build it out. It’s an email-native AI agent on AWS Bedrock and LangChain, with evals guarding its behavior as it evolves. Suppliers email it the way they’d email a person, and it replies in the same email thread. It answers questions about invoices and purchase orders, and takes action too, like creating and sending invoices.",
+    links: [{ label: "coupa.com", href: "https://www.coupa.com/" }],
+    testimonial: "spencer-smith-coupa",
   },
   {
     title: "Scoutbee",
